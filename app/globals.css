@@ -77,6 +77,7 @@ body::-webkit-scrollbar {
   --font-heading: 'Futura Condensed';
   --font-typewriter: 'Courier Prime';
    --color-primary: black;
+   --color-white-light: #ffffff94;
 
   --letter-spacing-xs: 0.05em;
   --letter-spacing-sm: 0.2em;

@@ -79,11 +79,14 @@ export interface AftercareType{
 }
 
 export interface MessageType{
-  message: string,
-  from: string,
+  _id: string,
+  content: string,
+  sender: string,
   date: Date,
-  isClient: boolean,
-  image?: any,
+  isClient?: boolean,
+  isImage?: any,
+  isDeleted?: boolean,
+  isRead?: boolean
   live?: boolean
 }
 
