@@ -1,0 +1,24 @@
+import { create } from "zustand";
+
+export type ModalType = 'indemnity' | 'calendar' | 'location' | 'prep' | 'appointmentActions' | 'aftercare' | 'photos' | 'review'
+
+interface ModalData {
+  indemnity?: ''
+  tips?: string[]
+}
+
+interface ModalStore {
+  type: ModalType | null,
+  data?: ModalData | null,
+  isOpen: boolean,
+  handleOpen: (type: ModalType, data?: ModalData) => void,
+  handleClose: () => void
+}
+
+export const useModal = create<ModalStore>((set) => ({
+  type: null,
+  data: {} || [],
+  isOpen: false,
+  handleOpen: (type, data = {}) => set({ isOpen: true, type, data }),
+  handleClose: () => set({ isOpen: false, type: null })
+}))
