@@ -28,7 +28,7 @@ const MESSAGES = [
 
 const Lobby = () => {
   return (
-    <SectionLayout>
+    <SectionLayout section='lobby'>
       <div className='w-full h-full pt-8 flex flex-col'>
         <div className='flex-[0.02] text-[8px] font-light tracking-[0.1em] uppercase italic text-center pb-3'>
           Here you able to directly communicate with your artist

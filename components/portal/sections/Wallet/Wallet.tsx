@@ -19,7 +19,7 @@ const Wallet = () => {
     },
   ]
   return (
-    <SectionLayout>
+    <SectionLayout section='wallet'>
       <div className='h-full flex items-center min-w-[40%]'>
         <PortalLinkList links={LINKS} />
       </div>

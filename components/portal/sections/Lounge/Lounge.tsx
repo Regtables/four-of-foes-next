@@ -38,7 +38,7 @@ const Lounge = async () => {
   ];
 
   return (
-    <SectionLayout>
+    <SectionLayout section="lounge">
       <div className="h-[75%] w-full relative">
         <Image
           src={"/lounge-ted.jpg"}

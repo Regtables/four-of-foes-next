@@ -1,4 +1,9 @@
-import React from "react";
+'use client'
+
+import React, { useEffect, useState } from "react";
+import { motion } from 'framer-motion' 
+
+import { useSection } from "@/context/PortalSectionContext";
 
 const LINKS = [
   {
@@ -13,6 +18,24 @@ const LINKS = [
 ];
 
 const PortalNavbar = () => {
+  const { currentSection } = useSection()
+  const [animateDot, setAnimateDot] = useState({ })
+
+  useEffect(() => {
+    if(currentSection === 'lobby'){
+      setAnimateDot({ x: '-28vw'})
+    }
+
+    if(currentSection === 'lounge'){
+      setAnimateDot({ x: '0%'})
+    }
+
+    if(currentSection === 'wallet'){
+      setAnimateDot({ x: '28vw'})
+    }
+
+  }, [currentSection])
+
   return (
     <div className="grid grid-cols-3 gap-8 w-full">
       {LINKS.map((link) => (
@@ -20,7 +43,11 @@ const PortalNavbar = () => {
           {link.link}
 
           {link.link === "lounge" && (
-            <div className="h-2 w-2 bg-[grey] rounded-full absolute bottom-[-15px]" />
+            <motion.div 
+              className="h-2 w-2 bg-[grey] rounded-full absolute bottom-[-15px]"
+              animate = {animateDot} 
+              transition={{ duration: 0.5 }}  
+            />
           )}
         </div>
       ))}
