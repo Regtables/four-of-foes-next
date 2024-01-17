@@ -19,6 +19,10 @@ const Lobby = ({ messages } : LobbyProps) => {
   const [animatePage, setAnimatePage] = useState({})
 
   useEffect(() => {
+    
+  }, [])
+
+  useEffect(() => {
     if(currentSection === 'lobby'){
       setAnimatePage({ opacity: [0,1]})
     } else {

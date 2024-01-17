@@ -4,11 +4,12 @@ import React, { useEffect, useState } from "react";
 import Image from "next/image";
 import { motion } from "framer-motion";
 
+import { IndemnityType, LoungeLinkType } from "@/types";
+import { useSection } from "@/context/PortalSectionContext";
+
 import PortalAppointmentBanner from "../../PortalAppointmentBanner/PortalAppointmentBanner";
 import PortalLinkList from "../../PortalLinkList/PortalLinkList";
 import SectionLayout from "../../layout/SectionLayout";
-import { useSection } from "@/context/PortalSectionContext";
-import { IndemnityType, LoungeLinkType } from "@/types";
 
 const APPOINTMENT = {
   artist: "Ted Faulmann",
@@ -57,7 +58,7 @@ const Lounge = ({ indemnityData, prepData } : LoungeProps) => {
       <motion.div className="h-full w-full flex flex-col items-center" animate = {animatePage} transition={{ duration: 1 }}>
         <div className="h-[75%] w-full relative">
           <Image
-            src={"/lounge-ted.jpg"}
+            src={"/lounge-ted.JPG"}
             fill
             alt="ted"
             className="object-cover"

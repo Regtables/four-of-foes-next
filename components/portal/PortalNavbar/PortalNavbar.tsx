@@ -4,6 +4,7 @@ import React, { useEffect, useState } from "react";
 import { motion } from 'framer-motion' 
 
 import { useSection } from "@/context/PortalSectionContext";
+import Link from "next/link";
 
 const LINKS = [
   {
@@ -39,7 +40,7 @@ const PortalNavbar = () => {
   return (
     <div className="grid grid-cols-3 gap-8 w-full">
       {LINKS.map((link) => (
-        <div className="uppercase text-[11px] tracking-[0.2em] flex flex-col items-center justify-center relative">
+        <a className="uppercase text-[11px] tracking-[0.2em] flex flex-col items-center justify-center relative" href={`#${link.link}`}>
           {link.link}
 
           {link.link === "lounge" && (
@@ -49,7 +50,7 @@ const PortalNavbar = () => {
               transition={{ duration: 0.5 }}  
             />
           )}
-        </div>
+        </a>
       ))}
     </div>
   );

@@ -21,7 +21,7 @@ const SectionLayout = ({ children, section } : { children: React.ReactNode, sect
   } , [beginInView, endInView])
 
   return (
-    <div className='h-full flex flex-col items-center w-full overflow-hidden relative'>
+    <div className='h-full flex flex-col items-center w-full overflow-hidden relative' id = {section}>
       <div className='absolute start-[25%]' ref = {beginRef} />
       {children}
       <div className='absolute end-[25%]' ref = {endRef} />

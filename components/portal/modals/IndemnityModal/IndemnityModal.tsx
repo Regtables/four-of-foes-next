@@ -10,7 +10,7 @@ import ButtonPill from "@/components/buttons/ButtonPill";
 const IndemnityModal = () => {
   const { isOpen, type, data } = useModal();
 
-  const content = data?.indemnity || [];
+  const content = data as [];
   const isModalOpen = isOpen && type === "indemnity";
 
   const handleCheck = () => {
