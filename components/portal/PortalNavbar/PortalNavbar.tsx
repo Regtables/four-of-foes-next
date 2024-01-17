@@ -4,7 +4,6 @@ import React, { useEffect, useState } from "react";
 import { motion } from 'framer-motion' 
 
 import { useSection } from "@/context/PortalSectionContext";
-import Link from "next/link";
 
 const LINKS = [
   {

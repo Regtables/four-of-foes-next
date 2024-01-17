@@ -10,11 +10,7 @@ const SectionLayout = ({ children, section } : { children: React.ReactNode, sect
   const { inView: beginInView, ref: beginRef } = useInView()
   const { inView: endInView, ref: endRef } = useInView()
 
-  console.log(currentSection)
-
   useEffect(() => {
-    console.log(`Section: ${section}, inView: ${beginInView}`)
-
     if(beginInView){
       handleSectionChange(section, true)
     }

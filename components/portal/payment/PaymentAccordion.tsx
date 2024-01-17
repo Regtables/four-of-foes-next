@@ -67,7 +67,7 @@ const PaymentAccordion = ({
           className="text-center text-[10px] tracking-[0.1em] text-clip"
           initial={{ opacity: 0 }}
           animate={animateText}
-          transition={{ duration: 0.7, delay: 0.3 }}
+          transition={{ duration: 1, delay: 0.3 }}
         >
           {text}
         </motion.p>
@@ -76,7 +76,7 @@ const PaymentAccordion = ({
           className="w-[120px] h-[25px] mb-4"
           initial={{ opacity: 0 }}
           animate={animateButton}
-          transition={{ duration: 0.7, delay: 0.6 }}
+          transition={{ duration: 1, delay: 0.6 }}
         >
           <ButtonPill fill text="paypal" />
         </motion.div>
