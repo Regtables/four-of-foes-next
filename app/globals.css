@@ -21,6 +21,7 @@
   overflow-x:auto;
   scroll-snap-type: x mandatory;
   scroll-snap-align: start;
+  scroll-snap-stop: always;
   white-space: nowrap;
   width: 100vw;
   height: 100%;
