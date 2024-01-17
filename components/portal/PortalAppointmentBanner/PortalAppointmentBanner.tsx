@@ -6,13 +6,14 @@ import { format } from 'date-fns'
 
 interface AppointmentType {
   artist: string,
-  date: string
+  date: Date
   studio: string,
   country: string
 }
 
 const PortalAppointmentBanner = ({ artist, date, studio, country } : AppointmentType) => {
-  const formattedDate = format(new Date(), 'dd MMMM / hhaa')
+  //@ts-ignore
+  const formattedDate = format(new Date(date), 'dd MMMM / hhaa')
   
   console.log(formattedDate)
   return (

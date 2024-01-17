@@ -1,9 +1,10 @@
+import { IndemnityType } from "@/types";
 import { create } from "zustand";
 
 export type ModalType = 'indemnity' | 'calendar' | 'location' | 'prep' | 'appointmentActions' | 'aftercare' | 'photos' | 'review'
 
 interface ModalData {
-  indemnity?: ''
+  indemnity?: IndemnityType[]
   tips?: string[]
 }
 

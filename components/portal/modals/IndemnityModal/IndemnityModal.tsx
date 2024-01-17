@@ -10,8 +10,12 @@ import ButtonPill from "@/components/buttons/ButtonPill";
 const IndemnityModal = () => {
   const { isOpen, type, data } = useModal();
 
-  const content = data || [];
+  const content = data?.indemnity || [];
   const isModalOpen = isOpen && type === "indemnity";
+
+  const handleCheck = () => {
+
+  }
 
   return (
     <ModalLayout isOpen={isModalOpen} title="Indemnity">
@@ -32,7 +36,7 @@ const IndemnityModal = () => {
               initial={{ y: -20, opacity: 0 }}
               viewport={{ once: true }}
             >
-              <IndemnityTile indemnity={clause} />
+              <IndemnityTile indemnity={clause} handleCheck={handleCheck}/>
             </motion.div>
           ))}
         </div>
@@ -47,7 +51,7 @@ const IndemnityModal = () => {
         initial={{ y: 10, opacity: 0 }}
         viewport={{ once: true }}
       >
-        <ButtonPill text={"sign indemnity"} />
+        <ButtonPill text={"sign indemnity"} fill />
       </motion.div>
     </ModalLayout>
   );

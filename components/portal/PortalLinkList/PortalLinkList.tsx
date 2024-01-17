@@ -5,8 +5,13 @@ import React from "react";
 import { useModal } from "@/hooks/useModal";
 
 import Partition from "./Partition";
+import { LoungeLinkType } from "@/types";
 
-const PortalLinkList = ({ links }) => {
+interface PortalLinkListProps {
+  links: LoungeLinkType[]
+}
+
+const PortalLinkList = ({ links } : PortalLinkListProps) => {
   const { handleOpen } = useModal()
 
   return (
@@ -17,7 +22,7 @@ const PortalLinkList = ({ links }) => {
         <button 
           key = {i}
           className="tracking-[0.5em] uppercase w-full active:bg-white active:text-black transition-colors rounded-sm text-white"
-          onClick={() => handleOpen(link.type, link.data)}
+          onClick={() => handleOpen(link.type, { indemnity: link.data})}
         > 
           <div className="py-2 text-[9px] mx-auto text-center">{link.link}</div>
 

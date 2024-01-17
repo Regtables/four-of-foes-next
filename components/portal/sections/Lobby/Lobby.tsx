@@ -1,35 +1,40 @@
-import React from 'react'
+'use client'
+
+import React, { useEffect, useState } from 'react'
+import { motion } from 'framer-motion'
+
 import SectionLayout from '../../layout/SectionLayout'
 import Partition from '../../PortalLinkList/Partition'
 import PortalMessenger from '../../messenger/PortalMessenger/PortalMessenger'
+import CancelAppointment from '@/components/buttons/CancelAppointment'
+import { useSection } from '@/context/PortalSectionContext'
+import { MessageType } from '@/types'
 
-const MESSAGES = [
-  {
-    _id: '1',
-    content: 'Please use this space to discuss changes and addisional ideas. Here you may also recieve designs. Please use it respectfully and trust the process.',
-    sender: 'Admin',
-    isRead: false,
-    isDeleted: false,
-    isClient: false,
-    isImage: false,
-    date: new Date()
-  },
-  {
-    _id: '2',
-    content: "Yay I'm so excited",
-    sender: 'Reg',
-    isRead: false,
-    isDeleted: false,
-    isClient: true,
-    isImage: false,
-    date: new Date()
-  }
-]
+interface LobbyProps {
+  messages: MessageType[]
+}
 
-const Lobby = () => {
+const Lobby = ({ messages } : LobbyProps) => {
+  const { currentSection } = useSection()
+  const [animatePage, setAnimatePage] = useState({})
+
+  useEffect(() => {
+    if(currentSection === 'lobby'){
+      setAnimatePage({ opacity: [0,1]})
+    } else {
+      setAnimatePage({ opacity: [1,0]})
+    }
+  }, [currentSection])
+  
   return (
     <SectionLayout section='lobby'>
-      <div className='w-full h-full pt-8 flex flex-col'>
+      <motion.div 
+        className='w-full h-full pt-8 flex flex-col' 
+        // whileInView={{ opacity: [0,1] }} 
+        animate = {animatePage}
+        transition={{ duration: 1 }} 
+        initial = {{opacity: 0}}
+      >
         <div className='flex-[0.02] text-[8px] font-light tracking-[0.1em] uppercase italic text-center pb-3'>
           Here you able to directly communicate with your artist
         </div>
@@ -37,16 +42,15 @@ const Lobby = () => {
         <Partition />
 
         <div className='flex-[0.92]'>
-          <PortalMessenger messages = {MESSAGES} />
+          <PortalMessenger messages = {messages} />
         </div>
 
         <Partition />
-        <div className='flex-[0.05] h-full'>
-          <button className='h-full flex items-center justify-center w-full text-[7px] uppercase tracking-[0.4em] text-[#a9a9a9]'>
-            cancel/resheudle
-          </button>
+
+        <div className='flex-[0.07] h-full'>
+          <CancelAppointment />
         </div>
-      </div>
+      </motion.div>
     </SectionLayout>
   )
 }

@@ -6,7 +6,7 @@ import MessageInput from '../MessageInput/MessageInput'
 const PortalMessenger = ({ messages } : { messages: MessageType[] }) => {
   return (
     <div className='flex flex-col h-full w-full py-4 px-2'>
-      <div className='flex-[0.95]'>
+      <div className='flex-[0.95] w-full'>
         <Messages messages={messages} />
       </div>
 

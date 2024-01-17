@@ -15,12 +15,12 @@ const MessageTile = ({
   return (
     <div
       className={cn(
-        "border border-1-white p-2 rounded-md ml-auto max-w-[80%] h-full flex flex-col",
+        "border border-1-white p-2 rounded-md ml-auto max-w-[80%] flex flex-col text-clip",
         isClient && "bg-white text-black mr-auto ml-0"
       )}
     >
       <h5 className="text-[8px] italic">{sender}</h5>
-      <p className="text-[10px] h-100">{content}</p>
+      <p className="text-[10px] h-100 text-clip">{content}</p>
     </div>
   );
 };

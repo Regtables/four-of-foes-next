@@ -4,6 +4,8 @@ import React, { useEffect, useState } from 'react'
 import IndemnityModal from '../portal/modals/IndemnityModal/IndemnityModal'
 import PrepModal from '../portal/modals/PrepModal/PrepModal'
 import CalendarModal from '../portal/modals/CalendarModal/CalendarModal'
+import LocationModal from '../portal/modals/LocationModal/LocationModal'
+import CancelAppointmentModal from '../portal/modals/CancelAppointmentModal/CancelAppointmentModal'
 
 const ModalProvider = () => {
   const [isMounted, setIsMounted] = useState(false)
@@ -19,6 +21,8 @@ const ModalProvider = () => {
       <IndemnityModal />
       <PrepModal />
       <CalendarModal />
+      <LocationModal />
+      <CancelAppointmentModal />
     </>
   )
 }

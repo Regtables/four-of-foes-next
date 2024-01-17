@@ -10,6 +10,12 @@ export interface Choice {
   title: string
 }
 
+export interface LoungeLinkType {
+  link: string,
+  type: 'indemnity' | 'prep' | 'location',
+  data: IndemnityType[] | string[] | any
+}
+
 export interface Value {
   choice: {
     name: string;
