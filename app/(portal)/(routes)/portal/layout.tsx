@@ -1,8 +1,15 @@
-import PortalNavbar from "@/components/portal/PortalNavbar/PortalNavbar";
-import ModalProvider from "@/components/providers/ModalProvider";
 import { PortalSectionProvider } from "@/context/PortalSectionContext";
 import Image from "next/image";
+import { Metadata } from "next/types";
 import React from "react";
+
+import PortalNavbar from "@/components/portal/PortalNavbar/PortalNavbar";
+import ModalProvider from "@/components/providers/ModalProvider";
+
+export const metadata: Metadata = {
+  title: 'Four of Foes - Patron Lounge',
+  description: 'The coolest tattoo website ever made',
+}
 
 const PortalLayout = ({ children }: { children: React.ReactNode }) => {
   return (
