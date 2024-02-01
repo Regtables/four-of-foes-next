@@ -24,7 +24,7 @@ export interface Value {
   }
 }
 
-export interface Section {
+export interface BookingSection {
   heading: string;
   description: string;
   options?: Value[];

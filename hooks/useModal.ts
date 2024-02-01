@@ -1,11 +1,12 @@
-import { IndemnityType } from "@/types";
+import { BookingSection, IndemnityType } from "@/types";
 import { create } from "zustand";
 
-export type ModalType = 'indemnity' | 'calendar' | 'location' | 'prep' | 'appointmentActions' | 'aftercare' | 'photos' | 'review'
+export type ModalType = 'indemnity' | 'calendar' | 'location' | 'prep' | 'appointmentActions' | 'aftercare' | 'photos' | 'review' | 'booking'
 
 interface ModalData {
   indemnity?: IndemnityType[]
-  tips?: string[]
+  tips?: string[],
+  bookingFormData?: BookingSection[]
 }
 
 interface ModalStore {

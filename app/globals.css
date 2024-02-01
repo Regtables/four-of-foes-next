@@ -2,6 +2,20 @@
 @tailwind components;
 @tailwind utilities;
 
+@font-face {
+  font-family: 'Futura Condensed';
+  src: url('/fonts/Futura\ Condensed/Futura-Condensed-Regular.tff') format('truetype');
+
+  font-weight: 600;
+}
+
+@font-face {
+  font-family: 'Futura Condensed';
+  src: url('/fonts/Futura\ Condensed/Futura-Regular.tff') format('truetype');
+
+  font-weight: 500;
+}
+
 :root {
   --foreground-rgb: 0, 0, 0;
   --background-start-rgb: 214, 219, 220;
@@ -50,6 +64,13 @@
   letter-spacing: 0.7em;
   text-transform: uppercase;
   font-size: 9px;
+  color: white;
+}
+
+.booking_title{
+  letter-spacing: 0.5em;
+  text-transform: uppercase;
+  font-size: 12px;
   color: white;
 }
 

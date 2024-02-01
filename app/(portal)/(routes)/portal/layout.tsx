@@ -4,7 +4,6 @@ import { Metadata } from "next/types";
 import React from "react";
 
 import PortalNavbar from "@/components/portal/PortalNavbar/PortalNavbar";
-import ModalProvider from "@/components/providers/ModalProvider";
 
 export const metadata: Metadata = {
   title: 'Four of Foes - Patron Lounge',
@@ -22,9 +21,7 @@ const PortalLayout = ({ children }: { children: React.ReactNode }) => {
         <main className="flex-[0.87]">
           {children}
         </main>
-
-        <ModalProvider />
-
+s
         <footer className="flex-[0.05] flex items-center w-72 mx-auto">
           <PortalNavbar />
         </footer>
