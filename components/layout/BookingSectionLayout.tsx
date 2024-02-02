@@ -14,7 +14,7 @@ const BookingSectionLayout = ({ children, heading, section } : BookingSectionLay
   const { heading: title, description } = heading
 
   return (
-    <div className='w-full mb-8'>
+    <div className='w-full mb-16'>
       <header className='flex flex-col items-center'>
         <h2 className='booking_title'>{title}</h2>
 

@@ -4,7 +4,7 @@ export interface InforationType {
   placeholder: string
 }
 
-export interface Choice {
+export interface CheckboxOption {
   name: string,
   value: string,
   title: string

@@ -5,6 +5,7 @@ import { motion } from "framer-motion";
 
 import NavIcon from "@/components/navigation/NavIcon";
 import NavMenu from "@/components/navigation/NavMenu";
+import { BookingFormProvider } from "@/context/BookingFormContext";
 
 const LandingLayout = ({ children }: { children: React.ReactNode }) => {
   const [toggleNavMenu, setToggleNavMenu] = useState(false);
@@ -23,28 +24,30 @@ const LandingLayout = ({ children }: { children: React.ReactNode }) => {
   };
 
   return (
-    <div>
-      <nav>
-        <div
-          onClick={handleNavIconClick}
-          className="fixed z-30 top-10 start-5 cursor-pointer"
-        >
-          {toggleNavMenu ? <X className="opacity-40" /> : <NavIcon />}
-        </div>
+    <BookingFormProvider>
+      <div>
+        <nav>
+          <div
+            onClick={handleNavIconClick}
+            className="fixed z-30 top-10 start-5 cursor-pointer"
+          >
+            {toggleNavMenu ? <X className="opacity-40" /> : <NavIcon />}
+          </div>
 
-        <motion.div
-          className="fixed start-0 top-0 bottom-0 z-20"
-          variants={navMenuVariants}
-          animate={toggleNavMenu ? "visible" : "hidden"}
-          initial = 'hidden'
-          transition={{ duration: 0.5 }}
-        >
-          <NavMenu />
-        </motion.div>
-      </nav>
+          <motion.div
+            className="fixed start-0 top-0 bottom-0 z-20"
+            variants={navMenuVariants}
+            animate={toggleNavMenu ? "visible" : "hidden"}
+            initial = 'hidden'
+            transition={{ duration: 0.5 }}
+          >
+            <NavMenu />
+          </motion.div>
+        </nav>
 
-      <main>{children}</main>
-    </div>
+        <main>{children}</main>
+      </div>
+    </BookingFormProvider>
   );
 };
 
