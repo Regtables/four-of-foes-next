@@ -2,21 +2,23 @@ import React from "react";
 import { motion } from "framer-motion";
 
 import { CheckboxOption } from "@/types";
+import { cn } from "@/app/lib/utils";
+
 import Checkbox from "./Checkbox";
 
 const CheckboxList = ({
   options,
   selectedOption,
   handleOptionSelect,
-  cols = 2
+  single
 }: {
   options: CheckboxOption[];
   selectedOption: string;
   handleOptionSelect: (option: string) => void;
-  cols?: number
+  single?: boolean
 }) => {
   return (
-    <div className={`grid grid-cols-${cols} gap-4`}>
+    <div className={cn(`grid grid-cols-2 gap-4`, single && 'grid-cols-1')}>
       {options.map((option) => (
         <motion.div
           className="flex"

@@ -36,7 +36,7 @@ const ArtistSelect = ({
     <div className="flex justify-center gap-6">
       <div>
         <CheckboxList
-          cols={1}
+          single
           //@ts-ignore
           options={artistOptions}
           selectedOption={selectedArtist}
@@ -46,7 +46,7 @@ const ArtistSelect = ({
 
       <div>
         <CheckboxList
-          cols = {1}
+          single
           options={activeArtist?.tourOptions}
           selectedOption={selectedTourDate}
           handleOptionSelect={handleTourDateSelect}
