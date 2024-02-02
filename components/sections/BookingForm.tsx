@@ -108,6 +108,7 @@ const BookingForm = ({ data }: { data: any }) => {
           options={data["Dimensions"].options}
           selectedOption={dimention}
           handleOptionSelect={setDimention}
+          cols={2}
         />
       </BookingSectionLayout>
 
@@ -116,6 +117,7 @@ const BookingForm = ({ data }: { data: any }) => {
           options={data["Placement"].options}
           selectedOption={placement}
           handleOptionSelect={setPlacement}
+          cols={2}
         />
       </BookingSectionLayout>
 
