@@ -8,7 +8,7 @@ import ButtonLrg from '../buttons/ButtonLrg'
 import { useModal } from '@/hooks/useModal'
 import { BookingSection } from '@/types'
 
-const Hero = ({ bookingFormData } : { bookingFormData: BookingSection[] }) => {
+const Hero = ({ bookingFormData } : { bookingFormData: any }) => {
   const { handleOpen } = useModal()
   
   const handleEnquiryClick = () => {
