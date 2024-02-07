@@ -1,14 +1,15 @@
 "use client";
-import React, { useState } from "react";
+import React, { useRef, useState } from "react";
 import { X } from "lucide-react";
 import { motion } from "framer-motion";
 
 import NavIcon from "@/components/navigation/NavIcon";
 import NavMenu from "@/components/navigation/NavMenu";
-import { BookingFormProvider } from "@/context/BookingFormContext";
+import ViewMotionWrapper from "@/components/layout/Motion/ViewMotionWrapper";
 
 const LandingLayout = ({ children }: { children: React.ReactNode }) => {
   const [toggleNavMenu, setToggleNavMenu] = useState(false);
+  const nav:any = useRef(null)
 
   const navMenuVariants = {
     visible: {
@@ -23,16 +24,24 @@ const LandingLayout = ({ children }: { children: React.ReactNode }) => {
     setToggleNavMenu((prev) => !prev);
   };
 
+  const handleMainClick = (e: any) => {
+    if(nav.current && !nav.current.contains(e.target) && toggleNavMenu){
+      setToggleNavMenu(false)
+    }
+  }
+
   return (
-    <BookingFormProvider>
       <div>
-        <nav>
+        <nav ref = {nav}>
+          <ViewMotionWrapper x = {-10} y= {0} duration={1}>
           <div
             onClick={handleNavIconClick}
             className="fixed z-30 top-10 start-5 cursor-pointer"
           >
             {toggleNavMenu ? <X className="opacity-40" /> : <NavIcon />}
           </div>
+
+          </ViewMotionWrapper>
 
           <motion.div
             className="fixed start-0 top-0 bottom-0 z-20"
@@ -45,9 +54,8 @@ const LandingLayout = ({ children }: { children: React.ReactNode }) => {
           </motion.div>
         </nav>
 
-        <main>{children}</main>
+        <main onClick={handleMainClick}>{children}</main>
       </div>
-    </BookingFormProvider>
   );
 };
 

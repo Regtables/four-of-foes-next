@@ -3,6 +3,7 @@ import { Inter } from 'next/font/google'
 import { jost } from './lib/fonts'
 import './globals.css'
 import ModalProvider from '@/components/providers/ModalProvider'
+import { BookingFormProvider } from '@/context/BookingFormContext'
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -19,11 +20,12 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={jost.className}>
-        <div>
-          {children}
-        </div>
-
-        <ModalProvider />
+        <BookingFormProvider>
+          <div>
+            {children}
+          </div>
+          <ModalProvider />
+        </BookingFormProvider>
       </body>
     </html>
   )

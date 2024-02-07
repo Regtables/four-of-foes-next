@@ -1,27 +1,26 @@
 "use client";
 
-import React, { ChangeEvent, useState } from "react";
-import Information from "../booking/Information";
-import BookingSectionLayout from "../layout/BookingSectionLayout";
-import { BookingSection } from "@/types";
-import CheckboxList from "../booking/CheckboxList";
+import axios from "axios";
+
 import { useBookingForm } from "@/context/BookingFormContext";
-import ArtistSelect from "../booking/ArtistSelect";
-import DateSelect from "../booking/DateSelect";
-import { X } from "lucide-react";
+import { getBase64 } from "@/app/lib/helpers";
 import { useModal } from "@/hooks/useModal";
 
-const INFORMATION = {
-  name: "",
-  surname: "",
-  email: "",
-  contact: "",
-  city: "",
-};
+import BookingSectionLayout from "../layout/BookingSectionLayout";
+import Information from "../booking/Information";
+import CheckboxList from "../booking/CheckboxList";
+import ArtistSelect from "../booking/ArtistSelect";
+import DateSelect from "../booking/DateSelect";
+import Idea from "../booking/Idea";
+import References from "../booking/References";
+import Submit from "../booking/Submit";
+import Contact from "../booking/Contact";
+import ViewMotionWrapper from "../layout/Motion/ViewMotionWrapper";
+import BookingCollectionWrapper from "../layout/BookingCollectionWrapper";
 
 const ARTISTS = [
   {
-    title: "Ted Flinstxne",
+    title: "Ted Faulmann",
     tourOptions: [
       {
         choice: { title: "Berlin (August 2024)" },
@@ -54,87 +53,192 @@ const ARTISTS = [
 ];
 
 const BookingForm = ({ data }: { data: any }) => {
-  const [information, setInformation] = useState(INFORMATION);
-  const [idea, setIdea] = useState("");
-  const [artist, setArtist] = useState("Ted Flinstxne");
-  const [tourDate, setTourDate] = useState("");
-  const [placement, setPlacement] = useState("");
-  const [secondPlacement, setSecondPlacement] = useState("");
-  const [dimention, setDimention] = useState("");
-  const [experience, setExperience] = useState("");
-  const [firstDate, setFirstDate] = useState("");
-  const [secondDate, setSecondDate] = useState("");
-  const [selectedFile1, setSelectedFile1] = useState("");
-  const [selectedFile2, setSelectedFile2] = useState("");
-  const [selectedFile3, setSelectedFile3] = useState("");
-  const [selectedFile4, setSelectedFile4] = useState("");
+  const bookingFormData = useBookingForm();
+  const { handleOpen, handleClose, types, data: modalData } = useModal()
 
-  const { handleClose } = useModal()
+  const {
+    information,
+    handleInformationChange,
+    idea,
+    tourDate,
+    setTourDate,
+    setIdea,
+    dimention,
+    setDimention,
+    placement,
+    setPlacement,
+    experience,
+    setExperience,
+    artist,
+    setArtist,
+    firstDate,
+    secondDate,
+    selectedFile1,
+    selectedFile2,
+    selectedFile3,
+    selectedFile4,
+    validateForm
+  } = bookingFormData;
 
-  const handleInformationChange = (e: ChangeEvent<HTMLInputElement>) => {
-    setInformation({ ...information, [e.target.name]: e.target.value });
+  const handleSubmit = async () => {
+    // e.preventDefault();
+
+    // if(!validateForm()) return 
+    
+    let reference1;
+    let reference2;
+    let reference3;
+    let reference4;
+
+    if (selectedFile1) {
+      reference1 = await getBase64(selectedFile1);
+    }
+
+    if (selectedFile2) {
+      reference2 = await getBase64(selectedFile2);
+    }
+
+    if (selectedFile3) {
+      reference3 = await getBase64(selectedFile3);
+    }
+
+    if (selectedFile4) {
+      reference4 = await getBase64(selectedFile4);
+    }
+
+    const { name, surname, email, contact, city } = information
+
+    const data = {
+      name,
+      surname,
+      email,
+      contact,
+      city,
+      experience,
+      placement,
+      dimention,
+      firstDate,
+      secondDate,
+      idea,
+      reference1: reference1 ? reference1 : null,
+      reference2: reference2 ? reference2 : null,
+      reference3: reference3 ? reference3 : null,
+      reference4: reference4 ? reference4 : null,
+    };
+
+    try{
+      handleOpen('loading')
+
+      await axios.post('/api/booking', { data })
+
+      handleOpen('alert', { alertData: {
+        title: 'Sent!',
+        content: 'Thank you for submitting your booking form. Please allow us some time to process your request',
+        confirm: 'Okay',
+        signature: true,
+        handleConfirm: () => handleClose('alert', { alertData: { title: '', content: '', confirm: '', handleConfirm: () => {}} })
+      }})
+
+      document.getElementById('submit-btn')!.style.display = 'none'
+    } catch (error){
+      console.log(error)
+
+      handleOpen('alert', { alertData: {
+        title: 'Request Error',
+        content: 'There was an error with your submitting your request. Please confirm that you have completed all the fields and make sure that your references are in the format of either .jpeg or .webp',
+        confirm: 'okay',
+        handleConfirm: () => handleClose('alert', { alertData: { title: '', content: '', confirm: '', handleConfirm: () => {}} })
+      }})
+    } finally{
+      handleClose('loading')
+    }
   };
 
-  // const { idea, setIdea } = useBookingForm()
-  // console.log(information)
-  // console.log(handleInformationChange)
 
   return (
-    <div className="w-[90%] mx-6 my-1">
-      <div className="fixed bottom-6 end-[46%] w-8 h-8 flex items-center justify-center rounded-full text-center bg-white" onClick={handleClose}>
-        <X color="black" size = {18}/>
-      </div>
-      <BookingSectionLayout
-        section="introduction"
-        heading={{ heading: "A small introduction" }}
-      >
-        <Information
-          informationData={information}
-          handleChange={handleInformationChange}
-        />
-      </BookingSectionLayout>
+    <form className="w-[90%] md:w-[60%] mx-6 mt-20 transition-all duration-300">
+      <BookingCollectionWrapper collection="introduction">
+        <BookingSectionLayout
+          section="introduction"
+          heading={{ heading: "A small introduction" }}
+        >
+          <Information
+            informationData={information}
+            handleChange={handleInformationChange}
+          />
+        </BookingSectionLayout>
 
-      <BookingSectionLayout section="idea" heading={data["Your Tattoo"]}>
-        <textarea
-          className="bg-transparent outline-none border-[1px] border-white w-full rounded-md"
-          rows={8}
-          value={idea}
-          onChange={(e) => setIdea(e.target.value)}
-        ></textarea>
-      </BookingSectionLayout>
+        <BookingSectionLayout section="idea" heading={data["Your Tattoo"]}>
+          <Idea idea={idea} setIdea={setIdea} />
+        </BookingSectionLayout>
+      </BookingCollectionWrapper>
 
-      <BookingSectionLayout section="dimentions" heading={data["Dimensions"]}>
-        <CheckboxList
-          options={data["Dimensions"].options}
-          selectedOption={dimention}
-          handleOptionSelect={setDimention}
+      <BookingCollectionWrapper collection="placement">
+        <BookingSectionLayout section="dimention" heading={data["Dimensions"]}>
+          <CheckboxList
+            options={data["Dimensions"].options}
+            selectedOption={dimention}
+            handleOptionSelect={setDimention}
+          />
+        </BookingSectionLayout>
 
-        />
-      </BookingSectionLayout>
+        <BookingSectionLayout section="placement" heading={data["Placement"]}>
+          <CheckboxList
+            options={data["Placement"].options}
+            selectedOption={placement}
+            handleOptionSelect={setPlacement}
+          />
+        </BookingSectionLayout>
+      </BookingCollectionWrapper>
 
-      <BookingSectionLayout section="placement" heading={data["Placement"]}>
-        <CheckboxList
-          options={data["Placement"].options}
-          selectedOption={placement}
-          handleOptionSelect={setPlacement}
-       
-        />
-      </BookingSectionLayout>
+      <BookingCollectionWrapper collection="experience">
+        <BookingSectionLayout section="experience" heading={data["Experience"]}>
+          <CheckboxList
+            options={data["Experience"].options}
+            selectedOption={experience}
+            handleOptionSelect={setExperience}
+          />
+        </BookingSectionLayout>
 
-      <BookingSectionLayout section="artist" heading={data["Artist"]}>
-        <ArtistSelect
-          artists={ARTISTS}
-          selectedArtist={artist}
-          handleArtistSelect={setArtist}
-          selectedTourDate={tourDate}
-          handleTourDateSelect={setTourDate}
-        />
-      </BookingSectionLayout>
+        <BookingSectionLayout section="artist" heading={data["Artist"]}>
+          <ArtistSelect
+            artists={ARTISTS}
+            selectedArtist={artist}
+            handleArtistSelect={setArtist}
+            selectedTourDate={tourDate}
+            handleTourDateSelect={setTourDate}
+          />
+        </BookingSectionLayout>
+      </BookingCollectionWrapper>
 
-      <BookingSectionLayout section= 'preffered date' heading={data["Preferred Date"]}>
-        <DateSelect />
-      </BookingSectionLayout>
-    </div>
+      <BookingCollectionWrapper collection="date">
+        <BookingSectionLayout
+          section="preffered date"
+          heading={data["Preferred Date"]}
+        >
+          <DateSelect />
+        </BookingSectionLayout>
+      </BookingCollectionWrapper>
+
+      <BookingCollectionWrapper collection="references">
+        <BookingSectionLayout section="references" heading={data["References"]}>
+          <References />
+        </BookingSectionLayout>
+      </BookingCollectionWrapper>
+
+      <BookingCollectionWrapper collection="submit">
+        <BookingSectionLayout section="submit" heading={{ heading: "Thank you" }}>
+          <Submit handleClick={handleSubmit}/>
+        </BookingSectionLayout>
+      </BookingCollectionWrapper>
+
+
+      <BookingCollectionWrapper collection="contact">
+        <ViewMotionWrapper duration={1}>
+          <Contact />
+        </ViewMotionWrapper>
+      </BookingCollectionWrapper>
+    </form>
   );
 };
 

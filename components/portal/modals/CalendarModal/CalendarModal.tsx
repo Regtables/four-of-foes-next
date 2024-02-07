@@ -6,7 +6,6 @@ import { format } from 'date-fns'
 const CalendarModal = () => {
   const { isOpen, type, data } = useModal()
 
-  console.log(data)
   const isModalOpen = isOpen && type === 'calendar'
 
   //@ts-ignore

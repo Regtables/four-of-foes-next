@@ -1,6 +1,6 @@
 'use client'
 
-import React, { ChangeEvent, createContext, useContext, useState } from "react";
+import React, { ChangeEvent, createContext, useContext, useEffect, useState } from "react";
 
 const defaultState: any = {
   information: {
@@ -12,13 +12,12 @@ const defaultState: any = {
   },
   idea: "",
   artist: "",
+  tourDate: "",
   placement: "",
   dimention: "",
   experience: "",
-  preferedDates: {
-    firstDate: "",
-    secondDate: "",
-  },
+  firstDate: "",
+  secondDate: "",
   references: [],
   handleInformationChange: (e: ChangeEvent<HTMLInputElement>) => {},
   setIdea: (idea: string) => {},
@@ -36,9 +35,9 @@ export const BookingFormProvider = ({
 }) => {
   const [information, setInformation] = useState(defaultState.information);
   const [idea, setIdea] = useState("");
-  const [artist, setArtist] = useState("flintstone");
+  const [artist, setArtist] = useState("Ted Faulmann");
+  const [tourDate, setTourDate] = useState("");
   const [placement, setPlacement] = useState("");
-  const [secondPlacement, setSecondPlacement] = useState("");
   const [dimention, setDimention] = useState("");
   const [experience, setExperience] = useState("");
   const [firstDate, setFirstDate] = useState("");
@@ -47,26 +46,124 @@ export const BookingFormProvider = ({
   const [selectedFile2, setSelectedFile2] = useState("");
   const [selectedFile3, setSelectedFile3] = useState("");
   const [selectedFile4, setSelectedFile4] = useState("");
+  const [currentCollection, setCurrentCollection] = useState('introduction')
+  const [inValidSection, setInValidSection] = useState({
+    section: '',
+    message: ''
+  })
 
   const handleInformationChange = (e: ChangeEvent<HTMLInputElement>) => {
-    console.log('changing information')
     setInformation({ ...information, [e.target.name]: e.target.value });
   };
+
+  const handleCollectionChange = (collection: string) => {
+    setCurrentCollection(collection)
+
+    console.log(currentCollection)
+  }
+
+  const validateForm = () => {
+    const scrollBehavior: ScrollIntoViewOptions = {
+      behavior: 'smooth',
+      block: 'center' as ScrollLogicalPosition,
+      inline: 'center' as ScrollLogicalPosition
+    }
+
+    const { name, surname, email, contact, city } = information
+
+    console.log(information)
+
+    if(!name || !surname || !email || !contact || !city ){
+      document.getElementById('introduction')?.scrollIntoView(scrollBehavior)
+      setInValidSection({ section: 'introduction', message: 'Please complete all the below fields in order to submit your enquiry'})
+
+      return false
+    }
+
+    else if(!email.includes('@') || !email.includes('.')){
+      document.getElementById('introduction')?.scrollIntoView(scrollBehavior)
+      setInValidSection({ section: 'introduction', message: 'Please provide a valid email address'})
+
+      return false
+    }
+
+    if(!idea){
+      document.getElementById('idea')?.scrollIntoView(scrollBehavior)
+      setInValidSection({ section: 'idea', message: 'It is required to provide a brief idea of your tattoo'})
+
+      return false
+    }
+
+    else if(!dimention){
+      document.getElementById('dimention')?.scrollIntoView(scrollBehavior)
+      setInValidSection({ section: 'dimention', message: 'Please select the dimention of your tattoo'})
+
+      return false
+    }
+
+    else if(!placement){
+      document.getElementById('placement')?.scrollIntoView(scrollBehavior)
+      setInValidSection({ section: 'placement', message: 'Please select the placement of your tattoo'})
+
+      return false
+    }
+
+    else if(!experience){
+      document.getElementById('experience')?.scrollIntoView(scrollBehavior)
+      setInValidSection({ section: 'experience', message: 'Please select your experience with tattoos'})
+
+      return false
+    }
+
+    else if(!tourDate){
+      document.getElementById('tourDate')?.scrollIntoView(scrollBehavior)
+      setInValidSection({ section: 'artist', message: 'Please select the tour date for when you wish to have an appointment with your chosen artist'})
+
+      return false
+    }
+
+    else if(!firstDate || !secondDate){
+      document.getElementById('preffered date')?.scrollIntoView(scrollBehavior)
+      setInValidSection({ section: 'preffered date', message: 'It is required to provide a minimum of two possible dates for your appointment in order to be eligable for a booking enquiry'})
+
+      return false
+    }
+
+    return true
+  }
 
   return (
     <BookingFormContext.Provider value={{
       information,
       artist,
-      handleInformationChange,
+      tourDate,
       dimention,
       placement,
       experience,
-      // firstDate,
       idea,
+      selectedFile1,
+      selectedFile2,
+      selectedFile3,
+      selectedFile4,
+      firstDate,
+      secondDate,
+      currentCollection,
+      inValidSection,
+      handleCollectionChange,
+      handleInformationChange,
       setIdea,
       setPlacement,
       setDimention,
       setExperience,
+      setArtist,
+      setTourDate,
+      setFirstDate,
+      setSecondDate,
+      setSelectedFile1,
+      setSelectedFile2,
+      setSelectedFile3,
+      setSelectedFile4,
+      validateForm
     }}>
       {children}
     </BookingFormContext.Provider>
@@ -74,7 +171,9 @@ export const BookingFormProvider = ({
 };
 
 export const useBookingForm = () => {
-  return useContext(BookingFormContext)
+  const context = useContext(BookingFormContext)
+
+  return context
 }
 
 

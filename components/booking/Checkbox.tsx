@@ -1,4 +1,6 @@
-import React, { useState } from "react";
+import React from "react";
+import { motion } from "framer-motion";
+
 import { cn } from "@/app/lib/utils";
 import { CheckboxOption } from "@/types";
 
@@ -15,12 +17,17 @@ const Checkbox = ({
 
   return (
     <div
-      className="flex gap-2 items-center w-[150px] mx-auto"
+      className="flex gap-2 items-center w-[170px] md:w-[250px] mx-auto ml-[15%] md:ml-auto cursor-pointer"
       onClick={() => handleOptionSelect(option.title)}
     >
       <div className="min-w-[20px] min-h-[20px] rounded-full border-[1px] border-white flex items-center justify-center">
         {isSelectedOption && (
-          <div className="min-w-[10px] min-h-[10px] bg-white rounded-full" />
+          <motion.div
+            className="min-w-[10px] min-h-[10px] bg-white rounded-full"
+            whileInView={{ opacity: [0, 1] }}
+            initial={{ opacity: 0 }}
+            transition={{ duration: 0.5 }}
+          />
         )}
       </div>
 

@@ -101,3 +101,13 @@ export interface RatingType {
   icon: any,
   portion: number
 }
+
+export interface AlertType {
+  title: string,
+  content: string,
+  confirm: string,
+  handleConfirm: () => void,
+  option?: string,
+  handleOption?: () => void,
+  signature?: boolean
+}

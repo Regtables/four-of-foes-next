@@ -8,7 +8,7 @@ interface ButtonLrgProps {
 const ButtonLrg = ({ text, handleClick } : ButtonLrgProps) => {
   return (
     <button 
-      className='text-[var(--font-heading)] uppercase tracking-[0.1em] font-bold border-2 border-white py-2 px-4 rounded-full mb-10 text-sm'
+      className='text-[var(--font-heading)] heading-font text-[16px] uppercase tracking-[0.1em] font-bold border-2 border-white py-2 px-4 rounded-full mb-10 text-sm'
       onClick={handleClick}
     >
       {text}

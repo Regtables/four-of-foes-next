@@ -4,15 +4,15 @@
 
 @font-face {
   font-family: 'Futura Condensed';
-  src: url('/fonts/Futura\ Condensed/Futura-Condensed-Regular.tff') format('truetype');
+  /* src: url('/fonts/Futura-Condensed/Futura-Condensed-Regular.tff') format('truetype'); */
+  src: url('/fonts/Futura-Condensed/Futura-Condensed-Regular.ttf') format('truetype');
 
   font-weight: 600;
 }
 
 @font-face {
   font-family: 'Futura Condensed';
-  src: url('/fonts/Futura\ Condensed/Futura-Regular.tff') format('truetype');
-
+  src: url('/fonts/Futura-Condensed/Futura-Condensed.ttf') format('truetype');
   font-weight: 500;
 }
 
@@ -74,6 +74,11 @@
   color: white;
 }
 
+.heading-font{
+  font-family: var(--font-heading);
+  font-family: 'Futura Condensed';
+}
+
 body {
   /* color: rgb(var(--foreground-rgb));
   background: linear-gradient(
@@ -97,8 +102,10 @@ body::-webkit-scrollbar {
   --font-family: "Jost";
   --font-heading: 'Futura Condensed';
   --font-typewriter: 'Courier Prime';
-   --color-primary: black;
-   --color-white-light: #ffffff94;
+
+  --color-primary: black;
+  --color-white-light: #ffffff94;
+  --color-gold: #b9ac7a;
 
   --letter-spacing-xs: 0.05em;
   --letter-spacing-sm: 0.2em;

@@ -8,10 +8,10 @@ import IndemnityTile from "../../indemnity/IndemnityTile/IndemnityTile";
 import ButtonPill from "@/components/buttons/ButtonPill";
 
 const IndemnityModal = () => {
-  const { isOpen, type, data } = useModal();
+  const { isOpen, types, data } = useModal();
 
   const content = data as [];
-  const isModalOpen = isOpen && type === "indemnity";
+  const isModalOpen = isOpen && types?.includes("indemnity") ? true : false;
 
   const handleCheck = () => {
 
@@ -26,7 +26,7 @@ const IndemnityModal = () => {
         </p>
       </div>
 
-      {content.length > 0 ? (
+      {content?.length > 0 ? (
         <div className="grid grid-cols-1 gap-2 mt-4">
           {content.map((clause, i) => (
             <motion.div

@@ -7,14 +7,16 @@ const ViewMotionWrapper = ({
   x = 0,
   delay = 0,
   duration = 0.5,
-  once = false
+  once = false,
+  className
 } : {
   children: ReactNode
   y?: number,
   x?: number,
   delay?: number,
   duration?: number,
-  once?: boolean
+  once?: boolean,
+  className?: string
 }) => {
   return (
     <motion.div
@@ -23,7 +25,7 @@ const ViewMotionWrapper = ({
       // style={{ width: "100%" }}
       initial = {{y: y, x: x, opacity: 0}}
       viewport={{once: once}}
-      className="motion_Wrapper"
+      className= {className}
     >
       {/* <div style={{width: '100%'}}> */}
         {children}

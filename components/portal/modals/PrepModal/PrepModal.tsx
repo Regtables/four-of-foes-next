@@ -11,8 +11,6 @@ import ModalLayout from '../../layout/ModalLayout'
 const PrepModal = () => {
   const { isOpen, type, data } = useModal()
 
-  console.log(data)
-
   const isModalOpen = isOpen && type === 'prep'
 
   return (

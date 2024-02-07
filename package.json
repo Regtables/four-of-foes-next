@@ -10,8 +10,9 @@
   },
   "dependencies": {
     "@sanity/client": "^6.10.0",
-    "axios": "^1.6.2",
+    "axios": "^1.6.7",
     "clsx": "^2.0.0",
+    "compressorjs": "^1.2.1",
     "date-fns": "^3.3.1",
     "framer-motion": "^10.16.16",
     "lucide": "^0.298.0",
@@ -19,7 +20,9 @@
     "next": "14.0.4",
     "react": "^18",
     "react-dom": "^18",
-    "react-intersection-observer": "^9.5.3",
+    "react-intersection-observer": "^9.7.0",
+    "react-loader-spinner": "^6.1.6",
+    "resend": "^3.1.0",
     "sass": "^1.69.5",
     "tailwind-merge": "^2.2.0",
     "zustand": "^4.4.7"

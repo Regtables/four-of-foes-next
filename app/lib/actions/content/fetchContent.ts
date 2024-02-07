@@ -21,19 +21,8 @@ export const fetchBookingFormContent = async () => {
   const date = landingClient.fetch(sectionQuery("preferredDate"));
   const references = landingClient.fetch(sectionQuery("references"));
   const idea = landingClient.fetch(sectionQuery("idea"));
-  // const contact = await landingClient.fetch(contactQuery());
 
   const bookingFormData = await Promise.all([artists, placements, experience, dimensions, date, references, idea])
-
-  console.log(bookingFormData)
-
-  // const parsedData = bookingFormData.map((content) => ({
-  //   [content[0].heading]: {
-  //     heading: content[0].heading,
-  //     description: content[0].description,
-  //     options: content[0].options
-  //   }
-  // }))
 
   const parsedData = bookingFormData.map((content) => content[0])
 
@@ -43,8 +32,6 @@ export const fetchBookingFormContent = async () => {
     //@ts-ignore
     dataObject[parsedData[i].heading] = parsedData[i]
   }
-
-  console.log(dataObject)
 
   return dataObject
 }

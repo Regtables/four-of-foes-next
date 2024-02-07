@@ -26,14 +26,18 @@ const ArtistSelect = ({
   }));
 
   const handleArtistSelectClick = (choice: string) => {
+    setActiveArtist({ title: '', tourOptions: [] })
+    
+    handleTourDateSelect('')
     handleArtistSelect(choice)
     const artist = artists.find(options => options.title === choice)
 
     setActiveArtist(artist)
+    console.log(artist)
   }
 
   return (
-    <div className="flex justify-center gap-6">
+    <div className="grid grid-cols-2 justify-center w-full" id = 'tourDate'>
       <div>
         <CheckboxList
           single
@@ -49,6 +53,7 @@ const ArtistSelect = ({
           single
           options={activeArtist?.tourOptions}
           selectedOption={selectedTourDate}
+          artist
           handleOptionSelect={handleTourDateSelect}
         />
       </div>
