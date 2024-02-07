@@ -83,7 +83,7 @@ const BookingForm = ({ data }: { data: any }) => {
   const handleSubmit = async () => {
     // e.preventDefault();
 
-    // if(!validateForm()) return 
+    if(!validateForm()) return 
     
     let reference1;
     let reference2;

@@ -1,3 +1,4 @@
+import { NextResponse } from "next/server";
 import { Resend } from "resend";
 
 export async function POST(req: Request, res: Response) {
@@ -61,6 +62,6 @@ export async function POST(req: Request, res: Response) {
   } catch (error: any) {
     console.log(error);
 
-    return Error(error)
+    return new NextResponse(`Internal Error ${error}` , { status: 500 })
   }
 }
