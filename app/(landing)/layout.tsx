@@ -33,7 +33,7 @@ const LandingLayout = ({ children }: { children: React.ReactNode }) => {
   return (
       <div>
         <nav ref = {nav}>
-          <ViewMotionWrapper x = {-10} y= {0} duration={1}>
+          {/* <ViewMotionWrapper x = {-10} y= {0} duration={1}> */}
           <div
             onClick={handleNavIconClick}
             className="fixed z-30 top-10 start-5 cursor-pointer"
@@ -41,7 +41,7 @@ const LandingLayout = ({ children }: { children: React.ReactNode }) => {
             {toggleNavMenu ? <X className="opacity-40" /> : <NavIcon />}
           </div>
 
-          </ViewMotionWrapper>
+          {/* </ViewMotionWrapper> */}
 
           <motion.div
             className="fixed start-0 top-0 bottom-0 z-20"
