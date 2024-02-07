@@ -36,6 +36,7 @@ const AlertModal = () => {
               fill
               alt = "Ted Faulmann's Signature"
               className='object-cover'
+              priority
             />
           </div>
         )}

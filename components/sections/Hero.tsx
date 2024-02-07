@@ -30,6 +30,7 @@ const Hero = ({ bookingFormData } : { bookingFormData: any }) => {
           fill
           alt = 'Ted doing a tattoo'
           className='object-cover md:object-top'
+          priority
         />
       </motion.div>
 
