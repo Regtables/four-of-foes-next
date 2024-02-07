@@ -3,12 +3,12 @@ import React from 'react'
 import ModalLayout from '../../layout/ModalLayout'
 
 const LocationModal = () => {
-  const { isOpen, type } = useModal()
+  const { isOpen, types } = useModal()
 
-  const isModalOpen = isOpen && type === 'location'
+  const isModalOpen = isOpen && types?.includes('location')
 
   return (
-    <ModalLayout isOpen = {isModalOpen} title='Location'>
+    <ModalLayout isOpen = {isModalOpen!} title='Location'>
       <></>
     </ModalLayout>
   )

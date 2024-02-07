@@ -4,15 +4,15 @@ import { useModal } from '@/hooks/useModal'
 import { format } from 'date-fns'
 
 const CalendarModal = () => {
-  const { isOpen, type, data } = useModal()
+  const { isOpen, types, data } = useModal()
 
-  const isModalOpen = isOpen && type === 'calendar'
+  const isModalOpen = isOpen && types?.includes('calendar')
 
   //@ts-ignore
   const date = format(new Date(), 'dd MMMM yyyy')
 
   return (
-    <ModalLayout title='Calendar Invitation' isOpen = {isModalOpen}>
+    <ModalLayout title='Calendar Invitation' isOpen = {isModalOpen!}>
       <div className='flex flex-col items-center gap-4'>
         <p className='text-[9px] uppercase text-center tracking-[0.1em]'>
           Your appointment is on the {date}, tap accept to add the appoitnent to your calendar.

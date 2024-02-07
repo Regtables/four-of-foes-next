@@ -4,12 +4,12 @@ import ModalLayout from '../../layout/ModalLayout'
 import ButtonPill from '@/components/buttons/ButtonPill'
 
 const CancelAppointmentModal = () => {
-  const { isOpen, type } = useModal()
+  const { isOpen, types } = useModal()
 
-  const isModalOpen = isOpen && type === 'appointmentActions'
+  const isModalOpen = isOpen && types?.includes('appointmentActions')
 
   return (
-    <ModalLayout isOpen = {isModalOpen} title='cancel/resheudle'>
+    <ModalLayout isOpen = {isModalOpen!} title='cancel/resheudle'>
       <div className='flex flex-col gap-6 items-center'>
         <div className='flex flex-col gap-2'>
           <h3 className='title'>Resheudle Appointment</h3>

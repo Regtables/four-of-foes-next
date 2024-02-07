@@ -9,12 +9,12 @@ import PrepCard from '../../prep/PrepCard'
 import ModalLayout from '../../layout/ModalLayout'
 
 const PrepModal = () => {
-  const { isOpen, type, data } = useModal()
+  const { isOpen, types, data } = useModal()
 
-  const isModalOpen = isOpen && type === 'prep'
+  const isModalOpen = isOpen && types?.includes('prep')
 
   return (
-    <ModalLayout isOpen = {isModalOpen} title='prep card'>
+    <ModalLayout isOpen = {isModalOpen!} title='prep card'>
       <PrepCard tips = {data as string[]} />
     </ModalLayout>
   )
