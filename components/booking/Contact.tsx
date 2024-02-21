@@ -9,7 +9,7 @@ const Contact = ({ page }: { page?: boolean }) => {
   return (
     <div
       className={cn(
-        "lg:pb-[170px] h-[79vh] lg:h-[76vh] flex flex-col gap-20 items-center overflow-hidden",
+        "lg:pb-[170px] h-[72vh] lg:h-[76vh] flex flex-col gap-20 items-center overflow-hidden",
         page && "h-full flex flex-col items-center pb-0 lg:mt-10"
       )}
     >
@@ -27,7 +27,7 @@ const Contact = ({ page }: { page?: boolean }) => {
         />
       </div>
 
-      <div className={cn("flex flex-col items-center gap-2 mt-4", page && 'mt-10')}>
+      <div className={cn("flex flex-col items-center gap-2 mt-4", page && 'mt-[150px] lg:mt-0')}>
         <div className="flex items-center gap-2 tracking-[0.3em] font-light text-[10px]">
           <Instagram size={15} />
           @fourofoes
