@@ -98,7 +98,7 @@ const BookingForm = ({ data }: { data: any }) => {
   const handleSubmit = async () => {
     // e.preventDefault();
 
-    // if(!validateForm()) return 
+    if(!validateForm()) return 
     
     let reference1;
     let reference2;
@@ -144,7 +144,7 @@ const BookingForm = ({ data }: { data: any }) => {
     try{
       handleOpen('loading')
 
-      // await axios.post('/api/booking', { data })
+      await axios.post('/api/booking', { data })
 
       handleOpen('alert', { alertData: {
         title: 'Sent!',
