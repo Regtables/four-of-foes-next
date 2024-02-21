@@ -90,7 +90,7 @@ const LandingLayout = ({ children }: { children: React.ReactNode }) => {
         <BookingFormModal />
       </div>
 
-      {/* <Intro toggleIntro = {toggleIntro} /> */}
+      <Intro toggleIntro = {toggleIntro} />
     </div>
   );
 };

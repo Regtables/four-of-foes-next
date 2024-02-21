@@ -16,7 +16,7 @@ const BookingFormModal = () => {
   const isModalOpen = isOpen && types?.includes("booking");
 
   return (
-    <Popup isOpen={isModalOpen!} fade opacity={90}>
+    <Popup isOpen={isModalOpen!} fade>
       <div className="fixed end-[30px] min-w-[100px] h-full md:flex hidden items-center">
         <BookingSideNav />
       </div>

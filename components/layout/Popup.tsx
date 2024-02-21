@@ -4,19 +4,23 @@ import React, { useEffect, useRef } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 
 import { useModal } from "@/hooks/useModal";
+import { cn } from "@/app/lib/utils";
 
 const Popup = ({
   children,
   isOpen,
   isAlert,
-  opacity = 90,
+  black,
   fade,
+  onClick
 }: {
   children: React.ReactNode;
   isOpen: boolean;
   isAlert?: boolean;
   opacity?: number;
   fade?: boolean
+  black?: boolean,
+  onClick?: any
 }) => {
   const { handleClose } = useModal();
 
@@ -32,7 +36,7 @@ const Popup = ({
     <AnimatePresence>
       {isOpen && (
         <motion.div
-          className={`fixed z-10 top-0 left-0 bottom-0 bg-black/${opacity} h-screen w-screen overflow-y-auto content-none scroll-smooth`}
+          className={cn(`fixed z-10 top-0 left-0 bottom-0 bg-black/90 h-screen w-screen overflow-y-auto content-none scroll-smooth`, black && 'bg-black')}
           onClick={(e) => handleClickOutside(e)}
           whileInView={fade ? { opacity: [0, 1] } : {}}
           // animate = {{opacity: 1 }}

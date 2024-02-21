@@ -18,7 +18,7 @@ const Intro = ({ toggleIntro }: { toggleIntro: boolean }) => {
   }, []);
 
   return (
-    <Popup isOpen={toggleIntro} opacity={100}>
+    <Popup isOpen={toggleIntro} black>
       <ViewMotionWrapper
         scale={0.9}
         duration={3}
