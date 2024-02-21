@@ -12,7 +12,8 @@ const Popup = ({
   isAlert,
   black,
   fade,
-  onClick
+  onClick,
+  h_0
 }: {
   children: React.ReactNode;
   isOpen: boolean;
@@ -20,7 +21,8 @@ const Popup = ({
   opacity?: number;
   fade?: boolean
   black?: boolean,
-  onClick?: any
+  onClick?: any,
+  h_0?: boolean
 }) => {
   const { handleClose } = useModal();
 
@@ -46,7 +48,7 @@ const Popup = ({
           id="popup"
         >
           <div
-            className="flex flex-col items-center h-full relative"
+            className={cn("flex flex-col items-center h-full relative", h_0 && 'h-0')}
             ref={content}
           >
             {children}
