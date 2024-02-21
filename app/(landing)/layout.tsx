@@ -24,10 +24,10 @@ const LandingLayout = ({ children }: { children: React.ReactNode }) => {
   const path = usePathname();
 
   useEffect(() => {
-    // setTimeout(() => {
-    //   setToggleIntro(false)
-    // }, );
-  });
+    setTimeout(() => {
+      setToggleIntro(false)
+    }, 3000);
+  }, []);
 
   useEffect(() => {
     setToggleNavMenu(false);
@@ -39,7 +39,7 @@ const LandingLayout = ({ children }: { children: React.ReactNode }) => {
       x: 0,
     },
     hidden: {
-      x: -500,
+      x: -400,
     },
   };
 
@@ -56,21 +56,27 @@ const LandingLayout = ({ children }: { children: React.ReactNode }) => {
   return (
     <div className="">
       <nav ref={nav}>
-        <div
-          onClick={handleNavIconClick}
-          className="fixed z-30 top-12 start-5 cursor-pointer flex items-center"
-        >
-          {toggleNavMenu ? <X className="opacity-40" /> : <NavIcon />}
-
-          {/* <PageHeading /> */}
-        </div>
+        {!toggleIntro && (
+          <motion.div
+            onClick={handleNavIconClick}
+            whileInView={{x: [-20, 0], opacity: [0,1]}}
+            initial = {{x: -20, opacity: 0}}
+            transition={{ duration: 1 }}
+            className="fixed z-30 top-12 start-5 cursor-pointer flex items-center"
+          >
+            {/* {toggleNavMenu 
+              ? <X className="opacity-40" />  */}
+              <NavIcon toggle = {toggleNavMenu} />
+            {/* } */}
+          </motion.div>
+        )}
 
         <motion.div
           className="fixed start-0 top-0 bottom-0 z-20"
           variants={navMenuVariants}
           animate={toggleNavMenu ? "visible" : "hidden"}
           initial="hidden"
-          transition={{ duration: 0.5 }}
+          transition={{ duration: 0.6 }}
         >
           <NavMenu />
         </motion.div>
@@ -84,7 +90,7 @@ const LandingLayout = ({ children }: { children: React.ReactNode }) => {
         <BookingFormModal />
       </div>
 
-      {/* <Intro toggleIntro = {toggleIntro} /> */}
+      <Intro toggleIntro = {toggleIntro} />
     </div>
   );
 };

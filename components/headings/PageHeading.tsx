@@ -5,8 +5,8 @@ import { motion } from "framer-motion";
 
 const PageHeading = () => {
   return (
-    <motion.header
-      className="text-center relative"
+    <header
+      className="text-center"
       // whileInView={{ y: [10, 0], opacity: [0, 1] }}
       // initial={{ y: 10, opacity: 0 }}
       // transition={{ duration: 0.5 }}
@@ -17,7 +17,7 @@ const PageHeading = () => {
       <p className="text-[8px] tracking-[0.2em] font-light mt-4 mb-6">
         To give anything less than your best is to sacrifice the gift
       </p>
-    </motion.header>
+    </header>
   );
 };
 

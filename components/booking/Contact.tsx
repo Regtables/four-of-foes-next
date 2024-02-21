@@ -10,13 +10,13 @@ const Contact = ({ page }: { page?: boolean }) => {
     <div
       className={cn(
         "lg:pb-[170px] h-[79vh] lg:h-[76vh] flex flex-col gap-20 items-center overflow-hidden",
-        page && "h-full flex flex-col items-center justify-between pb-0"
+        page && "h-full flex flex-col items-center pb-0 lg:mt-10"
       )}
     >
       <div
         className={cn(
-          "relative h-[180px] w-[450px] lg:h-[250px] lg:w-[400px] lg:mx-auto ml-3",
-          page && "h-[240px] mt-[100px] w-[500px] lg:w-[500px]"
+          "relative h-[180px] w-[450px] lg:h-[300px] lg:w-[400px] lg:mx-auto ml-3",
+          page && "lg:h-[500px] lg:w-[400px] mt-20 lg:mt-0"
         )}
       >
         <Image

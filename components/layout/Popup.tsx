@@ -32,7 +32,7 @@ const Popup = ({
     <AnimatePresence>
       {isOpen && (
         <motion.div
-          className={`fixed top-0 left-0 bottom-0 bg-black/${opacity} h-screen w-screen overflow-y-auto content-none scroll-smooth`}
+          className={`fixed z-10 top-0 left-0 bottom-0 bg-black/${opacity} h-screen w-screen overflow-y-auto content-none scroll-smooth`}
           onClick={(e) => handleClickOutside(e)}
           whileInView={fade ? { opacity: [0, 1] } : {}}
           // animate = {{opacity: 1 }}
@@ -42,7 +42,7 @@ const Popup = ({
           id="popup"
         >
           <div
-            className="flex flex-col items-center h-0 relative"
+            className="flex flex-col items-center h-full relative"
             ref={content}
           >
             {children}
