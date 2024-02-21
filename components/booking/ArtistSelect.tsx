@@ -37,8 +37,8 @@ const ArtistSelect = ({
   }
 
   return (
-    <div className="grid grid-cols-2 justify-center w-full" id = 'tourDate'>
-      <div>
+    <div className="grid grid-cols-2 gap-4 md:gap-0" id = 'tourDate'>
+      <div className="flex justify-center items-start">
         <CheckboxList
           single
           //@ts-ignore
@@ -48,7 +48,7 @@ const ArtistSelect = ({
         />
       </div>
 
-      <div>
+      <div  className="flex justify-center items-start">
         <CheckboxList
           single
           options={activeArtist?.tourOptions}

@@ -8,28 +8,30 @@ const ViewMotionWrapper = ({
   delay = 0,
   duration = 0.5,
   once = false,
-  className
-} : {
-  children: ReactNode
-  y?: number,
-  x?: number,
-  delay?: number,
-  duration?: number,
-  once?: boolean,
-  className?: string
+  className,
+  scale = 1,
+  exit = { opacity: [1,0] },
+}: {
+  children: ReactNode;
+  y?: number;
+  x?: number;
+  delay?: number;
+  duration?: number;
+  once?: boolean;
+  className?: string;
+  scale?: number;
+  exit?: {};
 }) => {
   return (
     <motion.div
-      whileInView={{ y: [y, 0], x: [x, 0], opacity: [0,1] }}
+      whileInView={{ y: [y, 0], x: [x, 0], opacity: [0, 1] }}
       transition={{ duration: duration, delay: delay }}
-      // style={{ width: "100%" }}
-      initial = {{y: y, x: x, opacity: 0}}
-      viewport={{once: once}}
-      className= {className}
+      initial={{ y: y, x: x, opacity: 0 }}
+      viewport={{ once: once }}
+      className={className}
+      exit={exit}
     >
-      {/* <div style={{width: '100%'}}> */}
-        {children}
-      {/* </div> */}
+      {children}
     </motion.div>
   );
 };

@@ -9,6 +9,7 @@ const defaultState: any = {
     email: "",
     contact: "",
     city: "",
+    instagram: ""
   },
   idea: "",
   artist: "",
@@ -52,14 +53,26 @@ export const BookingFormProvider = ({
     message: ''
   })
 
+  const handleNavCloseWhileBookingFormIsToggled = (e: any) => {
+    
+  }
+
   const handleInformationChange = (e: ChangeEvent<HTMLInputElement>) => {
-    setInformation({ ...information, [e.target.name]: e.target.value });
+    const newValue = e.target.value
+
+    if(e.target.name !== 'instagram'){
+      setInformation({ ...information, [e.target.name]: newValue });
+    } else {
+      if(information.instagram.length !== 0){
+        setInformation({...information, ['instagram']: newValue})
+      } else {
+        setInformation({...information, ['instagram']: '@'})
+      }
+    }
   };
 
   const handleCollectionChange = (collection: string) => {
     setCurrentCollection(collection)
-
-    console.log(currentCollection)
   }
 
   const validateForm = () => {
@@ -70,8 +83,6 @@ export const BookingFormProvider = ({
     }
 
     const { name, surname, email, contact, city } = information
-
-    console.log(information)
 
     if(!name || !surname || !email || !contact || !city ){
       document.getElementById('introduction')?.scrollIntoView(scrollBehavior)

@@ -19,18 +19,18 @@ const AlertModal = () => {
 
   return (
     <Popup isOpen = {isModalOpen!} isAlert>
-      <div className='border-4 border-[var(--color-gold)] w-[80%] flex flex-col items-center text-center gap-8 py-16 px-10 rounded-2xl my-auto'>
+      <div className='border-4 border-[var(--color-gold)] w-[80%] flex flex-col items-center text-center gap-8 py-8 px-10 rounded-2xl my-auto'>
         <h2 className='text-[var(--color-gold)] uppercase tracking-[0.2em] text-2xl font-semibold heading-font'>{title}</h2>
         <Asterisk size = {15} />
 
-        <p className='text-[14px] tracking-wider font-light'>{content}</p>
+        <p className='text-[12px] tracking-wider font-light'>{content}</p>
 
         <div className='min-w-[80px] min-h-[40px]' onClick={() => handleConfirm()}>
           <ButtonPill text= {confirm} />
         </div>
 
         {signature && (
-          <div className='relative h-[200px] w-[200px]'>
+          <div className='relative h-[90px] w-[150px]'>
             <Image 
               src = '/signature.png'
               fill

@@ -83,13 +83,26 @@ const Calendar = ({
     }
   };
 
+  // const handleDateClick = (date: Date) => {
+  //   setSelectedDate(format(date, "EEEE dd LLLL yyyy"));
+
+  //   // setTimeout(() => {
+  //     setHeight(`${content.current.scrollHeight}px`);
+  //   // }, 1);
+  // };
+
   const handleDateClick = (date: Date) => {
     setSelectedDate(format(date, "EEEE dd LLLL yyyy"));
-
-    setTimeout(() => {
-      setHeight(`${content.current.scrollHeight}px`);
-    }, 1);
+    setHeight("auto"); // Set height to "auto" to allow it to adjust based on content
+  
+    // Trigger a layout update to ensure the height is applied before starting the animation
+    if (content.current) {
+      void content.current.offsetHeight;
+    }
+  
+    setHeight(`${content.current.scrollHeight}px`);
   };
+  
 
   const handleConfrim = () => {
     setConfirmedDate(selectedDate!);

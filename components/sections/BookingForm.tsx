@@ -23,33 +23,48 @@ const ARTISTS = [
     title: "Ted Faulmann",
     tourOptions: [
       {
-        choice: { title: "Berlin (August 2024)" },
+        choice: { title: "Firenze" },
       },
       {
-        choice: { title: "London (September 2024)" },
+        choice: { title: "Dresden" },
       },
       {
-        choice: { title: "Amsterdam (October 2024)" },
+        choice: { title: "Hamburg" },
+      },
+      {
+        choice: { title: "Munich" },
+      },
+      {
+        choice: { title: "London" },
+      },
+      {
+        choice: { title: "New York" },
+      },
+      {
+        choice: { title: "LA" },
+      },
+      {
+        choice: { title: "Cape Town" },
       },
     ],
   },
-  {
-    title: "Artist 2",
-    tourOptions: [
-      {
-        choice: { title: "Paris (June 2024)" },
-      },
-      {
-        choice: { title: "New York (December 2024)" },
-      },
-      {
-        choice: { title: "Amsterdam (October 2024)" },
-      },
-      {
-        choice: { title: "Moscow (October 2054)" },
-      },
-    ],
-  },
+  // {
+  //   title: "Artist 2",
+  //   tourOptions: [
+  //     {
+  //       choice: { title: "Paris (June 2024)" },
+  //     },
+  //     {
+  //       choice: { title: "New York (December 2024)" },
+  //     },
+  //     {
+  //       choice: { title: "Amsterdam (October 2024)" },
+  //     },
+  //     {
+  //       choice: { title: "Moscow (October 2054)" },
+  //     },
+  //   ],
+  // },
 ];
 
 const BookingForm = ({ data }: { data: any }) => {
@@ -83,7 +98,7 @@ const BookingForm = ({ data }: { data: any }) => {
   const handleSubmit = async () => {
     // e.preventDefault();
 
-    if(!validateForm()) return 
+    // if(!validateForm()) return 
     
     let reference1;
     let reference2;
@@ -129,12 +144,12 @@ const BookingForm = ({ data }: { data: any }) => {
     try{
       handleOpen('loading')
 
-      await axios.post('/api/booking', { data })
+      // await axios.post('/api/booking', { data })
 
       handleOpen('alert', { alertData: {
         title: 'Sent!',
         content: 'Thank you for submitting your booking form. Please allow us some time to process your request',
-        confirm: 'Okay',
+        confirm: 'Done',
         signature: true,
         handleConfirm: () => handleClose('alert', { alertData: { title: '', content: '', confirm: '', handleConfirm: () => {}} })
       }})
@@ -154,9 +169,8 @@ const BookingForm = ({ data }: { data: any }) => {
     }
   };
 
-
   return (
-    <form className="w-[90%] md:w-[60%] mx-6 mt-20 transition-all duration-300">
+    <form className="w-[90%] md:w-[60%] mx-6 mt-10 transition-all duration-300">
       <BookingCollectionWrapper collection="introduction">
         <BookingSectionLayout
           section="introduction"

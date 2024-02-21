@@ -26,7 +26,7 @@ const ModalProvider = () => {
       <CalendarModal />
       <LocationModal />
       <CancelAppointmentModal />
-      <BookingFormModal />
+      {/* <BookingFormModal /> */}
       <LoadingModal />
       <AlertModal />
     </>

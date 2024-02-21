@@ -6,8 +6,8 @@ export default async function Home() {
   const bookingFormData = await fetchBookingFormContent();
 
   return (
-    <main className="">
+    <div className="max-h-100vh overflow-hidden">
       <Hero bookingFormData={bookingFormData} />
-    </main>
+    </div>
   );
 }

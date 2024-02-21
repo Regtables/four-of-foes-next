@@ -32,7 +32,7 @@ const CheckboxList = ({
   }, [options])
 
   return (
-    <div className={cn(`grid grid-cols-2 gap-4 md:w-[80%] w-full mx-auto`, single && 'grid-cols-1')}>
+    <div className={cn(`grid grid-cols-2 gap-4 md:gap-0 md:gap-y-4 md:w-[100%] w-full mx-auto`, single && 'grid-cols-1', artist && 'gap-4')}>
       {options.map((option, i) => (
         <motion.div
           className="flex"
