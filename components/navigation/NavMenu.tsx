@@ -42,8 +42,9 @@ const NavMenu = () => {
       <div className="mt-14 flex flex-col gap-4">
         {LINKS.map((link, i) => (
           <motion.div
-            whileInView={{ x: [-20, 0] }}
-            transition={{ delay: 0.1 * i, duration: 0.3 }}
+            whileInView={{ x: [-20, 0], opacity: [0,1] }}
+            transition={{ delay: 0.1 * i, duration: 0.7 }}
+            initial = {{ x: 20, opacity: 0 }}
             key={i}
           >
             <button
