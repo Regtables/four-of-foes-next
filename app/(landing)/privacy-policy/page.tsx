@@ -24,7 +24,7 @@ const ACTION = {
   ],
 };
 
-const PrivayPolicy = ({ contact }: { contact: any }) => {
+const PrivayPolicyPage = ({ contact }: { contact: any }) => {
   return (
     <div className={styles.container}>
       <Head>
@@ -70,4 +70,4 @@ const PrivayPolicy = ({ contact }: { contact: any }) => {
   );
 };
 
-export default PrivayPolicy;
+export default PrivayPolicyPage
