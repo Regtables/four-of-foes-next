@@ -7,7 +7,7 @@ import styles from "./PortalTattooPhotoCarousel.module.scss";
 
 import ImageTile from "@/components/images/ImageTile";
 
-const PortalTattooPhotoCarousel = ({ images }) => {
+const PortalTattooPhotoCarousel = ({ images } : { images: any[]}) => {
   const [index, setIndex] = useState(0);
 
   const settings = {
