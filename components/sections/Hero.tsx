@@ -41,7 +41,7 @@ const Hero = ({ bookingFormData }: { bookingFormData: any }) => {
         whileInView={{ opacity: [0,1]}}
         initial = {{opacity: 0}}
         animate="visible"
-        transition={{ duration: 1, delay: 0 }}
+        transition={{ duration: 1.5, delay: 0 }}
       >
         <Image
           src={"/landing-bg.jpeg"}
