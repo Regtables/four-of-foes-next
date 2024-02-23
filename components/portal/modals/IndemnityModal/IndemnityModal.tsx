@@ -6,11 +6,12 @@ import { useModal } from "@/hooks/useModal";
 import ModalLayout from "../../layout/ModalLayout";
 import IndemnityTile from "../../indemnity/IndemnityTile/IndemnityTile";
 import ButtonPill from "@/components/buttons/ButtonPill";
+import { IndemnityType } from "@/types";
 
 const IndemnityModal = () => {
   const { isOpen, types, data } = useModal();
 
-  const content = Object.values(data) as [];
+  const content = Object.values(data as Array<IndemnityType>) as [];
   const isModalOpen = isOpen && types?.includes("indemnity") ? true : false;
 
   console.log(content)
