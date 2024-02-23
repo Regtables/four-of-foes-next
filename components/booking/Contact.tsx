@@ -4,6 +4,7 @@ import Image from "next/image";
 import Link from "next/link";
 import React from "react";
 import PageHeading from "../headings/PageHeading";
+import ViewMotionWrapper from "../layout/Motion/ViewMotionWrapper";
 
 const Contact = ({ page }: { page?: boolean }) => {
   return (
@@ -13,7 +14,8 @@ const Contact = ({ page }: { page?: boolean }) => {
         page && "h-full flex flex-col items-center pb-0 lg:mt-16 overflow-hidden"
       )}
     >
-      <div
+      <ViewMotionWrapper
+        duration={1.5}
         className={cn(
           "relative h-[180px] w-[90px] lg:h-[220px] lg:w-[90px] lg:mx-auto ml-3",
           page && "lg:min-h-[300px] w-[110px] h-[200px] lg:w-[140px] mt-20 lg:mt-0"
@@ -24,8 +26,9 @@ const Contact = ({ page }: { page?: boolean }) => {
           fill
           alt="rose"
           className="object-cover lg:ml-2"
+          priority = {true}
         />
-      </div>
+      </ViewMotionWrapper>
 
       <div className={cn("flex flex-col items-center gap-2 mt-4", page && 'mt-[120px] lg:mt-0')}>
         <div className="flex items-center gap-2 tracking-[0.3em] font-light text-[10px]">
