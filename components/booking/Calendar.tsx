@@ -54,60 +54,69 @@ const Calendar = ({
   const [animateTopBar, setAnimateTopBar] = useState({});
   const [animateCalendar, setAnimateCalendar] = useState({});
 
+
   const prevMonth = () => setMonth(sub(month, { months: 1 }));
   const nextMonth = () => setMonth(add(month, { months: 1 }));
 
-  const handleToggle = () => {
-    if (toggleCalendar) {
-      setHeight("0px");
+  const handleToggle = (e?: any) => {
+    if(e.target.tagName !== 'svg'){
+      if (toggleCalendar) {
+        
+        setAnimateCalendar({ opacity: 0 });
+        setAnimateTopBar({ opacity: [1, 0] });
+        setHeight("0px");
+  
+        setTimeout(() => {
+          setToggleCalendar(false);
+          setAnimateTopBar({ opacity: [0, 1] });
+          setAnimateCalendar({ opacity: 0 });
+        }, 500);
+      } else {
+        
+        setAnimateTopBar({ opacity: [1, 0], duration: 0.5 });
+        setAnimateCalendar({ opacity: 0, duration: 0.3 });
 
-      setAnimateTopBar({ opacity: [1, 0] });
-      setAnimateCalendar({ opacity: 0 });
-
-      setTimeout(() => {
-        setToggleCalendar(false);
-        setAnimateTopBar({ opacity: [0, 1] });
-        setAnimateCalendar({ opacity: 1 });
-      }, 600);
-    } else {
-      setHeight(`${content.current.scrollHeight}px`);
-
-      setAnimateTopBar({ opacity: [1, 0] });
-      setAnimateCalendar({ opacity: 0 });
-
-      setTimeout(() => {
-        setToggleCalendar(true);
-        setAnimateTopBar({ opacity: [1] });
-        setAnimateCalendar({ opacity: 1 });
-      }, 500);
+        setTimeout(() => {
+          setHeight(`${content.current.scrollHeight}px`);
+        }, 100);
+  
+        setTimeout(() => {
+          setToggleCalendar(true);
+          setAnimateTopBar({ opacity: 1 });
+          setAnimateCalendar({ opacity: 1 });
+        }, 500);
+      }
     }
+  };
+
+  const handleDateClick = (date: Date) => {
+    setSelectedDate(format(date, "EEEE dd LLLL yyyy"));
+
+    setTimeout(() => {
+      setHeight(`${content.current.scrollHeight}px`);
+    }, 1);
   };
 
   // const handleDateClick = (date: Date) => {
   //   setSelectedDate(format(date, "EEEE dd LLLL yyyy"));
-
-  //   // setTimeout(() => {
-  //     setHeight(`${content.current.scrollHeight}px`);
-  //   // }, 1);
+  //   setHeight("auto"); // Set height to "auto" to allow it to adjust based on content
+  
+  //   // Trigger a layout update to ensure the height is applied before starting the animation
+  //   if (content.current) {
+  //     void content.current.offsetHeight;
+  //   }
+  
+  //   setHeight(`${content.current.scrollHeight}px`);
   // };
-
-  const handleDateClick = (date: Date) => {
-    setSelectedDate(format(date, "EEEE dd LLLL yyyy"));
-    setHeight("auto"); // Set height to "auto" to allow it to adjust based on content
-  
-    // Trigger a layout update to ensure the height is applied before starting the animation
-    if (content.current) {
-      void content.current.offsetHeight;
-    }
-  
-    setHeight(`${content.current.scrollHeight}px`);
-  };
   
 
-  const handleConfrim = () => {
+  const handleConfrim = (e: any) => {
+    console.log('confirming')
     setConfirmedDate(selectedDate!);
 
-    handleToggle();
+    console.log(confirmedDate)
+
+    handleToggle(e);
   };
 
   return (
@@ -115,9 +124,9 @@ const Calendar = ({
       {/* Top bar */}
       <motion.div
         animate={animateTopBar}
-        transition={{ duration: 0.5 }}
+        transition={{ duration: 0.3 }}
         className="h-[30px] flex items-center justify-center min-w-full"
-        onClick={handleToggle}
+        onClick={(e) => handleToggle(e)}
       >
         {!toggleCalendar ? (
           <div className="flex gap-4 items-center w-full" >
@@ -152,7 +161,7 @@ const Calendar = ({
       <motion.div
         style={{ maxHeight: height }}
         ref={content}
-        className="overflow-hidden transition-all duration-700"
+        className="overflow-hidden transition-all duration-700 opacity-0"
         animate={animateCalendar}
         transition={{ duration: 0.5 }}
         initial={{ opacity: 0 }}
@@ -210,7 +219,7 @@ const Calendar = ({
             </p>
 
             <div className="w-[150px] h-[30px]">
-              <ButtonPill text="confirm" fill handleClick={handleConfrim} />
+              <ButtonPill text="confirm" fill handleClick={(e: any) => handleConfrim(e)} />
             </div>
           </div>
         )}

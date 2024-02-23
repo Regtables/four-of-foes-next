@@ -1,6 +1,7 @@
 'use client'
 
 import React, { useEffect, useState } from 'react'
+
 import IndemnityModal from '../portal/modals/IndemnityModal/IndemnityModal'
 import PrepModal from '../portal/modals/PrepModal/PrepModal'
 import CalendarModal from '../portal/modals/CalendarModal/CalendarModal'
@@ -11,6 +12,7 @@ import LoadingModal from '../modals/LoadingModal'
 import AlertModal from '../modals/AlertModal'
 import AftercareModal from '../portal/modals/AftercareModal'
 import TattooPhotosModal from '../portal/modals/TattooPhotosModal'
+import BookingSuccessModal from '../modals/BookingSucessModal'
 
 const ModalProvider = () => {
   const [isMounted, setIsMounted] = useState(false)
@@ -32,6 +34,7 @@ const ModalProvider = () => {
       <AlertModal />
       <AftercareModal />
       <TattooPhotosModal />
+      <BookingSuccessModal />
     </>
   )
 }

@@ -5,7 +5,7 @@ import { motion } from "framer-motion";
 import { Menu } from "lucide-react";
 
 const NavIcon = ({ toggle }: { toggle: boolean }) => {
-  const barStyles = "min-h-[1px] h-[1.5px] bg-white w-[18px]";
+  const barStyles = "h-[1.5px] bg-white w-[18px] rounded-full";
 
   const topVariants = {
     open: { rotate: "45deg", y: 5 },
@@ -27,7 +27,7 @@ const NavIcon = ({ toggle }: { toggle: boolean }) => {
   useEffect(() => {}, [toggle]);
 
   return (
-    <div className="w-full flex flex-col gap-[4px]">
+    <div className="w-full flex flex-col gap-[4px] items-center">
       {/* <Menu className='cursor-pointer'/> */}
       <motion.div
         className={barStyles}

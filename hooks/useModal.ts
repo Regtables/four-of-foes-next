@@ -12,7 +12,8 @@ export type ModalType =
   | "feedback"
   | "booking"
   | "loading"
-  | "alert";
+  | "alert"
+  | "success"
 
 interface ModalData {
   indemnity?: IndemnityType[];
@@ -36,9 +37,9 @@ export const useModal = create<ModalStore>((set) => ({
   isOpen: false,
   handleOpen: (type, data) =>
     set((state) => ({
+      data: { ...data, ...state.data },
       isOpen: true,
       types: state.types ? [...state.types, type] : [type],
-      data: { ...data, ...state.data },
     })),
   handleClose: (type, data) =>
     set((state) => ({
@@ -60,3 +61,5 @@ export const useModal = create<ModalStore>((set) => ({
       },
     })),
 }));
+
+console.log(useModal.getState())

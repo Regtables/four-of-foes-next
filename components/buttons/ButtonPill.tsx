@@ -18,7 +18,7 @@ const ButtonPill = ({ text, fill, handleClick, type = 'button', disabled }: Butt
       )}`}
       onClick={handleClick}
       type = {type}
-      disabled
+      disabled = {disabled}
     >
       {text}
     </button>

@@ -24,7 +24,7 @@ const Upload = ({
     toggle: false,
   });
 
-  const { handleOpen, handleAlertClose } = useModal()
+  const { handleOpen, handleAlertClose, handleClose } = useModal()
 
   useEffect(() => {
     if (selectedFile === null) {
@@ -66,7 +66,7 @@ const Upload = ({
         title: 'File type not supported',
         content: 'Your uploaded files are unfortunately not supported. Please ensure to use jpeg or webp',
         confirm: 'okay',
-        handleConfirm: handleAlertClose
+        handleConfirm: () => handleClose('alert')
       }})
     }
   };

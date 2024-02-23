@@ -86,7 +86,7 @@ export const BookingFormProvider = ({
 
     if(!name || !surname || !email || !contact || !city ){
       document.getElementById('introduction')?.scrollIntoView(scrollBehavior)
-      setInValidSection({ section: 'introduction', message: 'Please complete all the below fields in order to submit your enquiry'})
+      setInValidSection({ section: 'introduction', message: 'Almost there!'})
 
       return false
     }

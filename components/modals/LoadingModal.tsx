@@ -12,7 +12,7 @@ const LoadingModal = () => {
   const isModalOpen = isOpen && types?.includes("loading");
 
   return (
-    <Popup isOpen={isModalOpen!} isAlert>
+    <Popup isOpen={isModalOpen!} isAlert fade>
       <div className="h-full flex items-center">
         <Triangle
           visible={true}

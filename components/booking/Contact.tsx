@@ -9,25 +9,25 @@ const Contact = ({ page }: { page?: boolean }) => {
   return (
     <div
       className={cn(
-        "lg:pb-[170px] h-[72vh] lg:h-[76vh] flex flex-col gap-20 items-center overflow-hidden",
-        page && "h-full flex flex-col items-center pb-0 lg:mt-10"
+        "lg:pb-[150px] h-[72vh] lg:h-[76vh] flex flex-col gap-16 items-center overflow-hidden mt-14",
+        page && "h-full flex flex-col items-center pb-0 lg:mt-16 overflow-hidden"
       )}
     >
       <div
         className={cn(
-          "relative h-[180px] w-[450px] lg:h-[300px] lg:w-[400px] lg:mx-auto ml-3",
-          page && "lg:h-[500px] lg:w-[400px] mt-20 lg:mt-0"
+          "relative h-[180px] w-[90px] lg:h-[220px] lg:w-[90px] lg:mx-auto ml-3",
+          page && "lg:min-h-[300px] w-[110px] h-[200px] lg:w-[140px] mt-20 lg:mt-0"
         )}
       >
         <Image
-          src="/rose.png"
+          src={page ? "/contact-bg.png" : "/rose.png"}
           fill
           alt="rose"
           className="object-cover lg:ml-2"
         />
       </div>
 
-      <div className={cn("flex flex-col items-center gap-2 mt-4", page && 'mt-[150px] lg:mt-0')}>
+      <div className={cn("flex flex-col items-center gap-2 mt-4", page && 'mt-[120px] lg:mt-0')}>
         <div className="flex items-center gap-2 tracking-[0.3em] font-light text-[10px]">
           <Instagram size={15} />
           @fourofoes

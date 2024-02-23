@@ -17,6 +17,7 @@ import Submit from "../booking/Submit";
 import Contact from "../booking/Contact";
 import ViewMotionWrapper from "../layout/Motion/ViewMotionWrapper";
 import BookingCollectionWrapper from "../layout/BookingCollectionWrapper";
+import { useEffect } from "react";
 
 const ARTISTS = [
   {
@@ -69,7 +70,12 @@ const ARTISTS = [
 
 const BookingForm = ({ data }: { data: any }) => {
   const bookingFormData = useBookingForm();
-  const { handleOpen, handleClose, types, data: modalData } = useModal()
+  const { handleOpen, handleClose, types, data: modalData } = useModal();
+
+  const modal = useModal();
+
+  console.log(modal)
+  // Your component logic here...
 
   const {
     information,
@@ -92,14 +98,14 @@ const BookingForm = ({ data }: { data: any }) => {
     selectedFile2,
     selectedFile3,
     selectedFile4,
-    validateForm
+    validateForm,
   } = bookingFormData;
 
   const handleSubmit = async () => {
     // e.preventDefault();
 
-    if(!validateForm()) return 
-    
+    // if (!validateForm()) return;
+
     let reference1;
     let reference2;
     let reference3;
@@ -121,7 +127,7 @@ const BookingForm = ({ data }: { data: any }) => {
       reference4 = await getBase64(selectedFile4);
     }
 
-    const { name, surname, email, contact, city } = information
+    const { name, surname, email, contact, city } = information;
 
     const data = {
       name,
@@ -141,31 +147,36 @@ const BookingForm = ({ data }: { data: any }) => {
       reference4: reference4 ? reference4 : null,
     };
 
-    try{
-      handleOpen('loading')
+    try {
+      handleOpen("loading");
 
-      await axios.post('/api/booking', { data })
+      await axios.post("/api/booking", { data });
 
-      handleOpen('alert', { alertData: {
-        title: 'Sent!',
-        content: 'Thank you for submitting your booking form. Please allow us some time to process your request',
-        confirm: 'Done',
-        signature: true,
-        handleConfirm: () => handleClose('alert', { alertData: { title: '', content: '', confirm: '', handleConfirm: () => {}} })
-      }})
+      handleOpen("success");
 
-      document.getElementById('submit-btn')!.style.display = 'none'
-    } catch (error){
-      console.log(error)
+      // document.getElementById('submit-btn')!.style.display = 'none'
+    } catch (error) {
+      console.log(error);
 
-      handleOpen('alert', { alertData: {
-        title: 'Request Error',
-        content: 'There was an error with your submitting your request. Please confirm that you have completed all the fields and make sure that your references are in the format of either .jpeg or .webp',
-        confirm: 'okay',
-        handleConfirm: () => handleClose('alert', { alertData: { title: '', content: '', confirm: '', handleConfirm: () => {}} })
-      }})
-    } finally{
-      handleClose('loading')
+      handleOpen("alert", {
+        alertData: {
+          title: "Request Error",
+          content:
+            "There was an error with your submitting your request. Please confirm that you have completed all the fields and make sure that your references are in the format of either .jpeg or .webp",
+          confirm: "okay",
+          handleConfirm: () =>
+            handleClose("alert", {
+              alertData: {
+                title: "",
+                content: "",
+                confirm: "",
+                handleConfirm: () => {},
+              },
+            }),
+        },
+      });
+    } finally {
+      handleClose("loading");
     }
   };
 
@@ -241,11 +252,13 @@ const BookingForm = ({ data }: { data: any }) => {
       </BookingCollectionWrapper>
 
       <BookingCollectionWrapper collection="submit">
-        <BookingSectionLayout section="submit" heading={{ heading: "Thank you" }}>
-          <Submit handleClick={handleSubmit}/>
+        <BookingSectionLayout
+          section="submit"
+          heading={{ heading: "Thank you" }}
+        >
+          <Submit handleClick={handleSubmit} />
         </BookingSectionLayout>
       </BookingCollectionWrapper>
-
 
       <BookingCollectionWrapper collection="contact">
         <ViewMotionWrapper duration={1}>

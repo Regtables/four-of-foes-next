@@ -53,7 +53,7 @@ const BookingSectionLayout = ({
           <AnimatePresence>
             {alert && (
               <motion.p 
-                className="text-[#cc5656] text-[12px] mt-2 tracking-wider text-center"
+                className="text-[#de6868] text-[12px] mt-2 tracking-wider text-center font-medium"
                 whileInView={{ opacity: [0,1]}}
                 exit={{opacity: 0}}
                 initial = {{opacity: 0}}

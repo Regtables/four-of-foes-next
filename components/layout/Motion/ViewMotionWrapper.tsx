@@ -10,7 +10,7 @@ const ViewMotionWrapper = ({
   once = false,
   className,
   scale = 1,
-  exit = { opacity: [1,0] },
+  exit = { opacity: [1,0], duration: 0.5 },
 }: {
   children: ReactNode;
   y?: number;
