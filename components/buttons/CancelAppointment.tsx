@@ -8,7 +8,7 @@ const CancelAppointment = () => {
 
   return (
     <button 
-      className="h-full flex items-center justify-center w-full text-[7px] uppercase tracking-[0.4em] text-[#a9a9a9]"
+      className="h-full flex items-center justify-center w-full text-[8px] uppercase tracking-[0.4em] text-[#a9a9a9]"
       onClick={() => handleOpen('appointmentActions')}
     >
       cancel/resheudle

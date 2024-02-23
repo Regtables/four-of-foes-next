@@ -58,7 +58,7 @@ const Lounge = ({ indemnityData, prepData } : LoungeProps) => {
       <motion.div className="h-full w-full flex flex-col items-center" animate = {animatePage} transition={{ duration: 1 }}>
         <div className="h-[75%] w-full relative">
           <Image
-            src={"/lounge-ted.JPG"}
+            src={"/portal-bg.png"}
             fill
             alt="ted"
             className="object-cover"

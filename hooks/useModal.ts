@@ -9,7 +9,7 @@ export type ModalType =
   | "appointmentActions"
   | "aftercare"
   | "photos"
-  | "review"
+  | "feedback"
   | "booking"
   | "loading"
   | "alert";

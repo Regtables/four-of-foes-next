@@ -9,6 +9,8 @@ import CancelAppointmentModal from '../portal/modals/CancelAppointmentModal/Canc
 import BookingFormModal from '../modals/BookingFormModal'
 import LoadingModal from '../modals/LoadingModal'
 import AlertModal from '../modals/AlertModal'
+import AftercareModal from '../portal/modals/AftercareModal'
+import TattooPhotosModal from '../portal/modals/TattooPhotosModal'
 
 const ModalProvider = () => {
   const [isMounted, setIsMounted] = useState(false)
@@ -26,9 +28,10 @@ const ModalProvider = () => {
       <CalendarModal />
       <LocationModal />
       <CancelAppointmentModal />
-      {/* <BookingFormModal /> */}
       <LoadingModal />
       <AlertModal />
+      <AftercareModal />
+      <TattooPhotosModal />
     </>
   )
 }

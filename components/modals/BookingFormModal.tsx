@@ -25,7 +25,7 @@ const BookingFormModal = () => {
 
       <div
         className="fixed bottom-6 w-[100vw] flex items-center justify-center z-30"
-        onClick={() => handleClose("booking")}
+        onClick={() => handleClose('booking')}
       >
         <motion.div
           className="bg-white h-7 w-7 flex justify-center items-center rounded-full cursor-pointer relative z-100"

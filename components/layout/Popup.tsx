@@ -13,7 +13,8 @@ const Popup = ({
   black,
   fade,
   onClick,
-  h_0
+  h_0,
+  opacity = 90
 }: {
   children: React.ReactNode;
   isOpen: boolean;
@@ -38,7 +39,7 @@ const Popup = ({
     <AnimatePresence>
       {isOpen && (
         <motion.div
-          className={cn(`fixed z-10 top-0 left-0 bottom-0 bg-black/90 h-screen w-screen overflow-y-auto content-none scroll-smooth`, black && 'bg-black')}
+          className={cn(`fixed z-10 top-0 left-0 bottom-0 bg-black/80 h-screen w-screen overflow-y-auto content-none scroll-smooth`, black && 'bg-black')}
           onClick={(e) => handleClickOutside(e)}
           whileInView={fade ? { opacity: [0, 1] } : {}}
           // animate = {{opacity: 1 }}

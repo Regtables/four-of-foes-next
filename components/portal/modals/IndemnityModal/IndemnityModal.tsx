@@ -10,8 +10,10 @@ import ButtonPill from "@/components/buttons/ButtonPill";
 const IndemnityModal = () => {
   const { isOpen, types, data } = useModal();
 
-  const content = data as [];
+  const content = Object.values(data) as [];
   const isModalOpen = isOpen && types?.includes("indemnity") ? true : false;
+
+  console.log(content)
 
   const handleCheck = () => {
 

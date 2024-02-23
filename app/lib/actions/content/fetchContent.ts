@@ -1,4 +1,4 @@
-import { indemnityDataQuery, tipsDataQuery, sectionQuery } from "../../queries"
+import { indemnityDataQuery, tipsDataQuery, sectionQuery, aftercareDataQuery } from "../../queries"
 import { landingClient, portalClient } from "../../sanity"
 
 export const fetchPrepContent = async () => {
@@ -9,6 +9,12 @@ export const fetchPrepContent = async () => {
 
 export const fetchIndemnityContent = async () => {
   const content = await portalClient.fetch(indemnityDataQuery())
+
+  return content
+}
+
+export const fetchAftercareContent = async () => {
+  const content = await portalClient.fetch(aftercareDataQuery())
 
   return content
 }

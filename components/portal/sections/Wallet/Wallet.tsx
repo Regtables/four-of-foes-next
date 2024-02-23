@@ -7,6 +7,7 @@ import { useSection } from '@/context/PortalSectionContext'
 
 import SectionLayout from '../../layout/SectionLayout'
 import PaymentOptions from '../../payment/PaymentOptions'
+import CancelAppointment from '@/components/buttons/CancelAppointment'
 
 const Wallet = () => {
   const { currentSection } = useSection()
@@ -22,9 +23,13 @@ const Wallet = () => {
 
   return (
     <SectionLayout section='wallet'>
-      <motion.div className='h-full w-full flex items-center min-w-[40%]' animate = {animatePage} transition={{ duration: 1 }}>
+      <motion.div className='h-full w-full flex flex-col justify-center gap-6 items-center min-w-[40%]' animate = {animatePage} transition={{ duration: 1 }}>
         {/* <PortalLinkList links={LINKS} /> */}
         <PaymentOptions />
+
+        <div className=''>
+          <CancelAppointment />
+        </div>
       </motion.div>
     </SectionLayout>
   )

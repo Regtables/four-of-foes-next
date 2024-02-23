@@ -50,10 +50,6 @@ const Lobby = ({ messages } : LobbyProps) => {
         </div>
 
         <Partition />
-
-        <div className='flex-[0.07] h-full'>
-          <CancelAppointment />
-        </div>
       </motion.div>
     </SectionLayout>
   )

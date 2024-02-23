@@ -5,10 +5,11 @@ interface ButtonPillProps {
   text: string;
   fill?: boolean;
   handleClick?: any;
-  type?: 'submit' | 'button'
+  type?: 'submit' | 'button',
+  disabled?: boolean
 }
 
-const ButtonPill = ({ text, fill, handleClick, type = 'button' }: ButtonPillProps) => {
+const ButtonPill = ({ text, fill, handleClick, type = 'button', disabled }: ButtonPillProps) => {
   return (
     <button
       className={`${cn(
@@ -17,6 +18,7 @@ const ButtonPill = ({ text, fill, handleClick, type = 'button' }: ButtonPillProp
       )}`}
       onClick={handleClick}
       type = {type}
+      disabled
     >
       {text}
     </button>

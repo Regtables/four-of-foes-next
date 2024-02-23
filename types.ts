@@ -12,7 +12,7 @@ export interface CheckboxOption {
 
 export interface LoungeLinkType {
   link: string,
-  type: 'indemnity' | 'prep' | 'location',
+  type: 'indemnity' | 'prep' | 'location' | 'aftercare' | 'photos' | 'feedback', 
   data: IndemnityType[] | string[] | any
 }
 
@@ -110,4 +110,18 @@ export interface AlertType {
   option?: string,
   handleOption?: () => void,
   signature?: boolean
+}
+
+export interface ShopType {
+  name: string,
+  logo: any,
+  instagram: {
+    handle: string,
+    link: string
+  },
+  location: {
+    address: string,
+    link: string
+  },
+  images: any[]
 }
