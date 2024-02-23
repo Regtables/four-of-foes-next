@@ -1,4 +1,4 @@
-import PortalAuth from '@/components/sections/PortalAuth'
+import PortalAuth from '@/components/portal/sections/PortalAuth'
 import React from 'react'
 
 const PortalAuthPage = () => {

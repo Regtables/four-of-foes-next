@@ -1,5 +1,5 @@
 import React from 'react'
-import ButtonLrg from '../buttons/ButtonLrg'
+import ButtonLrg from '../../buttons/ButtonLrg'
 
 const PortalAuth = () => {
   return (

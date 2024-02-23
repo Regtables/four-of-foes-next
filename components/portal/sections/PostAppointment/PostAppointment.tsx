@@ -4,7 +4,7 @@ import { Asterisk } from "lucide-react";
 
 import PortalLinkList from "../../PortalLinkList/PortalLinkList";
 
-const PostAppointment = ({ data }) => {
+const PostAppointment = ({ data } : { data: any }) => {
   return (
     <div className="w-[60%]">
       <header className="text-center flex flex-col items-center gap-4 mb-10">
