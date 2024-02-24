@@ -49,6 +49,7 @@ const Hero = ({ bookingFormData }: { bookingFormData: any }) => {
           alt="Ted doing a tattoo"
           className="object-cover md:object-top"
           priority
+          sizes="(max-width:450px) 100vw, (max-width: 768px) 100vw, (max-width: 1200px) 100vw, 100vw"
         />
       </motion.div>
 

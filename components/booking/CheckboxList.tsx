@@ -36,9 +36,9 @@ const CheckboxList = ({
       {options.map((option, i) => (
         <motion.div
           className="flex"
-          whileInView= { !artist ? { opacity: [0, 1], x: i%2 === 0 ? [-10, 0] : [10, 0]} : {} }
+          whileInView= { !artist ? { opacity: [0, 1], x: i%2 === 0 ? [-10, 0] : [10, 0]} : { x: [10, 0], opacity: [0,1] } }
           animate = { artist ? animateOption : {} }
-          initial={ !artist ? { opacity: 0, x: i%2 ? -10 : 10 } : {} }
+          initial={ !artist ? { opacity: 0, x: i%2 ? -10 : 10 } : { x: 10, opacity: 0 } }
           key = {i}
           transition={{ duration: 0.3, delay: i*0.07 }}
         >
