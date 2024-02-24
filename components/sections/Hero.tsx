@@ -1,6 +1,6 @@
 "use client";
 
-import React from "react";
+import React, { Suspense } from "react";
 import Image from "next/image";
 import { motion, AnimatePresence } from "framer-motion";
 import { useModal } from "@/hooks/useModal";
@@ -33,25 +33,28 @@ const Hero = ({ bookingFormData }: { bookingFormData: any }) => {
          </ViewMotionWrapper>
         )}
       </AnimatePresence>
+      
 
-      <motion.div
-        className="z-0"
-        variants={variants}
-        // initial="hidden"
-        whileInView={{ opacity: [0,1]}}
-        initial = {{opacity: 0}}
-        animate="visible"
-        transition={{ duration: 1.5, delay: 0 }}
-      >
-        <Image
-          src={"/landing-bg.jpeg"}
-          fill
-          alt="Ted doing a tattoo"
-          className="object-cover md:object-top"
-          priority
-          sizes="(max-width:450px) 100vw, (max-width: 768px) 100vw, (max-width: 1200px) 100vw, 100vw"
-        />
-      </motion.div>
+      <Suspense>
+        <motion.div
+          className="z-0"
+          variants={variants}
+          // initial="hidden"
+          whileInView={{ opacity: [0,1]}}
+          initial = {{opacity: 0}}
+          animate="visible"
+          transition={{ duration: 1.5, delay: 0 }}
+        >
+          <Image
+            src={"/landing-bg.jpeg"}
+            fill
+            alt="Ted doing a tattoo"
+            className="object-cover md:object-top"
+            priority
+            sizes="(max-width:450px) 100vw, (max-width: 768px) 100vw, (max-width: 1200px) 100vw, 100vw"
+          />
+        </motion.div>
+      </Suspense>
 
       <AnimatePresence>
         {!types?.includes("booking") && !toggleIntro && (
