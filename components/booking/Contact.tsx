@@ -18,7 +18,7 @@ const Contact = ({ page }: { page?: boolean }) => {
         duration={1.5}
         className={cn(
           "relative h-[180px] w-[90px] lg:h-[220px] lg:w-[90px] lg:mx-auto ml-3",
-          page && "lg:min-h-[300px] w-[110px] h-[200px] lg:w-[140px] mt-20 lg:mt-0"
+          page && "lg:min-h-[300px] w-[140px] min-h-[240px] lg:w-[140px] mt-20 lg:mt-0"
         )}
       >
         <Image
@@ -30,7 +30,7 @@ const Contact = ({ page }: { page?: boolean }) => {
         />
       </ViewMotionWrapper>
 
-      <div className={cn("flex flex-col items-center gap-2 mt-4", page && 'mt-[120px] lg:mt-0')}>
+      <div className={cn("flex flex-col items-center gap-2 mt-4", page && 'mt-[85px] lg:mt-0')}>
         <div className="flex items-center gap-2 tracking-[0.3em] font-light text-[10px]">
           <Instagram size={15} />
           @fourofoes
