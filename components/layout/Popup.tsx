@@ -44,12 +44,12 @@ const Popup = ({
           whileInView={fade ? { opacity: [0, 1] } : {}}
           // animate = {{opacity: 1 }}
           exit={{ opacity: 0 }}
-          transition={{ duration: 0.5 }}
+          transition={{ duration: 0.5, when: "beforeChildren", delayChildren: 0.5 }}
           initial={fade ? { opacity: 0 } : {}}
           id="popup"
         >
           <div
-            className={cn("flex flex-col items-center h-full relative", h_0 && 'h-0')}
+            className={cn("flex flex-col items-center h-full relative z-0", h_0 && 'h-0')}
             ref={content}
           >
             {children}

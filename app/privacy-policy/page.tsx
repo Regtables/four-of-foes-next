@@ -24,7 +24,7 @@ const ACTION = {
   ],
 };
 
-const PrivayPolicyPage = ({ contact }: { contact: any }) => {
+const PrivayPolicyPage = () => {
   return (
     <div className={styles.container}>
       <Head>

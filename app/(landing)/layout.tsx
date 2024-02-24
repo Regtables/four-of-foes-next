@@ -26,7 +26,7 @@ const LandingLayout = ({ children }: { children: React.ReactNode }) => {
   useEffect(() => {
     setTimeout(() => {
       setToggleIntro(false)
-    }, 3000);
+    }, 2000);
   }, []);
 
   useEffect(() => {

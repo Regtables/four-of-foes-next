@@ -23,6 +23,7 @@ const Intro = ({ toggleIntro }: { toggleIntro: boolean }) => {
         scale={0.9}
         duration={3}
         y={0}
+        exit={{when: "beforeChildren", delayChildren: 0.5 }}
         className="flex justify-center h-full my-auto items-center flex-[0.05] z-10 relative w-[300px] mx-auto"
       >
          <Image
@@ -30,6 +31,8 @@ const Intro = ({ toggleIntro }: { toggleIntro: boolean }) => {
             fill
             alt="four of foes logo"
             className="object-cover"
+            priority
+            sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
           />
         </ViewMotionWrapper>
       {/* <AnimatePresence> */}

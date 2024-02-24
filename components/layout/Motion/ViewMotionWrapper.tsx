@@ -29,7 +29,7 @@ const ViewMotionWrapper = ({
       initial={{ y: y, x: x, opacity: 0 }}
       viewport={{ once: once }}
       className={className}
-      exit={exit}
+      // exit={exit}
     >
       {children}
     </motion.div>
