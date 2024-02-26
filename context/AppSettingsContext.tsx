@@ -16,7 +16,7 @@ interface AppSettingsProviderProps {
 }
 
 export const AppSettingsProvider: React.FC<AppSettingsProviderProps> = ({ children }) => {
-  const [toggleIntro, setToggleIntro] = useState(true);
+  const [toggleIntro, setToggleIntro] = useState(false);
   const [darkMode, setDarkMode] = useState(false);
 
   const contextValue: AppSettingsContextProps = {
