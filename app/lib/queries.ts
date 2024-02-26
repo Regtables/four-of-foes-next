@@ -7,6 +7,12 @@ export const valueQuery = (value: string) => {
   return query
 }
 
+export const clientQuery = (id: string) => {
+  const query = `*[_type == "client" && _id == "${id}"]`
+
+  return query
+}
+
 export const sectionQuery = (section: string) => {
   const query = `*[_type == "${section}"]{heading, description, options[]->}`
 
