@@ -4,7 +4,7 @@ import ShopProfile from '../ShopProfile/ShopProfile'
 
 const LocationAccordion = ({ data }) => {
   return (
-    <AccordionLayout title='location'>
+    <AccordionLayout title='location' section={3}>
       <ShopProfile shop={data} />
     </AccordionLayout>
   )

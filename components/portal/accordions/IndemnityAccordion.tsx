@@ -11,7 +11,7 @@ const IndemnityAccordion = ({ data }) => {
   }
 
   return (
-    <AccordionLayout title="indemnity">
+    <AccordionLayout title="indemnity" section = {1}>
       <div className="w-[80%]">
         <p className="text-[9px] text-center tracking-[--letter-spacing-sm]">
           Please read through our indemnity clauses, after which you can provide

@@ -1,5 +1,6 @@
 import { cn } from "@/app/lib/utils";
 import Popup from "@/components/layout/Popup";
+import { useAppSettings } from "@/context/AppSettingsContext";
 import { AnimatePresence, motion } from "framer-motion";
 import { X } from "lucide-react";
 import React, { useRef, useState } from "react";
@@ -7,21 +8,27 @@ import React, { useRef, useState } from "react";
 const AccordionLayout = ({
   title,
   children,
+  section
 }: {
   title: string;
   children: React.ReactNode;
+  section: number
 }) => {
   const [toggle, setToggle] = useState(false);
   const [height, setHeight] = useState("0px");
   const content: any = useRef(null);
 
+  const { setToggleAccordion } = useAppSettings()
+
   const handleToggle = () => {
     if (!toggle) {
       setToggle(true);
       setHeight(`100vh`);
+      setToggleAccordion(section)
     } else {
       setToggle(false);
       setHeight("0px");
+      setToggleAccordion(0)
     }
   };
 
@@ -71,11 +78,11 @@ const AccordionLayout = ({
       <AnimatePresence>
         {toggle && (
             <motion.div
-                className="bg-white h-7 w-7 flex justify-center items-center start-[50%] rounded-full cursor-pointer absolute bottom-0 mx-auto z-100"
+                className="bg-white h-7 w-7 flex justify-center items-center start-[46%] rounded-full cursor-pointer absolute bottom-[-5%] mx-auto z-10"
                 whileInView={{ y: [20, 0], opacity: [0, 1] }}
                 transition={{ duration: 1, delay: 0.3 }}
                 initial = {{y: 20, opacity: 0 }}
-                exit={{ y: [0, 20], opacity: [1,0] }}
+                exit={{ y: [0, 10], opacity: [1,0] }}
                 onClick={handleToggle}
               >
                 <X color="black" size={15} />

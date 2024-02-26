@@ -7,6 +7,8 @@ interface AppSettingsContextProps {
   setToggleIntro: React.Dispatch<React.SetStateAction<boolean>>;
   darkMode: boolean;
   setDarkMode: React.Dispatch<React.SetStateAction<boolean>>;
+  toggleAccordion: number
+  setToggleAccordion: React.Dispatch<React.SetStateAction<number>>;
 }
 
 const AppSettingsContext = createContext<AppSettingsContextProps | undefined>(undefined);
@@ -18,12 +20,15 @@ interface AppSettingsProviderProps {
 export const AppSettingsProvider: React.FC<AppSettingsProviderProps> = ({ children }) => {
   const [toggleIntro, setToggleIntro] = useState(true);
   const [darkMode, setDarkMode] = useState(false);
+  const [toggleAccordion, setToggleAccordion] = useState(0)
 
   const contextValue: AppSettingsContextProps = {
     toggleIntro,
     setToggleIntro,
     darkMode,
     setDarkMode,
+    toggleAccordion, 
+    setToggleAccordion
   };
 
   return (
