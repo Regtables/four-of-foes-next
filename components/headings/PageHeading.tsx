@@ -3,7 +3,7 @@
 import React from "react";
 import { motion } from "framer-motion";
 
-const PageHeading = () => {
+const PageHeading = ({ caption } : { caption?: string}) => {
   return (
     <header
       className="text-center"
@@ -14,9 +14,11 @@ const PageHeading = () => {
       <h1 className="uppercase font-[500] text-[32px] leading-0 text-[var(--font-heading)] heading-font">
         Four of Foes
       </h1>
-      {/* <p className="text-[8px] tracking-[0.2em] font-light mt-4 mb-6">
-        To give anything less than your best is to sacrifice the gift
-      </p> */}
+      {caption && (
+        <p className="text-[8px] tracking-[0.2em] font-light mt-4 mb-6">
+          {caption}
+        </p>
+      )}
     </header>
   );
 };
