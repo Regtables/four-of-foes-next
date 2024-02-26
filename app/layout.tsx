@@ -13,8 +13,6 @@ export const metadata: Metadata = {
   description: "The coolest tattoo website ever made",
 };
 
-export const runtime = 'edge'
-
 export default function RootLayout({
   children,
 }: {
