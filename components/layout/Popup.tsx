@@ -44,7 +44,7 @@ const Popup = ({
           whileInView={fade ? { opacity: [0, 1] } : {}}
           // animate = {{opacity: 1 }}
           exit={{ opacity: 0 }}
-          transition={{ duration: 0.5, when: "beforeChildren", delayChildren: 0.5 }}
+          transition={{ duration: 0.7 }}
           initial={fade ? { opacity: 0 } : {}}
           id="popup"
         >
