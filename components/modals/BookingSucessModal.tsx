@@ -10,12 +10,10 @@ import Image from 'next/image'
 const AlertModal = () => {
   const { isOpen, types, data, handleClose } = useModal()
 
-  if(!data?.alertData) return null
+  // if(!data?.alertData) return null
 
   const isModalOpen = isOpen && types?.includes('success')
 
-  const { alertData } = data
-  const { title, content, confirm, handleConfirm, signature } = alertData
 
   return (
     <Popup isOpen = {isModalOpen!} fade>

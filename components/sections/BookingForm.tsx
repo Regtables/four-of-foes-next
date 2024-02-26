@@ -17,7 +17,6 @@ import Submit from "../booking/Submit";
 import Contact from "../booking/Contact";
 import ViewMotionWrapper from "../layout/Motion/ViewMotionWrapper";
 import BookingCollectionWrapper from "../layout/BookingCollectionWrapper";
-import { useEffect } from "react";
 
 const ARTISTS = [
   {
@@ -49,33 +48,11 @@ const ARTISTS = [
       },
     ],
   },
-  // {
-  //   title: "Artist 2",
-  //   tourOptions: [
-  //     {
-  //       choice: { title: "Paris (June 2024)" },
-  //     },
-  //     {
-  //       choice: { title: "New York (December 2024)" },
-  //     },
-  //     {
-  //       choice: { title: "Amsterdam (October 2024)" },
-  //     },
-  //     {
-  //       choice: { title: "Moscow (October 2054)" },
-  //     },
-  //   ],
-  // },
 ];
 
 const BookingForm = ({ data }: { data: any }) => {
   const bookingFormData = useBookingForm();
-  const { handleOpen, handleClose, types, data: modalData } = useModal();
-
-  const modal = useModal();
-
-  console.log(modal)
-  // Your component logic here...
+  const { handleOpen, handleClose } = useModal();
 
   const {
     information,
@@ -102,8 +79,6 @@ const BookingForm = ({ data }: { data: any }) => {
   } = bookingFormData;
 
   const handleSubmit = async () => {
-    // e.preventDefault();
-
     if (!validateForm()) return;
 
     let reference1;
@@ -127,7 +102,7 @@ const BookingForm = ({ data }: { data: any }) => {
       reference4 = await getBase64(selectedFile4);
     }
 
-    const { name, surname, email, contact, city } = information;
+    const { name, surname, email, contact, city, instagram } = information;
 
     const data = {
       name,
@@ -135,12 +110,15 @@ const BookingForm = ({ data }: { data: any }) => {
       email,
       contact,
       city,
+      instagram,
       experience,
       placement,
       dimention,
       firstDate,
       secondDate,
       idea,
+      artist,
+      tourDate,
       reference1: reference1 ? reference1 : null,
       reference2: reference2 ? reference2 : null,
       reference3: reference3 ? reference3 : null,

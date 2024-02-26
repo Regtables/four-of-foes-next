@@ -11,7 +11,7 @@ const ContactPage = () => {
   return (
     <div className="w-screen h-[100vh] lg:max-h-screen flex flex-col items-center overflow-hidden">
       <ViewMotionWrapper className="mt-8" duration={1}>
-        <PageHeading caption="To give anything less than your best is to sacrifice the gift"/>
+        <PageHeading />
       </ViewMotionWrapper>
 
       <ViewMotionWrapper delay={0.3} duration={1}>

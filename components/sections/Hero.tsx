@@ -29,7 +29,7 @@ const Hero = ({ bookingFormData }: { bookingFormData: any }) => {
       <AnimatePresence>
         {!types?.includes("booking") && !toggleIntro && (
           <ViewMotionWrapper className="absolute z-10 w-full flex justify-center" exit={{y: -20, opacity: 0}} y = {-20} duration={1}>
-            <PageHeading />
+            <PageHeading caption="To give anything less than your best is to sacrifice the gift"/>
          </ViewMotionWrapper>
         )}
       </AnimatePresence>

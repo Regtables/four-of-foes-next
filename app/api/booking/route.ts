@@ -14,11 +14,14 @@ export async function POST(req: Request, res: Response) {
       contact,
       placement,
       city,
+      instagram,
       dimention,
       experience,
       firstDate,
       secondDate,
       idea,
+      artist,
+      tourDate,
       reference1,
       reference2,
       reference3,
@@ -47,11 +50,14 @@ export async function POST(req: Request, res: Response) {
       <p style="padding: 12px; border-left: 4px solid #d0d0d0; font-style: italic;"><strong>Email: </strong>${email}</p>
       <p style="padding: 12px; border-left: 4px solid #d0d0d0; font-style: italic;"><strong>Contact number: </strong>${contact}</p>
       <p style="padding: 12px; border-left: 4px solid #d0d0d0; font-style: italic;"><strong>They live in:&nbsp;</strong>${city}</p>
+      <p style="padding: 12px; border-left: 4px solid #d0d0d0; font-style: italic;"><strong>Instagram Handle:</strong>${instagram}</p>
       <p style="padding: 12px; border-left: 4px solid rgb(208, 208, 208); font-style: italic; text-align: left;"><strong>Experience:&nbsp;</strong>${experience}</p>
       <p style="padding: 12px; border-left: 4px solid rgb(208, 208, 208); font-style: italic; text-align: left;"><strong>Placement:&nbsp;</strong>${placement}</p>
       <p style="padding: 12px; border-left: 4px solid rgb(208, 208, 208); font-style: italic; text-align: left;"><strong>Dimension: </strong>${dimention}</p>
       <p style="padding: 12px; border-left: 4px solid rgb(208, 208, 208); font-style: italic; text-align: left;"><strong>First Date:&nbsp;</strong>${firstDate}</p>
       <p style="padding: 12px; border-left: 4px solid rgb(208, 208, 208); font-style: italic; text-align: left;"><strong>Second Date:&nbsp;</strong>${secondDate}</p>
+      <p style="padding: 12px; border-left: 4px solid #d0d0d0; font-style: italic;"><strong>Artist: </strong>${artist}</p>
+      <p style="padding: 12px; border-left: 4px solid #d0d0d0; font-style: italic;"><strong>Tour City: </strong>${tourDate}</p>
       <p style="padding: 12px; border-left: 4px solid rgb(208, 208, 208); font-style: italic; text-align: left;"><strong>Idea:&nbsp;</strong>${idea}</p>
       <p>Please see their reference images attached.</p>
       <p>Best wishes</p>`,
