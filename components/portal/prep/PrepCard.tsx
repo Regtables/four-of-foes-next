@@ -8,7 +8,7 @@ import ViewMotionWrapper from '@/components/layout/Motion/ViewMotionWrapper'
 const PrepCard = ({ tips } : { tips?: string[] }) => {
   return (
     <motion.div 
-      className='border border-1-white p-4 rounded-xl flex flex-col gap-2'
+      className='p-4 rounded-xl flex flex-col gap-2'
       whileInView={{opacity: [0,1]}}
       transition={{ duration: 0.3 }}
       initial = {{opacity: 0}}
