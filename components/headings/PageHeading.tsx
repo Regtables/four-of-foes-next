@@ -14,9 +14,9 @@ const PageHeading = () => {
       <h1 className="uppercase font-[500] text-[32px] leading-0 text-[var(--font-heading)] heading-font">
         Four of Foes
       </h1>
-      <p className="text-[8px] tracking-[0.2em] font-light mt-4 mb-6">
+      {/* <p className="text-[8px] tracking-[0.2em] font-light mt-4 mb-6">
         To give anything less than your best is to sacrifice the gift
-      </p>
+      </p> */}
     </header>
   );
 };
