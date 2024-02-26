@@ -93,49 +93,49 @@ export const BookingFormProvider = ({
 
     else if(!email.includes('@') || !email.includes('.')){
       document.getElementById('introduction')?.scrollIntoView(scrollBehavior)
-      setInValidSection({ section: 'introduction', message: 'Please provide a valid email address'})
+      setInValidSection({ section: 'introduction', message: 'Almost there!'})
 
       return false
     }
 
     if(!idea){
       document.getElementById('idea')?.scrollIntoView(scrollBehavior)
-      setInValidSection({ section: 'idea', message: 'It is required to provide a brief idea of your tattoo'})
+      setInValidSection({ section: 'idea', message: 'Almost there!'})
 
       return false
     }
 
     else if(!dimention){
       document.getElementById('dimention')?.scrollIntoView(scrollBehavior)
-      setInValidSection({ section: 'dimention', message: 'Please select the dimention of your tattoo'})
+      setInValidSection({ section: 'dimention', message: 'Almost there!'})
 
       return false
     }
 
     else if(!placement){
       document.getElementById('placement')?.scrollIntoView(scrollBehavior)
-      setInValidSection({ section: 'placement', message: 'Please select the placement of your tattoo'})
+      setInValidSection({ section: 'placement', message: 'Almost there!'})
 
       return false
     }
 
     else if(!experience){
       document.getElementById('experience')?.scrollIntoView(scrollBehavior)
-      setInValidSection({ section: 'experience', message: 'Please select your experience with tattoos'})
+      setInValidSection({ section: 'experience', message: 'Almost there!'})
 
       return false
     }
 
     else if(!tourDate){
       document.getElementById('tourDate')?.scrollIntoView(scrollBehavior)
-      setInValidSection({ section: 'artist', message: 'Please select the tour date for when you wish to have an appointment with your chosen artist'})
+      setInValidSection({ section: 'artist', message: 'Almost there!'})
 
       return false
     }
 
     else if(!firstDate || !secondDate){
       document.getElementById('preffered date')?.scrollIntoView(scrollBehavior)
-      setInValidSection({ section: 'preffered date', message: 'It is required to provide a minimum of two possible dates for your appointment in order to be eligable for a booking enquiry'})
+      setInValidSection({ section: 'preffered date', message: 'Almost there!'})
 
       return false
     }
