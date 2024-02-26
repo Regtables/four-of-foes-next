@@ -9,7 +9,7 @@ import { AppSettingsProvider } from "@/context/AppSettingsContext";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: "Four of Foes",
+  title: "Four of Foes - Home",
   description: "The coolest tattoo website ever made",
 };
 

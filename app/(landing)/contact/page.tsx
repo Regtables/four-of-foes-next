@@ -1,9 +1,11 @@
-"use client";
+'use client'
+
+import { Metadata } from "next/types";
+import React from "react";
 
 import Contact from "@/components/booking/Contact";
 import PageHeading from "@/components/headings/PageHeading";
 import ViewMotionWrapper from "@/components/layout/Motion/ViewMotionWrapper";
-import React from "react";
 
 const ContactPage = () => {
   return (
