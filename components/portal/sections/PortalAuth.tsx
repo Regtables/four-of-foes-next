@@ -5,8 +5,9 @@ import ButtonLrg from '../../buttons/ButtonLrg'
 import { Asterisk } from 'lucide-react'
 import axios from 'axios'
 import { useRouter } from 'next/navigation'
+import { ClientType } from '@/types'
 
-const PortalAuth = ({ client }) => {
+const PortalAuth = ({ client } : { client: ClientType }) => {
   const router = useRouter()
   const handleButtonClick = async () => {
     // const res = await axios.post('/api/clients/auth', { client })
