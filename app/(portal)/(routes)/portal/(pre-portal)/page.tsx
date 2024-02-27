@@ -31,11 +31,18 @@ const MESSAGES = [
   }
 ]
 
+const APPOINTMENT = {
+  artist: "Ted Faulmann",
+  clientName: '',
+  appointmentDate: new Date(),
+  appointmentLocation: "Concrete Forty",
+  appointmentCity: "Sweden",
+};
+
 const PortalPage = async () => {
-  const session = await getSession() 
   const prepContent = fetchPrepContent()
   const indemnityContent = fetchIndemnityContent()
-  const client = await fetchSanityClient(session!.user.id)
+  // const client = await fetchSanityClient(session!.user.id)
 
   const [prepData, indemnityData] = await Promise.all([prepContent, indemnityContent])
 
@@ -50,7 +57,7 @@ const PortalPage = async () => {
 
       <div className='page'>
         {/* <Suspense> */}
-          <Lounge indemnityData={indemnityData} prepData={prepData} appointmentData={client.appointmentDetails} />
+          <Lounge indemnityData={indemnityData} prepData={prepData} appointmentData={APPOINTMENT} />
         {/* </Suspense> */}
       </div>
 

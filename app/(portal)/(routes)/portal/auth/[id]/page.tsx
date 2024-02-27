@@ -5,20 +5,22 @@ import PortalAuth from '@/components/portal/sections/PortalAuth'
 import { redirect } from 'next/navigation'
 import React from 'react'
 
+const client = {}
+
 const PortalAuthPage: React.FC<any> = async ({ params }) => {
   const { id } = params
 
-  const client = await fetchSanityClient(id)
+  // const client = await fetchSanityClient(id)
 
-  if(!client) return redirect('/')
+  // if(!client) return redirect('/')
 
-  const handleClientConfirm = async () => {
-    await createSession(client)
-  }
+  // const handleClientConfirm = async () => {
+  //   await createSession(client)
+  // }
 
   return (
     <div className='h-full flex items-center justify-center'>
-      <PortalAuth client={client} />
+      <PortalAuth  />
     </div>
   )
 }

@@ -7,20 +7,21 @@ import axios from 'axios'
 import { useRouter } from 'next/navigation'
 import { ClientType } from '@/types'
 
-const PortalAuth = ({ client } : { client: ClientType }) => {
+const PortalAuth = () => {
   const router = useRouter()
+
   const handleButtonClick = async () => {
     // const res = await axios.post('/api/clients/auth', { client })
-    const res = await fetch('/api/clients/auth', {
-      method: 'POST',
-      body: JSON.stringify({ client })
-    })
+    // const res = await fetch('/api/clients/auth', {
+    //   method: 'POST',
+    //   body: JSON.stringify({ client })
+    // })
 
-    console.log(res.status)
+    // console.log(res.status)
 
-    if(res.status === 200){
+    // if(res.status === 200){
       router.push('/portal')
-    }
+    // }
   }
 
   return (

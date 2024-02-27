@@ -13,9 +13,8 @@ export const metadata: Metadata = {
 }
 
 const PortalLayout = async ({ children }: { children: React.ReactNode }) => {
-  const session = await getSession()
 
-  if(!session) redirect('/portal/auth?unauthorized=true')
+  // if(!session) redirect('/portal/auth?unauthorized=true')
 
   return (
     <PortalSectionProvider>
