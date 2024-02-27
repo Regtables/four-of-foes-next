@@ -88,6 +88,7 @@ const Lounge = ({ indemnityData, prepData, appointmentData }: LoungeProps) => {
       <motion.div
         className="h-full w-full flex flex-col items-center"
         animate={animatePage}
+        initial = {{opacity: 0}}
         transition={{ duration: 1 }}
       >
         <div className="h-[75%] w-full relative">

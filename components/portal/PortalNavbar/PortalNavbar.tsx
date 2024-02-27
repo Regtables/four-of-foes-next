@@ -50,7 +50,7 @@ const PortalNavbar = () => {
     // Check if the event was dispatched successfully
     console.log('Event dispatched:', arrowLeftEvent.defaultPrevented);
 
-    main.addEventListener('keydown', (event) => {
+    main!.addEventListener('keydown', (event) => {
       // Handle the keydown event on the main element if needed
       console.log('Key pressed on main element:', event.key);
     });
