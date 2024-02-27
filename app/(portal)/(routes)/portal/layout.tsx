@@ -1,7 +1,5 @@
 import React from "react";
 import Image from "next/image";
-import { getSession } from "@/app/lib/actions/clients/auth";
-import { redirect } from "next/navigation";
 
 const PortalRootLayout = async ({ children } : { children: React.ReactNode }) => {
   return (
