@@ -29,7 +29,7 @@ const PortalSectionAccordion: React.FC<PortalSectionAccordionProps> = ({ Section
   }
 
   return (
-    <div className='w-full absolute left-0 bottom-10 flex flex-col justify-center transition-all duration-500'>
+    <div className='w-full absolute left-0 bottom-10 flex flex-col items-center justify-center transition-all duration-500'>
       {/* first component */}
       <div className= {cn(partitionStyles, renderPartitionClass(1))}>
         <Partition />

@@ -7,10 +7,8 @@ import PrepModal from '../portal/modals/PrepModal/PrepModal'
 import CalendarModal from '../portal/modals/CalendarModal/CalendarModal'
 import LocationModal from '../portal/modals/LocationModal/LocationModal'
 import CancelAppointmentModal from '../portal/modals/CancelAppointmentModal/CancelAppointmentModal'
-import BookingFormModal from '../modals/BookingFormModal'
 import LoadingModal from '../modals/LoadingModal'
 import AlertModal from '../modals/AlertModal'
-import AftercareModal from '../portal/modals/AftercareModal'
 import TattooPhotosModal from '../portal/modals/TattooPhotosModal'
 import BookingSuccessModal from '../modals/BookingSucessModal'
 
@@ -32,7 +30,6 @@ const ModalProvider = () => {
       <CancelAppointmentModal />
       <LoadingModal />
       <AlertModal />
-      <AftercareModal />
       <TattooPhotosModal />
       <BookingSuccessModal />
     </>

@@ -16,7 +16,7 @@ const PortalAuth = ({ client } : { client: ClientType }) => {
       body: JSON.stringify({ client })
     })
 
-    console.log(res.status)
+    console.log(res)
 
     if(res.status === 200){
       router.push('/portal')

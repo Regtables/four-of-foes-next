@@ -5,7 +5,7 @@ import { motion } from 'framer-motion'
 import styles from './AftercareAccordion.module.scss'
 import { AftercareType } from '@/types'
 
-const AftercareAccordion = ({ item, i } : { item: AftercareType, i?: number }) => {
+const AftercareAccordionTile = ({ item, i } : { item: AftercareType, i?: number }) => {
   const { heading, content: instruction } = item
   const [active, setActive] = useState(false)
   const [height, setHeight] = useState('0px')
@@ -47,4 +47,4 @@ const AftercareAccordion = ({ item, i } : { item: AftercareType, i?: number }) =
   )
 }
 
-export default AftercareAccordion
+export default AftercareAccordionTile
