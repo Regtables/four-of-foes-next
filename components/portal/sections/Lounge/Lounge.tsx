@@ -4,7 +4,7 @@ import React, { useEffect, useState } from "react";
 import Image from "next/image";
 import { motion } from "framer-motion";
 
-import { IndemnityType, LoungeLinkType } from "@/types";
+import { AppointmentDetailsType, IndemnityType, LoungeLinkType } from "@/types";
 import { useSection } from "@/context/PortalSectionContext";
 
 import PortalAppointmentBanner from "../../PortalAppointmentBanner/PortalAppointmentBanner";
@@ -14,6 +14,7 @@ import PortalSectionAccordion from "../../PortalSectionAccordion";
 import IndemnityAccordion from "../../accordions/IndemnityAccordion";
 import TipsAccordion from "../../accordions/TipsAccordion";
 import LocationAccordion from "../../accordions/LocationAccordion";
+import { getSession } from "@/app/lib/actions/clients/auth";
 
 const APPOINTMENT = {
   artist: "Ted Faulmann",
@@ -43,12 +44,14 @@ const SHOP = {
 interface LoungeProps {
   indemnityData: IndemnityType[];
   prepData: string[];
+  appointmentData: AppointmentDetailsType
 }
 
-const Lounge = ({ indemnityData, prepData }: LoungeProps) => {
+const Lounge = ({ indemnityData, prepData, appointmentData }: LoungeProps) => {
   const { currentSection } = useSection();
   const [animatePage, setAnimatePage] = useState({});
 
+  console.log(appointmentData)
   useEffect(() => {
     if (currentSection === "lounge") {
       setAnimatePage({ opacity: [0, 1] });
@@ -99,9 +102,9 @@ const Lounge = ({ indemnityData, prepData }: LoungeProps) => {
         <div>
           <PortalAppointmentBanner
             artist={APPOINTMENT.artist}
-            date={APPOINTMENT.date}
-            studio={APPOINTMENT.studio}
-            country={APPOINTMENT.country}
+            date={appointmentData.appointmentDate}
+            studio={appointmentData.appointmentLocation}
+            country={appointmentData.appointmentCity}
           />
         </div>
 

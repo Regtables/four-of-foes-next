@@ -1,5 +1,6 @@
 import { cn } from "@/app/lib/utils";
 import Popup from "@/components/layout/Popup";
+import Swipeable from "@/components/layout/Swipeable";
 import { useAppSettings } from "@/context/AppSettingsContext";
 import { AnimatePresence, motion } from "framer-motion";
 import { X } from "lucide-react";
@@ -40,26 +41,30 @@ const AccordionLayout = ({
         toggle && "py-4 px-0 z-20"
       )}
     >
-      <button
-        className={cn(
-          "text-white text-[10px] text-center cursor-pointer tracking-[0.5em] uppercase w-full active:text-black transition-colors rounded-sm ",
-          toggle && " relative z-10"
-        )}
-        onClick={handleToggle}
-      >
-        {title}
-      </button>
-
-      <div
-        ref={content}
-        style={{ maxHeight: height }}
-        className={cn(
-          "overflow-hidden transition-all duration-[0.7s] flex justify-center w-full relative z-10 mb-auto h-[65vh]",
-          toggle && "relative z-10"
-        )}
-      >
-        {children}
-      </div>
+      <Swipeable onUp={handleToggle} onDown={toggle && handleToggle}>
+        <button
+          className={cn(
+            "text-white text-[10px] text-center cursor-pointer tracking-[0.5em] uppercase w-full active:text-black transition-colors rounded-sm ",
+            toggle && " relative z-10"
+          )}
+          onClick={handleToggle}
+        >
+          {title}
+        </button>
+      </Swipeable>
+      
+      <Swipeable onDown={handleToggle}>
+        <div
+          ref={content}
+          style={{ maxHeight: height }}
+          className={cn(
+            "overflow-hidden transition-all duration-[0.7s] flex justify-center w-full relative z-10 mb-auto h-[65vh]",
+            toggle && "relative z-10"
+          )}
+        >
+          {children}
+        </div>
+      </Swipeable>
 
       <AnimatePresence>
         {toggle && (

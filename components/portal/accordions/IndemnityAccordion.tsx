@@ -4,8 +4,13 @@ import { motion } from "framer-motion";
 import IndemnityTile from "../indemnity/IndemnityTile/IndemnityTile";
 import ButtonPill from "@/components/buttons/ButtonPill";
 import AccordionLayout from "../layout/AccordionLayout";
+import { IndemnityType } from "@/types";
 
-const IndemnityAccordion = ({ data }) => {
+interface IndemnityAccordionProps {
+  data: IndemnityType[]
+}
+
+const IndemnityAccordion: React.FC<IndemnityAccordionProps> = ({ data }) => {
   const handleCheck = () => {
 
   }
@@ -20,7 +25,7 @@ const IndemnityAccordion = ({ data }) => {
 
         {data?.length > 0 ? (
           <div className="grid grid-cols-1 gap-2 mt-4">
-            {data.map((clause, i) => (
+            {data.map((clause: IndemnityType, i) => (
               <motion.div
                 key={i}
                 whileInView={{ y: [-20, 0], opacity: [0, 1] }}

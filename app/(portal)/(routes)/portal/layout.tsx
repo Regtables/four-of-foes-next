@@ -1,7 +1,9 @@
 import React from "react";
 import Image from "next/image";
+import { getSession } from "@/app/lib/actions/clients/auth";
+import { redirect } from "next/navigation";
 
-const PortalRootLayout = ({ children } : { children: React.ReactNode }) => {
+const PortalRootLayout = async ({ children } : { children: React.ReactNode }) => {
   return (
     <div className="min-h-[100vh] w-[100vw] h-screen flex flex-col">
       <header className="flex justify-center items-center flex-[0.05] z-10 relative w-[160px] mx-auto">

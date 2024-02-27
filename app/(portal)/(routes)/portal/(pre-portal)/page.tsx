@@ -5,6 +5,8 @@ import Lounge from '@/components/portal/sections/Lounge/Lounge'
 import Wallet from '@/components/portal/sections/Wallet/Wallet'
 import { fetchIndemnityContent, fetchPrepContent } from '@/app/lib/actions/content/fetchContent'
 import { IndemnityType } from '@/types'
+import { getSession } from '@/app/lib/actions/clients/auth'
+import { fetchSanityClient } from '@/app/lib/actions/clients/fetchClient'
 
 const MESSAGES = [
   {
@@ -30,29 +32,32 @@ const MESSAGES = [
 ]
 
 const PortalPage = async () => {
+  const session = await getSession() 
   const prepContent = fetchPrepContent()
   const indemnityContent = fetchIndemnityContent()
+  const client = await fetchSanityClient(session!.user.id)
 
   const [prepData, indemnityData] = await Promise.all([prepContent, indemnityContent])
+
   
   return (
     <div className='container'>
       <div className='page'>
-        <Suspense>
+        {/* <Suspense> */}
           <Lobby messages={MESSAGES} />
-        </Suspense>
+        {/* </Suspense> */}
       </div>
 
       <div className='page'>
-        <Suspense>
-          <Lounge indemnityData={indemnityData} prepData={prepData} />
-        </Suspense>
+        {/* <Suspense> */}
+          <Lounge indemnityData={indemnityData} prepData={prepData} appointmentData={client.appointmentDetails} />
+        {/* </Suspense> */}
       </div>
 
       <div className='page'>
-        <Suspense>
+        {/* <Suspense> */}
           <Wallet />
-        </Suspense>
+        {/* </Suspense> */}
       </div>
     </div>
   )

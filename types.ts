@@ -31,11 +31,12 @@ export interface BookingSection {
 }
 
 export interface ClientType{
-  clientName: string,
+  name: string,
   email: string,
   tattooPrice: number,
   sanityId: string,
   clientUrl: string,
+  _id: string
   appointmentDetails: {
     appointmentDate: string,
     appointmentLocation: string,
@@ -124,4 +125,13 @@ export interface ShopType {
     link: string
   },
   images: any[]
+}
+
+export interface SessionType {
+  user: {
+    name: string,
+    email: string,
+    id: string
+  },
+  expires: Date
 }
