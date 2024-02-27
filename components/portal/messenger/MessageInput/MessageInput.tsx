@@ -11,7 +11,7 @@ const MessageInput = () => {
       <div className="flex border border-[var(--color-white-light)] border-1 rounded-full p-[7px] flex-grow items-center justify-between">
         <div className="flex gap-2" >
           <Smile className="w-5 h-5"color="var(--color-white-light)" />
-          <input className="bg-transparent border-none outline-none text-[10px]  w-full" placeholder="Message..." />
+          <input className="bg-transparent border-none outline-none text-[10px] w-full" placeholder="Message..." />
         </div>
 
         <div>
