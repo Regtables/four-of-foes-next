@@ -16,11 +16,11 @@ const PortalLayout = async ({ children }: { children: React.ReactNode }) => {
   const session = await getSession()
 
   if(!session) redirect('/portal/auth?unauthorized=true')
-  
+
   return (
     <PortalSectionProvider>
-      <div className="flex flex-col h-full">
-        <main className="h-full" id = 'main'>
+      <div className="flex flex-col h-full" >
+        <main className="h-full">
           {children}
         </main>
 

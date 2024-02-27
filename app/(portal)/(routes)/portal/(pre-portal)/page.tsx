@@ -41,7 +41,7 @@ const PortalPage = async () => {
 
   
   return (
-    <div className='container'>
+    <div className='container' id = 'main'>
       <div className='page'>
         {/* <Suspense> */}
           <Lobby messages={MESSAGES} />

@@ -3,7 +3,7 @@
 import { useRouter } from 'next/navigation'
 import React, { useEffect } from 'react'
 
-const UrlDecodePage = ({ params }) => {
+const UrlDecodePage = ({ params } : { params: any }) => {
   const { url } = params
   const router = useRouter()
 

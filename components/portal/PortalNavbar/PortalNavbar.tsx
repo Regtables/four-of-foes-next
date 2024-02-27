@@ -41,10 +41,21 @@ const PortalNavbar = () => {
   };
 
   const handleLinkClick = (link: string) => {
-    const main = document.getElementById('main')
+    const main = document.getElementById('main');
+    console.log(main);
+  
+    const arrowLeftEvent = new KeyboardEvent('keydown', { key: 'ArrowLeft', bubbles: true });
+    main?.dispatchEvent(arrowLeftEvent);
+  
+    // Check if the event was dispatched successfully
+    console.log('Event dispatched:', arrowLeftEvent.defaultPrevented);
 
-    main?.dispatchEvent(new KeyboardEvent('keydown', { key: 'ArrowLeft', bubbles: true }))
-  }
+    main.addEventListener('keydown', (event) => {
+      // Handle the keydown event on the main element if needed
+      console.log('Key pressed on main element:', event.key);
+    });
+  };
+  
 
 
   return (
