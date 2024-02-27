@@ -14,6 +14,7 @@ import ViewMotionWrapper from "@/components/layout/Motion/ViewMotionWrapper";
 import BookingFormModal from "@/components/modals/BookingFormModal";
 import Intro from "@/components/sections/Intro";
 import PageHeading from "@/components/headings/PageHeading";
+import Swipeable from "@/components/layout/Swipeable";
 
 const LandingLayout = ({ children }: { children: React.ReactNode }) => {
   const [toggleNavMenu, setToggleNavMenu] = useState(false);
@@ -71,15 +72,17 @@ const LandingLayout = ({ children }: { children: React.ReactNode }) => {
           </motion.div>
         )}
 
-        <motion.div
-          className="fixed start-0 top-0 bottom-0 z-20"
-          variants={navMenuVariants}
-          animate={toggleNavMenu ? "visible" : "hidden"}
-          initial="hidden"
-          transition={{ duration: 0.6 }}
-        >
-          <NavMenu />
-        </motion.div>
+        <Swipeable onLeft={handleNavIconClick}>
+          <motion.div
+            className="fixed start-0 top-0 bottom-0 z-20"
+            variants={navMenuVariants}
+            animate={toggleNavMenu ? "visible" : "hidden"}
+            initial="hidden"
+            transition={{ duration: 0.6 }}
+          >
+            <NavMenu />
+          </motion.div>
+        </Swipeable>
       </nav>
 
       {/* <PageHeading /> */}
