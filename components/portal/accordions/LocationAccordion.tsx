@@ -2,7 +2,11 @@ import React from 'react'
 import AccordionLayout from '../layout/AccordionLayout'
 import ShopProfile from '../ShopProfile/ShopProfile'
 
-const LocationAccordion = ({ data }) => {
+interface LocationAccordionProps {
+  data: any
+}
+
+const LocationAccordion: React.FC<LocationAccordionProps> = ({ data }) => {
   return (
     <AccordionLayout title='location' section={3}>
       <ShopProfile shop={data} />
