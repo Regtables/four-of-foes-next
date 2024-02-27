@@ -15,7 +15,7 @@ interface InformationProps {
 }
 
 const Information = ({ informationData, handleChange }: InformationProps) => {
-  const inputStyles = "bg-transparent italic py-3 px-3 text-[10px] border-[1px] outline-none border-white rounded-sm w-full tracking-[0.2em] font-[var(--font-family)] font-meduim";
+  const inputStyles = "bg-transparent italic py-3 px-3 text-[16px] border-[1px] outline-none border-white rounded-sm w-full tracking-[0.2em] font-[var(--font-family)] font-meduim";
 
   const animationProps = {
     whileInView: { y: [-10, 0], opacity: [0, 1] },
@@ -35,7 +35,7 @@ const Information = ({ informationData, handleChange }: InformationProps) => {
           value={informationData.name}
           onChange={handleChange}
           className={inputStyles}
-          style = {{textSizeAdjust: 'none'}}
+          // style = {{textSizeAdjust: 'none'}}
           placeholder="Name"
         />
       </motion.div>
@@ -51,7 +51,7 @@ const Information = ({ informationData, handleChange }: InformationProps) => {
           value={informationData.surname}
           onChange={handleChange}
           className={inputStyles}
-          style = {{textSizeAdjust: 'none'}}
+          // style = {{textSizeAdjust: 'none'}}
           placeholder="Surname"
         />
       </motion.div>
@@ -67,7 +67,7 @@ const Information = ({ informationData, handleChange }: InformationProps) => {
           value={informationData.email}
           onChange={handleChange}
           className={inputStyles}
-          style = {{textSizeAdjust: 'none'}}
+          // style = {{textSizeAdjust: 'none'}}
           placeholder="Email"
         />
       </motion.div>
@@ -83,7 +83,7 @@ const Information = ({ informationData, handleChange }: InformationProps) => {
           value={informationData.contact}
           onChange={handleChange}
           className={inputStyles}
-          style = {{textSizeAdjust: 'none'}}
+          // style = {{textSizeAdjust: 'none'}}
           placeholder="Contact Number"
         />
       </motion.div>
@@ -99,7 +99,7 @@ const Information = ({ informationData, handleChange }: InformationProps) => {
           value={informationData.city}
           onChange={handleChange}
           className={inputStyles}
-          style = {{textSizeAdjust: 'none'}}
+          // style = {{textSizeAdjust: 'none'}}
           placeholder="Currently living in"
         />
       </motion.div>
@@ -115,7 +115,7 @@ const Information = ({ informationData, handleChange }: InformationProps) => {
           value={informationData.instagram}
           onChange={handleChange}
           className={inputStyles}
-          style = {{textSizeAdjust: 'none'}}
+          // style = {{textSizeAdjust: 'none'}}
           placeholder="@IG handle (optional)"
      
           id="ig"
