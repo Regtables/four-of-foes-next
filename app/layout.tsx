@@ -1,16 +1,15 @@
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
 import { jost } from "./lib/fonts";
 import "./globals.css";
-import ModalProvider from "@/components/providers/ModalProvider";
+
 import { BookingFormProvider } from "@/context/BookingFormContext";
 import { AppSettingsProvider } from "@/context/AppSettingsContext";
 
-const inter = Inter({ subsets: ["latin"] });
+import ModalProvider from "@/components/providers/ModalProvider";
 
 export const metadata: Metadata = {
   title: "Four of Foes - Home",
-  description: "The coolest tattoo website ever made",
+  description: "Creative atelier & tattoo collective.",
 };
 
 export default function RootLayout({
