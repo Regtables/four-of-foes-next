@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react'
 
+
 import meh from "@/public/meh.png";
 import solid from "@/public/solid.png";
 import awesome from "@/public/awesome.png";
@@ -24,7 +25,7 @@ const RATINGS = [
   },
 ];
 
-const FeedbackSlider = ({ currentRating } : { currentRating: number }) => {
+const FeedbackSlider = ({ currentRating, setCurrentRating } : { currentRating: number, setCurrentRating: () => void }) => {
   const [activeRating, setActiveRating] = useState("")
   
   useEffect(() => {
@@ -38,17 +39,17 @@ const FeedbackSlider = ({ currentRating } : { currentRating: number }) => {
   }, [currentRating]);
 
   return (
-    <div>
-        <div className='flex justify-around items-center'>
+    <div className='flex flex-col gap-8'>
+        <div className='flex justify-between items-center'>
           {RATINGS.map((rating, i) => (
             <>
               <Rating rating={rating} activeRating={activeRating} />
 
               {i < RATINGS.length - 1 && (
                 <div
-                  className={`h-[1px] bg-white w-10 mx-[10px] mb-[20px] ${
+                  className={`h-[1px] bg-white w-10 mx-[10px] mb-[20px] transition-opacity duration-1000 ${
                     activeRating === "meh" || activeRating === "awesome"
-                      ? ''
+                      ? 'opacity-20'
                       : ""
                   }`}
                 />
@@ -56,6 +57,12 @@ const FeedbackSlider = ({ currentRating } : { currentRating: number }) => {
             </>
           ))}
         </div>
+
+        <input type = 'range' className='text-black bg-black' value={currentRating} onChange={(e) => setCurrentRating(e.target.value)}/>
+
+        {/* <Slider defaultValue={[50]} max = {100} min = {1} step={1} value={[currentRating]}/> */}
+
+        
     </div>
   )
 }

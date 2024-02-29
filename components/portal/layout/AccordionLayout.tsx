@@ -53,7 +53,7 @@ const AccordionLayout = ({
         </button>
       </Swipeable>
       
-      <Swipeable onDown={handleToggle}>
+      {/* <Swipeable onDown={handleToggle}> */}
         <div
           ref={content}
           style={{ maxHeight: height }}
@@ -64,7 +64,7 @@ const AccordionLayout = ({
         >
           {children}
         </div>
-      </Swipeable>
+      {/* </Swipeable> */}
 
       <AnimatePresence>
         {toggle && (
