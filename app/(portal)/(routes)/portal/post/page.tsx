@@ -6,11 +6,15 @@ import PortalLinkList from '@/components/portal/PortalLinkList/PortalLinkList';
 import { fetchAftercareContent } from '@/app/lib/actions/content/fetchContent';
 import { Asterisk } from 'lucide-react';
 import PostAppointment from '@/components/portal/sections/PostAppointment/PostAppointment';
+import { getSession } from '@/app/lib/actions/clients/auth';
+import { fetchSanityClient } from '@/app/lib/actions/clients/fetchClient';
 
 const PostPortalPage = async () => {
+  const session = await getSession()
   const aftercontent = fetchAftercareContent()
+  const client = fetchSanityClient(session?.user.id!)
 
-  const [aftercareData] = await Promise.all([aftercontent])
+  const [aftercareData, clientData] = await Promise.all([aftercontent, client])
 
   const LINKS: LoungeLinkType[] = [
     {
@@ -21,7 +25,7 @@ const PostPortalPage = async () => {
     {
       link: "your photos",
       type: 'photos',
-      data: {}
+      data: clientData.tattooImages
     },
     {
       link: "feedback",
@@ -32,7 +36,7 @@ const PostPortalPage = async () => {
 
   return (
     <div className='w-full h-full flex flex-col items-center justify-center'>
-      <PostAppointment data = {LINKS} />
+      <PostAppointment aftercareData={aftercareData} client={clientData} />
     </div>
   )
 }

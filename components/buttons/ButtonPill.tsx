@@ -13,7 +13,7 @@ const ButtonPill = ({ text, fill, handleClick, type = 'button', disabled }: Butt
   return (
     <button
       className={`${cn(
-        `border border-1-white w-full h-full rounded-full uppercase text-[10px] tracking-[0.4em] font-[500]`,
+        `border border-1-white w-full h-full rounded-full uppercase text-[8px] tracking-[0.4em] font-[500]`,
         fill && "bg-white text-black"
       )}`}
       onClick={handleClick}

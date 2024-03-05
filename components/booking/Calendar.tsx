@@ -125,7 +125,7 @@ const Calendar = ({
       <motion.div
         animate={animateTopBar}
         transition={{ duration: 0.3 }}
-        className="h-[30px] flex items-center justify-center min-w-full"
+        className="h-[20px] flex items-center justify-center min-w-full"
         onClick={(e) => handleToggle(e)}
       >
         {!toggleCalendar ? (

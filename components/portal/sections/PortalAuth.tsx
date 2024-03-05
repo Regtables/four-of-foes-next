@@ -19,7 +19,7 @@ const PortalAuth = ({ client } : { client: ClientType }) => {
     console.log(res)
 
     if(res.status === 200){
-      router.push('/portal')
+      router.push('/portal/pre#lounge')
     }
   }
 

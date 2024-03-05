@@ -8,7 +8,7 @@ interface LocationAccordionProps {
 
 const LocationAccordion: React.FC<LocationAccordionProps> = ({ data }) => {
   return (
-    <AccordionLayout title='location' section={3}>
+    <AccordionLayout title='location' section={3} list>
       <ShopProfile shop={data} />
     </AccordionLayout>
   )

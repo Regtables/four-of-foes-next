@@ -1,8 +1,9 @@
 import React from 'react'
 
-const page = () => {
+const page = ({ params }) => {
+  console.log(params)
   return (
-    <div>page</div>
+    <div>auth</div>
   )
 }
 

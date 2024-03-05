@@ -22,8 +22,8 @@ export const decrypt = async (input: string): Promise<SessionType> => {
 };
 
 export const createSession = async (client: ClientType) => {
-  const user = { name: client.name, email: client.email, id: client._id };
-  const expires = new Date(Date.now() + 3600 * 1000);
+  const user = { name: client.clientName, email: client.email, id: client._id };
+  const expires = new Date(Date.now() + 10000);
 
   const session = await encrypt({ user, expires });
 

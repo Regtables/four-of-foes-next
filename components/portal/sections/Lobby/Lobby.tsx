@@ -19,7 +19,9 @@ const Lobby = ({ messages } : LobbyProps) => {
   const [animatePage, setAnimatePage] = useState({})
 
   useEffect(() => {
-    
+    const lounge = document.getElementById('lounge')
+
+    lounge?.scrollIntoView()
   }, [])
 
   useEffect(() => {

@@ -8,7 +8,7 @@ interface TipsAccordionProps {
 
 const TipsAccordion: React.FC<TipsAccordionProps> = ({ data }) => {
   return (
-    <AccordionLayout title='prep card' section={2}>
+    <AccordionLayout title='prep card' section={2} list>
       <PrepCard tips={data} />
     </AccordionLayout>
   )

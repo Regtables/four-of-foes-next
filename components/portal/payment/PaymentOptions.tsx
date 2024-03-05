@@ -1,39 +1,44 @@
 'use client'
 
 import React from "react";
-import PaymentAccordion from "./PaymentAccordion";
-import Partition from "../PortalLinkList/Partition";
-import { useModal } from "@/hooks/useModal";
+import axios from "axios";
 
-const PaymentOptions = () => {
-  const { handleOpen } = useModal();
+import { ClientType } from "@/types";
+
+import PaymentAccordion from "./PaymentAccordion";
+import CalendarInvAccordion from "../CalendarInvAccordion";
+
+const PaymentOptions = ({ client } : { client: ClientType }) => {
+  const handleDepositPayment = async (orderId: string) => {
+    const res = await axios.post('/api/portal/deposit', { orderId })
+
+    console.log(res)
+  }
+
+  const handleTattooPayment = async (orderId: string) => {
+    const res = await axios.post('/api/portal/tattoo', { orderId })
+
+    console.log(res)
+  }
 
   return (
     <div className="flex flex-col items-center w-full">
       <PaymentAccordion
         option="deposit"
-        amount={300}
-        text="Kindly make a payment in the amount of €1500 to secure your appointment"
+        amount={client?.deposit?.depositAmount}
+        handlePayment = {handleDepositPayment}
+        text={`Kindly make a payment in the amount of ${client?.deposit.depositAmount}  to secure your appointment`}
         up
       />
 
       <PaymentAccordion
         option="tattoo"
-        amount={700}
+        handlePayment={handleTattooPayment}
+        amount={client?.payment?.paymentAmount}
         text="Thank you for your patronage"
       />
 
-      <div className="w-[60%] max-w-[200px] mx-auto">
-        <Partition />
-      </div>
-
-      <button className="tracking-[0.5em] uppercase w-full active:bg-white active:text-black rounded-sm text-white transition max-w-[60%]" onClick={() => handleOpen('calendar')}>
-        <div className="py-2 text-[9px] mx-auto text-center">{"calendar"}</div>
-      </button>
-
-      <div className="w-[60%] max-w-[200px] mx-auto">
-        <Partition />
-      </div>
+      <CalendarInvAccordion appointment={client.appointmentDetails} />
     </div>
   );
 };

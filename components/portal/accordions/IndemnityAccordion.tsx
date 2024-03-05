@@ -16,8 +16,8 @@ const IndemnityAccordion: React.FC<IndemnityAccordionProps> = ({ data }) => {
   }
 
   return (
-    <AccordionLayout title="indemnity" section = {1}>
-      <div className="w-[80%]">
+    <AccordionLayout title="indemnity" section = {1} list>
+      <div className="w-[80%] lg:w-[60vw]">
         <p className="text-[9px] text-center tracking-[--letter-spacing-sm]">
           Please read through our indemnity clauses, after which you can provide
           consent by agreeing and submitting the form

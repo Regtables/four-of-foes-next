@@ -1,4 +1,5 @@
 import { createClient } from "@sanity/client";
+import imageUrlBuilder from '@sanity/image-url';
 
 export const portalClient = createClient({
   projectId: '5ra6buqx',
@@ -15,3 +16,7 @@ export const landingClient = createClient({
   apiVersion: '2024-02-01',
   token: process.env.SANITY_TOKEN_LANDING
 })
+
+const builder = imageUrlBuilder(portalClient)
+
+export const urlFor = (source: string) => builder.image(source)

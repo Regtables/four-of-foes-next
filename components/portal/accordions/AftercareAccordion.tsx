@@ -7,8 +7,8 @@ import AftercareAccordionTile from "../aftercare/AftercareAccordionTile/Aftercar
 const AftercareAccordion: React.FC<{ data: AftercareType[]}> = ({ data }) => {
   // console.log(data[0], 'aftercare data')
   return (
-    <AccordionLayout title="aftercare" section={1}>
-      <div className="w-[80%] mx-auto display flex flex-col gap-6 items-center justify-center">
+    <AccordionLayout title="aftercare" section={1} list>
+      <div className="w-[80%] lg:w-[60vw] mx-auto display flex flex-col gap-6 items-center justify-center">
         <p className="text-[9px] text-center tracking-[--letter-spacing-sm]">
           Please read through our indemnity clauses, after which you can provide
           consent by agreeing and submitting the form

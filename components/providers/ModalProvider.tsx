@@ -11,6 +11,7 @@ import LoadingModal from '../modals/LoadingModal'
 import AlertModal from '../modals/AlertModal'
 import TattooPhotosModal from '../portal/modals/TattooPhotosModal'
 import BookingSuccessModal from '../modals/BookingSucessModal'
+import ImagePreviewModal from '../modals/ImagePreviewModal'
 
 const ModalProvider = () => {
   const [isMounted, setIsMounted] = useState(false)
@@ -32,6 +33,7 @@ const ModalProvider = () => {
       <AlertModal />
       <TattooPhotosModal />
       <BookingSuccessModal />
+      <ImagePreviewModal />
     </>
   )
 }

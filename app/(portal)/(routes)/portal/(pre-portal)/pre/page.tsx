@@ -35,11 +35,12 @@ const PortalPage = async () => {
   const session = await getSession() 
   const prepContent = fetchPrepContent()
   const indemnityContent = fetchIndemnityContent()
-  const client = await fetchSanityClient(session!.user.id)
+  const clientData = fetchSanityClient(session!.user.id)
 
-  const [prepData, indemnityData] = await Promise.all([prepContent, indemnityContent])
+  const [prepData, indemnityData, client] = await Promise.all([prepContent, indemnityContent, clientData])
 
-  
+  console.log(client)
+
   return (
     <div className='container' id = 'main'>
       <div className='page'>
@@ -48,7 +49,7 @@ const PortalPage = async () => {
         {/* </Suspense> */}
       </div>
 
-      <div className='page'>
+      <div className='page' id='lounge'>
         {/* <Suspense> */}
           <Lounge indemnityData={indemnityData} prepData={prepData} appointmentData={client.appointmentDetails} />
         {/* </Suspense> */}
@@ -56,7 +57,7 @@ const PortalPage = async () => {
 
       <div className='page'>
         {/* <Suspense> */}
-          <Wallet />
+          <Wallet client={client} />
         {/* </Suspense> */}
       </div>
     </div>

@@ -31,19 +31,31 @@ export interface BookingSection {
 }
 
 export interface ClientType{
-  name: string,
+  _type: string,
+  clientName: string,
   email: string,
   tattooPrice: number,
   sanityId: string,
   clientUrl: string,
   _id: string
-  appointmentDetails: {
-    appointmentDate: string,
-    appointmentLocation: string,
-    appointmentCity: string
+  appointmentDetails: AppointmentDetailsType
+  deposit: {
+    depositAmount: number
+  },
+  payment: {
+    paymentAmount: number
   }
   chat: MessageType[]
-  progress: any
+  progress: {
+    isDepositConfirmed: boolean,
+    isPaymentConfirmed: boolean,
+    isReviewSubmitted: boolean
+  },
+  review: {
+    review: string,
+    rating: number
+  }
+  tattooImages: any[]
 }
 
 export interface PortalNavLinkType{
@@ -56,7 +68,7 @@ export interface PortalPageHeadingType{
 }
 
 export interface AppointmentDetailsType {
-  clientName: string,
+  // clientName: string,
   appointmentDate: Date,
   appointmentLocation: string,
   appointmentCity: string
@@ -87,7 +99,7 @@ export interface AftercareType{
 
 export interface MessageType{
   _id: string,
-  content: string,
+  message: string,
   sender: string,
   date: Date,
   isClient?: boolean,
@@ -134,4 +146,4 @@ export interface SessionType {
     id: string
   },
   expires: Date
-}
+} 

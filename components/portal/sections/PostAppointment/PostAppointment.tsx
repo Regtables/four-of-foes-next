@@ -8,8 +8,9 @@ import PortalSectionAccordion from "../../PortalSectionAccordion";
 import AftercareAccordion from "../../accordions/AftercareAccordion";
 import TattooImagesAccordion from "../../accordions/TattooImagesAccordion";
 import FeedbackAccordion from "../../accordions/FeedbackAccordion";
+import { AftercareType, ClientType } from "@/types";
 
-const PostAppointment = ({ data }: { data: any }) => {
+const PostAppointment = ({ aftercareData, client }: { aftercareData: AftercareType[], client: ClientType }) => {
   return (
     <div className="w-full h-full flex flex-col">
       <div className="h-[75%] w-full relative">
@@ -22,8 +23,8 @@ const PostAppointment = ({ data }: { data: any }) => {
       <div className="min-w-[45%] w-[60%] mx-auto md:min-w-[20%] flex items-center">
         {/* <PortalLinkList links={data} /> */}
         <PortalSectionAccordion
-          Section1 = {<AftercareAccordion data = {data[0].data} />} 
-          Section2 = {<TattooImagesAccordion />}
+          Section1 = {<AftercareAccordion data = {aftercareData} />} 
+          Section2 = {<TattooImagesAccordion images={client.tattooImages} />}
           Section3 = {<FeedbackAccordion />}
         />
       </div>

@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { Dispatch, SetStateAction, useEffect, useState } from 'react'
 
 
 import meh from "@/public/meh.png";
@@ -25,7 +25,7 @@ const RATINGS = [
   },
 ];
 
-const FeedbackSlider = ({ currentRating, setCurrentRating } : { currentRating: number, setCurrentRating: () => void }) => {
+const FeedbackSlider = ({ currentRating, setCurrentRating } : { currentRating: number, setCurrentRating:Dispatch<SetStateAction<number>>}) => {
   const [activeRating, setActiveRating] = useState("")
   
   useEffect(() => {
@@ -58,7 +58,7 @@ const FeedbackSlider = ({ currentRating, setCurrentRating } : { currentRating: n
           ))}
         </div>
 
-        <input type = 'range' className='text-black bg-black' value={currentRating} onChange={(e) => setCurrentRating(e.target.value)}/>
+        <input type = 'range' className='text-black bg-black' value={currentRating} onChange={(e) => setCurrentRating(e.target.value as unknown as number)}/>
 
         {/* <Slider defaultValue={[50]} max = {100} min = {1} step={1} value={[currentRating]}/> */}
 

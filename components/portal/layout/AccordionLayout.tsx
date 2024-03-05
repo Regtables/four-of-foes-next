@@ -9,27 +9,29 @@ import React, { useRef, useState } from "react";
 const AccordionLayout = ({
   title,
   children,
-  section
+  section,
+  list,
 }: {
   title: string;
   children: React.ReactNode;
-  section: number
+  section?: number;
+  list?: boolean;
 }) => {
   const [toggle, setToggle] = useState(false);
   const [height, setHeight] = useState("0px");
   const content: any = useRef(null);
 
-  const { setToggleAccordion } = useAppSettings()
+  const { setToggleAccordion } = useAppSettings();
 
   const handleToggle = () => {
     if (!toggle) {
       setToggle(true);
       setHeight(`100vh`);
-      setToggleAccordion(section)
+      setToggleAccordion(section!);
     } else {
       setToggle(false);
       setHeight("0px");
-      setToggleAccordion(0)
+      setToggleAccordion(0);
     }
   };
 
@@ -52,49 +54,55 @@ const AccordionLayout = ({
           {title}
         </button>
       </Swipeable>
-      
+
       {/* <Swipeable onDown={handleToggle}> */}
-        <div
-          ref={content}
-          style={{ maxHeight: height }}
-          className={cn(
-            "overflow-hidden transition-all duration-[0.7s] flex justify-center w-full relative z-10 mb-auto h-[65vh]",
-            toggle && "relative z-10"
-          )}
-        >
-          {children}
-        </div>
+      <div
+        ref={content}
+        style={{ maxHeight: height }}
+        className={cn(
+          "overflow-hidden transition-all duration-[0.7s] flex justify-center w-full relative z-10 mb-auto",
+          toggle && "relative z-10",
+          list && "h-[65vh]"
+        )}
+      >
+        {children}
+      </div>
       {/* </Swipeable> */}
 
-      <AnimatePresence>
-        {toggle && (
-          <>
-            <motion.div
-              whileInView={{ opacity: [0, 1] }}
-              transition={{ duration: 1.2 }}
-              exit={{ opacity: 0 }}
-              initial={{ opacity: 0 }}
-              className="fixed top-0 bottom-0 start-0 end-0 h-screen w-screen bg-black/90"
-            />
-          </>
-        )}
-      </AnimatePresence>
-      
-      <AnimatePresence>
-        {toggle && (
-            <motion.div
-                className="bg-white h-7 w-7 flex justify-center items-center start-[46%] rounded-full cursor-pointer absolute bottom-[-5%] mx-auto z-10"
+      {list && (
+        <AnimatePresence>
+          {toggle && (
+            <>
+              <motion.div
+                whileInView={{ opacity: [0, 1] }}
+                transition={{ duration: 1.2 }}
+                exit={{ opacity: 0 }}
+                initial={{ opacity: 0 }}
+                className="fixed top-0 bottom-0 start-0 end-0 h-screen w-screen bg-black/90"
+              />
+            </>
+          )}
+        </AnimatePresence>
+      )}
+
+      {list && (
+        <AnimatePresence>
+          {toggle && (
+            <div className="bottom-[-5%] w-[100vw] flex justify-center">
+              <motion.div
+                className="bg-white h-7 w-7 flex justify-center items-center rounded-full cursor-pointer absolute bottom-[-4%] mx-auto z-10"
                 whileInView={{ y: [20, 0], opacity: [0, 1] }}
                 transition={{ duration: 1, delay: 0.3 }}
-                initial = {{y: 20, opacity: 0 }}
-                exit={{ y: [0, 10], opacity: [1,0] }}
+                initial={{ y: 20, opacity: 0 }}
+                exit={{ y: [0, 10], opacity: [1, 0] }}
                 onClick={handleToggle}
               >
                 <X color="black" size={15} />
-            </motion.div>
-        )}
-      </AnimatePresence>
-
+              </motion.div>
+            </div>
+          )}
+        </AnimatePresence>
+      )}
     </div>
     // </Popup>
   );

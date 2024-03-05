@@ -2,29 +2,34 @@
 
 import React, { useRef, useState } from "react";
 import { motion } from "framer-motion";
+import { PayPalScriptProvider, PayPalButtons } from "@paypal/react-paypal-js";
 
 import Partition from "../PortalLinkList/Partition";
-import ButtonPill from "@/components/buttons/ButtonPill";
+import { useCheckout } from "@/hooks/useCheckout";
 
 interface PaymentAccordionProps {
   up?: boolean;
   option: string;
   text: string;
   amount: number;
+  handlePayment: (orderId: string) => Promise<void>
 }
 
 const PaymentAccordion = ({
   up,
   text,
+  handlePayment,
   amount,
   option,
 }: PaymentAccordionProps) => {
   const [toggle, setToggle] = useState(false);
   const [height, setHeight] = useState("0px");
-  const [animateContainer, setAnimateContainer] = useState({});
+  const [animateContainer, setAnimateContainer] = useState({ });
   const [animateText, setAnimateText] = useState({});
   const [animateButton, setAnimateButton] = useState({});
   const content: any = useRef(null);
+
+  const { createPaypalOrder } = useCheckout();
 
   const handleToggle = () => {
     if (!toggle) {
@@ -72,14 +77,35 @@ const PaymentAccordion = ({
           {text}
         </motion.p>
 
-        <motion.div
-          className="w-[120px] h-[25px] mb-4"
-          initial={{ opacity: 0 }}
-          animate={animateButton}
-          transition={{ duration: 1, delay: 0.6 }}
-        >
-          <ButtonPill fill text="paypal" />
-        </motion.div>
+        <div className="h-[50px]">
+          <PayPalScriptProvider
+            options={{
+              clientId:
+                "Aaem8OpbrlxjaXeiVXf3h2jCfMOIZeR40K4Yvgo8-Jdpxw9AXl-NqZTE7a670MTPuX4yNaN3pAAcxPAG",
+              disableFunding: "card",
+              // currency: 'EUR'
+            }}
+          >
+            <PayPalButtons
+              style={{ color: "white", shape: "pill", height: 40 }}
+              createOrder={function (data, action) {
+                return createPaypalOrder(amount);
+              }}
+              onApprove={(data, actions) => {
+                return handlePayment(data.orderID);
+              }}
+              // onError={(err) =>
+              //   setAlert({
+              //     toggle: true,
+              //     title: "Something went wrong",
+              //     text: "Something went wrong when processing your payment. Please try again",
+              //     confirm: "okay",
+              //     confirmFunction: () => setAlert({ toggle: false }),
+              //   })
+              // }
+            />
+          </PayPalScriptProvider>
+        </div>
       </div>
     </motion.div>
   );

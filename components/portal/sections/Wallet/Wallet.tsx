@@ -8,8 +8,10 @@ import { useSection } from "@/context/PortalSectionContext";
 import SectionLayout from "../../layout/SectionLayout";
 import PaymentOptions from "../../payment/PaymentOptions";
 import CancelAppointment from "@/components/buttons/CancelAppointment";
+import AppointmentActionsDrawer from "../../drawers/AppointmentActionsDrawer";
+import { ClientType } from "@/types";
 
-const Wallet = () => {
+const Wallet = ({ client } : { client: ClientType }) => {
   const { currentSection } = useSection();
   const [animatePage, setAnimatePage] = useState({});
 
@@ -24,17 +26,14 @@ const Wallet = () => {
   return (
     <SectionLayout section="wallet">
       <motion.div
-        className="h-full w-full flex flex-col justify-center gap-6 items-center min-w-[40%]"
+        className="h-full w-full flex flex-col justify-center gap-2 items-center min-w-[40%]"
         animate={animatePage}
         transition={{ duration: 1 }}
-        initial = {{opacity: 0}}
+        initial={{ opacity: 0 }}
       >
-        {/* <PortalLinkList links={LINKS} /> */}
-        <PaymentOptions />
+        <PaymentOptions client = {client} />
 
-        <div className="">
-          <CancelAppointment />
-        </div>
+        <AppointmentActionsDrawer />
       </motion.div>
     </SectionLayout>
   );

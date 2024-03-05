@@ -13,6 +13,18 @@ export const clientQuery = (id: string) => {
   return query
 }
 
+export const allClientChatsQuery = () =>  {
+  const query = '*[_type == "client"]{clientName, chat, appointmentDetails, _id}'
+
+  return query
+} 
+
+export const clientChatQuery = (clientId: string) => {
+  const query = `*[_type == "client" && _id == "${clientId}"]{chat, clientName, appointmentDetails}`
+
+  return query
+}
+
 export const sectionQuery = (section: string) => {
   const query = `*[_type == "${section}"]{heading, description, options[]->}`
 
