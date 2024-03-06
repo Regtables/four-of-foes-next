@@ -60,11 +60,12 @@ const PortalNavbar = () => {
 
   return (
     <div className="grid grid-cols-3 gap-8 w-full">
-      {LINKS.map((link) => (
+      {LINKS.map((link, i) => (
         <div
           className="uppercase text-[11px] tracking-[0.2em] flex flex-col items-center justify-center relative"
           // href={`#${link.link}`}
           onClick={() => handleLinkClick(link.link)}
+          key = {i}
         >
           {link.link}
 

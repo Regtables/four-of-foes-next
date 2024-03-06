@@ -2,9 +2,10 @@ import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import { jost } from "./lib/fonts";
 import "./globals.css";
-import ModalProvider from "@/components/providers/ModalProvider";
+import { ModalProvider as ModalStateProvider } from "@/context/ModalContext";
 import { BookingFormProvider } from "@/context/BookingFormContext";
 import { AppSettingsProvider } from "@/context/AppSettingsContext";
+import ModalProvider from "@/components/providers/ModalProvider";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -20,14 +21,19 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
-      
+      <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1, maximum-scale=1"
+      />
+
       <body className={jost.className}>
         <AppSettingsProvider>
-          <BookingFormProvider>
-            {children}
-            <ModalProvider />
-          </BookingFormProvider>
+          <ModalStateProvider>
+            <BookingFormProvider>
+              {children}
+              <ModalProvider />
+            </BookingFormProvider>
+          </ModalStateProvider>
         </AppSettingsProvider>
       </body>
     </html>

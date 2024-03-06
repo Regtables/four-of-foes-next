@@ -71,6 +71,11 @@
   color: white;
 }
 
+.paragraph{
+  font-size: 10px;
+  letter-spacing: 0.1em;
+}
+
 .booking_title{
   letter-spacing: 0.5em;
   text-transform: uppercase;

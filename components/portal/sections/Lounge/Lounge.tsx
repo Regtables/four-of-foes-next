@@ -15,6 +15,7 @@ import IndemnityAccordion from "../../accordions/IndemnityAccordion";
 import TipsAccordion from "../../accordions/TipsAccordion";
 import LocationAccordion from "../../accordions/LocationAccordion";
 import { getSession } from "@/app/lib/actions/clients/auth";
+import { usePortalProgress } from "@/context/PortalProgressContext";
 
 const APPOINTMENT = {
   artist: "Ted Faulmann",
@@ -51,7 +52,6 @@ const Lounge = ({ indemnityData, prepData, appointmentData }: LoungeProps) => {
   const { currentSection } = useSection();
   const [animatePage, setAnimatePage] = useState({});
 
-  console.log(appointmentData)
   useEffect(() => {
     if (currentSection === "lounge") {
       setAnimatePage({ opacity: [0, 1] });
@@ -59,29 +59,6 @@ const Lounge = ({ indemnityData, prepData, appointmentData }: LoungeProps) => {
       setAnimatePage({ opacity: 0 });
     }
   }, [currentSection]);
-
-  const LINKS: LoungeLinkType[] = [
-    {
-      link: "indemnity",
-      type: "indemnity",
-      data: indemnityData,
-    },
-    {
-      link: "prep card",
-      type: "prep",
-      data: prepData,
-    },
-    {
-      link: "location",
-      type: "location",
-      data: {},
-    },
-  ];
-
-  console.log(prepData)
-  // const SECTION_LIST = () => {
-  //   section1:
-  // }
 
   return (
     <SectionLayout section="lounge">
@@ -112,7 +89,6 @@ const Lounge = ({ indemnityData, prepData, appointmentData }: LoungeProps) => {
         <div className="text-[8px]">*</div>
 
         <div className="h-[25%] w-20 md:min-w-[20%] flex items-center">
-          {/* <PortalLinkList links={LINKS} /> */}
           <PortalSectionAccordion
             Section1={<IndemnityAccordion data = {indemnityData}/>}
             Section2={<TipsAccordion data={prepData} />}

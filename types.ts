@@ -46,11 +46,7 @@ export interface ClientType{
     paymentAmount: number
   }
   chat: MessageType[]
-  progress: {
-    isDepositConfirmed: boolean,
-    isPaymentConfirmed: boolean,
-    isReviewSubmitted: boolean
-  },
+  progress: PortalProgressType
   review: {
     review: string,
     rating: number
@@ -143,7 +139,19 @@ export interface SessionType {
   user: {
     name: string,
     email: string,
-    id: string
+    id: string,
+    isAppointmentCompleted: boolean
   },
   expires: Date
 } 
+
+export interface PortalProgressType {
+  isDepositConfirmed: boolean,
+  isPaymentConfirmed: boolean,
+  isReviewSubmitted: boolean,
+  isIndemnitySigned: boolean,
+  isTattooCompleted: boolean,
+  isAppliedForResheudle: boolean,
+  resheduleDate: string,
+  isAppliedForCancelation: boolean
+}

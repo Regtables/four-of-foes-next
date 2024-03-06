@@ -1,21 +1,24 @@
 'use client'
 
-import { useModal } from '@/hooks/useModal'
-import React from 'react'
-import Popup from '../layout/Popup'
-import { Asterisk } from 'lucide-react'
-import ButtonPill from '../buttons/ButtonPill'
+import React from 'react' 
 import Image from 'next/image'
+import { Asterisk } from 'lucide-react'
+
+// import { useModal } from '@/hooks/useModal'
+import { useModal } from '@/context/ModalContext'
+
+import Popup from '../layout/Popup'
+import ButtonPill from '../buttons/ButtonPill'
 
 const AlertModal = () => {
   const { isOpen, types, data } = useModal()
 
-  if(!data?.alertData) return null
+  if(!data?.alert) return null
 
   const isModalOpen = isOpen && types?.includes('alert')
 
-  const { alertData } = data
-  const { title, content, confirm, handleConfirm, signature } = alertData
+  const { alert } = data
+  const { title, content, confirm, handleConfirm } = alert
 
   return (
     <Popup isOpen = {isModalOpen!} fade>
@@ -29,7 +32,7 @@ const AlertModal = () => {
           <ButtonPill text= {confirm} />
         </div>
 
-        {signature && (
+        {/* {signature && (
           <div className='relative h-[90px] w-[150px]'>
             <Image 
               src = '/signature.png'
@@ -39,7 +42,7 @@ const AlertModal = () => {
               priority
             />
           </div>
-        )}
+        )} */}
       </div>
     </Popup>
   )

@@ -1,16 +1,22 @@
 "use client";
-import React from "react";
+import React, { useEffect } from "react";
 import Image from "next/image";
 import { Asterisk } from "lucide-react";
 
-import PortalLinkList from "../../PortalLinkList/PortalLinkList";
 import PortalSectionAccordion from "../../PortalSectionAccordion";
 import AftercareAccordion from "../../accordions/AftercareAccordion";
 import TattooImagesAccordion from "../../accordions/TattooImagesAccordion";
 import FeedbackAccordion from "../../accordions/FeedbackAccordion";
 import { AftercareType, ClientType } from "@/types";
+import { usePortalProgress } from "@/context/PortalProgressContext";
 
 const PostAppointment = ({ aftercareData, client }: { aftercareData: AftercareType[], client: ClientType }) => {
+  const { setProgress } = usePortalProgress()
+
+  useEffect(() => {
+    setProgress(client.progress)
+  }, [client])
+
   return (
     <div className="w-full h-full flex flex-col">
       <div className="h-[75%] w-full relative">
@@ -25,7 +31,7 @@ const PostAppointment = ({ aftercareData, client }: { aftercareData: AftercareTy
         <PortalSectionAccordion
           Section1 = {<AftercareAccordion data = {aftercareData} />} 
           Section2 = {<TattooImagesAccordion images={client.tattooImages} />}
-          Section3 = {<FeedbackAccordion />}
+          Section3 = {<FeedbackAccordion data = {client.review} />}
         />
       </div>
     </div>

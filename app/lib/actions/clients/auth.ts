@@ -1,63 +1,161 @@
-"use server";
+'use server'
 
 import { cookies } from "next/headers";
 import { SignJWT, jwtVerify } from "jose";
 import { NextRequest, NextResponse } from "next/server";
+
 import { ClientType, SessionType } from "@/types";
+import { fetchSanityClient } from "./fetchClient";
 
-const jwtKey = new TextEncoder().encode(process.env.JWT_KEY);
+const JWT_SECRET = process.env.JWT_SECRET;
 
-export const encrypt = async (payload: any) => {
+if (!JWT_SECRET) {
+  throw new Error("JWT_SECRET environment variable is not set");
+}
+
+const jwtKey = new TextEncoder().encode(JWT_SECRET);
+
+export const encrypt = async (payload: any, expiresIn: string) => {
   return await new SignJWT(payload)
     .setProtectedHeader({ alg: "HS256" })
     .setIssuedAt()
-    .setExpirationTime("30 min from now")
+    .setExpirationTime(expiresIn)
     .sign(jwtKey);
 };
 
 export const decrypt = async (input: string): Promise<SessionType> => {
-  const { payload } = await jwtVerify(input, jwtKey, { algorithms: ["HS256"] });
-
-  return payload as unknown as SessionType;
+  try {
+    const { payload } = await jwtVerify(input, jwtKey, {
+      algorithms: ["HS256"],
+    });
+    return payload as unknown as SessionType;
+  } catch (error: any) {
+    if (error.code === "ERR_JWT_EXPIRED") {
+      // Token has expired
+      console.error("JWT token has expired");
+      throw error
+    }
+    // Handle other JWT verification errors
+    console.error("Error verifying JWT token:", error);
+    throw error;
+  }
 };
 
 export const createSession = async (client: ClientType) => {
-  const user = { name: client.clientName, email: client.email, id: client._id };
-  const expires = new Date(Date.now() + 10000);
+  try {
+    const user = {
+      name: client.clientName,
+      email: client.email,
+      id: client._id,
+      isAppointmentCompleted: client.progress.isTattooCompleted,
+    };
+    const sessionExpires = new Date(Date.now() + 3600 * 1000);
+    const reshreshExpires = new Date(Date.now() + 3600 * 2000);
 
-  const session = await encrypt({ user, expires });
+    const session = await encrypt({ user, sessionExpires }, "1 hour");
+    const refresh = await encrypt({ user, reshreshExpires }, "2 hours");
 
-  cookies().set("session", session, { expires, httpOnly: true });
+    cookies().set("session", session, {
+      expires: sessionExpires,
+      httpOnly: true,
+    });
+    cookies().set("session-refresh", refresh, {
+      expires: reshreshExpires,
+      httpOnly: true,
+    });
+  } catch (error) {
+    console.log(`Error creating the session: ${error}`);
+
+    throw error;
+  }
 };
 
-export const getSession = async () => {
-  const session = cookies().get("session")?.value;
+export const getSession = async (req?: NextRequest) => {
+  try {
+    const session = cookies().get("session")?.value;
 
-  if (!session) return null;
-
-  return await decrypt(session);
+    if (!session) return null;
+    const decoded = await decrypt(session);
+    if (!decoded) {
+      // Token has expired, redirect only if not already redirected
+      if (!req?.nextUrl.searchParams.has("redirected")) {
+        const redirectUrl = new URL(`${req?.nextUrl.origin}/portal/auth/unauthorized`);
+        redirectUrl.searchParams.set("redirected", "true");
+        return NextResponse.redirect(redirectUrl);
+      }
+      return null;
+    }
+    return decoded;
+  } catch (error) {
+    console.error("Error getting session:", error);
+    throw error;
+  }
 };
 
 export const deleteSession = async () => {
-  cookies().set("session", "", { expires: new Date(0) });
+  try {
+    cookies().set("session", "", { expires: new Date(0) });
+    cookies().set("session-refresh", "", { expires: new Date(0) });
+  } catch (error) {
+    console.log(`Error deleting the session: ${error}`);
+    throw error;
+  }
 };
 
 export const updateSession = async (request: NextRequest) => {
-  const session = request.cookies.get("session")?.value;
+  try {
+    const session = request.cookies.get("session")?.value;
+    const refresh = request.cookies.get("session-refresh")?.value;
 
-  if (!session) return;
+    // if(!session || refresh){
+    //   return NextResponse.redirect(`${request.nextUrl.origin}/portal/auth/unauthorized`)
+    // }
 
-  const decoded = await decrypt(session);
+    if (!session || !refresh) return;
 
-  decoded.expires = new Date(Date.now() + 3600 * 1000);
+    const decoded = await decrypt(session);
+    const decodedRefresh = await decrypt(refresh);
 
-  const res = NextResponse.next();
-  res.cookies.set({
-    name: "session",
-    value: await encrypt(decoded),
-    httpOnly: true,
-    expires: decoded.expires as Date
-  });
 
-  return res
+    const client = await fetchSanityClient(decoded.user?.id);
+
+    if (!client) {
+      return NextResponse.json({ error: "Unable to fetch client data" }, { status: 401 });
+    }
+
+    decoded.user = {
+      name: client.clientName,
+      email: client.email,
+      id: client._id,
+      isAppointmentCompleted: client.progress.isTattooCompleted,
+    };
+
+    decoded.expires = new Date(Date.now() + 3600 * 1000);
+    decodedRefresh.expires = new Date(Date.now() + 3600 * 2000);
+
+    const newSession = await encrypt({ user: decoded.user, expires: decoded.expires }, "1 hour");
+    const newRefresh = await encrypt({ user: decodedRefresh.user, expires: decodedRefresh.expires }, "2 hours");
+
+    const res = NextResponse.next();
+
+    res.cookies.set({
+      name: "session",
+      value: newSession,
+      httpOnly: true,
+      expires: decoded.expires as Date,
+    });
+
+    res.cookies.set({
+      name: "session-refresh",
+      value: newRefresh,
+      httpOnly: true,
+      expires: decodedRefresh.expires as Date,
+    });
+
+    return res;
+  } catch (error) {
+    console.log(`Error updating the session: ${error}`);
+
+    throw error;
+  }
 };

@@ -1,30 +1,32 @@
-import { portalClient } from "@/app/lib/sanity"
-import { protect } from "@/middleware/authMiddleware"
-import { NextResponse } from "next/server"
+import { portalClient } from "@/app/lib/sanity";
+import { protect } from "@/middleware/authMiddleware";
+import { NextResponse } from "next/server";
 
-export async function POST(req: Request){
-  try{
-    const client = await protect(req)
-    
-    if(client){
-      const body = await req.json()
+export async function POST(req: Request) {
+  try {
+    const client = await protect(req);
 
-      const { currentRating:rating, feedback: review } = body
+    if (client) {
+      const body = await req.json();
 
-      if(!client.progress.isReviewSubmitted){
-        client.review = {
-          rating,
-          review
-        }
-  
-        client.progress.isReviewSubmitted= true
-  
-        await portalClient.createOrReplace(client)
+      const { currentRating: rating, feedback: review } = body;
 
-        return NextResponse.json('Your review has been submitted' , { status: 200 })
-      }
+      client.review = {
+        rating,
+        review,
+      };
+
+      client.progress.isReviewSubmitted = true;
+
+      await portalClient.createOrReplace(client);
+
+      return NextResponse.json("Your review has been submitted", {
+        status: 200,
+      });
     }
-  } catch (error){
-    return new NextResponse('There was an issue with subitting your review', { status: 500 })
+  } catch (error) {
+    return new NextResponse("There was an issue with subitting your review", {
+      status: 500,
+    });
   }
 }

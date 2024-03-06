@@ -33,8 +33,6 @@ const ImageCarousel = ({
     }
   };
 
-  console.log(index);
-
   return (
     <Swipeable onRight={handlePrev} onLeft={handleNext}>
       <div className="h-full w-full lg:w-[60%] relative overflow-hidden">

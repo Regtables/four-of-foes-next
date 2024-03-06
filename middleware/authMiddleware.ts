@@ -10,9 +10,9 @@ export const protect = async (req: Request)=> {
   try{
     const session = await getSession()
       
-    if(!session) return redirect('/portal/auth?unauthroized=true')
+    if(!session) return redirect('/portal/auth/unauthorized')
   
-    if(session?.expires > new Date(0))  return redirect('/portal/auth?unauthroized=true')
+    if(session?.expires > new Date(0))  return redirect('/portal/auth/unauthorized')
   
     if(session){
       const client = await fetchSanityClient(session.user.id)

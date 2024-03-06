@@ -12,10 +12,6 @@ const PortalAuthPage: React.FC<any> = async ({ params }) => {
 
   if(!client) return redirect('/')
 
-  const handleClientConfirm = async () => {
-    await createSession(client)
-  }
-
   return (
     <div className='h-full flex items-center justify-center'>
       <PortalAuth client={client} />

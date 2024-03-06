@@ -16,6 +16,7 @@ const Messages = ({ messages }: { messages: MessageType[] }) => {
           isImage={message.isImage}
           date={message.date}
           content= {message.content}
+          key={i}
         />
       ))}
     </div>

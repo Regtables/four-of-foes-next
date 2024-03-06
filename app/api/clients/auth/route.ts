@@ -10,7 +10,7 @@ export async function POST(req: Request) {
     if(client){
       await createSession(client)
 
-      return NextResponse.redirect(new URL('/portal', req.url))
+      return new NextResponse('User logged in', { status: 200 })
     }
   } catch (error){
     console.log(error)

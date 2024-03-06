@@ -3,24 +3,36 @@ import AccordionLayout from "../layout/AccordionLayout";
 import FeedbackSlider from "../feedback/FeedbackSlider";
 import ButtonPill from "@/components/buttons/ButtonPill";
 import axios from "axios";
+import { usePortalProgress } from "@/context/PortalProgressContext";
+import { useModal } from "@/hooks/useModal";
 
-const FeedbackAccordion = () => {
-  const [currentRating, setCurrentRating] = useState(50);
-  const [feedback, setFeedback] = useState("");
+const FeedbackAccordion = ({
+  data,
+}: {
+  data: { rating: number; review: string };
+}) => {
+  const [currentRating, setCurrentRating] = useState(
+    data.rating ? data.rating : 50
+  );
+  const { handleOpen, handleClose } = useModal()
+  const [feedback, setFeedback] = useState(data.review ? data.review : "");
+
+  const { progress } = usePortalProgress();
+  const { isReviewSubmitted } = progress;
 
   const handleSubmit = async (e: FormEvent) => {
     e.preventDefault();
 
-    console.log(currentRating);
-    console.log(feedback);
-
     try {
+      handleOpen('loading')
       const res = await axios.post("/api/portal/feedback", {
         currentRating,
         feedback,
       });
     } catch (error) {
       console.log(error);
+    } finally {
+      handleClose('loading')
     }
   };
 
@@ -38,6 +50,7 @@ const FeedbackAccordion = () => {
           <FeedbackSlider
             currentRating={currentRating}
             setCurrentRating={setCurrentRating}
+            disabled={isReviewSubmitted}
           />
         </div>
 
@@ -50,7 +63,7 @@ const FeedbackAccordion = () => {
         ></textarea>
 
         <div className="w-[150px] mx-auto">
-          <ButtonPill fill text="submit" type="submit" />
+          <ButtonPill fill text={isReviewSubmitted ? 'update feedback' : 'submit'} type="submit" />
         </div>
       </form>
     </AccordionLayout>

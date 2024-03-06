@@ -89,7 +89,7 @@ const TattooImagesAccordion = ({ images } : { images: any[] }) => {
           ))}
         </Slider>
 
-        <button className='title text-center absolute bottom-0 w-full' onClick={handleDownload}>download</button>
+        <button className='text-center w-full cursor-pointer text-[8px] uppercase tracking-[0.4em] text-[#a9a9a9] absolute bottom-2' onClick={handleDownload}>download</button>
       </div>
     </AccordionLayout>
   )

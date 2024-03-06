@@ -12,7 +12,9 @@ interface PaymentAccordionProps {
   option: string;
   text: string;
   amount: number;
-  handlePayment: (orderId: string) => Promise<void>
+  isCompleted: boolean;
+  completedText: string;
+  handlePayment: (orderId: string) => Promise<void>;
 }
 
 const PaymentAccordion = ({
@@ -21,10 +23,12 @@ const PaymentAccordion = ({
   handlePayment,
   amount,
   option,
+  isCompleted,
+  completedText,
 }: PaymentAccordionProps) => {
   const [toggle, setToggle] = useState(false);
   const [height, setHeight] = useState("0px");
-  const [animateContainer, setAnimateContainer] = useState({ });
+  const [animateContainer, setAnimateContainer] = useState({});
   const [animateText, setAnimateText] = useState({});
   const [animateButton, setAnimateButton] = useState({});
   const content: any = useRef(null);
@@ -68,44 +72,49 @@ const PaymentAccordion = ({
         className="flex flex-col items-center gap-4 overflow-y-hidden transition-all duration-500"
         style={{ maxHeight: height }}
       >
-        <motion.p
-          className="text-center text-[10px] tracking-[0.1em] text-clip"
-          initial={{ opacity: 0 }}
-          animate={animateText}
-          transition={{ duration: 1, delay: 0.3 }}
-        >
-          {text}
-        </motion.p>
-
-        <div className="h-[50px]">
-          <PayPalScriptProvider
-            options={{
-              clientId:
-                "Aaem8OpbrlxjaXeiVXf3h2jCfMOIZeR40K4Yvgo8-Jdpxw9AXl-NqZTE7a670MTPuX4yNaN3pAAcxPAG",
-              disableFunding: "card",
-              // currency: 'EUR'
-            }}
-          >
-            <PayPalButtons
-              style={{ color: "white", shape: "pill", height: 40 }}
-              createOrder={function (data, action) {
-                return createPaypalOrder(amount);
-              }}
-              onApprove={(data, actions) => {
-                return handlePayment(data.orderID);
-              }}
-              // onError={(err) =>
-              //   setAlert({
-              //     toggle: true,
-              //     title: "Something went wrong",
-              //     text: "Something went wrong when processing your payment. Please try again",
-              //     confirm: "okay",
-              //     confirmFunction: () => setAlert({ toggle: false }),
-              //   })
-              // }
-            />
-          </PayPalScriptProvider>
-        </div>
+        {isCompleted ? (
+          <p className="text-center paragraph py-2">{completedText}</p>
+        ) : (
+          <>
+            <motion.p
+              className="text-center paragraph"
+              initial={{ opacity: 0 }}
+              animate={animateText}
+              transition={{ duration: 1, delay: 0.3 }}
+            >
+              {text}
+            </motion.p>
+            <div className="h-[50px]">
+              <PayPalScriptProvider
+                options={{
+                  clientId:
+                    "Aaem8OpbrlxjaXeiVXf3h2jCfMOIZeR40K4Yvgo8-Jdpxw9AXl-NqZTE7a670MTPuX4yNaN3pAAcxPAG",
+                  disableFunding: "card",
+                  // currency: 'EUR'
+                }}
+              >
+                <PayPalButtons
+                  style={{ color: "white", shape: "pill", height: 40 }}
+                  createOrder={function (data, action) {
+                    return createPaypalOrder(amount);
+                  }}
+                  onApprove={(data, actions) => {
+                    return handlePayment(data.orderID);
+                  }}
+                  // onError={(err) =>
+                  //   setAlert({
+                  //     toggle: true,
+                  //     title: "Something went wrong",
+                  //     text: "Something went wrong when processing your payment. Please try again",
+                  //     confirm: "okay",
+                  //     confirmFunction: () => setAlert({ toggle: false }),
+                  //   })
+                  // }
+                />
+              </PayPalScriptProvider>
+            </div>
+          </>
+        )}
       </div>
     </motion.div>
   );

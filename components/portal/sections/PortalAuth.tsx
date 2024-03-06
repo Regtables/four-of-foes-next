@@ -6,20 +6,19 @@ import { Asterisk } from 'lucide-react'
 import axios from 'axios'
 import { useRouter } from 'next/navigation'
 import { ClientType } from '@/types'
+import { usePortalProgress } from '@/context/PortalProgressContext'
+import { useAuth } from '@/hooks/useAuth'
 
 const PortalAuth = ({ client } : { client: ClientType }) => {
   const router = useRouter()
+  const { setProgress } = usePortalProgress()
+  const { signInClient } = useAuth()
+
   const handleButtonClick = async () => {
-    // const res = await axios.post('/api/clients/auth', { client })
-    const res = await fetch('/api/clients/auth', {
-      method: 'POST',
-      body: JSON.stringify({ client })
-    })
-
-    console.log(res)
-
-    if(res.status === 200){
-      router.push('/portal/pre#lounge')
+    try{
+      await signInClient(client)
+    } catch (error){
+      console.log(error)
     }
   }
 
@@ -29,7 +28,7 @@ const PortalAuth = ({ client } : { client: ClientType }) => {
         Welcome, Patron
       </div>
       <Asterisk size = {10}/>
-      <div className='w-[60%] text-center text-[12px] mb-4 italic tracking-[0.05em]'>
+      <div className='w-[60%] text-center text-[12px] mb-4 tracking-[0.05em]'>
         Hi, Reghardt.
         Welcome to the Four of Foes booking Lounge. Kindly review our <span className='underline'>terms and conditions</span>, and then proceed.
       </div>

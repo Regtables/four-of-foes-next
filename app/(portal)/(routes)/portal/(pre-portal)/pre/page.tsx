@@ -32,14 +32,13 @@ const MESSAGES = [
 ]
 
 const PortalPage = async () => {
-  const session = await getSession() 
+  const session = await getSession()
+  
   const prepContent = fetchPrepContent()
   const indemnityContent = fetchIndemnityContent()
   const clientData = fetchSanityClient(session!.user.id)
 
   const [prepData, indemnityData, client] = await Promise.all([prepContent, indemnityContent, clientData])
-
-  console.log(client)
 
   return (
     <div className='container' id = 'main'>

@@ -4,16 +4,18 @@ import React, { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 
 import { useSection } from "@/context/PortalSectionContext";
+import { ClientType } from "@/types";
+import { usePortalProgress } from "@/context/PortalProgressContext";
 
 import SectionLayout from "../../layout/SectionLayout";
 import PaymentOptions from "../../payment/PaymentOptions";
-import CancelAppointment from "@/components/buttons/CancelAppointment";
 import AppointmentActionsDrawer from "../../drawers/AppointmentActionsDrawer";
-import { ClientType } from "@/types";
 
 const Wallet = ({ client } : { client: ClientType }) => {
   const { currentSection } = useSection();
   const [animatePage, setAnimatePage] = useState({});
+
+  const { setProgress, progress } = usePortalProgress()
 
   useEffect(() => {
     if (currentSection === "wallet") {
@@ -22,6 +24,10 @@ const Wallet = ({ client } : { client: ClientType }) => {
       setAnimatePage({ opacity: 0 });
     }
   }, [currentSection]);
+
+  useEffect(() => {
+    setProgress(client.progress)
+  }, [client])
 
   return (
     <SectionLayout section="wallet">
