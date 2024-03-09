@@ -39,7 +39,7 @@ const AccordionLayout = ({
     // <Popup isOpen = {toggle}>
     <div
       className={cn(
-        "w-full p-1 transition-all duration-[2s]",
+        "w-full p-1 transition-all duration-500",
         toggle && "py-4 px-0 z-20"
       )}
     >
@@ -62,7 +62,7 @@ const AccordionLayout = ({
         className={cn(
           "overflow-hidden transition-all duration-[0.7s] flex justify-center w-full relative z-10 mb-auto",
           toggle && "relative z-10",
-          list && "h-[70vh]"
+          list && "h-[66vh]"
         )}
       >
         {children}
