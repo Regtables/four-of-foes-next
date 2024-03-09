@@ -9,7 +9,7 @@ import { cn } from "@/app/lib/utils";
 const MessengerClientChatTile = ({ client }: { client: ClientType }) => {
   const lastMessage =
     client.chat?.length > 0
-      ? client.chat[client.chat?.length - 1]?.message
+      ? client.chat[client.chat?.length - 1]?.content
       : null;
   const pathname = usePathname();
 

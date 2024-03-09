@@ -96,7 +96,7 @@ export interface AftercareType{
 
 export interface MessageType{
   _id: string,
-  message: string,
+  content: string,
   sender: string,
   date: Date,
   isClient?: boolean,
