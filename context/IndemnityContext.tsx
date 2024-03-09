@@ -14,7 +14,7 @@ interface IndemnityContextProps {
   indemnityDescription: string,
   clientIndemnity: ClientIndemnityType,
   isIndemnitySigned: boolean,
-  dateCaptured: Date | string,
+  dateCaptured: Date | string | null,
   handleClauseCheck: (id: string) => void
   handleMiniClauseCheck: (clause: MiniIndemnityClauseType) => void,
   handleSignConfirm: () => void,
@@ -38,14 +38,14 @@ export const IndemnityProvider:React.FC<IndemnityProviderProps>= ({ children, in
   const [miniIndemnityClauses, setMiniIndemnityClauses] = useState<MiniIndemnityClauseType[]>(miniClauses);
   const [consentedClauses, setConsentedClauses] = useState<IndemnityType[]>([]);
   const [consentedMiniClauses, setConsentedMiniClauses] = useState<MiniIndemnityClauseType[]>([]);
-  const [dateCaptured, setDateCapetured] = useState<Date | string>('')
+  const [dateCaptured, setDateCapetured] = useState<Date | string | null>(null)
 
   const { handleModalOpen, handleModalClose, handleActionErrorAlertOpen } = useModal()
   const { handleSetProgressSection, progress } = usePortalProgress()
   const { isIndemnitySigned } = progress
 
   const isIndemnitySignReady = useMemo(() => {
-    return consentedClauses.length === indemnityClauses.length
+    return consentedClauses.length === indemnityClauses?.length
   }, [consentedClauses, indemnityClauses])
 
   const indemnityDescription = useMemo(() => {
@@ -55,10 +55,10 @@ export const IndemnityProvider:React.FC<IndemnityProviderProps>= ({ children, in
   }, [progress.isIndemnitySigned])
 
   useEffect(() => {
-    if(clientIndemnity.captureDate !== ''){
-      setIndemnityClauses(clientIndemnity.agreedMainClauses)
-      setMiniIndemnityClauses(clientIndemnity.agreedIndividualClauses)
-      setDateCapetured(clientIndemnity.captureDate)
+    if(clientIndemnity){
+      setIndemnityClauses(clientIndemnity?.agreedMainClauses)
+      setMiniIndemnityClauses(clientIndemnity?.agreedIndividualClauses)
+      setDateCapetured(clientIndemnity?.captureDate)
     }
   }, [clientIndemnity])
 

@@ -158,7 +158,7 @@ export interface PortalProgressType {
 }
 
 export interface ClientIndemnityType {
-  captureDate: Date | string,
+  captureDate: Date | string | null,
   clientName: string,
   agreedMainClauses: IndemnityType[],
   agreedIndividualClauses: MiniIndemnityClauseType[]

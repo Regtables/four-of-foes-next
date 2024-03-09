@@ -10,7 +10,7 @@ const IndemnityDateCaptured = () => {
 
   return (
     <Fragment>
-      {dateCaptured !== '' && (
+      {dateCaptured && dateCaptured !== '' && (
         <ViewMotionWrapper className="flex flex-col gap-2 mt-6" duration={1}>
           <div className="uppercase text-[8px] tracking-[0.2em] text-[#a9a9a9] text-center">
             date captured

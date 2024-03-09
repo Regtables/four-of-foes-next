@@ -17,6 +17,7 @@ const IndemnityAccordion: React.FC<IndemnityAccordionProps> = ({
   miniIndemnityClauses,
   clientIndemnity
 }) => {
+  // if(!indemnityClauses || !clientIndemnity) return null
   return (
     <AccordionLayout title="indemnity" section={1} list>
       <IndemnityProvider 
