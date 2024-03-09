@@ -7,7 +7,7 @@ import { redirect } from "next/navigation"
 import { ClientType, SessionType } from "@/types"
 import { NextRequest, NextResponse } from "next/server"
 
-export const protect = async (req: NextRequest)=> {
+export const protect = async (req: Request)=> {
   try{
     const session:any = await getSession()
       
