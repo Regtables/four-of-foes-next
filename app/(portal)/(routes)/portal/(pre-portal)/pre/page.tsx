@@ -32,7 +32,7 @@ const MESSAGES = [
 ]
 
 const PortalPage = async () => {
-  const session = await getSession()
+  const session:any = await getSession()
   
   const prepContent = fetchPrepContent()
   const indemnityContent = fetchIndemnityContent(session!.user.id)
@@ -45,6 +45,7 @@ const PortalPage = async () => {
       <div className='page'>
         {/* <Suspense> */}
           <Lobby 
+            // @ts-ignore
             messages={MESSAGES}
           />
         {/* </Suspense> */}
