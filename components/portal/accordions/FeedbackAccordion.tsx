@@ -12,10 +12,10 @@ const FeedbackAccordion = ({
   data: { rating: number; review: string };
 }) => {
   const [currentRating, setCurrentRating] = useState(
-    data.rating ? data.rating : 50
+    data?.rating ? data?.rating : 50
   );
   const { handleModalOpen, handleModalClose, handleActionErrorAlertOpen } = useModal()
-  const [feedback, setFeedback] = useState(data.review ? data.review : "");
+  const [feedback, setFeedback] = useState(data?.review ? data?.review : "");
 
   const { progress } = usePortalProgress();
   const { isReviewSubmitted } = progress;
