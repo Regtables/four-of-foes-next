@@ -2,7 +2,7 @@ import React from "react";
 
 import { PortalProgressProvider } from "@/context/PortalProgressContext";
 
-export const revalidate = 1
+export const revalidate = 0
 
 const PortalRootLayout = async ({ children } : { children: React.ReactNode }) => {
   return (
