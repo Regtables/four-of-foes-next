@@ -11,13 +11,13 @@ export const protect = async (req: Request)=> {
   try{
     const session:any = await getSession()
       
-    if (!session) {
-      return new NextResponse(null, { status: 401 });
-    }
+    if(!session) return redirect('/portal/auth/unauthorized')
+  
+    if(session?.expires > new Date(0))  return redirect('/portal/auth/unauthorized')
   
     if(session){
       const client = await fetchSanityClient(session.user.id)
-
+      
       return client as ClientType
     } 
   } catch (error){
