@@ -1,9 +1,9 @@
-import { createSession } from '@/app/lib/actions/clients/auth'
-import { fetchSanityClient } from '@/app/lib/actions/clients/fetchClient'
-import { fetchClient } from '@/app/lib/queries'
-import PortalAuth from '@/components/portal/sections/PortalAuth'
 import { redirect } from 'next/navigation'
 import React from 'react'
+
+import { fetchSanityClient } from '@/app/lib/actions/clients/fetchClient'
+
+import PortalAuth from '@/components/portal/sections/PortalAuth'
 
 const PortalAuthPage: React.FC<any> = async ({ params }) => {
   const { id } = params

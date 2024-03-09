@@ -16,13 +16,14 @@ const AppointmentActionsDrawer = () => {
   const [resheudleDate, setResheudleDate] = useState("");
   const { handleSetProgressSection, progress } = usePortalProgress();
   const router = useRouter()
+  const [toggleChildAccordion, setToggleChildAccordion] = useState(false)
 
   const {
     isAppliedForResheudle,
     resheduleDate: newDate,
     isAppliedForCancelation,
   } = progress;
-  const { handleModalOpen, handleModalClose } = useModal();
+  const { handleModalOpen, handleModalClose , handleActionErrorAlertOpen} = useModal();
 
   const handleResheudleClick = () => {
     handleModalOpen("alert", {
@@ -65,12 +66,14 @@ const AppointmentActionsDrawer = () => {
         { withCredentials: true }
       );
 
-      // if (res.status === 200) {
+      if (res.status === 200) {
         handleSetProgressSection("isAppliedForResheudle", true);
         handleSetProgressSection("resheduleDate", resheudleDate);
-      // }
+      }
     } catch (error) {
       console.log(error);
+
+      handleActionErrorAlertOpen('requesting a new date for your appointment')
     } finally {
       handleModalClose('loading')
     }
@@ -90,13 +93,15 @@ const AppointmentActionsDrawer = () => {
       }
     } catch (error) {
       console.log(error);
+
+      handleActionErrorAlertOpen('requesting to cancel your appointment')
     } finally {
       handleModalClose("loading");
     }
   };
 
   return (
-    <DrawerLayout title={"cancel/resheudule"}>
+    <DrawerLayout title={"cancel/resheudule"} toggleChildAccordion = {toggleChildAccordion}>
       <div className="flex flex-col gap-6 items-center w-[80vw]">
         <div className="flex flex-col gap-2 w-full">
           <h3 className="title text-center mb-4">Resheudle Appointment</h3>
@@ -110,6 +115,7 @@ const AppointmentActionsDrawer = () => {
               <Calendar
                 confirmedDate={resheudleDate}
                 setConfirmedDate={setResheudleDate}
+                setToggleChildAccordion={setToggleChildAccordion}
               />
 
               <div

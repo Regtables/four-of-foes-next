@@ -1,14 +1,14 @@
-'use client'
+"use client";
 
 import React, { createContext, useState, useContext, ReactNode } from "react";
 
-type ModalType = "login" | "alert" | "loading" | null;
+type ModalType = "login" | "alert" | "loading" | "imagePreview" | null;
 
 interface AlertProps {
   confirm: string;
   handleConfirm: () => void;
   option: string;
-  handleOption: () => void; // Corrected the type here
+  handleOption: () => void;
   title: string;
   content: string;
   alert: boolean;
@@ -20,9 +20,11 @@ interface ModalContextProps {
   data: {
     activationUrl?: string;
     alert?: AlertProps;
+    activeImage?: any;
   };
   handleModalOpen: (type: ModalType, modalData?: any) => void;
   handleModalClose: (typeToClose?: ModalType) => void;
+  handleActionErrorAlertOpen: (action: string) => void;
 }
 
 const defaultModalData = {
@@ -36,6 +38,7 @@ const defaultModalData = {
     content: "",
     alert: false,
   },
+  activeImage: "",
 };
 
 const defaultValues: ModalContextProps = {
@@ -44,6 +47,7 @@ const defaultValues: ModalContextProps = {
   data: defaultModalData,
   handleModalOpen: (type, modalData) => {},
   handleModalClose: (typeToClose) => {},
+  handleActionErrorAlertOpen: (action) => {},
 };
 
 const ModalContext = createContext(defaultValues);
@@ -57,11 +61,11 @@ export const ModalProvider: React.FC<ModalProviderProps> = ({ children }) => {
   const [types, setTypes] = useState<ModalType[]>([]);
   const [data, setData] = useState({
     activationUrl: "",
-    alert: { ...defaultModalData.alert }, // Create a new object to avoid mutations
+    alert: { ...defaultModalData.alert },
   });
 
   const handleModalOpen = (type: ModalType, modalData?: any) => {
-    console.log('opening modal')
+    console.log("opening modal");
     setIsOpen(true);
     setTypes((prevTypes) => [...prevTypes, type]);
 
@@ -71,6 +75,7 @@ export const ModalProvider: React.FC<ModalProviderProps> = ({ children }) => {
   };
 
   const handleModalClose = (typeToClose?: ModalType) => {
+    console.log(data);
     const newTypes = types.filter((type) => type !== typeToClose);
     setTypes(newTypes);
     setData(defaultModalData);
@@ -86,9 +91,27 @@ export const ModalProvider: React.FC<ModalProviderProps> = ({ children }) => {
     }
   };
 
+  const handleActionErrorAlertOpen = (action: string) => {
+    handleModalOpen("alert", {
+      alert: {
+        title: "Oops!",
+        content: `Something went wrong when ${action}, please try again`,
+        confirm: "Okay",
+        handleConfirm: () => handleModalClose("alert"),
+      },
+    });
+  };
+
   return (
     <ModalContext.Provider
-      value={{ isOpen, types, data, handleModalClose, handleModalOpen }}
+      value={{
+        isOpen,
+        types,
+        data,
+        handleModalClose,
+        handleModalOpen,
+        handleActionErrorAlertOpen,
+      }}
     >
       {children}
     </ModalContext.Provider>
@@ -104,4 +127,3 @@ export const useModal = (): ModalContextProps => {
 
   return context;
 };
-

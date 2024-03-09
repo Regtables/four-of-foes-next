@@ -1,12 +1,12 @@
 import React, { Suspense } from 'react'
 
+import { fetchIndemnityContent, fetchPrepContent } from '@/app/lib/actions/content/fetchContent'
+import { getSession } from '@/app/lib/actions/clients/auth'
+import { fetchSanityClient } from '@/app/lib/actions/clients/fetchClient'
+
 import Lobby from '@/components/portal/sections/Lobby/Lobby'
 import Lounge from '@/components/portal/sections/Lounge/Lounge'
 import Wallet from '@/components/portal/sections/Wallet/Wallet'
-import { fetchIndemnityContent, fetchPrepContent } from '@/app/lib/actions/content/fetchContent'
-import { IndemnityType } from '@/types'
-import { getSession } from '@/app/lib/actions/clients/auth'
-import { fetchSanityClient } from '@/app/lib/actions/clients/fetchClient'
 
 const MESSAGES = [
   {
@@ -35,7 +35,7 @@ const PortalPage = async () => {
   const session = await getSession()
   
   const prepContent = fetchPrepContent()
-  const indemnityContent = fetchIndemnityContent()
+  const indemnityContent = fetchIndemnityContent(session!.user.id)
   const clientData = fetchSanityClient(session!.user.id)
 
   const [prepData, indemnityData, client] = await Promise.all([prepContent, indemnityContent, clientData])
@@ -44,17 +44,23 @@ const PortalPage = async () => {
     <div className='container' id = 'main'>
       <div className='page'>
         {/* <Suspense> */}
-          <Lobby messages={MESSAGES} />
+          <Lobby 
+            messages={MESSAGES}
+          />
         {/* </Suspense> */}
       </div>
 
       <div className='page' id='lounge'>
         {/* <Suspense> */}
-          <Lounge indemnityData={indemnityData} prepData={prepData} appointmentData={client.appointmentDetails} />
+          <Lounge 
+            indemnityData={indemnityData} 
+            prepData={prepData} 
+            appointmentData={client.appointmentDetails} 
+          />
         {/* </Suspense> */}
       </div>
 
-      <div className='page'>
+      <div className='page' id='wallet'>
         {/* <Suspense> */}
           <Wallet client={client} />
         {/* </Suspense> */}

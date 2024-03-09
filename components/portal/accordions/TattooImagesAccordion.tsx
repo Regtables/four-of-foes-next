@@ -3,7 +3,7 @@ import Slider from 'react-slick'
 import JSZip from "jszip";
 
 import { cn } from '@/app/lib/utils';
-import { useModal } from '@/hooks/useModal';
+import { useModal } from '@/context/ModalContext';
 import { urlFor } from '@/app/lib/sanity';
 
 import AccordionLayout from '../layout/AccordionLayout'
@@ -12,10 +12,9 @@ import ImageTile from '@/components/images/ImageTile'
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 
-
 const TattooImagesAccordion = ({ images } : { images: any[] }) => {
   const [index, setIndex] = useState(0)
-  const { handleOpen, handleClose } = useModal()
+  const { handleModalOpen, handleModalClose, handleActionErrorAlertOpen } = useModal()
 
   const settings = {
     infinite: true,
@@ -23,7 +22,7 @@ const TattooImagesAccordion = ({ images } : { images: any[] }) => {
     slidesToShow: 3,
     centerMode: true,
     centerPadding: "0px",
-    arrows: true,
+    arrows: false,
     focusOnSelect: true,
     lazyLoading: true,
 
@@ -31,39 +30,44 @@ const TattooImagesAccordion = ({ images } : { images: any[] }) => {
   };
 
   const handleDownload = async () => {
-    handleOpen('loading')
-
-    const paths = images.map((image: any) => {
-      return urlFor(image).url()
-    })
-
-    const zip = new JSZip();
-
-    await Promise.all(
-      paths.map(async (path: any, i: number) => {
-        const imageData = await fetch(path);
-        const image = await imageData.arrayBuffer();
-        const fileName = `photo${i + 1}.jpg`;
-
-        zip.file(fileName, image);
+    try{
+      handleModalOpen('loading')
+  
+      const paths = images.map((image: any) => {
+        return urlFor(image).url()
       })
-    );
-
-    const zipBlob = await zip.generateAsync({ type: "blob" });
-
-    const url = URL.createObjectURL(zipBlob);
-    const link = document.createElement("a");
-    link.href = url;
-    link.download = "photos.zip";
-    link.click();
-    URL.revokeObjectURL(url);
-
-    handleClose('loading')
+  
+      const zip = new JSZip();
+  
+      await Promise.all(
+        paths.map(async (path: any, i: number) => {
+          const imageData = await fetch(path);
+          const image = await imageData.arrayBuffer();
+          const fileName = `photo${i + 1}.jpg`;
+  
+          zip.file(fileName, image);
+        })
+      );
+  
+      const zipBlob = await zip.generateAsync({ type: "blob" });
+  
+      const url = URL.createObjectURL(zipBlob);
+      const link = document.createElement("a");
+      link.href = url;
+      link.download = "photos.zip";
+      link.click();
+      URL.revokeObjectURL(url);
+    } catch (error){
+      console.log(error)
+      handleActionErrorAlertOpen('to download your tattoo photos')
+    } finally {
+      handleModalClose('loading')
+    }
   };
 
   const handleImageClick = (i: number, image: any) => {
     if(i === index){
-      handleOpen('imagePreview', { activeImage: image })
+      handleModalOpen('imagePreview', { activeImage: image })
     }
   }
 
@@ -83,6 +87,7 @@ const TattooImagesAccordion = ({ images } : { images: any[] }) => {
                 i === index - 3 && 'lg:translate-x-[-70px]'
               )}
               onClick={() => handleImageClick(i, image)}
+              key={i}
             >
               <ImageTile image={image} />
             </div>

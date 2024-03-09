@@ -2,21 +2,21 @@ import React from 'react'
 import Image from 'next/image'
 import { useNextSanityImage } from 'next-sanity-image'
 
-import { useModal } from '@/hooks/useModal'
+import { useModal } from '@/context/ModalContext'
 import { portalClient } from '@/app/lib/sanity'
 
 import Popup from '../layout/Popup'
 
 const ImagePreviewModal = () => {
   
-  const { isOpen, types, handleClose, data } = useModal()
+  const { isOpen, types, handleModalClose, data } = useModal()
   if(!data?.activeImage) return null
   const { src, loader}:any = useNextSanityImage(portalClient, data?.activeImage)
 
   const isModalOpen = isOpen && types?.includes('imagePreview')
 
   return (
-    data?.activeImage && (
+    data?.activeImage ? (
       <Popup isOpen = {isModalOpen!} fade>
         <div className='flex relative lg:h-[80vh] lg:w-[60vw] h-[70vh] w-[85vw] m-auto'>
           <Image 
@@ -28,11 +28,11 @@ const ImagePreviewModal = () => {
           />
         </div>
 
-        <div onClick={() => handleClose('imagePreview')}>
+        <div onClick={() => handleModalClose('imagePreview')}>
           close
         </div>
       </Popup>
-    )
+    ) : (<></>)
   )
 }
 

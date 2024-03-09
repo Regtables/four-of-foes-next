@@ -1,30 +1,43 @@
 import path from "path";
 import fs from 'fs'
 import { NextResponse } from "next/server";
-import { NextApiResponse } from "next";
+import { Readable } from "stream";
 
-export async function GET(req: Request, res: NextApiResponse){
-  try{
-    const filePath = path.join(process.cwd(), 'public', 'studio5.jpeg')
-    const fileName = 'poets cxrner aftercare guide.jpeg'
+export async function GET(request: Request) {
+  try {
+    const filePath = path.join(process.cwd(), 'public', 'studio5.jpeg');
+    const fileName = 'poets cxrner aftercare guide.jpeg';
 
-    const fileStream = fs.createReadStream(filePath)
+    const fileStream: Readable = fs.createReadStream(filePath);
 
-    new NextResponse().headers.append('Content-Disposition', `attachment; filename="${fileName}"`);
-    new NextResponse().headers.append('Content-Type', 'image/jpeg');
-
-    fileStream.on('error', (error: any) => {
-      console.error('Error reading file:', error);
-      return new NextResponse(error, { status: 500 })
+    const headers = new Headers({
+      'Content-Disposition': `attachment; filename="${fileName}"`,
+      'Content-Type': 'image/jpeg',
     });
 
-    fileStream.on('end', () => {
-      return new NextResponse('', { status: 200 })
-    })
+    const readableStream = new ReadableStream({
+      start(controller) {
+        fileStream.on('data', (chunk) => {
+          controller.enqueue(chunk);
+        });
 
-    fileStream.pipe(res)
+        fileStream.on('end', () => {
+          controller.close();
+        });
 
-  } catch (error){
-    console.log(error)
+        fileStream.on('error', (err) => {
+          controller.error(err);
+        });
+      },
+    });
+
+    return new NextResponse(readableStream, {
+      headers,
+      status: 200,
+    });
+
+  } catch (error) {
+    console.log(error);
+    return new NextResponse('Internal Server Error', { status: 500 });
   }
 }

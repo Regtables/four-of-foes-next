@@ -3,26 +3,25 @@ import AccordionLayout from "../layout/AccordionLayout";
 import { AftercareType } from "@/types";
 import ViewMotionWrapper from "@/components/layout/Motion/ViewMotionWrapper";
 import AftercareAccordionTile from "../aftercare/AftercareAccordionTile/AftercareAccordionTile";
+import { useModal } from "@/context/ModalContext";
+import { createDownloadLink } from "@/utils/helpers";
 
 const AftercareAccordion: React.FC<{ data: AftercareType[]}> = ({ data }) => {
-  // console.log(data[0], 'aftercare data')
+  const { handleModalOpen, handleModalClose, handleActionErrorAlertOpen } = useModal()
+
   const handleDownload = async () => {
     try{
-      const res = await fetch('/api/portal/downloads/aftercare')
-      const blob = await res.blob() 
+      handleModalOpen('loading')
 
-      const url = window.URL.createObjectURL(blob);
-      const a = document.createElement('a');
-      a.style.display = 'none';
-      a.href = url;
-      a.download = 'poets cxrner aftercare guide.jpeg';
-      document.body.appendChild(a);
-      a.click();
-      window.URL.revokeObjectURL(url);
-      document.body.removeChild(a);
+      const res = await fetch('/api/portal/downloads/aftercare')
+      createDownloadLink(res, 'poets cxrner aftercare guide.jpeg')
 
     } catch (error){
       console.log(error)
+
+      handleActionErrorAlertOpen('download the Four of Foes tattoo aftercare guide')
+    } finally {
+      handleModalClose('loading')
     }
   }
 

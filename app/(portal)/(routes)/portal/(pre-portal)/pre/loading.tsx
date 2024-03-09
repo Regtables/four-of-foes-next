@@ -1,9 +1,20 @@
-import React from 'react'
+'use client'
+
+import React from "react";
+import { Triangle } from "react-loader-spinner";
 
 const Loading = () => {
   return (
-    <div>Loading</div>
-  )
-}
+    <div className="h-screen w-screen flex justify-center items-center">
+      <Triangle
+        visible={true}
+        height="40"
+        width="40"
+        color="white"
+        ariaLabel="triangle-loading"
+      />
+    </div>
+  );
+};
 
-export default Loading
+export default Loading;

@@ -9,7 +9,7 @@ import { cn } from '@/app/lib/utils'
 interface PortalSectionAccordionProps {
   Section1: React.ReactNode,
   Section2: React.ReactNode,
-  Section3: React.ReactNode
+  Section3: React.ReactNode,
 }
 
 const PortalSectionAccordion: React.FC<PortalSectionAccordionProps> = ({ Section1, Section2, Section3 }) => {
@@ -29,7 +29,7 @@ const PortalSectionAccordion: React.FC<PortalSectionAccordionProps> = ({ Section
   }
 
   return (
-    <div className='w-full absolute left-0 bottom-10 flex flex-col items-center justify-center transition-all duration-500'>
+    <div className={`flex flex-col items-center justify-center transition-all duration-500`}>
       {/* first component */}
       <div className= {cn(partitionStyles, renderPartitionClass(1))}>
         <Partition />

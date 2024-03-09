@@ -51,7 +51,8 @@ export interface ClientType{
     review: string,
     rating: number
   }
-  tattooImages: any[]
+  tattooImages: any[],
+  clientIndemnity: ClientIndemnityType
 }
 
 export interface PortalNavLinkType{
@@ -154,4 +155,11 @@ export interface PortalProgressType {
   isAppliedForResheudle: boolean,
   resheduleDate: string,
   isAppliedForCancelation: boolean
+}
+
+export interface ClientIndemnityType {
+  captureDate: Date | string,
+  clientName: string,
+  agreedMainClauses: IndemnityType[],
+  agreedIndividualClauses: MiniIndemnityClauseType[]
 }

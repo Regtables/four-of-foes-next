@@ -6,6 +6,7 @@ import { PayPalScriptProvider, PayPalButtons } from "@paypal/react-paypal-js";
 
 import Partition from "../PortalLinkList/Partition";
 import { useCheckout } from "@/hooks/useCheckout";
+import { useModal } from "@/context/ModalContext";
 
 interface PaymentAccordionProps {
   up?: boolean;
@@ -34,6 +35,7 @@ const PaymentAccordion = ({
   const content: any = useRef(null);
 
   const { createPaypalOrder } = useCheckout();
+  const { handleModalOpen, handleModalClose } = useModal()
 
   const handleToggle = () => {
     if (!toggle) {
@@ -69,28 +71,28 @@ const PaymentAccordion = ({
 
       <div
         ref={content}
-        className="flex flex-col items-center gap-4 overflow-y-hidden transition-all duration-500"
+        className="flex flex-col items-center gap-3 overflow-y-hidden transition-all duration-500"
         style={{ maxHeight: height }}
       >
         {isCompleted ? (
-          <p className="text-center paragraph py-2">{completedText}</p>
+          <p className="text-center paragraph py-4">{completedText}</p>
         ) : (
           <>
             <motion.p
-              className="text-center paragraph"
+              className="text-center paragraph py-1"
               initial={{ opacity: 0 }}
               animate={animateText}
               transition={{ duration: 1, delay: 0.3 }}
             >
               {text}
             </motion.p>
-            <div className="h-[50px]">
+            <div className="h-[60px] pb-4">
               <PayPalScriptProvider
                 options={{
                   clientId:
                     "Aaem8OpbrlxjaXeiVXf3h2jCfMOIZeR40K4Yvgo8-Jdpxw9AXl-NqZTE7a670MTPuX4yNaN3pAAcxPAG",
                   disableFunding: "card",
-                  // currency: 'EUR'
+                  currency: 'EUR'
                 }}
               >
                 <PayPalButtons
@@ -101,15 +103,14 @@ const PaymentAccordion = ({
                   onApprove={(data, actions) => {
                     return handlePayment(data.orderID);
                   }}
-                  // onError={(err) =>
-                  //   setAlert({
-                  //     toggle: true,
-                  //     title: "Something went wrong",
-                  //     text: "Something went wrong when processing your payment. Please try again",
-                  //     confirm: "okay",
-                  //     confirmFunction: () => setAlert({ toggle: false }),
-                  //   })
-                  // }
+                  onError={(err) =>
+                    handleModalOpen('alert', { alert: {
+                      title: "Payment Error",
+                      content: 'There was an issue when trying to process your payment, please try again',
+                      confirm: 'okay',
+                      handleConfirm: () => handleModalClose('alert')
+                    }})
+                  }
                 />
               </PayPalScriptProvider>
             </div>

@@ -16,6 +16,7 @@
     "compressorjs": "^1.2.1",
     "date-fns": "^3.3.1",
     "framer-motion": "^10.16.16",
+    "ics": "^3.7.2",
     "jose": "^5.2.2",
     "jszip": "^3.10.1",
     "lucide": "^0.298.0",

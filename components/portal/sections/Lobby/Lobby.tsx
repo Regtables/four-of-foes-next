@@ -73,7 +73,7 @@ const Lobby = ({ messages } : LobbyProps) => {
           <div className='flex flex-col justify-center items-center gap-4 mb-14'>
             <div className='text-[12px] text-center paragraph w-[70%]'>The lobby is restricted to patrons who have paid their deposit. Please pay your deposit in order to enter the Lobby</div>
             <a className='w-[120px]' href='/portal/pre#wallet'>
-              <ButtonPill fill text='pay deposit'/>
+              <ButtonPill fill text='go to wallet'/>
             </a>
           </div>
         </div>

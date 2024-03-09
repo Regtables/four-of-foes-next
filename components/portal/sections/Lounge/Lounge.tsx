@@ -4,18 +4,20 @@ import React, { useEffect, useState } from "react";
 import Image from "next/image";
 import { motion } from "framer-motion";
 
-import { AppointmentDetailsType, IndemnityType, LoungeLinkType } from "@/types";
+import {
+  AppointmentDetailsType,
+  ClientIndemnityType,
+  IndemnityType,
+  MiniIndemnityClauseType,
+} from "@/types";
 import { useSection } from "@/context/PortalSectionContext";
 
 import PortalAppointmentBanner from "../../PortalAppointmentBanner/PortalAppointmentBanner";
-import PortalLinkList from "../../PortalLinkList/PortalLinkList";
 import SectionLayout from "../../layout/SectionLayout";
 import PortalSectionAccordion from "../../PortalSectionAccordion";
 import IndemnityAccordion from "../../accordions/IndemnityAccordion";
 import TipsAccordion from "../../accordions/TipsAccordion";
 import LocationAccordion from "../../accordions/LocationAccordion";
-import { getSession } from "@/app/lib/actions/clients/auth";
-import { usePortalProgress } from "@/context/PortalProgressContext";
 
 const APPOINTMENT = {
   artist: "Ted Faulmann",
@@ -25,27 +27,27 @@ const APPOINTMENT = {
 };
 
 const SHOP = {
-  name: 'hood7',
-  logo: '',
+  name: "hood7",
+  logo: "",
   instagram: {
-    handle: '@hood7',
-    link: ''
+    handle: "@hood7",
+    link: "",
   },
   location: {
-    address: '123 somewhere sick, Woodstock, 8019, Cape Town, South Africa',
-    link: ''
+    address: "123 somewhere sick, Woodstock, 8019, Cape Town, South Africa",
+    link: "",
   },
-  images: [
-    '/lounge-ted.JPG',
-    '/portal-bg.png',
-    '/landing-bg.jpeg'
-  ]
-}
+  images: ["/lounge-ted.JPG", "/portal-bg.png", "/landing-bg.jpeg"],
+};
 
 interface LoungeProps {
-  indemnityData: IndemnityType[];
+  indemnityData: {
+    clausesData: IndemnityType[];
+    miniClausesData: MiniIndemnityClauseType[];
+    clientIndemnity: ClientIndemnityType
+  };
   prepData: string[];
-  appointmentData: AppointmentDetailsType
+  appointmentData: AppointmentDetailsType;
 }
 
 const Lounge = ({ indemnityData, prepData, appointmentData }: LoungeProps) => {
@@ -65,7 +67,7 @@ const Lounge = ({ indemnityData, prepData, appointmentData }: LoungeProps) => {
       <motion.div
         className="h-full w-full flex flex-col items-center"
         animate={animatePage}
-        initial = {{opacity: 0}}
+        initial={{ opacity: 0 }}
         transition={{ duration: 1 }}
       >
         <div className="h-[75%] w-full relative">
@@ -77,23 +79,29 @@ const Lounge = ({ indemnityData, prepData, appointmentData }: LoungeProps) => {
           />
         </div>
 
-        <div>
-          <PortalAppointmentBanner
-            artist={APPOINTMENT.artist}
-            date={appointmentData.appointmentDate}
-            studio={appointmentData.appointmentLocation}
-            country={appointmentData.appointmentCity}
-          />
-        </div>
+        <PortalAppointmentBanner
+          artist={APPOINTMENT.artist}
+          date={appointmentData.appointmentDate}
+          studio={appointmentData.appointmentLocation}
+          country={appointmentData.appointmentCity}
+        />
 
         <div className="text-[8px]">*</div>
 
-        <div className="h-[25%] w-20 md:min-w-[20%] flex items-center">
-          <PortalSectionAccordion
-            Section1={<IndemnityAccordion data = {indemnityData}/>}
-            Section2={<TipsAccordion data={prepData} />}
-            Section3={<LocationAccordion data={SHOP} />}
-          />
+        <div className="h-[25%] w-[60%] md:min-w-[20%] flex items-center relative">
+          <div className="w-full absolute left-0 bottom-[5vh] lg:bottom-0 ">
+            <PortalSectionAccordion
+              Section1={
+                <IndemnityAccordion
+                  indemnityClauses={indemnityData.clausesData}
+                  miniIndemnityClauses={indemnityData.miniClausesData}
+                  clientIndemnity={indemnityData.clientIndemnity}
+                />
+              }
+              Section2={<TipsAccordion data={prepData} />}
+              Section3={<LocationAccordion data={SHOP} />}
+            />
+          </div>
         </div>
       </motion.div>
     </SectionLayout>

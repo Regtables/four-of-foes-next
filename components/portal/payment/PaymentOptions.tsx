@@ -47,7 +47,7 @@ const PaymentOptions = ({ client }: { client: ClientType }) => {
         handlePayment={handleDepositPayment}
         isCompleted={isDepositConfirmed}
         completedText="You have completed your deposit payment and secured your appointment."
-        text={`Kindly make a payment in the amount of ${client?.deposit.depositAmount}  to secure your appointment`}
+        text={`Kindly make a payment in the amount of €${client?.deposit.depositAmount} to secure your appointment`}
         up
       />
 

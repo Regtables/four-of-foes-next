@@ -1,30 +1,54 @@
 import { createSession, decrypt } from "@/app/lib/actions/clients/auth";
 import { fetchSanityClient } from "@/app/lib/actions/clients/fetchClient";
-import { redirect } from "next/dist/server/api-utils";
-import { cookies } from "next/headers";import { NextResponse } from "next/server";
+import { NextResponse } from "next/server";
+import { cookies } from "next/headers";
 
+export async function GET(req: Request) {
+  try {
+    const refresh = cookies().get("session-refresh")?.value;
 
-export async function GET(req: Request){
-  try{
-    const refresh = cookies().get('session-refresh')?.value
-
-    if(!refresh) return new NextResponse('No refresh token', { status: 401 })
-
-    const decoded = await decrypt(refresh!)
-
-    if(!decoded) return
-
-    if(decoded){
-      const client = await fetchSanityClient(decoded.user.id)
-
-      await createSession(client)
-
-      return new NextResponse('Session refreshed', { status: 200 })
+    if (!refresh) {
+      return new NextResponse(JSON.stringify({ error: "No refresh token" }), {
+        status: 401,
+        headers: { "Content-Type": "application/json" },
+      });
     }
 
-  } catch (error){
-    console.log(error)
+    const decoded = await decrypt(refresh);
 
-    return new NextResponse('Internal Error', { status: 500 })
+    if (!decoded) {
+      return new NextResponse(
+        JSON.stringify({ error: "Invalid refresh token" }),
+        {
+          status: 401,
+          headers: { "Content-Type": "application/json" },
+        }
+      );
+    }
+
+    const client = await fetchSanityClient(decoded.user.id);
+
+    if (!client) {
+      return new NextResponse(JSON.stringify({ error: "Client not found" }), {
+        status: 404,
+        headers: { "Content-Type": "application/json" },
+      });
+    }
+
+    await createSession(client);
+
+    return new NextResponse(JSON.stringify({ message: "Session refreshed" }), {
+      status: 200,
+      headers: { "Content-Type": "application/json" },
+    });
+  } catch (error) {
+    console.error("Error refreshing session:", error);
+    return new NextResponse(
+      JSON.stringify({ error: "Internal Server Error" }),
+      {
+        status: 500,
+        headers: { "Content-Type": "application/json" },
+      }
+    );
   }
 }

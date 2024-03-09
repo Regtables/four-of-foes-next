@@ -1,10 +1,28 @@
+import { useModal } from "@/context/ModalContext"
 import axios from "axios"
 
 export const useCheckout = () => {
-  const createPaypalOrder = async (amount: number) => {
-    const response = await axios.post('/api/checkout/paypal/create-paypal-order', { amount })
+  const { handleModalOpen, handleModalClose} = useModal()
   
-    return response.data
+  const createPaypalOrder = async (amount: number) => {
+    try{
+      handleModalOpen('loading')
+      const response = await axios.post('/api/checkout/paypal/create-paypal-order', { amount })
+    
+      return response.data
+
+    } catch (error){
+      console.log(error)
+
+      handleModalOpen('alert', { alert: {
+        title: "Payment Error",
+        content: 'There was an issue when trying to process your payment, please try again',
+        confirm: 'okay',
+        handleConfirm: () => handleModalClose('alert')
+      }})
+    } finally {
+      handleModalClose('loading')
+    }
   }
 
   const capturePaypalPayment = async (orderId: string) => {

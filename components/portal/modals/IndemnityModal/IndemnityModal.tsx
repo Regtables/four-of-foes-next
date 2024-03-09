@@ -4,7 +4,6 @@ import { motion } from "framer-motion";
 import { useModal } from "@/hooks/useModal";
 
 import ModalLayout from "../../layout/ModalLayout";
-import IndemnityTile from "../../indemnity/IndemnityTile/IndemnityTile";
 import ButtonPill from "@/components/buttons/ButtonPill";
 import { IndemnityType } from "@/types";
 
@@ -31,7 +30,7 @@ const IndemnityModal = () => {
 
       {content?.length > 0 ? (
         <div className="grid grid-cols-1 gap-2 mt-4">
-          {content.map((clause, i) => (
+          {/* {content.map((clause, i) => (
             <motion.div
               key={i}
               whileInView={{ y: [-20, 0], opacity: [0, 1] }}
@@ -41,7 +40,7 @@ const IndemnityModal = () => {
             >
               <IndemnityTile indemnity={clause} handleCheck={handleCheck}/>
             </motion.div>
-          ))}
+          ))} */}
         </div>
       ) : (
         <></>

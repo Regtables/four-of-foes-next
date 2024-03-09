@@ -7,11 +7,15 @@ export const fetchSanityClient = async (id: string) => {
   try{
     const clientData = await portalClient.fetch(clientQuery(id))
 
-    return clientData[0]
+    if(clientData){
+      return clientData[0]
+    } else {
+      throw new Error('Client was not found')
+    }
   } catch (error) {
     console.log(error)
 
-    return error
+    throw error
   }
 }
 

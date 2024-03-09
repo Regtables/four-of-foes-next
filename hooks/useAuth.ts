@@ -1,6 +1,7 @@
-import { usePortalProgress } from "@/context/PortalProgressContext"
 import axios from "axios"
 import { useRouter } from "next/navigation"
+
+import { usePortalProgress } from "@/context/PortalProgressContext"
 import { useModal } from "@/context/ModalContext"
 import { ClientType } from "@/types"
 
@@ -14,15 +15,22 @@ export const useAuth = () => {
       handleModalOpen('loading')
       const res = await axios.post('/api/clients/auth', { client })
 
-      console.log(res, 'response')
-
       if(res.status === 200){
         setProgress(client.progress)
         router.push('/portal/pre')
         console.log(progress)
+      } else {
+        throw new Error('Authenticaion Failed')
       }
     } catch (error){
       console.log(`Unable to sign client in: ${error}`)
+      
+      handleModalOpen('alert', { alert: {
+        title: 'Sign In Error',
+        content: 'There was an issue when trying to authenticate your account, please try again.',
+        confirm: 'Okay',
+        handleConfirm: () => handleModalClose('alert')
+      }})
       throw error
     } finally{
       handleModalClose('loading')
@@ -32,12 +40,25 @@ export const useAuth = () => {
   const logoutClient = async () => {
     try{
       handleModalOpen('loading')
-      await axios.get('/api/clients/auth/logout')
+      const res = await axios.get('/api/clients/auth/logout')
+
+      if(res.status === 200){
+        clearProgress()
+        router.push('/')
+      } else {
+        throw new Error('Authenticaion Failed')
+      }
   
-      clearProgress()
-      router.push('/')
     } catch (error){
       console.log(`Unable to logout client: ${error}`)
+
+      handleModalOpen('alert', { alert: {
+        title: 'Sign Out Error',
+        content: 'There was an issue when trying end your session, please try again',
+        confirm: 'Okay',
+        handleConfirm: () => handleModalClose('alert')
+      }})
+
       throw error
     } finally{
       handleModalClose('loading')
@@ -51,9 +72,19 @@ export const useAuth = () => {
   
       if(res.status === 200){
         router.push('/portal/pre')
+      } else {
+        throw new Error('Authenticaion Failed')
       }
     } catch (error){
       console.log(`Unable to refresh client's session: ${error}`)
+
+      handleModalOpen('alert', { alert: {
+        title: 'Session Refresh Error',
+        content: 'There was an issue when trying to refresh your session, please try again.',
+        confirm: 'Okay',
+        handleConfirm: () => handleModalClose('alert')
+      }})
+
       throw error
     } finally {
       handleModalClose('loading')

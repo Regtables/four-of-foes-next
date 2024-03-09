@@ -4,7 +4,7 @@ import FeedbackSlider from "../feedback/FeedbackSlider";
 import ButtonPill from "@/components/buttons/ButtonPill";
 import axios from "axios";
 import { usePortalProgress } from "@/context/PortalProgressContext";
-import { useModal } from "@/hooks/useModal";
+import { useModal } from "@/context/ModalContext";
 
 const FeedbackAccordion = ({
   data,
@@ -14,7 +14,7 @@ const FeedbackAccordion = ({
   const [currentRating, setCurrentRating] = useState(
     data.rating ? data.rating : 50
   );
-  const { handleOpen, handleClose } = useModal()
+  const { handleModalOpen, handleModalClose, handleActionErrorAlertOpen } = useModal()
   const [feedback, setFeedback] = useState(data.review ? data.review : "");
 
   const { progress } = usePortalProgress();
@@ -24,15 +24,17 @@ const FeedbackAccordion = ({
     e.preventDefault();
 
     try {
-      handleOpen('loading')
+      handleModalOpen('loading')
       const res = await axios.post("/api/portal/feedback", {
         currentRating,
         feedback,
       });
     } catch (error) {
       console.log(error);
+
+      handleActionErrorAlertOpen('submit/update your feedback')
     } finally {
-      handleClose('loading')
+      handleModalClose('loading')
     }
   };
 
