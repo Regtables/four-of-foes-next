@@ -17,7 +17,7 @@ const PortalLayout = async ({ children }: { children: React.ReactNode }) => {
 
   if(!session) redirect('/portal/auth/unauthorized')
 
-  if(session.user?.isAppointmentCompleted) redirect('/portal/post')
+  // if(session.user?.isAppointmentCompleted) redirect('/portal/post')
 
   return (
     <PortalSectionProvider>

@@ -6,11 +6,12 @@ import { getSession } from '@/app/lib/actions/clients/auth';
 import { fetchSanityClient } from '@/app/lib/actions/clients/fetchClient';
 
 import PostAppointment from '@/components/portal/sections/PostAppointment/PostAppointment';
+import { SessionType } from '@/types';
 
 const PostPortalPage = async () => {
-  const session = await getSession()
+  const session: any = await getSession()
 
-  if(!session?.user.isAppointmentCompleted) return redirect('/portal/pre')
+  // if(!session?.user.isAppointmentCompleted) return redirect('/portal/pre')
 
   const aftercontent = fetchAftercareContent()
   const client = fetchSanityClient(session?.user.id!)

@@ -1,6 +1,6 @@
 import React from "react";
 
-import PortalUnauthorized from "@/components/portal/sections/PortalUnAuthorized";
+import PortalUnauthorized from "@/components/portal/sections/PortalUnauthorized";
 import { cookies } from "next/headers";
 import { redirect } from "next/navigation";
 import { getSession } from "@/app/lib/actions/clients/auth";
