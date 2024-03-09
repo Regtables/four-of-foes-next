@@ -62,7 +62,7 @@ const AccordionLayout = ({
         className={cn(
           "overflow-hidden transition-all duration-[0.7s] flex justify-center w-full relative z-10 mb-auto",
           toggle && "relative z-10",
-          list && "h-[65vh]"
+          list && "h-[70vh]"
         )}
       >
         {children}
@@ -90,7 +90,7 @@ const AccordionLayout = ({
           {toggle && (
             <div className="bottom-[-5%] w-[100vw] flex justify-center">
               <motion.div
-                className="bg-white h-7 w-7 flex justify-center items-center rounded-full cursor-pointer absolute bottom-[-4%] mx-auto z-10"
+                className="bg-white h-7 w-7 flex justify-center items-center rounded-full cursor-pointer absolute bottom-[-4%] mx-auto z-20"
                 whileInView={{ y: [20, 0], opacity: [0, 1] }}
                 transition={{ duration: 1, delay: 0.3 }}
                 initial={{ y: 20, opacity: 0 }}

@@ -40,31 +40,31 @@ const PortalNavbar = () => {
     document.dispatchEvent(event);
   };
 
-  const handleLinkClick = (link: string) => {
-    const main = document.getElementById('main');
-    console.log(main);
+  // const handleLinkClick = (link: string) => {
+  //   const main = document.getElementById('main');
+  //   console.log(main);
   
-    const arrowLeftEvent = new KeyboardEvent('keydown', { key: 'ArrowLeft', bubbles: true });
-    main?.dispatchEvent(arrowLeftEvent);
+  //   const arrowLeftEvent = new KeyboardEvent('keydown', { key: 'ArrowLeft', bubbles: true });
+  //   main?.dispatchEvent(arrowLeftEvent);
   
-    // Check if the event was dispatched successfully
-    console.log('Event dispatched:', arrowLeftEvent.defaultPrevented);
+  //   // Check if the event was dispatched successfully
+  //   console.log('Event dispatched:', arrowLeftEvent.defaultPrevented);
 
-    main!.addEventListener('keydown', (event) => {
-      // Handle the keydown event on the main element if needed
-      console.log('Key pressed on main element:', event.key);
-    });
-  };
+  //   main!.addEventListener('keydown', (event) => {
+  //     // Handle the keydown event on the main element if needed
+  //     console.log('Key pressed on main element:', event.key);
+  //   });
+  // };
   
 
 
   return (
     <div className="grid grid-cols-3 gap-8 w-full">
       {LINKS.map((link, i) => (
-        <div
+        <a
           className="uppercase text-[11px] tracking-[0.2em] flex flex-col items-center justify-center relative"
-          // href={`#${link.link}`}
-          onClick={() => handleLinkClick(link.link)}
+          href={`#${link.link}`}
+          // onClick={() => handleLinkClick(link.link)}
           key = {i}
         >
           {link.link}
@@ -76,7 +76,7 @@ const PortalNavbar = () => {
               transition={{ duration: 0.5 }}
             />
           )}
-        </div>
+        </a>
       ))}
     </div>
   );

@@ -206,6 +206,7 @@ export const IndemnityProvider:React.FC<IndemnityProviderProps>= ({ children, in
     setMiniIndemnityClauses(miniClauses);
     setConsentedClauses([])
     setConsentedMiniClauses([])
+    setDateCapetured('')
   };
 
   const value = {
