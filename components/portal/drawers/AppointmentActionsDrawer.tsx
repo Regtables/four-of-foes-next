@@ -52,6 +52,8 @@ const AppointmentActionsDrawer = () => {
 
           handleModalClose("alert");
         },
+        option: 'No',
+        handleOption: () => handleModalClose('alert')
       },
     });
   };
@@ -102,7 +104,7 @@ const AppointmentActionsDrawer = () => {
 
   return (
     <DrawerLayout title={"cancel/resheudule"} toggleChildAccordion = {toggleChildAccordion}>
-      <div className="flex flex-col gap-6 items-center w-[80vw]">
+      <div className="flex flex-col gap-6 items-center w-[80vw] lg:w-[30vw]">
         <div className="flex flex-col gap-2 w-full">
           <h3 className="title text-center mb-4">Resheudle Appointment</h3>
 
@@ -119,7 +121,7 @@ const AppointmentActionsDrawer = () => {
               />
 
               <div
-                className="w-[60vw] h-[28px] mx-auto mt-4"
+                className="w-[60vw] lg:w-[30vw] h-[28px] mx-auto mt-4"
                 onClick={handleResheudleClick}
               >
                 <ButtonPill
@@ -145,7 +147,7 @@ const AppointmentActionsDrawer = () => {
             </p>
           ) : (
             <div
-              className="w-[60vw] mx-auto h-[28px]"
+              className="w-[60vw] lg:w-[30vw] mx-auto h-[28px]"
               onClick={handleCancelationClick}
             >
               <ButtonPill text="request cancelation" fill />

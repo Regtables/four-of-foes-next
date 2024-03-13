@@ -4,6 +4,7 @@ import React, { useState } from "react";
 import Popup from "@/components/layout/Popup";
 import Image from "next/image";
 import Swipeable from "../layout/Swipeable";
+import { ArrowLeft, ArrowRight } from "lucide-react";
 
 const ImageCarousel = ({
   i,
@@ -34,7 +35,7 @@ const ImageCarousel = ({
   };
 
   return (
-    <Swipeable onRight={handlePrev} onLeft={handleNext}>
+    // <Swipeable onRight={handlePrev} onLeft={handleNext}>
       <div className="h-full w-full lg:w-[60%] relative overflow-hidden">
         <div
           className={`flex h-full transition-translate duration-500 relative `}
@@ -58,22 +59,22 @@ const ImageCarousel = ({
           className="absolute top-0 h-full flex items-center left-[5px]"
           onClick={handlePrev}
         >
-          {/* <BsFillArrowLeftCircleFill
+          <ArrowLeft
             color="white"
-            size={28}
+            size={14}
             className="cursor-pointer"
-          /> */}
+          />
         </div>
 
         <div
           className="absolute top-0 h-full flex items-center right-[5px]"
           onClick={handleNext}
         >
-          {/* <BsFillArrowRightCircleFill
+          <ArrowRight
             color="white"
-            size={28}
+            size={14}
             className="cursor-pointer"
-          /> */}
+          />
         </div>
 
         <div className="absolute bottom-[20px] flex gap-2 justify-center w-full">
@@ -88,7 +89,7 @@ const ImageCarousel = ({
           ))}
         </div>
       </div>
-    </Swipeable>
+    // </Swipeable>
   );
 };
 

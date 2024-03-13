@@ -23,7 +23,7 @@ const AlertModal = () => {
 
   return (
     <Popup isOpen={isModalOpen!} fade>
-      <div className="border-2 border-[var(--color-gold)] w-[80%] flex flex-col items-center text-center gap-4 py-8 px-8 rounded-2xl my-auto">
+      <div className="border-2 border-[var(--color-gold)] w-[80%] lg:w-[40%] flex flex-col items-center text-center gap-4 py-8 px-8 rounded-2xl my-auto">
         <h2 className="text-[var(--color-gold)] w-full uppercase tracking-[0.1em] text-2xl font-bold heading-font">
           {title}
         </h2>

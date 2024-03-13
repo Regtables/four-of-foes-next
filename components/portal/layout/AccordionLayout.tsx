@@ -2,6 +2,7 @@ import { cn } from "@/app/lib/utils";
 import Popup from "@/components/layout/Popup";
 import Swipeable from "@/components/layout/Swipeable";
 import { useAppSettings } from "@/context/AppSettingsContext";
+import { useModal } from "@/context/ModalContext";
 import { AnimatePresence, motion } from "framer-motion";
 import { X } from "lucide-react";
 import React, { useRef, useState } from "react";
@@ -22,6 +23,7 @@ const AccordionLayout = ({
   const content: any = useRef(null);
 
   const { setToggleAccordion } = useAppSettings();
+  const { types } = useModal()
 
   const handleToggle = () => {
     if (!toggle) {
@@ -69,7 +71,7 @@ const AccordionLayout = ({
       </div>
       {/* </Swipeable> */}
 
-      {list && (
+      {(list) && (
         <AnimatePresence>
           {toggle && (
             <>
@@ -85,7 +87,7 @@ const AccordionLayout = ({
         </AnimatePresence>
       )}
 
-      {list && (
+      {(list && !types.includes('imagePreview')) && (
         <AnimatePresence>
           {toggle && (
             <div className="bottom-[-5%] w-[100vw] flex justify-center">

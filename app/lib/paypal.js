@@ -64,7 +64,7 @@ export async function createOrder(amount) {
           intent: "CAPTURE",
           purchase_units: [
             {
-              amount: { currency_code: "USD", value: `${amount}` },
+              amount: { currency_code: "EUR", value: `${amount}` },
             },
           ],
         }),

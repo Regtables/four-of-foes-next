@@ -103,13 +103,15 @@ const PaymentAccordion = ({
                   onApprove={(data, actions) => {
                     return handlePayment(data.orderID);
                   }}
-                  onError={(err) =>
+                  onError={(err) => {
+                    console.log(err)
                     handleModalOpen('alert', { alert: {
                       title: "Payment Error",
                       content: 'There was an issue when trying to process your payment, please try again',
                       confirm: 'okay',
                       handleConfirm: () => handleModalClose('alert')
                     }})
+                  }
                   }
                 />
               </PayPalScriptProvider>
