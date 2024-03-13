@@ -17,7 +17,7 @@ const FeedbackAccordion = ({
   const { handleModalOpen, handleModalClose, handleActionErrorAlertOpen } = useModal()
   const [feedback, setFeedback] = useState(data?.review ? data?.review : "");
 
-  const { progress } = usePortalProgress();
+  const { progress, handleSetProgressSection } = usePortalProgress();
   const { isReviewSubmitted } = progress;
 
   const handleSubmit = async (e: FormEvent) => {
@@ -29,6 +29,10 @@ const FeedbackAccordion = ({
         currentRating,
         feedback,
       });
+
+      if(res.status === 200){
+        handleSetProgressSection('isReviewSubmitted', true)
+      }
     } catch (error) {
       console.log(error);
 

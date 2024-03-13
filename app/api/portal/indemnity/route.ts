@@ -7,8 +7,6 @@ export async function POST(req: Request){
   try{
     const { indemnityClauses, miniIndemnityClauses } = await req.json()
 
-    console.log(indemnityClauses)
-
     const client = await protect(req)
 
     if(client){
@@ -41,7 +39,7 @@ export async function DELETE(req: Request){
   try{
     const client = await protect(req)
 
-    if(client && client.progress.isIndemnitySigned){
+    if(client){
       const clientIndemnity = {
         captureDate: '',
         clientName: '',

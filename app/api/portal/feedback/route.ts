@@ -12,10 +12,10 @@ export async function POST(req: Request) {
       const { currentRating: rating, feedback: review } = body;
 
       client.review = {
-        rating,
+        rating: Number(rating),
         review,
       };
-
+      
       client.progress.isReviewSubmitted = true;
 
       await portalClient.createOrReplace(client);
