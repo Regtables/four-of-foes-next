@@ -45,7 +45,7 @@ export interface ClientType{
   payment: {
     paymentAmount: number
   }
-  chat: MessageType[]
+  chat: Message[]
   progress: PortalProgressType
   review: {
     review: string,
@@ -104,6 +104,24 @@ export interface MessageType{
   isDeleted?: boolean,
   isRead?: boolean
   live?: boolean
+}
+
+export interface Message {
+  _type?: string,
+  _id?: string;
+  content?: string;
+  image?: any
+  sender?: ClientType;
+  isFromClient: boolean;
+  createdAt: Date;
+  readBy?: {
+    _ref: string;
+    _type: string;
+  }[] | ClientType[];
+  isSent?: boolean,
+  isLive?: boolean,
+  hasError?: boolean
+  i?: number
 }
 
 export interface RatingType {

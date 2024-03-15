@@ -36,7 +36,7 @@ const ImageCarousel = ({
 
   return (
     // <Swipeable onRight={handlePrev} onLeft={handleNext}>
-      <div className="h-full w-full lg:w-[60%] relative overflow-hidden">
+      <div className="h-full w-full lg:w-[60%] mx-auto relative overflow-hidden">
         <div
           className={`flex h-full transition-translate duration-500 relative `}
           style={{ transform: `translateX(-${index * 100}%)` }}
@@ -47,7 +47,7 @@ const ImageCarousel = ({
               <Image 
                 src = {image}
                 fill
-                className="object-cover"
+                className="object-cover lg:rounded-md"
                 alt = {`Tattoo shop photo`}
               />
 

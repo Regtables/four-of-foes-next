@@ -20,7 +20,7 @@ export const allClientChatsQuery = () =>  {
 } 
 
 export const clientChatQuery = (clientId: string) => {
-  const query = `*[_type == "client" && _id == "${clientId}"]{chat, clientName, appointmentDetails}`
+  const query = `*[_type == "client" && _id == "${clientId}"]{chat[]->{sender->, readBy[]->, content, createdAt, _id, isFromClient, image, isSent }}`
 
   return query
 }

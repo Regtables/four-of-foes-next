@@ -4,7 +4,7 @@ import React, { Suspense } from 'react'
 
 import { ClientType } from '@/types'
 
-import MessageInput from '../MessageInput/MessageInput'
+import MessageInput from '../MessageInput'
 import ViewMotionWrapper from '@/components/layout/Motion/ViewMotionWrapper'
 import { Calendar, MapPin } from 'lucide-react'
 import { format } from 'date-fns'

@@ -88,8 +88,8 @@ const Lounge = ({ indemnityData, prepData, appointmentData }: LoungeProps) => {
 
         <div className="text-[8px]">*</div>
 
-        <div className="h-[25%] w-[60%] md:min-w-[20%] flex items-center relative">
-          <div className="w-full absolute left-0 bottom-[5vh] lg:bottom-0 ">
+        <div className="h-[25%] w-[60%] lg:min-w-[20%] flex items-center relative">
+          <div className="w-full absolute left-0 bottom-[5vh] lg:bottom-[4vh] my-auto">
             <PortalSectionAccordion
               Section1={
                 <IndemnityAccordion

@@ -5,19 +5,21 @@ import { motion } from 'framer-motion'
 
 import SectionLayout from '../../layout/SectionLayout'
 import Partition from '../../PortalLinkList/Partition'
-import PortalMessenger from '../../messenger/PortalMessenger/PortalMessenger'
+import PortalMessenger from '../../messenger/PortalMessenger'
 import CancelAppointment from '@/components/buttons/CancelAppointment'
 import { useSection } from '@/context/PortalSectionContext'
-import { MessageType } from '@/types'
+import { ClientType, MessageType, Message } from '@/types'
 import { usePortalProgress } from '@/context/PortalProgressContext'
 import { useModal } from '@/context/ModalContext'
 import ButtonPill from '@/components/buttons/ButtonPill'
+import { MessengerProvider } from '@/context/MessengerContext'
 
 interface LobbyProps {
-  messages: MessageType[]
+  messages: Message[],
+  client: ClientType
 }
 
-const Lobby = ({ messages } : LobbyProps) => {
+const Lobby = ({ messages, client } : LobbyProps) => {
   const { currentSection } = useSection()
   const [animatePage, setAnimatePage] = useState({})
   const { progress } = usePortalProgress()
@@ -49,7 +51,7 @@ const Lobby = ({ messages } : LobbyProps) => {
   return (
     <SectionLayout section='lobby'>
       <motion.div 
-        className='w-full h-full pt-8 flex flex-col relative' 
+        className='w-full h-full max-h-full pt-8 flex flex-col relative lg:w-[70vw]' 
         // whileInView={{ opacity: [0,1] }} 
         animate = {animatePage}
         transition={{ duration: 1 }} 
@@ -61,8 +63,10 @@ const Lobby = ({ messages } : LobbyProps) => {
 
         <Partition />
 
-        <div className='flex-[0.92]'>
-          <PortalMessenger messages = {messages} />
+        <div className='flex-[0.92] max-h-full'>
+          <MessengerProvider messageHistory = {messages} client = {client}>
+            <PortalMessenger />
+          </MessengerProvider>
         </div>
 
         <Partition />
