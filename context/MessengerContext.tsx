@@ -13,11 +13,13 @@ interface MessengerContextProps {
   setNewMessage: (message: string) => void;
   handleSend: (e: React.FormEvent) => Promise<void>;
   handleUpload: (e: any) => Promise<void>;
-  isSending: boolean
+  isSending: boolean,
+  isAdmin: boolean
 }
 
 interface MessengerProviderProps {
   messageHistory: Message[];
+  isAdmin: boolean,
   children: React.ReactNode;
   client: ClientType;
 }
@@ -28,6 +30,7 @@ export const MessengerProvider: React.FC<MessengerProviderProps> = ({
   messageHistory: messages,
   children,
   client,
+  isAdmin
 }) => {
   const [messageHistory, setMessageHistory] = useState<Record<string, Message>>(
     messages.reduce((acc: any, message: Message) => {
@@ -37,7 +40,6 @@ export const MessengerProvider: React.FC<MessengerProviderProps> = ({
       return acc;
     }, {})
   );
-
   const [newMessage, setNewMessage] = useState("");
   const [isSending, setIsSending] = useState(false)
 
@@ -51,9 +53,8 @@ export const MessengerProvider: React.FC<MessengerProviderProps> = ({
     const message: Message = {
       content: newMessage,
       createdAt: new Date(),
-      sender: client,
-      isFromClient: true,
-      readBy: [client],
+      sender: isAdmin ? undefined : client,
+      isFromClient: isAdmin ? false : true,
       isLive: true,
       isSent: false,
       hasError: false
@@ -68,7 +69,7 @@ export const MessengerProvider: React.FC<MessengerProviderProps> = ({
     try {
       const res = await axios.post(
         "/api/portal/messenger/",
-        { content: newMessage },
+        { content: newMessage, isAdmin, clientId: client._id },
         { withCredentials: true }
       );
 
@@ -80,9 +81,10 @@ export const MessengerProvider: React.FC<MessengerProviderProps> = ({
 
           return {
             ...restMessages,
-            [serverMessage._id]: {
+            [message.isLive ? message.createdAt.toString() : serverMessage._id]: {
               ...serverMessage,
-              sender: client
+              sender: client,
+              createdAt: serverMessage.createdAt
             }
           }
         })
@@ -156,6 +158,7 @@ export const MessengerProvider: React.FC<MessengerProviderProps> = ({
     handleSend,
     handleUpload,
     isSending,
+    isAdmin
   }
 
   return (

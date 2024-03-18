@@ -7,12 +7,12 @@ import MessageInput from "./MessageInput";
 
 const PortalMessenger:React.FC = () => {
   return (
-    <div className="flex flex-col h-full w-full py-4 px-2">
-      <div className="flex-[0.95] w-full">
+    <div className="flex flex-col h-full w-full">
+      <div className="flex-[0.95] w-full h-[70vh] max-h-[70vh] overflow-auto pb-4">
         <Messages />
       </div>
 
-      <div className="flex-[0.05]">
+      <div className="flex-[0.05] p-2">
         <MessageInput />
       </div>
     </div>

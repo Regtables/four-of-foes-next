@@ -9,6 +9,7 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@clerk/nextjs": "^4.29.9",
     "@paypal/react-paypal-js": "^8.1.4",
     "@sanity/client": "^6.10.0",
     "axios": "^1.6.7",

@@ -8,7 +8,7 @@ const Messages = () => {
   const { messageHistory } = useMessenger()
 
   return (
-    <div className="flex flex-col gap-4 h-[68vh] max-h-[68vh] overflow-scroll pb-4">
+    <div className="flex flex-col gap-4 pb-4 px-2 py-2 h-[100%]">
       {/*@ts-ignore */}
       {messageHistory.sort((a,b) => new Date(b.createdAt - new Date(a.createdAt)))
       .map((message, i) => (

@@ -7,7 +7,7 @@ export const revalidate = 0
 const PortalRootLayout = async ({ children } : { children: React.ReactNode }) => {
   return (
     <PortalProgressProvider>
-      <div className="min-h-[100vh] w-[100vw] h-screen flex flex-col">
+      <div className="min-h-[100vh] w-[100vw] h-screen max-h-screen overflow-hidden flex flex-col">
         <header className="flex justify-center items-center flex-[0.05] z-10 relative w-[160px] mx-auto">
           {/* <Image
             src="/logo-big.jpeg"
@@ -18,9 +18,9 @@ const PortalRootLayout = async ({ children } : { children: React.ReactNode }) =>
           <h1 className="uppercase tracking-wider font-[300] heading-font">Four of Foes</h1>
         </header>
 
-        <main className="flex-[0.9]">
+        {/* <main className="flex-[0.95]"> */}
           {children}
-        </main>
+        {/* </main> */}
       </div>
     </PortalProgressProvider>
   );

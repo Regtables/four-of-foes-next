@@ -20,7 +20,7 @@ export const allClientChatsQuery = () =>  {
 } 
 
 export const clientChatQuery = (clientId: string) => {
-  const query = `*[_type == "client" && _id == "${clientId}"]{chat[]->{sender->, readBy[]->, content, createdAt, _id, isFromClient, image, isSent }}`
+  const query = `*[_type == "client" && _id == "${clientId}"]{chat[]->{sender->, readBy[]->, content, createdAt, _id, isFromClient, image, isSent }} | order(_createdAt desc) [0...100]`
 
   return query
 }

@@ -64,7 +64,7 @@ const Lobby = ({ messages, client } : LobbyProps) => {
         <Partition />
 
         <div className='flex-[0.92] max-h-full'>
-          <MessengerProvider messageHistory = {messages} client = {client}>
+          <MessengerProvider messageHistory = {messages} client = {client} isAdmin = {false}>
             <PortalMessenger />
           </MessengerProvider>
         </div>

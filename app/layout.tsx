@@ -6,6 +6,7 @@ import { ModalProvider as ModalStateProvider } from "@/context/ModalContext";
 import { BookingFormProvider } from "@/context/BookingFormContext";
 import { AppSettingsProvider } from "@/context/AppSettingsContext";
 import ModalProvider from "@/components/providers/ModalProvider";
+import { ClerkProvider } from "@clerk/nextjs";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -27,14 +28,16 @@ export default function RootLayout({
       />
 
       <body className={jost.className}>
-        <AppSettingsProvider>
-          <ModalStateProvider>
-            <BookingFormProvider>
-              {children}
-              <ModalProvider />
-            </BookingFormProvider>
-          </ModalStateProvider>
-        </AppSettingsProvider>
+        <ClerkProvider>
+          <AppSettingsProvider>
+            <ModalStateProvider>
+              <BookingFormProvider>
+                {children}
+                <ModalProvider />
+              </BookingFormProvider>
+            </ModalStateProvider>
+          </AppSettingsProvider>
+        </ClerkProvider>
       </body>
     </html>
   );

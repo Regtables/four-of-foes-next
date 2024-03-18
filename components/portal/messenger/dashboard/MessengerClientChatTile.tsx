@@ -1,3 +1,5 @@
+'use client'
+
 import Link from "next/link";
 import React from "react";
 import { CheckCheck } from "lucide-react";
@@ -9,7 +11,7 @@ import { cn } from "@/app/lib/utils";
 const MessengerClientChatTile = ({ client }: { client: ClientType }) => {
   const lastMessage =
     client.chat?.length > 0
-      ? client.chat[client.chat?.length - 1]?.content
+      ? client.chat[client.chat?.length]?.content
       : null;
   const pathname = usePathname();
 
@@ -19,7 +21,7 @@ const MessengerClientChatTile = ({ client }: { client: ClientType }) => {
     <Link href={`/portal/messenger-dashboard/${client._id}`}>
       <div
         className={cn(
-          "h-full border-b-[1px] border-[grey] min-h-[70px] p-2 cursor-pointer hover:bg-[#444444] transition-all duration-500",
+          "h-full border-b-[1px] border-[grey] min-h-[70px] p-2 cursor-pointer hover:bg-[#444444] hover:rounded-md transition-all duration-500",
           isActive && "bg-white text-black rounded-md"
         )}
       >

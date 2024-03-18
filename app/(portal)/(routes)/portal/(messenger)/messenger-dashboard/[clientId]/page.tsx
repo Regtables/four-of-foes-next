@@ -1,20 +1,37 @@
-import React, { Suspense } from 'react'
+import React, { Suspense } from "react";
 
-import MessengerConversation from '@/components/portal/messenger/dashboard/MessengerConversation'
-import { fetchClientChat } from '@/app/lib/actions/clients/fetchClient'
+import MessengerConversation from "@/components/portal/messenger/dashboard/MessengerConversation";
+import {
+  fetchClientChat,
+  fetchSanityClient,
+} from "@/app/lib/actions/clients/fetchClient";
+import { MessengerProvider } from "@/context/MessengerContext";
 
-const MessengerDashboardConversationPage = async ({ params } : { params: { clientId: string }}) => {
-  const { clientId } = params
- 
-  const clientChat = await fetchClientChat(clientId)
-  
+const MessengerDashboardConversationPage = async ({
+  params,
+}: {
+  params: { clientId: string };
+}) => {
+  const { clientId } = params;
+
+  const client = await fetchSanityClient(clientId);
+  const clientChat = await fetchClientChat(clientId);
+
+  const messageHistory = clientChat.chat ? clientChat.chat : [];
+
   return (
-    <div className='h-screen overflow-hidden'>
+    <div className="">
       <Suspense>
-        <MessengerConversation client={clientChat} />
+        <MessengerProvider
+          messageHistory={messageHistory}
+          client={client}
+          isAdmin
+        >
+          <MessengerConversation client={client} />
+        </MessengerProvider>
       </Suspense>
     </div>
-  )
-}
+  );
+};
 
-export default MessengerDashboardConversationPage
+export default MessengerDashboardConversationPage;

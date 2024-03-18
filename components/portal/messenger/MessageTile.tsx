@@ -6,7 +6,7 @@ import { Message} from "@/types";
 import { urlFor } from "@/app/lib/sanity";
 import { useMessenger } from "@/context/MessengerContext";
 
-import MessageStatus from "./dashboard/MessageStatus";
+import MessageStatus from "./MessageStatus";
 import ViewMotionWrapper from "@/components/layout/Motion/ViewMotionWrapper";
 
 interface MessageTileProps extends Message {
@@ -26,7 +26,9 @@ const MessageTile: React.FC<MessageTileProps> = ({
   isLive,
   i
 }: Message) => {
-  const { messageHistory } = useMessenger()
+  const { messageHistory, isAdmin } = useMessenger()
+
+  const facing =  ((isAdmin && !isFromClient) || (!isAdmin && isFromClient))
   
   const imageStyles = 'w-full h-full max-h-[300px] rounded-md'
 
@@ -65,30 +67,31 @@ const MessageTile: React.FC<MessageTileProps> = ({
       )
     }
   }
+
   return (
-    <ViewMotionWrapper className={cn("flex items-end gap-[3px]", !isFromClient && 'flex-row-reverse')} duration={1}>
+    <ViewMotionWrapper className={cn("flex items-end gap-[3px]", (!facing) && 'flex-row-reverse')} duration={1} once>
       <div
         className={cn(
           "border border-1-white py-[5px] px-[5px] rounded-md max-w-[80%] flex flex-col min-w-[50px] items-end mx-[4px] ",
-          isFromClient && "bg-white text-black ml-0 items-start"
+          facing && "bg-white text-black ml-0 items-start"
         )}
         id= {isLast ? 'last' : ''}
       >
         <h5 className="text-[8px] italic mb-[3px]">{renderFrom()}</h5>
         
-        <div className={cn("flex justify-between w-full items-end", !isFromClient && 'flex-row-reverse', image && 'flex-col items-end')}>
+        <div className={cn("flex justify-between w-full items-end", !facing && 'flex-row-reverse', image && 'flex-col items-end')}>
           {renderMessage()}
 
-          <div className={cn('ml-2', !isFromClient && 'mr-2 ml-0', image && 'mr-0 ml-0 mt-2', _id === '1' && 'mt')}>
+          <div className={cn('ml-2', !facing && 'mr-2 ml-0', image && 'mr-0 ml-0 mt-2', _id === '1' && 'mt')}>
             <MessageStatus isLast = {isLast} isSent = {isSent!} hasError = {hasError!} />
           </div>
         </div>
       </div>
+
       {isSent && (
         <ViewMotionWrapper className="text-[7px]" duration={1} y = {0}>
           {moment(createdAt).calendar()}
         </ViewMotionWrapper>
-
       )}
     </ViewMotionWrapper>
   );

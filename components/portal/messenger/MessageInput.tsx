@@ -19,11 +19,11 @@ const MessageInput: React.FC = () => {
       </label>
 
       <div className="flex border border-[var(--color-white-light)] border-1 rounded-full p-[7px] flex-grow items-center justify-between">
-        <div className="flex gap-2">
+        <div className="flex gap-2 w-full">
           <Smile className="w-5 h-5" color="var(--color-white-light)" />
 
           <input
-            className="bg-transparent border-none outline-none text-[10px] w-full"
+            className="bg-transparent border-none outline-none text-[10px] flex-grow"
             placeholder="Message..."
             value={newMessage}
             onChange={(e) => setNewMessage(e.target.value)}

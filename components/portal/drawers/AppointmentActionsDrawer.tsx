@@ -1,8 +1,7 @@
 "use client";
 
-import React, { useRef, useState } from "react";
+import React, { useState } from "react";
 import axios from "axios";
-import { useRouter } from "next/navigation";
 
 import { usePortalProgress } from "@/context/PortalProgressContext";
 import { useModal } from "@/context/ModalContext";
@@ -15,7 +14,6 @@ import Partition from "../PortalLinkList/Partition";
 const AppointmentActionsDrawer = () => {
   const [resheudleDate, setResheudleDate] = useState("");
   const { handleSetProgressSection, progress } = usePortalProgress();
-  const router = useRouter()
   const [toggleChildAccordion, setToggleChildAccordion] = useState(false)
 
   const {
@@ -68,10 +66,10 @@ const AppointmentActionsDrawer = () => {
         { withCredentials: true }
       );
 
-      if (res.status === 200) {
+      // if (res.status === 200) {
         handleSetProgressSection("isAppliedForResheudle", true);
         handleSetProgressSection("resheduleDate", resheudleDate);
-      }
+      // }
     } catch (error) {
       console.log(error);
 

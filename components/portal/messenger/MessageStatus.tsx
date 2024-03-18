@@ -1,8 +1,8 @@
 import React from "react";
 
 import { useMessenger } from "@/context/MessengerContext";
-import { RotatingLines } from "react-loader-spinner";
-import { Check } from "lucide-react";
+import { Puff } from "react-loader-spinner";
+import { CheckCheck } from "lucide-react";
 
 const MessageStatus = ({
   isLast,
@@ -18,16 +18,15 @@ const MessageStatus = ({
   return (
     <div>
       {isSending && isLast && !hasError ? (
-        <RotatingLines
+        <Puff
           visible={isSending}
+          height='10'
           width="10"
-          strokeColor="black"
-          strokeWidth="5"
-          animationDuration="0.75"
+          color="black"
           ariaLabel="rotating-lines-loading"
         />
       ) : (
-        <Check size={10} />
+        <CheckCheck size={10} />
       )}
       {hasError && "x"}
     </div>
