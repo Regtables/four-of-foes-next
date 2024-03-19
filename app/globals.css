@@ -2,8 +2,6 @@
 @tailwind components;
 @tailwind utilities;
 
-
-
 @font-face {
   font-family: 'Futura Condensed';
   /* src: url('/fonts/Futura-Condensed/Futura-Condensed-Regular.tff') format('truetype'); */
