@@ -38,7 +38,7 @@ const PortalAuth = ({ client } : { client: ClientType }) => {
   }
 
   return (
-    <div className='flex flex-col items-center justify-center  gap-4 border-2 border-[var(--color-gold)] rounded-[20px] h-[60%] w-[85%] lg:h-[60%] lg:w-[40%]'>
+    <div className='flex flex-col items-center justify-center gap-4 border-2 border-[var(--color-gold)] rounded-[20px] h-[50%] w-[85%] lg:h-[60%] lg:w-[40%]'>
       {client ? (
         <Fragment>
           <div className='text-[var(--color-gold)] uppercase tracking-[0.2em] text-2xl font-semibold heading-font'>

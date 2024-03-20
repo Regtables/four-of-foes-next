@@ -29,7 +29,8 @@ const IndemnityTile: React.FC<IndemnityTileProps> = ({ clause }) => {
   };
 
   const handleToggle = (e: any) => {
-    if(e.target.tagName !== 'svg' && e.target.tagName !== 'path'){
+    console.log(e.target.id)
+    if(e.target.id !== 'indemnity-check' && e.target.tagName !== 'indemnity-check'){
       if (!toggle) {
         setToggle(true);
         setHeight(`${content.current.scrollHeight}px`);
@@ -47,10 +48,12 @@ const IndemnityTile: React.FC<IndemnityTileProps> = ({ clause }) => {
         toggle ? "rounded-[5px]" : "rounded-[20rem]",
         checked && "bg-white text-black"
       )}
+      id = {clause.id}
     >
       <div
         className="flex px-4 items-center w-full h-[40px] cursor-pointer"
         onClick={handleToggle}
+        id = {clause.id}
       >
         <motion.div
           variants={iconVariants}
@@ -69,7 +72,7 @@ const IndemnityTile: React.FC<IndemnityTileProps> = ({ clause }) => {
           onClick={() => handleClauseCheck(clause.id)}
           id = 'indemnity-check'
         >
-          <Check size={12} color={checked ? "white" : "black"} />
+          <Check size={12} color={checked ? "white" : "black"} id = 'indemnity-check'/>
         </div>
       </div>
 

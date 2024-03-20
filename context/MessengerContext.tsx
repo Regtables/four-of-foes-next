@@ -45,8 +45,6 @@ export const MessengerProvider: React.FC<MessengerProviderProps> = ({
   const [newMessage, setNewMessage] = useState("");
   const [isSending, setIsSending] = useState(false);
 
-  console.log(messageHistory);
-
   const { handleActionErrorAlertOpen } = useModal();
 
   const handleSend = async (e: React.FormEvent) => {
