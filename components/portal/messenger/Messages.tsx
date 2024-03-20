@@ -24,6 +24,7 @@ const Messages = () => {
           key={i}
           i= {i}
           isSent = {message.isSent}
+          hasError = {message.hasError}
         />
       ))}
     </div>

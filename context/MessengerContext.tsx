@@ -108,6 +108,7 @@ export const MessengerProvider: React.FC<MessengerProviderProps> = ({
       }));
 
       handleActionErrorAlertOpen("trying to send your message");
+      setIsSending(false)
     }
   };
 
@@ -184,6 +185,8 @@ export const MessengerProvider: React.FC<MessengerProviderProps> = ({
             hasError: true,
           },
         }));
+
+        setIsSending(false)
       }
     } else {
       //alert

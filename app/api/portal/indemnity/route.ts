@@ -1,7 +1,8 @@
+import { NextResponse } from "next/server";
+
 import { portalClient } from "@/app/lib/sanity";
 import { protect } from "@/middleware/authMiddleware";
 import { IndemnityType, MiniIndemnityClauseType } from "@/types";
-import { NextResponse } from "next/server";
 
 export async function POST(req: Request){
   try{
@@ -55,7 +56,7 @@ export async function DELETE(req: Request){
       return NextResponse.json('Indemnity revoked', { status: 200 })
     }
   } catch (error){  
-    console.log(error)
+    console.log(error, 'error')
 
     return NextResponse.json(`Error when reseting client indemnity: ${error}`, { status: 500 })
   }

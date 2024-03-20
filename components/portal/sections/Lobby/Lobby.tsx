@@ -51,7 +51,7 @@ const Lobby = ({ messages, client } : LobbyProps) => {
   return (
     <SectionLayout section='lobby'>
       <motion.div 
-        className='w-full h-full max-h-full pt-8 flex flex-col relative lg:w-[70vw]' 
+        className='w-full h-full max-h-full pt-8 flex flex-col relative lg:w-[100vw]' 
         // whileInView={{ opacity: [0,1] }} 
         animate = {animatePage}
         transition={{ duration: 1 }} 

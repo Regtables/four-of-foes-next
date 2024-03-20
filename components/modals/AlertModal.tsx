@@ -23,16 +23,16 @@ const AlertModal = () => {
 
   return (
     <Popup isOpen={isModalOpen!} fade>
-      <div className="border-2 border-[var(--color-gold)] w-[80%] lg:w-[40%] flex flex-col items-center text-center gap-4 py-8 px-8 rounded-2xl my-auto">
+      <div className="border-2 border-[var(--color-gold)] w-[80%] lg:w-[30%] flex flex-col items-center text-center gap-2 py-8 px-8 rounded-2xl my-auto">
         <h2 className="text-[var(--color-gold)] w-full uppercase tracking-[0.1em] text-2xl font-bold heading-font">
           {title}
         </h2>
         <Asterisk size={10} />
 
-        <p className="text-center text-[10px] tracking-[0.15em] w-[97%]">{content}</p>
+        <p className="text-center text-[10px] tracking-[0.15em] w-[90%]">{content}</p>
 
         <div
-          className="min-w-[120px] w-full min-h-[40px]"
+          className="min-w-[120px] max-w-[250px] w-full min-h-[40px]"
           onClick={() => handleConfirm()}
         >
           <ButtonPill text={confirm} />
@@ -40,7 +40,7 @@ const AlertModal = () => {
 
         {option && (
           <div
-            className="min-w-[120px] w-full min-h-[40px]"
+            className="min-w-[120px] max-w-[250px] w-full min-h-[40px]"
             onClick={() => handleOption()}
           >
             <ButtonPill text={option} />
