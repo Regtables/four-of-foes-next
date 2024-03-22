@@ -1,18 +1,25 @@
-"use client";
+'use client'
 
-import React, { Suspense } from "react";
+import React, { Suspense, useEffect } from "react";
+import Link from "next/link";
+import { Calendar, ChevronLeft, MapPin } from "lucide-react";
+import { format } from "date-fns";
 
 import { ClientType } from "@/types";
 
-import MessageInput from "../MessageInput";
 import ViewMotionWrapper from "@/components/layout/Motion/ViewMotionWrapper";
-import { Calendar, ChevronLeft, MapPin } from "lucide-react";
-import { format } from "date-fns";
-import { useMessenger } from "@/context/MessengerContext";
+import MessageInput from "../MessageInput";
 import Messages from "../Messages";
-import Link from "next/link";
+import axios from "axios";
 
 const MessengerConversation = ({ client }: { client: ClientType }) => {
+  useEffect(() => {
+    const deleteMessages = async () => {
+      await axios.delete('/api/portal/messenger/delete-messages')
+    }
+
+    deleteMessages()
+  }, [])
   return (
     <ViewMotionWrapper y={0} duration={0.3} className="flex flex-col">
       <Link
@@ -24,7 +31,7 @@ const MessengerConversation = ({ client }: { client: ClientType }) => {
         <div className="mt-[1px] tracking-[0.15em]">back to conversations</div>
       </Link>
 
-      <Suspense>
+      {/* <Suspense> */}
       <div className="border-b-[1px] border-white p-2 flex flex-col flex-[0.1]">
         <div className="uppercase text-[16px] font-semibold tracking-wider mb-1">
           {client?.clientName}
@@ -44,20 +51,20 @@ const MessengerConversation = ({ client }: { client: ClientType }) => {
           )}
         </div>
       </div>
-      </Suspense>
+      {/* </Suspense> */}
 
       {/* Use fallback */}
-      <Suspense>
+      {/* <Suspense> */}
         <div className="flex-[0.85] px-0 max-h-[76vh] min-h-[76vh] overflow-auto">
           <Messages />
         </div>
-      </Suspense>
+      {/* </Suspense> */}
 
-      <Suspense>
+      {/* <Suspense> */}
         <div className="flex-[0.05] p-2 pb-4">
           <MessageInput />
         </div>
-      </Suspense>
+      {/* </Suspense> */}
     </ViewMotionWrapper>
   );
 };

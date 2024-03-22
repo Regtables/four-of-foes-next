@@ -21,6 +21,7 @@ export async function POST(req: Request) {
           isSent: true,
           hasError: false,
           isFromClient: false,
+          readBy: ["admin"],
           _key: new Date(),
         };
 
@@ -40,7 +41,7 @@ export async function POST(req: Request) {
 
         return NextResponse.json({ message }, { status: 200 });
       } else {
-        return NextResponse.json('Unauthorized', { status: 401 })
+        return NextResponse.json("Unauthorized", { status: 401 });
       }
     } catch (error) {
       console.log(error);
@@ -58,17 +59,15 @@ export async function POST(req: Request) {
           _type: "message",
           content,
           createdAt: new Date(),
-          sender: !isAdmin
-            ? {
-                _type: "reference",
-                _ref: client._id,
-              }
-            : undefined,
+          sender: {
+            _type: "reference",
+            _ref: client._id,
+          },
           isSent: true,
           hasError: false,
-          isFromClient: isAdmin ? false : true,
+          isFromClient: true,
           _key: new Date(),
-          readBy: [{ _type: "reference", _ref: client._id }],
+          readBy: ['client'],
         };
 
         const newMessage = await portalClient.create(message);

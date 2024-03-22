@@ -6,6 +6,8 @@ import { redirect } from "next/navigation";
 
 import PortalNavbar from "@/components/portal/PortalNavbar/PortalNavbar";
 import { getSession } from "@/app/lib/actions/clients/auth";
+import { fetchClientChat } from "@/app/lib/actions/clients/fetchClient";
+import { filterUnreadMessages } from "@/app/lib/helpers";
 
 export const metadata: Metadata = {
   title: "Four of Foes - Patron Lounge",
@@ -14,8 +16,14 @@ export const metadata: Metadata = {
 
 const PortalLayout = async ({ children }: { children: React.ReactNode }) => {
   const session = await getSession();
-
   if (!session) redirect("/portal/auth/unauthorized");
+
+  const clientChat = await fetchClientChat(session.user.id)
+
+  console.log(clientChat, 'client chat')
+
+  const unreadMessages = filterUnreadMessages(clientChat.chat, false)
+
 
   // if(session.user?.isAppointmentCompleted) redirect('/portal/post')
 
@@ -25,7 +33,7 @@ const PortalLayout = async ({ children }: { children: React.ReactNode }) => {
         {children}
 
         <footer className="flex items-center w-72 mx-auto">
-          <PortalNavbar />
+          <PortalNavbar unreadMessages = {unreadMessages} />
         </footer>
       </div>
     </PortalSectionProvider>

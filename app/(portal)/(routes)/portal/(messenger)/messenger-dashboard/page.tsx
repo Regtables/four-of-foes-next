@@ -1,8 +1,8 @@
 import React from 'react'
 
 import { fetchAllClientChats } from '@/app/lib/actions/clients/fetchClient'
+
 import MessengerChatSideNav from '@/components/portal/messenger/dashboard/MessengerChatSideNav'
-import { currentUser } from '@clerk/nextjs'
 
 const MessengerDashboardPage = async () => {
   const clientChats = await fetchAllClientChats()

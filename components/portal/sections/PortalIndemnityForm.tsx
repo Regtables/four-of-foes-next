@@ -5,6 +5,7 @@ import { useIndemnity } from "@/context/IndemnityContext";
 import IndemnityList from "../indemnity/IndemnityList";
 import IndemnitySubmitButton from "../indemnity/IndemnitySubmitButton";
 import IndemnityDateCaptured from "../indemnity/IndemnityDateCaptured";
+import ViewMotionWrapper from "@/components/layout/Motion/ViewMotionWrapper";
 
 const PortalIndemnityForm: React.FC = () => {
   const { indemnityDescription: description } = useIndemnity();
@@ -19,9 +20,13 @@ const PortalIndemnityForm: React.FC = () => {
         <IndemnityList />
       </div>
 
-      <IndemnitySubmitButton />
+      <ViewMotionWrapper delay={0.8} duration={1}>
+        <IndemnitySubmitButton />
+      </ViewMotionWrapper>
 
-      <IndemnityDateCaptured />
+      <ViewMotionWrapper delay={1} duration={1}>
+        <IndemnityDateCaptured />
+      </ViewMotionWrapper>
     </form>
   );
 };

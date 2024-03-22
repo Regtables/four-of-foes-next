@@ -1,5 +1,7 @@
-import { Search } from "lucide-react";
+'use client'
+
 import React from "react";
+import { Search } from "lucide-react";
 
 const MessengerChatSearch = ({ searchTerm, setSearchTerm } : { searchTerm: string, setSearchTerm: (term: string) => void }) => {
   return (

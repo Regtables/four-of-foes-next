@@ -4,13 +4,18 @@ import React, { useEffect, useRef, useState } from "react";
 import { motion } from "framer-motion";
 
 import { useSection } from "@/context/PortalSectionContext";
+import { Message } from "@/types";
+import { readMessages } from "@/app/lib/actions/messages/messagesApi";
 
 const LINKS = [{ link: "lobby" }, { link: "lounge" }, { link: "wallet" }];
 
-const PortalNavbar = () => {
+const PortalNavbar = ({ unreadMessages:messages } : { unreadMessages: Message[] }) => {
   const { currentSection } = useSection();
+  const [unreadMessages, setUnreadMessages] = useState(messages)
   const [animateDot, setAnimateDot] = useState({});
   const linkRefs = useRef<(HTMLDivElement | null)[]>([]);
+
+  console.log(unreadMessages)
 
   useEffect(() => {
     const activeLinkIndex = LINKS.findIndex(
@@ -24,13 +29,20 @@ const PortalNavbar = () => {
       const dotLeft = left - containerLeft + width / 2 - 5;
       setAnimateDot({ left: dotLeft });
     }
+
+    if(currentSection === 'lobby'){
+      setTimeout(() => {
+        setUnreadMessages([])
+        readMessages(unreadMessages, false)
+      }, 2000);
+    }
   }, [currentSection]);
 
   return (
-    <div className="grid grid-cols-3 gap-8 w-full h-full relative">
+    <div className="grid grid-cols-3 gap-8 w-full h-full relative justify-center">
       {LINKS.map((link, i) => (
         <div
-          className="link-wrapper"
+          className="link-wrapper flex justify-center"
           ref={(el) => (linkRefs.current[i] = el)}
           key={i}
         >
@@ -46,6 +58,12 @@ const PortalNavbar = () => {
             animate={animateDot}
             transition={{ duration: 0.5 }}
           />
+
+          {link.link === 'lobby' && currentSection !== 'lobby' && unreadMessages.length > 0 && (
+            <div className="absolute h-[18px] w-[18px] bg-[#444444] mx-auto rounded-full text-[8px] flex items-center justify-center bottom-[-22px]">
+              {unreadMessages.length}
+            </div>
+          )}
         </div>
       ))}
     </div>

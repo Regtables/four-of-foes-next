@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useEffect, useMemo, useState } from "react";
 import axios from "axios";
 
 import { usePortalProgress } from "@/context/PortalProgressContext";
@@ -12,16 +12,29 @@ import ButtonPill from "@/components/buttons/ButtonPill";
 import Partition from "../PortalLinkList/Partition";
 
 const AppointmentActionsDrawer = () => {
-  const [resheudleDate, setResheudleDate] = useState("");
   const { handleSetProgressSection, progress } = usePortalProgress();
-  const [toggleChildAccordion, setToggleChildAccordion] = useState(false)
-
   const {
     isAppliedForResheudle,
     resheduleDate: newDate,
     isAppliedForCancelation,
   } = progress;
+
+  console.log(progress)
+  const [resheudleDate, setResheudleDate] = useState("");
+  const [isResheudle, setIsResheudle] = useState(isAppliedForResheudle)
+  const [isCancelation, setIsCancelation] = useState(isAppliedForCancelation)
+  const [toggleChildAccordion, setToggleChildAccordion] = useState(false)
+
   const { handleModalOpen, handleModalClose , handleActionErrorAlertOpen} = useModal();
+
+  useEffect(() => {
+    setIsResheudle(isAppliedForResheudle);
+    setIsCancelation(isAppliedForCancelation);
+  }, [isAppliedForResheudle, isAppliedForCancelation]);
+
+  // const isResheudle = useMemo(() => {
+  //   return isAppliedForResheudle ? true : false
+  // }, [isAppliedForResheudle])
 
   const handleResheudleClick = () => {
     handleModalOpen("alert", {
@@ -66,10 +79,12 @@ const AppointmentActionsDrawer = () => {
         { withCredentials: true }
       );
 
-      // if (res.status === 200) {
+      if (res.status === 200) {
         handleSetProgressSection("isAppliedForResheudle", true);
         handleSetProgressSection("resheduleDate", resheudleDate);
-      // }
+
+        setIsResheudle(true)
+      }
     } catch (error) {
       console.log(error);
 
@@ -89,6 +104,7 @@ const AppointmentActionsDrawer = () => {
       );
 
       if (res.status === 200) {
+        setIsCancelation(true)
         handleSetProgressSection("isAppliedForCancelation", true);
       }
     } catch (error) {
@@ -106,7 +122,7 @@ const AppointmentActionsDrawer = () => {
         <div className="flex flex-col gap-2 w-full">
           <h3 className="title text-center mb-4">Resheudle Appointment</h3>
 
-          {isAppliedForResheudle ? (
+          {isResheudle ? (
             <p className="paragraph text-center">
               You have applied to resheudle your appointment to {newDate}
             </p>
@@ -139,7 +155,7 @@ const AppointmentActionsDrawer = () => {
         <div className="flex flex-col gap-4 w-full">
           <h3 className="title text-center">Cancel Appointment</h3>
 
-          {isAppliedForCancelation ? (
+          {isCancelation ? (
             <p className="text-center paragraph">
               You have applied to cancel your appointment
             </p>

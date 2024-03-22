@@ -35,7 +35,7 @@ const PortalAftercare:React.FC<{data: AftercareType[]}> = ({ data }) => {
 
       <div className="flex flex-col gap-2">
         {data?.map((tip, i) => (
-          <ViewMotionWrapper>
+          <ViewMotionWrapper delay={i*0.1} duration={0.5} y = {10}>
             <AftercareAccordionTile item={tip as AftercareType} />
           </ViewMotionWrapper>
         ))}

@@ -14,13 +14,13 @@ export const clientQuery = (id: string) => {
 }
 
 export const allClientChatsQuery = () =>  {
-  const query = '*[_type == "client"]{clientName, chat, appointmentDetails, _id}'
+  const query = '*[_type == "client"]{clientName, chat[]->{sender->, content, image, isSent, hasError, readBy, isFromClient, createdAt, _id }, appointmentDetails, _id}'
 
   return query
 } 
 
 export const clientChatQuery = (clientId: string) => {
-  const query = `*[_type == "client" && _id == "${clientId}"]{chat[]->{sender->, readBy[]->, content, createdAt, _id, isFromClient, image, isSent }} | order(_createdAt desc) [0...100]`
+  const query = `*[_type == "client" && _id == "${clientId}"]{chat[]->{sender->, readBy, content, createdAt, _id, isFromClient, image, isSent }} | order(_createdAt desc) [0...100]`
 
   return query
 }

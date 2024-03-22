@@ -114,10 +114,7 @@ export interface Message {
   sender?: ClientType;
   isFromClient: boolean;
   createdAt: Date;
-  readBy?: {
-    _ref: string;
-    _type: string;
-  }[] | ClientType[];
+  readBy?: string[]
   isSent?: boolean,
   isLive?: boolean,
   hasError?: boolean

@@ -3,6 +3,7 @@
 import React, { useEffect } from "react";
 import Image from "next/image";
 import { Asterisk } from "lucide-react";
+import { motion } from "framer-motion";
 
 import { AftercareType, ClientType } from "@/types";
 import { usePortalProgress } from "@/context/PortalProgressContext";
@@ -11,6 +12,7 @@ import PortalSectionAccordion from "../../PortalSectionAccordion";
 import AftercareAccordion from "../../accordions/AftercareAccordion";
 import TattooImagesAccordion from "../../accordions/TattooImagesAccordion";
 import FeedbackAccordion from "../../accordions/FeedbackAccordion";
+import ViewMotionWrapper from "@/components/layout/Motion/ViewMotionWrapper";
 
 const PostAppointment = ({ aftercareData, client }: { aftercareData: AftercareType[], client: ClientType }) => {
   const { setProgress } = usePortalProgress()
@@ -20,7 +22,7 @@ const PostAppointment = ({ aftercareData, client }: { aftercareData: AftercareTy
   }, [client])
 
   return (
-    <div className="w-full h-full flex flex-col">
+    <ViewMotionWrapper duration={1} y = {-10} className="w-full h-full flex flex-col">
       <div className="h-[73%] w-full relative">
         <Image src={"/portal-bg.png"} fill alt="ted" className="object-cover" />
       </div>
@@ -37,7 +39,7 @@ const PostAppointment = ({ aftercareData, client }: { aftercareData: AftercareTy
           />
         </div>
       </div>
-    </div>
+    </ViewMotionWrapper>
   );
 };
 

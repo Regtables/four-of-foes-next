@@ -1,18 +1,18 @@
 'use client'
 
 import React, { useEffect, useState } from 'react'
-import { motion } from 'framer-motion'
+import { motion, AnimatePresence } from 'framer-motion'
+
+import { useSection } from '@/context/PortalSectionContext'
+import { ClientType, Message } from '@/types'
+import { usePortalProgress } from '@/context/PortalProgressContext'
+import { useModal } from '@/context/ModalContext'
+import { MessengerProvider } from '@/context/MessengerContext'
 
 import SectionLayout from '../../layout/SectionLayout'
 import Partition from '../../PortalLinkList/Partition'
 import PortalMessenger from '../../messenger/PortalMessenger'
-import CancelAppointment from '@/components/buttons/CancelAppointment'
-import { useSection } from '@/context/PortalSectionContext'
-import { ClientType, MessageType, Message } from '@/types'
-import { usePortalProgress } from '@/context/PortalProgressContext'
-import { useModal } from '@/context/ModalContext'
 import ButtonPill from '@/components/buttons/ButtonPill'
-import { MessengerProvider } from '@/context/MessengerContext'
 
 interface LobbyProps {
   messages: Message[],
@@ -50,27 +50,46 @@ const Lobby = ({ messages, client } : LobbyProps) => {
   
   return (
     <SectionLayout section='lobby'>
-      <motion.div 
-        className='w-full h-full max-h-full pt-8 flex flex-col relative lg:w-[70vw]' 
-        // whileInView={{ opacity: [0,1] }} 
-        animate = {animatePage}
-        transition={{ duration: 1 }} 
-        initial = {{opacity: 0}}
-      >
-        <div className='flex-[0.02] text-[8px] font-light tracking-[0.1em] uppercase italic text-center pb-3'>
-          Here you able to directly communicate with your artist
-        </div>
+      <AnimatePresence>
+        {currentSection === 'lobby' && (
+          <motion.div 
+            className='w-full h-full max-h-full pt-8 flex flex-col relative lg:w-[70vw]' 
+            initial="hidden"
+            animate="visible"
+            exit="exit"
+            variants={{
+              hidden: { opacity: 0, y: -10 },
+              visible: {
+                opacity: 1,
+                y: 0,
+                transition: {
+                  duration: 1
+                },
+              },
+              exit: {
+                opacity: 0,
+                y: [0, -20],
+                transition: {
+                  duration: 1
+                },
+              },}}
+          >
+            <div className='flex-[0.02] text-[8px] font-light tracking-[0.1em] uppercase italic text-center pb-3'>
+              Here you able to directly communicate with your artist
+            </div>
 
-        <Partition />
+            <Partition />
 
-        <div className='flex-[0.92] max-h-full'>
-          <MessengerProvider messageHistory = {messages} client = {client} isAdmin = {false}>
-            <PortalMessenger />
-          </MessengerProvider>
-        </div>
+            <div className='flex-[0.92] max-h-full'>
+              <MessengerProvider messageHistory = {messages} client = {client} isAdmin = {false}>
+                <PortalMessenger />
+              </MessengerProvider>
+            </div>
 
-        <Partition />
-      </motion.div>
+            <Partition />
+          </motion.div>
+        )}
+      </AnimatePresence>
 
       {isRestricted && (
         <div className='absolute start-0 right-0 top-0 bottom-0 bg-black/80 z-10 h-screen w-screen flex flex-col justify-center items-center gap-4'>

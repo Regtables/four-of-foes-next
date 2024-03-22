@@ -34,6 +34,7 @@ export async function POST(request: Request) {
         _key: new Date(),
         isSent: true,
         hasError: false,
+        readBy: ['admin']
       };
 
       const newMessage = await portalClient.create(message);
@@ -82,7 +83,7 @@ export async function POST(request: Request) {
               _ref: asset._id,
             },
           },
-          readBy: [{ _type: "reference", _ref: client._id }],
+          readBy: ['client'],
           _key: new Date(),
           isSent: true,
           hasError: false,

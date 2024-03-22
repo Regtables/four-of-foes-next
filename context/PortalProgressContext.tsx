@@ -28,7 +28,6 @@ const PortalProgressContext = createContext(defaultState)
 export const PortalProgressProvider: React.FC<PortalProgressProviderProps> = ({ children }) => {
   const [progress, setProgress] = useState<PortalProgressType>(defaultState.progress)
 
-  console.log(progress)
   const handleSetProgressSection = (section: string, value: boolean | string) => {
     console.log(section)
     setProgress({ ...progress, [section]: value })

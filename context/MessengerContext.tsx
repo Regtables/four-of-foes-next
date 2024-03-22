@@ -1,13 +1,14 @@
 "use client";
 
 import axios from "axios";
-import { createContext, useContext, useState } from "react";
+import { createContext, useContext, useMemo, useState } from "react";
 
 import { ClientType, Message } from "@/types";
 import { useModal } from "./ModalContext";
 
 interface MessengerContextProps {
   messageHistory: Message[];
+  unreadMessages: Message[];
   setMessageHistory: (messages: Record<string, Message>) => void;
   newMessage: string;
   setNewMessage: (message: string) => void;
@@ -18,7 +19,7 @@ interface MessengerContextProps {
 }
 
 interface MessengerProviderProps {
-  messageHistory: Message[];
+  messageHistory?: Message[];
   isAdmin: boolean;
   children: React.ReactNode;
   client: ClientType;
@@ -35,17 +36,27 @@ export const MessengerProvider: React.FC<MessengerProviderProps> = ({
   isAdmin,
 }) => {
   const [messageHistory, setMessageHistory] = useState<Record<string, Message>>(
-    messages.reduce((acc: any, message: Message) => {
-      if (message._id) {
-        acc[message._id] = message;
+    messages?.reduce((acc: any, message: Message) => {
+      if (message?._id) {
+        acc[message?._id] = {
+          ...message,
+          // readby: [...message.readBy!, isAdmin ? 'admin' : 'client']
+        };
       }
       return acc;
     }, {})
   );
   const [newMessage, setNewMessage] = useState("");
   const [isSending, setIsSending] = useState(false);
-
   const { handleActionErrorAlertOpen } = useModal();
+
+  const unreadMessages = useMemo(() => {
+    return Object.values(messageHistory)?.filter((chat) =>
+      isAdmin
+        ? chat?.readBy?.includes("client") && !chat?.readBy.includes("admin")
+        : chat?.readBy?.includes("admin") && !chat?.readBy.includes("client")
+    );
+  }, [client, isAdmin]);
 
   const handleSend = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -60,6 +71,7 @@ export const MessengerProvider: React.FC<MessengerProviderProps> = ({
       isLive: true,
       isSent: false,
       hasError: false,
+      readBy: [isAdmin ? "admin" : "client"],
     };
 
     setMessageHistory((prevMessages) => ({
@@ -82,6 +94,8 @@ export const MessengerProvider: React.FC<MessengerProviderProps> = ({
           const { [message.createdAt.toString()]: _, ...restMessages } =
             prevMessages;
 
+          console.log(prevMessages[message.createdAt.toString()]);
+
           return {
             ...restMessages,
             [message.isLive ? message.createdAt.toString() : serverMessage._id]:
@@ -89,6 +103,7 @@ export const MessengerProvider: React.FC<MessengerProviderProps> = ({
                 ...serverMessage,
                 sender: client,
                 createdAt: serverMessage.createdAt,
+                readBy: serverMessage.readBy,
               },
           };
         });
@@ -106,7 +121,7 @@ export const MessengerProvider: React.FC<MessengerProviderProps> = ({
       }));
 
       handleActionErrorAlertOpen("trying to send your message");
-      setIsSending(false)
+      setIsSending(false);
     }
   };
 
@@ -122,20 +137,17 @@ export const MessengerProvider: React.FC<MessengerProviderProps> = ({
         sender: isAdmin ? undefined : client,
         isFromClient: isAdmin ? false : true,
         image: URL.createObjectURL(uploadedImage),
-        content: "",
         createdAt: new Date(),
         isLive: true,
-        _type: "message",
         isSent: false,
         hasError: false,
+        readBy: [isAdmin ? "admin" : "client"],
       };
 
       setMessageHistory((prevMessages) => ({
         ...prevMessages,
         [message.createdAt.toString()]: message,
       }));
-
-      console.log(message, "client msg  ");
 
       const formData = new FormData();
 
@@ -150,10 +162,6 @@ export const MessengerProvider: React.FC<MessengerProviderProps> = ({
 
         if (res.status === 200) {
           const { message: serverMessage } = res.data;
-
-          console.log(res.data)
-
-          console.log(serverMessage, "server message");
 
           setMessageHistory((prevMessages) => {
             const { [message.createdAt.toString()]: _, ...restMessages } =
@@ -170,6 +178,7 @@ export const MessengerProvider: React.FC<MessengerProviderProps> = ({
               },
             };
           });
+
           setIsSending(false);
         }
       } catch (error) {
@@ -184,15 +193,20 @@ export const MessengerProvider: React.FC<MessengerProviderProps> = ({
           },
         }));
 
-        setIsSending(false)
+        setIsSending(false);
       }
     } else {
       //alert
     }
   };
 
+  const readMessages = () => {
+
+  }
+ 
   const value = {
     messageHistory: Object.values(messageHistory),
+    unreadMessages,
     setMessageHistory,
     newMessage,
     setNewMessage,

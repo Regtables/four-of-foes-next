@@ -34,7 +34,7 @@ const MessengerChatSideNav = ( { clients } : { clients: ClientType[] }) => {
       </div>
       <div className='grid grid-cols-1 overflow-auto'>
         {filteredClients?.map((client, i) => (
-          <MessengerClientChatTile client={client}/>
+          <MessengerClientChatTile client={client} key = {i}/>
         ))}
       </div>  
     </div>

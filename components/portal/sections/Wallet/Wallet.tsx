@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useEffect, useState } from "react";
-import { motion } from "framer-motion";
+import { AnimatePresence, motion } from "framer-motion";
 
 import { useSection } from "@/context/PortalSectionContext";
 import { ClientType } from "@/types";
@@ -31,16 +31,36 @@ const Wallet = ({ client } : { client: ClientType }) => {
 
   return (
     <SectionLayout section="wallet">
-      <motion.div
-        className="h-full w-full flex flex-col justify-center gap-2 items-center min-w-[40%]"
-        animate={animatePage}
-        transition={{ duration: 1 }}
-        initial={{ opacity: 0 }}
-      >
-        <PaymentOptions client = {client} />
+      <AnimatePresence>
+        {currentSection === 'wallet' && (
+          <motion.div
+            className="h-full w-full flex flex-col justify-center gap-2 items-center min-w-[40%]"
+            initial="hidden"
+            animate="visible"
+            exit="exit"
+            variants={{
+              hidden: { opacity: 0, y: -10 },
+              visible: {
+                opacity: 1,
+                y: 0,
+                transition: {
+                  duration: 1
+                },
+              },
+              exit: {
+                opacity: 0,
+                y: [0, -20],
+                transition: {
+                  duration: 1
+                },
+              },}}
+          >
+            <PaymentOptions client = {client} />
 
-        <AppointmentActionsDrawer />
-      </motion.div>
+            <AppointmentActionsDrawer />
+          </motion.div>
+        )}
+      </AnimatePresence>
     </SectionLayout>
   );
 };
