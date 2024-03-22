@@ -15,10 +15,10 @@ export const metadata: Metadata = {
 };
 
 const PortalLayout = async ({ children }: { children: React.ReactNode }) => {
-  const session = await getSession();
+  const session: any = await getSession();
   if (!session) redirect("/portal/auth/unauthorized");
 
-  const clientChat = await fetchClientChat(session.user.id)
+  const clientChat = await fetchClientChat(session?.user?.id)
 
   console.log(clientChat, 'client chat')
 
