@@ -51,7 +51,7 @@ const Wallet = ({ client } : { client: ClientType }) => {
                 opacity: 0,
                 // y: [0, -20],
                 transition: {
-                  duration: 0
+                  duration: 0.3
                 },
               },}}
           >

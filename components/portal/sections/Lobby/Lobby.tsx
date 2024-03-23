@@ -70,7 +70,7 @@ const Lobby = ({ messages, client } : LobbyProps) => {
                 opacity: 0,
                 // y: [0, -20],
                 transition: {
-                  duration: 0
+                  duration: 0.3
                 },
               },}}
           >
