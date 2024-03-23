@@ -55,7 +55,7 @@ export const IndemnityProvider:React.FC<IndemnityProviderProps>= ({ children, in
   }, [progress.isIndemnitySigned])
 
   useEffect(() => {
-    if(clientIndemnity.captureDate !== ''){
+    if(clientIndemnity?.captureDate !== ''){
       setIndemnityClauses(clientIndemnity?.agreedMainClauses)
       setMiniIndemnityClauses(clientIndemnity?.agreedIndividualClauses)
       setDateCapetured(clientIndemnity?.captureDate)

@@ -59,7 +59,7 @@ const PortalNavbar = ({ unreadMessages:messages } : { unreadMessages: Message[] 
             transition={{ duration: 0.5 }}
           />
 
-          {link.link === 'lobby' && currentSection !== 'lobby' && unreadMessages.length > 0 && (
+          {link.link === 'lobby' && currentSection !== 'lobby' && unreadMessages?.length > 0 && (
             <div className="absolute h-[18px] w-[18px] bg-[#444444] mx-auto rounded-full text-[8px] flex items-center justify-center bottom-[-22px]">
               {unreadMessages.length}
             </div>

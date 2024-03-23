@@ -1,9 +1,12 @@
-import { createSession } from "@/app/lib/actions/clients/auth";
 import { NextResponse } from "next/server";
+
+import { createSession, getVerificationToken } from "@/app/lib/actions/clients/auth";
 
 export async function POST(req: Request) {
   try {
     const body = await req.json();
+    const isVerified = await getVerificationToken()
+
     const { client } = body;
 
     if (!client) {
@@ -11,6 +14,11 @@ export async function POST(req: Request) {
         { error: "Missing client information" },
         { status: 400 }
       );
+    }
+
+    if(!isVerified){
+      return NextResponse.json({ error: 'Client is not verified'},
+      { status: 401 })
     }
 
     await createSession(client);

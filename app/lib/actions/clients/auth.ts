@@ -77,7 +77,6 @@ export const getSession = async (req?: NextRequest) => {
     if (!session) return null;
     const decoded = await decrypt(session);
     if (!decoded) {
-      // Token has expired, redirect only if not already redirected
       if (!req?.nextUrl.searchParams.has("redirected")) {
         const redirectUrl = new URL(`${req?.nextUrl.origin}/portal/auth/unauthorized`);
         redirectUrl.searchParams.set("redirected", "true");
@@ -131,7 +130,7 @@ export const updateSession = async (request: NextRequest) => {
     };
 
     decoded.expires = new Date(Date.now() + 3600 * 1000);
-    decodedRefresh.expires = new Date(Date.now() + 3600 * 2000);
+    decodedRefresh.expires = new Date(Date.now() + 3600 * 1000 * 24);
 
     const newSession = await encrypt({ user: decoded.user, expires: decoded.expires }, "1 hour");
     const newRefresh = await encrypt({ user: decodedRefresh.user, expires: decodedRefresh.expires }, "2 hours");
@@ -159,3 +158,55 @@ export const updateSession = async (request: NextRequest) => {
     throw error;
   }
 };
+
+export const createVerifcationToken = async (client: ClientType) => {
+  try{
+    console.log(client, 'client')
+    if(!client) throw Error('No client')
+
+    const user = {
+      email: client.email
+    }
+
+    const verifiedExpires = new Date(Date.now() + 3600 * 1000 * 24 * 30);
+
+    const verified = await encrypt({ user, verifiedExpires }, '30 days')
+
+    cookies().set('verified', verified, {
+      expires: verifiedExpires,
+      httpOnly: true
+    })
+
+  } catch (error){
+    console.log(`Error creating verification token: ${error}`)
+
+    throw error
+  }
+}
+
+export const getVerificationToken = async () => {
+  try{
+    const verified = cookies().get('verified')?.value
+  
+    if(!verified) return null
+  
+    const decoded = await decrypt(verified)
+
+    return decoded
+  } catch (error){
+    console.log(`Error fetching verification token: ${error}`)
+
+    throw error
+  }
+}
+
+export const deleteVerificationToken = async () => {
+  try{
+    cookies().set('verified', '', { expires: new Date(0) })
+
+  } catch (error){
+    console.log(`Error when deleting verification token: ${error}`)
+
+    throw error
+  }
+}

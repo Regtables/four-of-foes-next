@@ -1,0 +1,26 @@
+import React from "react";
+
+const PortalVerification = ({ code, handleChange } : { code: string, handleChange: (e:string) => void }) => {
+  return (
+    <div className="flex flex-col items-center gap-4">
+      <div className="text-center w-[70%]">
+        <h3 className="paragraph">A verification code has been sent to your email address</h3>
+        <p className="paragraph mt-2"> 
+          Please input the code down below to verify your identity and to
+          continue to the Patron Lounge.
+        </p>
+      </div>
+
+      <form>
+        <input
+          maxLength={6}
+          onChange={(e) => handleChange(e.target.value)}
+          value={code}
+          className="bg-transparent border-[1px] border-white outline-none p-2 uppercase tracking-[0.3em]"
+        />
+      </form>
+    </div>
+  );
+};
+
+export default PortalVerification;

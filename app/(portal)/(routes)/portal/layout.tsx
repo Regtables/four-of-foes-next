@@ -1,10 +1,12 @@
 import React from "react";
 
 import { PortalProgressProvider } from "@/context/PortalProgressContext";
+import { getVerificationToken } from "@/app/lib/actions/clients/auth";
+import { redirect } from 'next/navigation'
 
 export const revalidate = 0
 
-const PortalRootLayout = async ({ children } : { children: React.ReactNode }) => {
+const PortalRootLayout = async ({ children } : { children: React.ReactNode }) => {  
   return (
     <PortalProgressProvider>
       <div className="min-h-[100vh] w-[100vw] h-screen max-h-screen overflow-hidden flex flex-col">

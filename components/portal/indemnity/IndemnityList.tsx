@@ -11,7 +11,7 @@ const IndemnityList: React.FC = () => {
   return (
     <Fragment>
       {indemnityClauses.map((clause, i) => (
-        <ViewMotionWrapper y = {20} delay={i*0.1} duration={1}>
+        <ViewMotionWrapper y = {20} delay={i*0.1} duration={0.7}>
           <IndemnityTile clause={clause} key={i} />
         </ViewMotionWrapper>
       ))}
