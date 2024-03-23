@@ -29,7 +29,7 @@ const AlertModal = () => {
         </h2>
         <Asterisk size={10} />
 
-        <p className="text-center text-[10px] tracking-[0.15em] w-[90%]">{content}</p>
+        <p className="text-center text-[10px] tracking-[0.15em] w-[100%] mb-2">{content}</p>
 
         <div
           className="min-w-[120px] max-w-[250px] w-full min-h-[40px]"

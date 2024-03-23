@@ -39,7 +39,7 @@ const Wallet = ({ client } : { client: ClientType }) => {
             animate="visible"
             exit="exit"
             variants={{
-              hidden: { opacity: 0, y: -10 },
+              hidden: { opacity: 0, y: 0 },
               visible: {
                 opacity: 1,
                 y: 0,
@@ -49,9 +49,9 @@ const Wallet = ({ client } : { client: ClientType }) => {
               },
               exit: {
                 opacity: 0,
-                y: [0, -20],
+                // y: [0, -20],
                 transition: {
-                  duration: 1
+                  duration: 0
                 },
               },}}
           >

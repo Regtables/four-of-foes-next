@@ -58,7 +58,7 @@ const Lobby = ({ messages, client } : LobbyProps) => {
             animate="visible"
             exit="exit"
             variants={{
-              hidden: { opacity: 0, y: -10 },
+              hidden: { opacity: 0, y: 0 },
               visible: {
                 opacity: 1,
                 y: 0,
@@ -68,9 +68,9 @@ const Lobby = ({ messages, client } : LobbyProps) => {
               },
               exit: {
                 opacity: 0,
-                y: [0, -20],
+                // y: [0, -20],
                 transition: {
-                  duration: 1
+                  duration: 0
                 },
               },}}
           >
@@ -92,7 +92,7 @@ const Lobby = ({ messages, client } : LobbyProps) => {
       </AnimatePresence>
 
       {isRestricted && (
-        <div className='absolute start-0 right-0 top-0 bottom-0 bg-black/80 z-10 h-screen w-screen flex flex-col justify-center items-center gap-4'>
+        <div className='absolute start-0 right-0 top-0 bottom-0 bg-black/80 z-10 h-full max-h-screen w-screen flex flex-col justify-center items-center gap-4'>
           <div className='flex flex-col justify-center items-center gap-4 mb-14'>
             <div className='text-[12px] text-center paragraph w-[70%]'>The lobby is restricted to patrons who have paid their deposit. Please pay your deposit in order to enter the Lobby</div>
             <a className='w-[120px]' href='/portal/pre#wallet'>

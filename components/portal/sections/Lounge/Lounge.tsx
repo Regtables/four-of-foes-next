@@ -72,7 +72,7 @@ const Lounge = ({ indemnityData, prepData, appointmentData }: LoungeProps) => {
             animate="visible"
             exit="exit"
             variants={{
-              hidden: { opacity: 0, y: -10 },
+              hidden: { opacity: 0, y: 0 },
               visible: {
                 opacity: 1,
                 y: 0,
@@ -82,9 +82,9 @@ const Lounge = ({ indemnityData, prepData, appointmentData }: LoungeProps) => {
               },
               exit: {
                 opacity: 0,
-                y: [0, -20],
+                // y: [0, -20],
                 transition: {
-                  duration: 1
+                  duration: 0
                 },
               },
             }}

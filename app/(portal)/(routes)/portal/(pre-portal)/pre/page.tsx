@@ -20,7 +20,6 @@ const PortalPage = async () => {
   const indemnityContent = fetchIndemnityContent(session!.user.id);
   const clientData = fetchSanityClient(session!.user.id);
   const clientChatData = fetchClientChat(session!.user.id)
-
   
   const [prepData, indemnityData, client, clientChat] = await Promise.all([
     prepContent,

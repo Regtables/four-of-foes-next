@@ -6,6 +6,7 @@ import { motion } from "framer-motion";
 import { useSection } from "@/context/PortalSectionContext";
 import { Message } from "@/types";
 import { readMessages } from "@/app/lib/actions/messages/messagesApi";
+import { usePortalProgress } from "@/context/PortalProgressContext";
 
 const LINKS = [{ link: "lobby" }, { link: "lounge" }, { link: "wallet" }];
 
@@ -14,6 +15,7 @@ const PortalNavbar = ({ unreadMessages:messages } : { unreadMessages: Message[] 
   const [unreadMessages, setUnreadMessages] = useState(messages)
   const [animateDot, setAnimateDot] = useState({});
   const linkRefs = useRef<(HTMLDivElement | null)[]>([]);
+  const { progress: { isDepositConfirmed } } = usePortalProgress()
 
   console.log(unreadMessages)
 
@@ -31,10 +33,12 @@ const PortalNavbar = ({ unreadMessages:messages } : { unreadMessages: Message[] 
     }
 
     if(currentSection === 'lobby'){
-      setTimeout(() => {
-        setUnreadMessages([])
-        readMessages(unreadMessages, false)
-      }, 2000);
+      if(isDepositConfirmed && unreadMessages){
+        setTimeout(() => {
+          setUnreadMessages([])
+          readMessages(unreadMessages, false)
+        }, 2000);
+      }
     }
   }, [currentSection]);
 
@@ -59,7 +63,7 @@ const PortalNavbar = ({ unreadMessages:messages } : { unreadMessages: Message[] 
             transition={{ duration: 0.5 }}
           />
 
-          {link.link === 'lobby' && currentSection !== 'lobby' && unreadMessages.length > 0 && (
+          {link.link === 'lobby' && currentSection !== 'lobby' && unreadMessages?.length > 0 && (
             <div className="absolute h-[18px] w-[18px] bg-[#444444] mx-auto rounded-full text-[8px] flex items-center justify-center bottom-[-22px]">
               {unreadMessages.length}
             </div>

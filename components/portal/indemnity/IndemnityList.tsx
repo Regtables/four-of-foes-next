@@ -7,11 +7,11 @@ import ViewMotionWrapper from "@/components/layout/Motion/ViewMotionWrapper";
 
 const IndemnityList: React.FC = () => {
   const { indemnityClauses } = useIndemnity();
-  
+  console.log(indemnityClauses)
   return (
     <Fragment>
-      {indemnityClauses.map((clause, i) => (
-        <ViewMotionWrapper y = {20} delay={i*0.1} duration={1}>
+      {indemnityClauses?.map((clause, i) => (
+        <ViewMotionWrapper y = {20} delay={i*0.1} duration={0.5}>
           <IndemnityTile clause={clause} key={i} />
         </ViewMotionWrapper>
       ))}
