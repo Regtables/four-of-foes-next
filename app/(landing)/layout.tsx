@@ -63,7 +63,7 @@ const LandingLayout = ({ children }: { children: React.ReactNode }) => {
             whileInView={{x: [-20, 0], opacity: [0,1]}}
             initial = {{x: -20, opacity: 0}}
             transition={{ duration: 1 }}
-            className="fixed z-30 top-12 start-5 cursor-pointer flex items-center"
+            className="fixed z-30 top-10 start-5 p-2 cursor-pointer flex items-center"
           >
             {/* {toggleNavMenu 
               ? <X className="opacity-40" />  */}
