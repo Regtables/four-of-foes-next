@@ -16,6 +16,7 @@ export const revalidate = 0
 const PortalPage = async () => {
   const session: any = await getSession();
 
+
   const prepContent = fetchPrepContent();
   const indemnityContent = fetchIndemnityContent(session!.user.id);
   const clientData = fetchSanityClient(session!.user.id);

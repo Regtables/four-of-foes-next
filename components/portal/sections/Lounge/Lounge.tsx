@@ -91,11 +91,6 @@ const Lounge = ({ indemnityData, prepData, appointmentData }: LoungeProps) => {
           >
             <motion.div
               className="h-[75%] w-full relative"
-              // variants={{
-              //   hidden: { y: -20, opacity: 0 },
-              //   visible: { y: 0, opacity: 1 },
-              //   exit: { y: -20 },
-              // }}
               transition={{ duration: 1 }}
             >
               <Image
@@ -103,6 +98,7 @@ const Lounge = ({ indemnityData, prepData, appointmentData }: LoungeProps) => {
                 fill
                 alt="ted"
                 className="object-cover"
+                priority
               />
             </motion.div>
 
