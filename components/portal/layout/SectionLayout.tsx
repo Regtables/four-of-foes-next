@@ -20,7 +20,7 @@ const SectionLayout = ({ children, section } : { children: React.ReactNode, sect
     <div className='h-full flex flex-col items-center w-full relative' id = {section}>
       <div className='absolute start-[50%] top-[50%]' ref = {beginRef} />
       {children}
-      <div className='absolute end-[25%] top-[50%]' ref = {endRef} />
+      {/* <div className='absolute end-[25%] top-[50%]' ref = {endRef} /> */}
     </div>
   )
 }

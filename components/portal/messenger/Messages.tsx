@@ -14,6 +14,7 @@ const Messages = () => {
         <MessageTile
           _id="1"
           i = {0}
+          createdAt={new Date()}
           isFromClient={false}
           content="Please use this space to discuss changes and addisional ideas. Here you may also recieve designs. Please use it respectfully and trust the process."
         />

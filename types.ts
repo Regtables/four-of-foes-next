@@ -113,7 +113,7 @@ export interface Message {
   image?: any
   sender?: ClientType;
   isFromClient: boolean;
-  createdAt?: Date;
+  createdAt: Date;
   readBy?: string[]
   isSent?: boolean,
   isLive?: boolean,
