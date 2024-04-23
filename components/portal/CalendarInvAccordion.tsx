@@ -13,7 +13,8 @@ const CalendarInvAccordion = ({
 }: {
   appointment: AppointmentDetailsType;
 }) => {
-  const { handleModalOpen, handleModalClose , handleActionErrorAlertOpen} = useModal();
+  const { handleModalOpen, handleModalClose, handleActionErrorAlertOpen } =
+    useModal();
 
   const googleURL = generateGoogleCalendarURL(appointment);
 
@@ -33,8 +34,7 @@ const CalendarInvAccordion = ({
     } catch (error) {
       console.log(error);
 
-      handleActionErrorAlertOpen('creating your calendar invitation')
-    
+      handleActionErrorAlertOpen("creating your calendar invitation");
     } finally {
       handleModalClose("loading");
     }
@@ -54,20 +54,18 @@ const CalendarInvAccordion = ({
             accept to add the appoitnent to your calendar.
           </p>
 
-          <button
-            className="border border-1-white text-[9px] px-6 py-1 rounded-full uppercase tracking-[0.3em] max-w-[100px]"
-            onClick={handleDownload}
-          >
-            Accept
-          </button>
-
           <a
             href={googleURL}
             target="_blank"
             rel="noreferrer"
             className="text-center cursor-pointer text-[8px] uppercase tracking-[0.3em] text-[#dfdfdf] underline"
           >
-            google calendar invitation
+            <button
+              className="border border-1-white text-[9px] px-6 py-1 rounded-full uppercase tracking-[0.3em] max-w-[100px]"
+              onClick={handleDownload}
+            >
+              Accept
+            </button>
           </a>
         </div>
       </AccordionLayout>

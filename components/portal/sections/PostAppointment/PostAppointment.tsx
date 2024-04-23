@@ -3,7 +3,6 @@
 import React, { useEffect } from "react";
 import Image from "next/image";
 import { Asterisk } from "lucide-react";
-import { motion } from "framer-motion";
 
 import { AftercareType, ClientType } from "@/types";
 import { usePortalProgress } from "@/context/PortalProgressContext";
@@ -23,7 +22,7 @@ const PostAppointment = ({ aftercareData, client }: { aftercareData: AftercareTy
 
   return (
     <ViewMotionWrapper duration={1} y = {-10} className="w-full h-full flex flex-col">
-      <div className="h-[73%] w-full relative">
+      <div className="lg:h-[72%] h-[69%] w-full relative">
         <Image src={"/portal-bg.png"} fill alt="ted" className="object-cover" />
       </div>
       <header className="text-center flex flex-col items-center gap-2 h-[8%] mt-2">

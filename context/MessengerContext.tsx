@@ -58,6 +58,31 @@ export const MessengerProvider: React.FC<MessengerProviderProps> = ({
     );
   }, [client, isAdmin]);
 
+  const handleSendMessageNotification = async () => {
+    const currentTime = Date.now();
+    const lastNotificationTime = localStorage.getItem(
+      `lastNotificationTime_${isAdmin ? 'admin' : client._id}`
+    );
+  
+    if (
+      !lastNotificationTime ||
+      currentTime - parseInt(lastNotificationTime) >= 10 * 60 * 1000
+    ) {
+      try {
+        await axios.post('/api/portal/messenger/send-notification', {
+          client,
+          isAdmin,
+        });
+        localStorage.setItem(
+          `lastNotificationTime_${isAdmin ? 'admin' : client._id}`,
+          currentTime.toString()
+        );
+      } catch (error) {
+        console.log(error);
+      }
+    }
+  };
+
   const handleSend = async (e: React.FormEvent) => {
     e.preventDefault();
 
@@ -108,6 +133,8 @@ export const MessengerProvider: React.FC<MessengerProviderProps> = ({
           };
         });
         setIsSending(false);
+
+        handleSendMessageNotification();
       }
     } catch (error) {
       console.log(error);
@@ -200,10 +227,8 @@ export const MessengerProvider: React.FC<MessengerProviderProps> = ({
     }
   };
 
-  const readMessages = () => {
+  const readMessages = () => {};
 
-  }
- 
   const value = {
     messageHistory: Object.values(messageHistory),
     unreadMessages,

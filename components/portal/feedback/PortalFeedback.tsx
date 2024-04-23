@@ -58,22 +58,33 @@ const PortalFeedback: React.FC<PortalFeedbackProps> = ({ data }) => {
           />
         </div>
 
-        <textarea
-          className="bg-transparent outline-none border-[1px] border-white w-full lg:w-[50vw] rounded-md p-2 tracking-[0.2em] font-[var(--font-family)] font-meduim italic text-[10px]"
-          rows={10}
-          value={feedback}
-          placeholder="Message..."
-          onChange={(e) => setFeedback(e.target.value)}
-        ></textarea>
+        <div className="border-[1px] border-white w-full lg:w-[50vw] rounded-md p-2 pb-4">
+          <textarea
+            className="bg-transparent outline-none w-full rounded-md p-2 tracking-[0.2em] font-[var(--font-family)] font-meduim italic text-[10px]"
+            rows={10}
+            value={feedback}
+            placeholder="Message..."
+            onChange={(e) => setFeedback(e.target.value)}
+          ></textarea>
 
-        <div className="w-[150px] mx-auto">
-          <ButtonPill
-            fill
-            text={isReviewSubmitted ? "update feedback" : "submit"}
-            type="submit"
-          />
+          <div className="w-[160px] h-[20px] mx-auto">
+            <ButtonPill
+              text={isReviewSubmitted ? "update feedback" : "submit feedback"}
+              type="submit"
+            />
+          </div>
         </div>
       </form>
+
+    <a href="https://www.google.com/maps/place//data=!4m3!3m2!1s0x631c5ce16abf4f63:0xc1c899d738368501!12e1?source=g.page.m.dd._&laa=lu-desktop-reviews-dialog-review-solicitation" target = '_blank' rel = 'noreferrer'>
+      <div className="w-[190px] h-[23px] mx-auto mt-8">
+        <ButtonPill
+          fill
+          text={'Submit google review'}
+          type="button"
+        />
+      </div>
+    </a>
     </div>
   );
 };

@@ -1,4 +1,4 @@
-import React, { Suspense } from "react";
+import React from "react";
 
 import {
   fetchClientChat,
@@ -7,7 +7,6 @@ import {
 import { MessengerProvider } from "@/context/MessengerContext";
 
 import MessengerConversation from "@/components/portal/messenger/dashboard/MessengerConversation";
-import axios from "axios";
 
 export const revalidate = 0
 
@@ -22,12 +21,6 @@ const MessengerDashboardConversationPage = async ({
   const clientChatData = fetchClientChat(clientId);
 
   const [client, clientChat] = await Promise.all([clientData, clientChatData])
-
-  console.log(clientChat)
-
-  // const res =await axios.delete('/api/portal/messenger/delete-messages')
-
-  // console.log(res)
 
   const messageHistory = clientChat.chat ? clientChat.chat : [];
 

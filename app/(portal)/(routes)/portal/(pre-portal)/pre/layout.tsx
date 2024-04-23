@@ -20,12 +20,7 @@ const PortalLayout = async ({ children }: { children: React.ReactNode }) => {
 
   const clientChat = await fetchClientChat(session?.user?.id)
 
-  console.log(clientChat, 'client chat')
-
   const unreadMessages = filterUnreadMessages(clientChat.chat, false)
-
-
-  // if(session.user?.isAppointmentCompleted) redirect('/portal/post')
 
   return (
     <PortalSectionProvider>

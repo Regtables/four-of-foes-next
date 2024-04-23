@@ -1,4 +1,4 @@
-import React, { Suspense } from "react";
+import React from "react";
 
 import {
   fetchIndemnityContent,
@@ -15,8 +15,6 @@ export const revalidate = 0
 
 const PortalPage = async () => {
   const session: any = await getSession();
-
-
   const prepContent = fetchPrepContent();
   const indemnityContent = fetchIndemnityContent(session!.user.id);
   const clientData = fetchSanityClient(session!.user.id);
@@ -55,6 +53,7 @@ const PortalPage = async () => {
           indemnityData={indemnityData}
           prepData={prepData}
           appointmentData={client.appointmentDetails}
+          clientName= {client.clientName}
         />
         {/* </Suspense> */}
       </div>

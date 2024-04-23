@@ -64,7 +64,7 @@ const AccordionLayout = ({
         className={cn(
           "overflow-hidden transition-all duration-[0.7s] flex justify-center w-full relative z-10 mb-auto",
           toggle && "relative z-10",
-          list && "h-[66vh]"
+          list && "h-[62vh]"
         )}
       >
         {children}

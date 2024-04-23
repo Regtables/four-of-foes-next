@@ -22,7 +22,7 @@ const ImagePreviewModal = () => {
     <AnimatePresence>
       {data?.activeImage && (
         <Popup isOpen={isModalOpen!} fade>
-          <div className="flex relative lg:h-[80vh] lg:w-[60vw] h-[70vh] w-[85vw] m-auto">
+          <div className="flex relative lg:h-[80vh] lg:w-[60vw] h-[80vh] w-[85vw] m-auto">
             <Image
               src={src}
               loader={loader}
@@ -34,7 +34,7 @@ const ImagePreviewModal = () => {
 
           <motion.div
             onClick={() => handleModalClose("imagePreview")}
-            className="absolute bottom-5 title"
+            className="absolute lg:bottom-10 bottom-12 title cursor-pointer"
             whileInView={{ y: [20, 0], opacity: [0, 1] }}
             transition={{ duration: 1 }}
             exit={{ y: [0, 20] }}

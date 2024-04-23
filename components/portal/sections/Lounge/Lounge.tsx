@@ -14,17 +14,10 @@ import { useSection } from "@/context/PortalSectionContext";
 
 import PortalAppointmentBanner from "../../PortalAppointmentBanner/PortalAppointmentBanner";
 import SectionLayout from "../../layout/SectionLayout";
-import PortalSectionAccordion from "../../PortalSectionAccordion";
-import IndemnityAccordion from "../../accordions/IndemnityAccordion";
-import TipsAccordion from "../../accordions/TipsAccordion";
-import LocationAccordion from "../../accordions/LocationAccordion";
-
-const APPOINTMENT = {
-  artist: "Ted Faulmann",
-  date: new Date(),
-  studio: "Concrete Forty",
-  country: "Sweden",
-};
+import PortalSectionAccordion from '@/components/portal/PortalSectionAccordion';
+import IndemnityAccordion from "@/components/portal/accordions/IndemnityAccordion";
+import TipsAccordion from "@/components/portal/accordions/TipsAccordion";
+import LocationAccordion from "@/components/portal/accordions/LocationAccordion";
 
 const SHOP = {
   name: "hood7",
@@ -48,9 +41,10 @@ interface LoungeProps {
   };
   prepData: string[];
   appointmentData: AppointmentDetailsType;
+  clientName: string
 }
 
-const Lounge = ({ indemnityData, prepData, appointmentData }: LoungeProps) => {
+const Lounge = ({ indemnityData, prepData, appointmentData, clientName }: LoungeProps) => {
   const { currentSection } = useSection();
   const [animatePage, setAnimatePage] = useState({});
 
@@ -90,7 +84,7 @@ const Lounge = ({ indemnityData, prepData, appointmentData }: LoungeProps) => {
             }}
           >
             <motion.div
-              className="h-[75%] w-full relative"
+              className="h-[65%] w-full relative"
               transition={{ duration: 1 }}
             >
               <Image
@@ -111,7 +105,7 @@ const Lounge = ({ indemnityData, prepData, appointmentData }: LoungeProps) => {
               transition={{duration: 1}}
             >
               <PortalAppointmentBanner
-                artist={APPOINTMENT.artist}
+                clientName={clientName}
                 date={appointmentData.appointmentDate}
                 studio={appointmentData.appointmentLocation}
                 country={appointmentData.appointmentCity}
@@ -126,7 +120,7 @@ const Lounge = ({ indemnityData, prepData, appointmentData }: LoungeProps) => {
               // }}
               transition={{ duration: 1}}
             >
-              <div className="text-[8px]">*</div>
+              <div className="text-[10px]">*</div>
             </motion.div>
 
             <motion.div

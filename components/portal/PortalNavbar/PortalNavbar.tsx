@@ -43,7 +43,7 @@ const PortalNavbar = ({ unreadMessages:messages } : { unreadMessages: Message[] 
   }, [currentSection]);
 
   return (
-    <div className="grid grid-cols-3 gap-8 w-full h-full relative justify-center">
+    <div className="grid grid-cols-3 gap-8 w-full h-full relative justify-center lg:pb-0 pb-[50px]">
       {LINKS.map((link, i) => (
         <div
           className="link-wrapper flex justify-center"
@@ -58,13 +58,13 @@ const PortalNavbar = ({ unreadMessages:messages } : { unreadMessages: Message[] 
           </a>
 
           <motion.div
-            className="h-2 w-2 bg-[grey] rounded-full absolute bottom-[-15px] mr-[1px]"
+            className="h-2 w-2 bg-[grey] rounded-full absolute lg:bottom-[-15px] bottom-[32px] mr-[1px]"
             animate={animateDot}
             transition={{ duration: 0.5 }}
           />
 
           {link.link === 'lobby' && currentSection !== 'lobby' && unreadMessages?.length > 0 && (
-            <div className="absolute h-[18px] w-[18px] bg-[#444444] mx-auto rounded-full text-[8px] flex items-center justify-center bottom-[-22px]">
+            <div className="absolute h-[18px] w-[18px] bg-[#444444] mx-auto rounded-full text-[8px] flex items-center justify-center lg:bottom-[-22px] bottom-[28px]">
               {unreadMessages.length}
             </div>
           )}
