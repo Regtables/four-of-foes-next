@@ -35,11 +35,13 @@ const MessageTile: React.FC<MessageTileProps> = ({
   const imageStyles = 'w-full h-full max-h-[300px] rounded-md object-cover cursor-pointer'
 
   const isLast = useMemo(() => {
-    return i === messageHistory.length-1
+    return i === messageHistory.length
   }, [messageHistory])
 
+  
   useEffect(() => {
-    document.getElementById('last')?.scrollIntoView()
+    console.log(isLast)
+    document.getElementById('last')!.scrollIntoView()
   }, [])
 
   const renderFrom = () => {
@@ -73,6 +75,8 @@ const MessageTile: React.FC<MessageTileProps> = ({
   return (
     <div
       className={cn("flex items-end gap-[3px]", (!facing) && 'flex-row-reverse')} 
+      id= {isLast ? 'last' : ''}
+
       // y= {0} 
       // duration={1}
       //  once
@@ -83,10 +87,9 @@ const MessageTile: React.FC<MessageTileProps> = ({
           facing && "bg-white text-black ml-0 items-start",
           image && 'border-none'
         )}
-        id= {isLast ? 'last' : ''}
       >
         <h5 className="text-[8px] italic mb-[3px]">{renderFrom()}</h5>
-        
+
         <div className={cn("flex justify-between w-full items-end", !facing && 'flex-row-reverse', image && 'flex-col')}>
           {renderMessage()}
 
