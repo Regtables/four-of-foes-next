@@ -43,7 +43,7 @@ const PortalNavbar = ({ unreadMessages:messages } : { unreadMessages: Message[] 
   }, [currentSection]);
 
   return (
-    <div className="grid grid-cols-3 gap-8 w-full h-full relative justify-center lg:pb-0 pb-[50px]">
+    <div className="grid grid-cols-3 gap-8 w-full h-full relative justify-center lg:pb-0">
       {LINKS.map((link, i) => (
         <div
           className="link-wrapper flex justify-center"

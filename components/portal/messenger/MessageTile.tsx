@@ -71,7 +71,12 @@ const MessageTile: React.FC<MessageTileProps> = ({
   }
 
   return (
-    <ViewMotionWrapper className={cn("flex items-end gap-[3px]", (!facing) && 'flex-row-reverse')} y= {0} duration={1} once>
+    <div
+      className={cn("flex items-end gap-[3px]", (!facing) && 'flex-row-reverse')} 
+      // y= {0} 
+      // duration={1}
+      //  once
+    >
       <div
         className={cn(
           "border border-1-white py-[5px] px-[5px] rounded-md max-w-[80%] flex flex-col min-w-[50px] items-end mx-[4px] ",
@@ -105,7 +110,7 @@ const MessageTile: React.FC<MessageTileProps> = ({
           {moment(createdAt).calendar()}
         </ViewMotionWrapper>
       )}
-    </ViewMotionWrapper>
+    </div>
   );
 };
 

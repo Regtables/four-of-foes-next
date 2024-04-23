@@ -53,7 +53,7 @@ const Lobby = ({ messages, client } : LobbyProps) => {
       <AnimatePresence>
         {currentSection === 'lobby' && (
           <motion.div 
-            className='w-full h-full max-h-full pt-8 flex flex-col relative lg:w-[70vw]' 
+            className='w-full min-w-full h-full pt-8 flex flex-col relative lg:w-[70vw]' 
             initial="hidden"
             animate="visible"
             exit="exit"

@@ -13,9 +13,12 @@ const Messages = () => {
       {!isAdmin && (
         <MessageTile
              _id= "1"
-             i = {0}
+             isLive = {false}
+             i = {-1}
              isFromClient= {false}
              createdAt={new Date()}
+             isSent = {true}
+             readBy={['client', 'admin']}
              content = "Please use this space to discuss changes and addisional ideas. Here you may also recieve designs. Please use it respectfully and trust the process."
           />
       )}
