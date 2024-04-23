@@ -73,20 +73,19 @@ const MessageTile: React.FC<MessageTileProps> = ({
   }
 
   return (
-    <div
+    <ViewMotionWrapper
       className={cn("flex items-end gap-[3px]", (!facing) && 'flex-row-reverse')} 
-      id= {isLast ? 'last' : ''}
-
-      // y= {0} 
-      // duration={1}
-      //  once
-    >
+      y= {0} 
+      duration={1}
+      once
+      >
       <div
         className={cn(
           "border border-1-white py-[5px] px-[5px] rounded-md max-w-[80%] flex flex-col min-w-[50px] items-end mx-[4px] ",
           facing && "bg-white text-black ml-0 items-start",
           image && 'border-none'
-        )}
+          )}
+          id= {isLast ? 'last' : ''}
       >
         <h5 className="text-[8px] italic mb-[3px]">{renderFrom()}</h5>
 
@@ -113,7 +112,7 @@ const MessageTile: React.FC<MessageTileProps> = ({
           {moment(createdAt).calendar()}
         </ViewMotionWrapper>
       )}
-    </div>
+    </ViewMotionWrapper>
   );
 };
 

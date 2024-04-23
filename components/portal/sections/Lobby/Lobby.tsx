@@ -51,7 +51,7 @@ const Lobby = ({ messages, client } : LobbyProps) => {
   return (
     <SectionLayout section='lobby'>
       <AnimatePresence>
-        {currentSection === 'lobby' && (
+        {/* {currentSection === 'lobby' && ( */}
           <motion.div 
             className='w-full min-w-full h-full pt-8 flex flex-col relative lg:w-[70vw]' 
             initial="hidden"
@@ -88,7 +88,7 @@ const Lobby = ({ messages, client } : LobbyProps) => {
 
             <Partition />
           </motion.div>
-        )}
+        {/* )} */}
       </AnimatePresence>
 
       {isRestricted && (
