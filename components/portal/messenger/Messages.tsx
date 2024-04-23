@@ -19,7 +19,7 @@ const Messages = () => {
         />
       )}
       {messageHistory
-      // {/* @ts-ignore */}
+      // @ts-ignore
         .sort((a, b) => new Date(b.createdAt - new Date(a.createdAt)))
         .map((message, i) => (
           <MessageTile
