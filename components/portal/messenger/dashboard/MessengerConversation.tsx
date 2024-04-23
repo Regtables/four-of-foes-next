@@ -13,13 +13,13 @@ import Messages from "../Messages";
 import axios from "axios";
 
 const MessengerConversation = ({ client }: { client: ClientType }) => {
-  useEffect(() => {
-    const deleteMessages = async () => {
-      await axios.delete('/api/portal/messenger/delete-messages')
-    }
+  // useEffect(() => {
+  //   const deleteMessages = async () => {
+  //     await axios.delete('/api/portal/messenger/delete-messages')
+  //   }
 
-    deleteMessages()
-  }, [])
+  //   deleteMessages()
+  // }, [])
   return (
     <ViewMotionWrapper y={0} duration={0.3} className="flex flex-col">
       <Link

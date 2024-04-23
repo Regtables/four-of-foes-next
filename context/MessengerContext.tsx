@@ -103,6 +103,7 @@ export const MessengerProvider: React.FC<MessengerProviderProps> = ({
       ...prevMessages,
       [message.createdAt.toString()]: message,
     }));
+
     setNewMessage("");
 
     try {

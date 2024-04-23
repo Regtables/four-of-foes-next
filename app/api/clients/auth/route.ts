@@ -5,9 +5,8 @@ export async function POST(req: Request) {
   try {
     const body = await req.json();
 
-    const signedInClient = await getSession()
+    const signedInClient:any = await getSession()
 
-    console.log(signedInClient)
     const { client } = body;
 
     if (!client) {
