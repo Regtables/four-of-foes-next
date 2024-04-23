@@ -8,9 +8,16 @@ import { getSession } from '@/app/lib/actions/clients/auth'
 
 const PortalAuthPage: React.FC<any> = async ({ params }) => {
   const { id } = params
-  const session = await getSession()
+  const session:any = await getSession()
 
-  if(session) redirect('/portal/pre')
+  console.log(session)
+  console.log(id)
+
+  if(id === session?.user.id){
+    redirect('/portal/pre')
+  }
+
+  // if(session) redirect('/portal/pre')
   
   const client = await fetchSanityClient(id)
 

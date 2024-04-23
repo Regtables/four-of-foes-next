@@ -1,9 +1,13 @@
-import { createSession } from "@/app/lib/actions/clients/auth";
+import { createSession, getSession } from "@/app/lib/actions/clients/auth";
 import { NextResponse } from "next/server";
 
 export async function POST(req: Request) {
   try {
     const body = await req.json();
+
+    const signedInClient = await getSession()
+
+    console.log(signedInClient)
     const { client } = body;
 
     if (!client) {
