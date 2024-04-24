@@ -21,11 +21,11 @@ const PortalNavbar = ({ unreadMessages:messages } : { unreadMessages: Message[] 
 
   const containerRef = useRef<HTMLDivElement>(null);
 
-  useEffect(() => {
-    if (containerRef.current) {
-      containerRef.current.scrollIntoView({ behavior: 'instant'});
-    }
-  }, []);
+  // useEffect(() => {
+  //   if (containerRef.current) {
+  //     containerRef.current.scrollIntoView({ behavior: 'instant'});
+  //   }
+  // }, []);
 
   useEffect(() => {
     const activeLinkIndex = LINKS.findIndex(
