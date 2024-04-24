@@ -31,8 +31,8 @@ const Wallet = ({ client } : { client: ClientType }) => {
 
   return (
     <SectionLayout section="wallet">
-      <AnimatePresence>
-        {currentSection === 'wallet' && (
+      {/* <AnimatePresence>
+        {currentSection === 'wallet' && ( */}
           <motion.div
             className="h-full w-full flex flex-col justify-center gap-2 items-center min-w-[40%]"
             initial="hidden"
@@ -59,8 +59,8 @@ const Wallet = ({ client } : { client: ClientType }) => {
 
             <AppointmentActionsDrawer />
           </motion.div>
-        )}
-      </AnimatePresence>
+      {/* //   )}
+      // </AnimatePresence> */}
     </SectionLayout>
   );
 };
