@@ -9,12 +9,6 @@ const PortalRootLayout = async ({ children } : { children: React.ReactNode }) =>
     <PortalProgressProvider>
       <div className="min-h-[100vh] w-[100vw] h-screen max-h-screen overflow-hidden flex flex-col">
         <header className="flex justify-center items-center flex-[0.05] z-10 relative w-[160px] mx-auto">
-          {/* <Image
-            src="/logo-big.jpeg"
-            fill
-            alt="four of foes logo"
-            className="object-cover"
-          /> */}
           <h1 className="uppercase tracking-wider font-[300] heading-font">Four of Foes</h1>
         </header>
 
