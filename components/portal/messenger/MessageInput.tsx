@@ -6,7 +6,7 @@ const MessageInput: React.FC = () => {
   const { handleSend, handleUpload, setNewMessage, newMessage } = useMessenger()
 
   return (
-    <form className="flex items-center w-full gap-2" onSubmit={handleSend}>
+    <form className="flex items-center w-full gap-2 h-full" onSubmit={handleSend}>
       <label className="h-0 max-w-[40px] flex items-center">
         <input
           name="image"

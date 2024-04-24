@@ -1,11 +1,10 @@
-import { cn } from "@/app/lib/utils";
-import Popup from "@/components/layout/Popup";
-import Swipeable from "@/components/layout/Swipeable";
-import { useAppSettings } from "@/context/AppSettingsContext";
-import { useModal } from "@/context/ModalContext";
 import { AnimatePresence, motion } from "framer-motion";
 import { X } from "lucide-react";
 import React, { useRef, useState } from "react";
+
+import { cn } from "@/app/lib/utils";
+import { useAppSettings } from "@/context/AppSettingsContext";
+import { useModal } from "@/context/ModalContext";
 
 const AccordionLayout = ({
   title,
@@ -23,7 +22,7 @@ const AccordionLayout = ({
   const content: any = useRef(null);
 
   const { setToggleAccordion } = useAppSettings();
-  const { types } = useModal()
+  const { types } = useModal();
 
   const handleToggle = () => {
     if (!toggle) {
@@ -45,17 +44,15 @@ const AccordionLayout = ({
         toggle && "py-4 px-0 z-20"
       )}
     >
-      <Swipeable onUp={handleToggle} onDown={toggle && handleToggle}>
-        <button
-          className={cn(
-            "text-white text-[10px] text-center cursor-pointer tracking-[0.5em] uppercase w-full active:text-black transition-colors rounded-sm ",
-            toggle && " relative z-10"
-          )}
-          onClick={handleToggle}
-        >
-          {title}
-        </button>
-      </Swipeable>
+      <button
+        className={cn(
+          "text-white text-[10px] text-center cursor-pointer tracking-[0.5em] uppercase w-full active:text-black transition-colors rounded-sm ",
+          toggle && " relative z-10"
+        )}
+        onClick={handleToggle}
+      >
+        {title}
+      </button>
 
       {/* <Swipeable onDown={handleToggle}> */}
       <div
@@ -71,7 +68,7 @@ const AccordionLayout = ({
       </div>
       {/* </Swipeable> */}
 
-      {(list) && (
+      {list && (
         <AnimatePresence>
           {toggle && (
             <>
@@ -87,7 +84,7 @@ const AccordionLayout = ({
         </AnimatePresence>
       )}
 
-      {(list && !types.includes('imagePreview')) && (
+      {list && !types.includes("imagePreview") && (
         <AnimatePresence>
           {toggle && (
             <div className="bottom-[-5%] w-[100vw] flex justify-center">

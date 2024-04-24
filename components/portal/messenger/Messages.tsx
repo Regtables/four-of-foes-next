@@ -8,7 +8,7 @@ const Messages = () => {
   const { messageHistory, isAdmin } = useMessenger();
 
   return (
-    <div className="flex flex-col gap-4 pb-4 px-2 py-2 h-[100%]">
+    <div className="flex flex-col gap-4 pb-4 px-2 py-2 h-full">
       {/*@ts-ignore */}
       {!isAdmin && (
         <MessageTile
