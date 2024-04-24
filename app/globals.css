@@ -41,7 +41,7 @@
   scroll-snap-type: x mandatory;
   scroll-behavior: smooth;
   width: 100vw;
-  /* height: 100vh; */
+  height: 100vh;
   min-width: 100vw;
   /* min-height: 100vh; */
 }
@@ -50,6 +50,7 @@
   flex: 0 0 auto;
   width: 100%;
   /* min-height: 100vh; */
+  height: 100%;
   max-width: 100vw;
   box-sizing: border-box;
   scroll-snap-align: start;

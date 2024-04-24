@@ -10,8 +10,8 @@ const MessengerDashboardLayout = async ({ children } : { children: React.ReactNo
   const clientChats = await fetchAllClientChats()
 
   return (
-    <div className='h-full max-h-screen w-full flex border-t-[1px] border-white'>
-      <div className='lg:flex-[0.3] flex-[0] border-r-[1px] hidden md:block'>
+    <div className='h-full max-h-screen min-h-full w-full flex border-t-[1px] border-white'>
+      <div className='lg:flex-[0.3] min-h-screen flex-[0] border-r-[1px] hidden md:block'>
         <MessengerChatSideNav clients={clientChats} />
       </div>
 

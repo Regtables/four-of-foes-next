@@ -41,13 +41,13 @@ const PortalPage = async () => {
 
   return (
     <div className="container flex-[0.95]" id="main">
-      <div className="page">
+      <div className="page h-screen">
         {/* <Suspense> */}
         <Lobby client={client} messages={messages} />
         {/* </Suspense> */}
       </div>
 
-      <div className="page" id="lounge">
+      <div className="page h-screen" id="lounge">
         {/* <Suspense> */}
         <Lounge
           indemnityData={indemnityData}
@@ -58,7 +58,7 @@ const PortalPage = async () => {
         {/* </Suspense> */}
       </div>
 
-      <div className="page" id="wallet">
+      <div className="page h-screen" id="wallet">
         {/* <Suspense> */}
         <Wallet client={client} />
         {/* </Suspense> */}

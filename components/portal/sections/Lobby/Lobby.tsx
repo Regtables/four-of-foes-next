@@ -51,9 +51,9 @@ const Lobby = ({ messages, client }: LobbyProps) => {
   return (
     <SectionLayout section="lobby">
       <AnimatePresence>
-        {/* {currentSection === "lobby" && ( */}
+        {currentSection === "lobby" && (
           <motion.div
-            className="w-full min-w-full h-full pt-8 flex flex-col relative lg:w-[70vw]"
+            className="w-full h-full pt-8 flex flex-col relative lg:w-[70vw]"
             initial="hidden"
             animate="visible"
             exit="exit"
@@ -81,7 +81,7 @@ const Lobby = ({ messages, client }: LobbyProps) => {
 
             <Partition />
 
-            <div className="flex-[0.92] max-h-full">
+            <div className="flex-[0.92] h-full max-h-full">
               <MessengerProvider
                 messageHistory={messages}
                 client={client}
@@ -93,7 +93,7 @@ const Lobby = ({ messages, client }: LobbyProps) => {
 
             <Partition />
           </motion.div>
-        {/* // )} */}
+        )}
       </AnimatePresence>
 
       {isRestricted && (

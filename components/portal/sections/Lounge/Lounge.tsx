@@ -58,8 +58,8 @@ const Lounge = ({ indemnityData, prepData, appointmentData, clientName }: Lounge
 
   return (
     <SectionLayout section="lounge">
-      {/* <AnimatePresence>
-        {currentSection === "lounge" && ( */}
+      <AnimatePresence>
+        {currentSection === "lounge" && (
           <motion.div
             className="h-full w-full flex flex-col items-center"
             initial="hidden"
@@ -147,8 +147,8 @@ const Lounge = ({ indemnityData, prepData, appointmentData, clientName }: Lounge
               </div>
             </motion.div>
           </motion.div>
-        {/* )}
-      </AnimatePresence> */}
+        )}
+      </AnimatePresence>
     </SectionLayout>
   );
 };
