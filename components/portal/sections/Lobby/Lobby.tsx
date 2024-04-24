@@ -57,6 +57,7 @@ const Lobby = ({ messages, client }: LobbyProps) => {
             initial="hidden"
             animate="visible"
             exit="exit"
+
             variants={{
               hidden: { opacity: 0, y: 0 },
               visible: {

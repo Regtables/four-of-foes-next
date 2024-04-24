@@ -41,7 +41,7 @@ const PortalPage = async () => {
 
   return (
     <div className="container flex-[0.95]" id="main">
-      <div className="page h-screen">
+      <div className="page h-screen" id = 'lobby  '>
         {/* <Suspense> */}
         <Lobby client={client} messages={messages} />
         {/* </Suspense> */}

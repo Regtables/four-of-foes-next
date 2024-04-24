@@ -24,7 +24,7 @@ const PortalLayout = async ({ children }: { children: React.ReactNode }) => {
 
   return (
     <PortalSectionProvider>
-      <div className="flex flex-col h-full">
+      <div className="flex flex-col h-full flex-[0.95]">
         {children}
 
         <footer className="flex items-center w-72 mx-auto">

@@ -7,7 +7,7 @@ export const revalidate = 0
 const PortalRootLayout = async ({ children } : { children: React.ReactNode }) => {
   return (
     <PortalProgressProvider>
-      <div className="min-h-[100vh] lg:pb-0 pb-[60px] w-[100vw] h-screen max-h-screen overflow-hidden flex flex-col">
+      <div className="min-h-[100vh] lg:pb-0 w-[100vw] h-screen max-h-screen overflow-hidden flex flex-col">
         <header className="flex justify-center items-center min-h-[20px] flex-[0.05] z-10 relative w-[160px] mx-auto">
           <h1 className="uppercase tracking-wider font-[300] heading-font">Four of Foes</h1>
         </header>

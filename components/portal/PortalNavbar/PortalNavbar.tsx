@@ -19,6 +19,14 @@ const PortalNavbar = ({ unreadMessages:messages } : { unreadMessages: Message[] 
 
   console.log(unreadMessages)
 
+  const containerRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    if (containerRef.current) {
+      containerRef.current.scrollIntoView({ behavior: 'instant'});
+    }
+  }, []);
+
   useEffect(() => {
     const activeLinkIndex = LINKS.findIndex(
       (link) => link.link === currentSection
@@ -43,7 +51,7 @@ const PortalNavbar = ({ unreadMessages:messages } : { unreadMessages: Message[] 
   }, [currentSection]);
 
   return (
-    <div className="grid grid-cols-3 gap-8 w-full h-full relative justify-center lg:pb-0">
+    <div className="grid grid-cols-3 gap-8 w-full h-full relative justify-center lg:pb-0" ref={containerRef}>
       {LINKS.map((link, i) => (
         <div
           className="link-wrapper flex justify-center"
