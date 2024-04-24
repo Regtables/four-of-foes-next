@@ -62,11 +62,12 @@ const PortalNavbar = ({ unreadMessages:messages } : { unreadMessages: Message[] 
             whileInView={{ opacity: [0,1], transition: { duration: 2, delay: 1 } }}
             initial = {{ opacity: 0 }}
             animate={animateDot}
+            viewport={{ once: true }}
             transition={{ duration: 0.5 }}
           />
 
           {link.link === 'lobby' && currentSection !== 'lobby' && unreadMessages?.length > 0 && (
-            <div className="absolute h-[18px] w-[18px] bg-[#444444] mx-auto rounded-full text-[8px] flex items-center justify-center lg:bottom-[-22px] bottom-[28px]">
+            <div className="absolute h-[18px] w-[18px] bg-[#444444] mx-auto rounded-full text-[8px] flex items-center justify-center lg:bottom-[-22px] bottom-[-22px]">
               {unreadMessages.length}
             </div>
           )}

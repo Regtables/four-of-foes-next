@@ -9,6 +9,7 @@ import { useMessenger } from "@/context/MessengerContext";
 import MessageStatus from "./MessageStatus";
 import ViewMotionWrapper from "@/components/layout/Motion/ViewMotionWrapper";
 import { useModal } from "@/context/ModalContext";
+import { useSection } from "@/context/PortalSectionContext";
 
 interface MessageTileProps extends Message {
   i: number
@@ -28,6 +29,7 @@ const MessageTile: React.FC<MessageTileProps> = ({
   i
 }: Message) => {
   const { messageHistory, isAdmin } = useMessenger()
+  const { currentSection } = useSection()
   const { handleModalOpen } = useModal()
 
   const facing =  ((isAdmin && !isFromClient) || (!isAdmin && isFromClient))
@@ -41,8 +43,10 @@ const MessageTile: React.FC<MessageTileProps> = ({
   
   useEffect(() => {
     console.log(isLast)
-    document.getElementById('last')!.scrollIntoView()
-  }, [])
+    if(currentSection == 'lobby'){
+      document.getElementById('last')!.scrollIntoView({ behavior: 'instant'})
+    }
+  }, [currentSection, messageHistory])
 
   const renderFrom = () => {
     if(_id === '1'){

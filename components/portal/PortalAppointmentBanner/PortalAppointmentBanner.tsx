@@ -17,7 +17,7 @@ const PortalAppointmentBanner = ({ clientName, date, studio, country } : Appoint
   const formattedDate = format(new Date(date), 'dd MMMM / hhaa')
   
   return (
-    <div className='flex text-[8px] font-light uppercase items-center tracking-[0.1em] py-4'>
+    <div className='flex text-[9px] font-light uppercase items-center tracking-[0.1em] py-4'>
       {clientName} <Dot size={10} /> {formattedDate} <Dot size={10}  /> {studio} <Dot  size={10} /> {country}
     </div>
   )

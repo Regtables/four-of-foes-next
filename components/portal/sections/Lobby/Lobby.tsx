@@ -93,7 +93,7 @@ const Lobby = ({ messages, client }: LobbyProps) => {
 
             <Partition />
           </motion.div>
-        {/* )} */}
+        // )}
       </AnimatePresence>
 
       {isRestricted && (

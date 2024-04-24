@@ -22,11 +22,13 @@ const ImagePreviewModal = () => {
     <AnimatePresence>
       {data?.activeImage && (
         <Popup isOpen={isModalOpen!} fade>
-          <div className="flex relative lg:h-[80vh] lg:w-[60vw] h-[80vh] w-[85vw] m-auto">
+          <div className="flex relative lg:h-[80vh] lg:w-[60vw] h-[70vh] w-[90vw] m-auto">
             <Image
               src={src}
               loader={loader}
               fill
+              quality={100}
+              priority
               alt="A photo of your tattoo"
               className="object-cover rounded-2xl"
             />

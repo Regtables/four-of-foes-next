@@ -25,7 +25,7 @@ const MessengerDashboardConversationPage = async ({
   const messageHistory = clientChat.chat ? clientChat.chat : [];
 
   return (
-    <div>
+    <div className="h-full">
       {/* <Suspense> */}
         <MessengerProvider
           messageHistory={messageHistory}

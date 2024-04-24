@@ -15,7 +15,7 @@ const MessengerDashboardLayout = async ({ children } : { children: React.ReactNo
         <MessengerChatSideNav clients={clientChats} />
       </div>
 
-      <div className='flex-[1] lg:flex-[0.7] w-full h-full lg:block'>
+      <div className='lg:flex-[0.7] w-full h-full lg:block'>
         {children}
       </div>
     </div>
