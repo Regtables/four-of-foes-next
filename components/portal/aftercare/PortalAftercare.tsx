@@ -27,7 +27,7 @@ const PortalAftercare:React.FC<{data: AftercareType[]}> = ({ data }) => {
   }
 
   return (
-    <div className="w-[80%] lg:w-[60vw] mx-auto display flex flex-col gap-6 items-center justify-center">
+    <div className="w-[80%] lg:w-[60vw] mx-auto display flex flex-col gap-4 items-center justify-center">
       <p className="text-[9px] text-center tracking-[--letter-spacing-sm]">
         Please read through our indemnity clauses, after which you can provide
         consent by agreeing and submitting the form

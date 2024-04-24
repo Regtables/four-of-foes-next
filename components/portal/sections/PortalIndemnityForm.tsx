@@ -11,7 +11,7 @@ const PortalIndemnityForm: React.FC = () => {
   const { indemnityDescription: description } = useIndemnity();
 
   return (
-    <form className="w-[80%] lg:w-[60vw]">
+    <form className="w-[80%] lg:w-[60vw] h-[60%]">
       <p className="text-[9px] text-center tracking-[--letter-spacing-sm] pt-4">
         {description}
       </p>

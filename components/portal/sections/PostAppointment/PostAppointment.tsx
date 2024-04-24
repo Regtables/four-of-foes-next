@@ -30,7 +30,7 @@ const PostAppointment = ({ aftercareData, client }: { aftercareData: AftercareTy
         <Asterisk size={8} />
       </header>
       <div className="min-w-[45%] w-[60%] h-[17%] mx-auto md:min-w-[20%] flex items-center relative">
-        <div className="absolute left-0 bottom-[40px] lg:bottom-[20px] w-full ">
+        <div className="absolute left-0 bottom-[0px] lg:bottom-[20px] w-full ">
           <PortalSectionAccordion
             Section1 = {<AftercareAccordion data = {aftercareData} />} 
             Section2 = {<TattooImagesAccordion images={client.tattooImages} />}
