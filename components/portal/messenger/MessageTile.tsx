@@ -41,11 +41,14 @@ const MessageTile: React.FC<MessageTileProps> = ({
     return i === messageHistory.length-1;
   }, [messageHistory]);
 
-  // useEffect(() => {
-  //   console.log(isLast);
-
-  //   document.getElementById("last")!.scrollIntoView();
-  // }, []);
+  useEffect(() => {
+    console.log(currentSection)
+    if(currentSection === 'lobby'){
+      setTimeout(() => {  
+        document.getElementById("last")!.scrollIntoView();
+      }, 1000);
+    }
+  }, [currentSection]);
 
   const renderFrom = () => {
     if (_id === "1") {

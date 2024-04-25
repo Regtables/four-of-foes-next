@@ -11,11 +11,13 @@ const AccordionLayout = ({
   children,
   section,
   list,
+  post
 }: {
   title: string;
   children: React.ReactNode;
   section?: number;
   list?: boolean;
+  post?:boolean
 }) => {
   const [toggle, setToggle] = useState(false);
   const [height, setHeight] = useState("0px");
@@ -61,7 +63,8 @@ const AccordionLayout = ({
         className={cn(
           "overflow-hidden transition-all duration-[0.7s] flex justify-center w-full relative z-10 mb-auto",
           toggle && "relative z-10",
-          list && "h-[60vh] lg:h-[70vh]"
+          list && "h-[57vh] lg:h-[62vh]",
+          list && post && 'h-[63vh] lg:h-[70vh]'
         )}
       >
         {children}

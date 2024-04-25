@@ -12,7 +12,7 @@ export interface PortalFeedbackProps {
 
 const FeedbackAccordion: React.FC<PortalFeedbackProps> = ({ data }) => {
   return (
-    <AccordionLayout title="feedback" section={3} list>
+    <AccordionLayout title="feedback" section={3} list post>
       <PortalFeedback data={data} />
     </AccordionLayout>
   );

@@ -8,7 +8,7 @@ import "slick-carousel/slick/slick-theme.css";
 
 const TattooImagesAccordion = ({ images } : { images: any[] }) => {
   return (
-    <AccordionLayout title = 'your photos' section={2} list>
+    <AccordionLayout title = 'your photos' section={2} list post>
       <PortalImageCarousel images={images} />
     </AccordionLayout>
   )

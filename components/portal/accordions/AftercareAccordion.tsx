@@ -7,7 +7,7 @@ import PortalAftercare from "../aftercare/PortalAftercare";
 
 const AftercareAccordion: React.FC<{ data: AftercareType[]}> = ({ data }) => {
   return (
-    <AccordionLayout title="aftercare" section={1} list>
+    <AccordionLayout title="aftercare" section={1} list post>
       <PortalAftercare data={data} />
     </AccordionLayout>
   );
