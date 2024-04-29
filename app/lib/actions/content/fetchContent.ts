@@ -8,14 +8,14 @@ export const fetchPrepContent = async () => {
   return content[0].tips
 }
 
-export const fetchIndemnityContent = async (clientId: string) => {
+export const fetchIndemnityContent = async () => {
   const clauses = portalClient.fetch(indemnityDataQuery())
   const miniClauses = portalClient.fetch(miniIndemnityDataQuery())
-  const client = fetchSanityClient(clientId)
+  // const client = fetchSanityClient(clientId)
 
-  const [clausesData, miniClausesData, clientData] = await Promise.all([clauses, miniClauses, client])
+  const [clausesData, miniClausesData] = await Promise.all([clauses, miniClauses])
 
-  return { clausesData, miniClausesData, clientIndemnity: clientData.clientIndemnity }
+  return { clausesData, miniClausesData }
 }
 
 export const fetchAftercareContent = async () => {

@@ -15,12 +15,12 @@ export const metadata: Metadata = {
 };
 
 const PortalLayout = async ({ children }: { children: React.ReactNode }) => {
-  const session: any = await getSession();
-  if (!session) redirect("/portal/auth/unauthorized");
+  // const session: any = await getSession();
+  // if (!session) redirect("/portal/auth/unauthorized");
 
-  const clientChat = await fetchClientChat(session?.user?.id)
+  // const clientChat = await fetchClientChat(session?.user?.id)
 
-  const unreadMessages = filterUnreadMessages(clientChat.chat, false)
+  // const unreadMessages = filterUnreadMessages(clientChat.chat, false)
 
   return (
     <PortalSectionProvider>
@@ -28,7 +28,7 @@ const PortalLayout = async ({ children }: { children: React.ReactNode }) => {
         {children}
 
         <footer className="flex items-center w-72 mx-auto">
-          <PortalNavbar unreadMessages = {unreadMessages} />
+          <PortalNavbar />
         </footer>
       </div>
     </PortalSectionProvider>

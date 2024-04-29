@@ -4,34 +4,30 @@ import {
   fetchIndemnityContent,
   fetchPrepContent,
 } from "@/app/lib/actions/content/fetchContent";
-import { getSession } from "@/app/lib/actions/clients/auth";
-import { fetchClientChat, fetchSanityClient } from "@/app/lib/actions/clients/fetchClient";
 
 import Lobby from "@/components/portal/sections/Lobby/Lobby";
 import Lounge from "@/components/portal/sections/Lounge/Lounge";
 import Wallet from "@/components/portal/sections/Wallet/Wallet";
+import { testClient } from "@/app/lib/utils";
 
 export const revalidate = 0
 
 const PortalPage = async () => {
-  const session: any = await getSession();
+  // const session: any = await getSession();
   const prepContent = fetchPrepContent();
-  const indemnityContent = fetchIndemnityContent(session!.user.id);
-  const clientData = fetchSanityClient(session!.user.id);
-  const clientChatData = fetchClientChat(session!.user.id)
-  
-  const [prepData, indemnityData, client, clientChat] = await Promise.all([
+  const indemnityContent = fetchIndemnityContent();
+
+  const [prepData, indemnityData] = await Promise.all([
     prepContent,
     indemnityContent,
-    clientData,
-    clientChatData
   ]);
 
-  const messageHistory = clientChat.chat ? clientChat.chat : []
+  const client = testClient
+  const messageHistory:any = []
 
   const messages = [
     // {
-    //   _id: "1",
+    //   _id: "1",  
     //   isFromClient: false,
     //   createdAt: new Date(),
     //   content: "Please use this space to discuss changes and addisional ideas. Here you may also recieve designs. Please use it respectfully and trust the process.",

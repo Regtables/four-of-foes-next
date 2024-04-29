@@ -11,9 +11,10 @@ import { useModal } from '@/context/ModalContext'
 import ButtonLrg from '../../buttons/ButtonLrg'
 
 const PortalAuth = ({ client } : { client: ClientType }) => {
-  const { signInClient } = useAuth()
   const { handleModalOpen, handleModalClose } = useModal()
   const router = useRouter()
+
+  console.log(client)
 
   useEffect(() => {
     if(!client){
@@ -31,7 +32,7 @@ const PortalAuth = ({ client } : { client: ClientType }) => {
 
   const handleButtonClick = async () => {
     try{
-      await signInClient(client)
+      // await signInClient(client)
     } catch (error){
       console.log(error)
     }
