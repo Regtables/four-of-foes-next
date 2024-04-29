@@ -7,6 +7,7 @@ import { useSection } from "@/context/PortalSectionContext";
 import { Message } from "@/types";
 import { readMessages } from "@/app/lib/actions/messages/messagesApi";
 import { usePortalProgress } from "@/context/PortalProgressContext";
+import { smoothScroll } from "@/app/lib/utils";
 
 const LINKS = [{ link: "lobby" }, { link: "lounge" }, { link: "wallet" }];
 
@@ -59,8 +60,9 @@ const PortalNavbar = ({ unreadMessages:messages } : { unreadMessages: Message[] 
           key={i}
         >
           <a
-            className="uppercase text-[11px] tracking-[0.2em] flex flex-col items-center justify-center relative"
-            href={`#${link.link}`}
+            className="uppercase text-[11px] tracking-[0.2em] flex flex-col items-center justify-center relative cursor-pointer"
+            // href={`#${link.link}`}
+            onClick={() => smoothScroll(link.link)}
           >
             {link.link}
           </a>
