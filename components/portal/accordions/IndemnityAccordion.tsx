@@ -9,7 +9,7 @@ import { IndemnityProvider } from "@/context/IndemnityContext";
 interface IndemnityAccordionProps {
   indemnityClauses: IndemnityType[];
   miniIndemnityClauses: MiniIndemnityClauseType[];
-  clientIndemnity: ClientIndemnityType
+  clientIndemnity?: ClientIndemnityType
 }
 
 const IndemnityAccordion: React.FC<IndemnityAccordionProps> = ({

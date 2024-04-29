@@ -37,7 +37,7 @@ interface LoungeProps {
   indemnityData: {
     clausesData: IndemnityType[];
     miniClausesData: MiniIndemnityClauseType[];
-    clientIndemnity: ClientIndemnityType;
+    clientIndemnity?: ClientIndemnityType;
   };
   prepData: string[];
   appointmentData: AppointmentDetailsType;

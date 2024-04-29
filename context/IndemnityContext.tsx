@@ -12,7 +12,7 @@ interface IndemnityContextProps {
   consentedMiniClauses: MiniIndemnityClauseType[],
   isIndemnitySignReady: boolean,
   indemnityDescription: string,
-  clientIndemnity: ClientIndemnityType,
+  clientIndemnity?: ClientIndemnityType,
   isIndemnitySigned: boolean,
   dateCaptured: Date | string | null,
   handleClauseCheck: (id: string) => void
@@ -27,7 +27,7 @@ interface IndemnityContextProps {
 interface IndemnityProviderProps {
   indemnityClauses: IndemnityType[],
   miniIndemnityClauses: MiniIndemnityClauseType[],
-  clientIndemnity: ClientIndemnityType,
+  clientIndemnity?: ClientIndemnityType,
   children?: React.ReactNode,
 }
 

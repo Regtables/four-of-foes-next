@@ -32,6 +32,7 @@ const PortalAuth = ({ client } : { client: ClientType }) => {
 
   const handleButtonClick = async () => {
     try{
+      router.push('/portal/pre')
       // await signInClient(client)
     } catch (error){
       console.log(error)

@@ -43,9 +43,9 @@ const MessageTile: React.FC<MessageTileProps> = ({
 
   useEffect(() => {
     console.log(currentSection)
-    if(currentSection === 'lobby'){
+    if(currentSection === 'lobby' && messageHistory.length > 0){
       setTimeout(() => {  
-        document.getElementById("last")!.scrollIntoView();
+        document.getElementById("last")?.scrollIntoView();
       }, 1000);
     }
   }, [currentSection]);

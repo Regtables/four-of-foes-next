@@ -11,6 +11,13 @@ import ImageTile from '@/components/images/ImageTile'
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 
+const IMAGES = [
+  '/cat2.jpg',
+  '/cat6.jpg',
+  '/cat8.jpg',
+  '/dog2.jpg'
+]
+
 const PortalImageCarousel:React.FC<{images: any[]}> = ({ images }) => {
   const [index, setIndex] = useState(0)
   const { handleModalOpen, handleModalClose, handleActionErrorAlertOpen } = useModal()
@@ -74,7 +81,7 @@ const PortalImageCarousel:React.FC<{images: any[]}> = ({ images }) => {
     {images.length !== 0 || undefined ? (
       <Fragment>
         <Slider {...settings} className='mt-10'>
-          {images.map((image, i) => (
+          {IMAGES.map((image, i) => (
             <div 
               className={cn('h-[350px] min-w-[150px] relative p-4 lg:p-0 rounded-lg transition-all duration-300 opacity-70 translate-x-[-25px] lg:translate-x-0',
                 index === i
@@ -93,7 +100,7 @@ const PortalImageCarousel:React.FC<{images: any[]}> = ({ images }) => {
           ))}
         </Slider>
 
-        <button className='text-center w-full cursor-pointer text-[8px] uppercase tracking-[0.4em] text-[#a9a9a9] absolute bottom-2' onClick={handleDownload}>download</button>
+        <button className='text-center w-full cursor-pointer text-[8px] uppercase tracking-[0.4em] text-[#a9a9a9] absolute bottom-2'>download</button>
       </Fragment>
     ) : (
       <div className='flex lg:w-[70%] w-[90%] leading-4 h-full items-center justify-center mx-auto'>
