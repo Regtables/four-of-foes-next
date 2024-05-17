@@ -69,6 +69,7 @@ export interface AppointmentDetailsType {
   appointmentDate: Date,
   appointmentLocation: string,
   appointmentCity: string
+  shop: ShopType
 }
 
 export interface DepositDataType {
