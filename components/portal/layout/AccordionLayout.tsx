@@ -90,7 +90,7 @@ const AccordionLayout = ({
       {list && !types.includes("imagePreview") && (
         <AnimatePresence>
           {toggle && (
-            <div className="bottom-[-5%] w-[100vw] flex justify-center">
+            <div className="bottom-[-1%] w-[100vw] flex justify-center">
               <motion.div
                 className="bg-white h-7 w-7 flex justify-center items-center rounded-full cursor-pointer absolute bottom-[-4%] mx-auto z-20"
                 whileInView={{ y: [20, 0], opacity: [0, 1] }}

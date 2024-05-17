@@ -46,3 +46,7 @@ export const fetchBookingFormContent = async () => {
 
   return dataObject
 }
+
+// export const fetchShopContent = async () => {
+//   const shopData = await portalClient.fetch()
+// }

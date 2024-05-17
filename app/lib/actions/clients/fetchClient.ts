@@ -1,6 +1,6 @@
 'use server'
 
-import { allClientChatsQuery, clientChatQuery, clientQuery, fetchClient } from "../../queries"
+import { allClientChatsQuery, clientAppointmentQuery, clientChatQuery, clientQuery, fetchClient } from "../../queries"
 import { portalClient } from "../../sanity"
 
 export const fetchSanityClient = async (id: string) => {
@@ -19,6 +19,17 @@ export const fetchSanityClient = async (id: string) => {
   }
 }
 
+export const fetchSanityClientAppointment = async (id: string) => {
+  try{
+    const appointmentData = await portalClient.fetch(clientAppointmentQuery(id))
+
+    return appointmentData[0].appointmentDetails
+  } catch (error){
+    console.log(error)
+    
+    throw error
+  }
+}
 export const fetchAllClientChats = async () => {
   const clientChatsData = await portalClient.fetch(allClientChatsQuery())
 

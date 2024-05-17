@@ -8,7 +8,14 @@ export const valueQuery = (value: string) => {
 }
 
 export const clientQuery = (id: string) => {
-  const query = `*[_type == "client" && _id == "${id}"]`
+  const query = `*[_type == "client" && _id == "${id}"]
+  `
+
+  return query
+}
+
+export const clientAppointmentQuery = (id: string) => {
+  const query = `*[_type == "client" && _id == "${id}"]{ appointmentDetails{ appointmentLocation, appointmentDate, appointmentCity, shop-> }}`
 
   return query
 }

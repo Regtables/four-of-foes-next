@@ -48,6 +48,8 @@ const Lounge = ({ indemnityData, prepData, appointmentData, clientName }: Lounge
   const { currentSection } = useSection();
   const [animatePage, setAnimatePage] = useState({});
 
+  console.log(appointmentData)
+
   useEffect(() => {
     if (currentSection === "lounge") {
       setAnimatePage({ opacity: [0, 1] });
@@ -142,7 +144,7 @@ const Lounge = ({ indemnityData, prepData, appointmentData, clientName }: Lounge
                     />
                   }
                   Section2={<TipsAccordion data={prepData} />}
-                  Section3={<LocationAccordion data={SHOP} />}
+                  Section3={<LocationAccordion data={appointmentData.shop} />}
                 />
               </div>
             </motion.div>

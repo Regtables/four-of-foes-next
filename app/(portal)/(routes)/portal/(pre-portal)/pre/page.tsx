@@ -5,7 +5,7 @@ import {
   fetchPrepContent,
 } from "@/app/lib/actions/content/fetchContent";
 import { getSession } from "@/app/lib/actions/clients/auth";
-import { fetchClientChat, fetchSanityClient } from "@/app/lib/actions/clients/fetchClient";
+import { fetchClientChat, fetchSanityClient, fetchSanityClientAppointment } from "@/app/lib/actions/clients/fetchClient";
 
 import Lobby from "@/components/portal/sections/Lobby/Lobby";
 import Lounge from "@/components/portal/sections/Lounge/Lounge";
@@ -19,14 +19,17 @@ const PortalPage = async () => {
   const indemnityContent = fetchIndemnityContent(session!.user.id);
   const clientData = fetchSanityClient(session!.user.id);
   const clientChatData = fetchClientChat(session!.user.id)
+  const appointmentDetailsData = fetchSanityClientAppointment(session!.user.id)
   
-  const [prepData, indemnityData, client, clientChat] = await Promise.all([
+  const [prepData, indemnityData, client, clientChat, appointmentDetails] = await Promise.all([
     prepContent,
     indemnityContent,
     clientData,
-    clientChatData
+    clientChatData,
+    appointmentDetailsData
   ]);
 
+  console.log(appointmentDetails, 'client')
   const messageHistory = clientChat.chat ? clientChat.chat : []
 
   const messages = [
@@ -52,7 +55,7 @@ const PortalPage = async () => {
         <Lounge
           indemnityData={indemnityData}
           prepData={prepData}
-          appointmentData={client.appointmentDetails}
+          appointmentData={appointmentDetails}
           clientName= {client.clientName}
         />
         {/* </Suspense> */}

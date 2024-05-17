@@ -5,6 +5,7 @@ import Popup from "@/components/layout/Popup";
 import Image from "next/image";
 import Swipeable from "../layout/Swipeable";
 import { ArrowLeft, ArrowRight } from "lucide-react";
+import ImageTile from "./ImageTile";
 
 const ImageCarousel = ({
   i,
@@ -44,12 +45,13 @@ const ImageCarousel = ({
           {images.map((image, i) => (
             <div className={`w-full h-full min-w-full relative`} key={i}>
               {/* <GalleryTile image={image} /> */}
-              <Image 
+              {/* <Image 
                 src = {image}
                 fill
                 className="object-cover lg:rounded-md"
                 alt = {`Tattoo shop photo`}
-              />
+              /> */}
+              <ImageTile image={image} />
 
             </div>
           ))}
