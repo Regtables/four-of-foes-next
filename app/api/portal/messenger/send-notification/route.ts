@@ -13,7 +13,7 @@ export async function POST(request: Request) {
     if (isAdmin) {
       await resend.emails.send({
         from: 'Four of Foes <reg@regtables.com>',
-        to: 'reghardt7@gmail.com',
+        to: 'info@poetscxrner.com',
         subject: 'You have received a new message from Ted Faulmann on the Four of Foes Patron Lounge',
         html: `
           <p>Hello ${client.clientName},</p>
@@ -27,7 +27,7 @@ export async function POST(request: Request) {
     } else if(!isAdmin) {
       await resend.emails.send({
         from: 'Four of Foes <reg@regtables.com>',
-        to: 'reghardt7@gmail.com',
+        to: 'info@poetscxrner.com',
         subject: `You have received a new message from your client, ${client.clientName} on the Four of Foes Patron Lounge`,
         html: `
           <a href="https://four-of-foes-next-git-portal-messenger-regtables-dev-team.vercel.app/portal/messenger-dashboard/${client._id}">
