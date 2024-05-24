@@ -13,7 +13,7 @@ export async function POST(request: Request) {
     if (isAdmin) {
       await resend.emails.send({
         from: 'Four of Foes <reg@regtables.com>',
-        to: 'info@poetscxrner.com',
+        to: client.email,
         subject: 'You have received a new message from Ted Faulmann on the Four of Foes Patron Lounge',
         html: `
           <p>Hello ${client.clientName},</p>
