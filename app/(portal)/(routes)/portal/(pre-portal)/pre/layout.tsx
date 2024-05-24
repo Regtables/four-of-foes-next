@@ -6,7 +6,7 @@ import { redirect } from "next/navigation";
 
 import PortalNavbar from "@/components/portal/PortalNavbar/PortalNavbar";
 import { getSession } from "@/app/lib/actions/clients/auth";
-import { fetchClientChat } from "@/app/lib/actions/clients/fetchClient";
+import { fetchClientChat, fetchSanityClient } from "@/app/lib/actions/clients/fetchClient";
 import { filterUnreadMessages } from "@/app/lib/helpers";
 
 export const metadata: Metadata = {
@@ -18,8 +18,13 @@ const PortalLayout = async ({ children }: { children: React.ReactNode }) => {
   const session: any = await getSession();
   if (!session) redirect("/portal/auth/unauthorized");
 
+  const clientData = await fetchSanityClient(session!.user.id);
+  
+  if(clientData.progress.isTattooCompleted){
+    redirect('/portal/post')
+  }
+  
   const clientChat = await fetchClientChat(session?.user?.id)
-
   const unreadMessages = filterUnreadMessages(clientChat.chat, false)
 
   return (
