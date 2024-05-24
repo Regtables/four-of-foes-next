@@ -71,10 +71,10 @@ const PortalImageCarousel:React.FC<{images: any[]}> = ({ images }) => {
 
   return (
     <div className='w-[80vw] lg:w-[60vw] relative'>
-    {images.length !== 0 || undefined ? (
+    {images ? (
       <Fragment>
         <Slider {...settings} className='mt-10'>
-          {images.map((image, i) => (
+          {images?.map((image, i) => (
             <div 
               className={cn('h-[350px] min-w-[150px] relative p-4 lg:p-0 rounded-lg transition-all duration-300 opacity-70 translate-x-[-25px] lg:translate-x-0',
                 index === i
@@ -96,8 +96,8 @@ const PortalImageCarousel:React.FC<{images: any[]}> = ({ images }) => {
         <button className='text-center w-full cursor-pointer text-[8px] uppercase tracking-[0.4em] text-[#a9a9a9] absolute bottom-2' onClick={handleDownload}>download</button>
       </Fragment>
     ) : (
-      <div className='flex lg:w-[70%] w-[90%] leading-4 h-full items-center justify-center mx-auto'>
-        <p className='title text-center'>We have not uploaded your photos yet, check back in a little while, or when notified</p>
+      <div className='flex lg:w-[70%] w-[80%] leading-4 h-full items-center justify-center mx-auto'>
+        <p className='title text-[8px] text-center'>We have not uploaded your photos yet, check back in a little while, or when notified</p>
       </div>
     )}
   </div>
