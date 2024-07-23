@@ -33,7 +33,7 @@ const IndemnityTile: React.FC<IndemnityTileProps> = ({ clause }) => {
     if(e.target.id !== 'indemnity-check' && e.target.tagName !== 'indemnity-check'){
       if (!toggle) {
         setToggle(true);
-        setHeight(`${content.current.scrollHeight}px`);
+        setHeight(`${content.current.scrollHeight + 100}px`);
       } else {
         setToggle(false);
         setHeight("0px");
@@ -82,7 +82,7 @@ const IndemnityTile: React.FC<IndemnityTileProps> = ({ clause }) => {
         ref={content}
       >
         <p className="px-4 pb-4 paragraph transistion-all duration-300">{clause.clause}</p>
-
+        
         {clause.id === "health" && (
           <MiniClauseList isChecked = {checked} />
         )}

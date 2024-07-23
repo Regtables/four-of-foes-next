@@ -20,7 +20,7 @@ const MiniIndemnityClause: React.FC<MiniIndemnityClauseProps> = ({
   return (
     <div className="flex gap-2 items-center">
       <div
-        className={cn("min-h-3 min-w-3 h-[13px] w-[13px] rounded-full border-[1px] border-white flex justify-center items-center cursor-pointer", isChecked && 'border-black')}
+        className={cn("min-h-[13px] min-w-[13px] h-[13px] w-[13px] rounded-full border-[1px] border-white flex justify-center items-center cursor-pointer", isChecked && 'border-black')}
         onClick={() => handleCheck(clause)}
       >
         {checked && <div className={cn("h-[7px] w-[7px] m-auto bg-white rounded-full", isChecked && 'bg-black' )}/>}

@@ -13,7 +13,7 @@ interface PortalSectionAccordionProps {
 }
 
 const PortalSectionAccordion: React.FC<PortalSectionAccordionProps> = ({ Section1, Section2, Section3 }) => {
-  const sectionStyles = ''
+  const sectionStyles = 'overflow-auto'
   const partitionStyles = 'max-w-[200px] mx-auto min-h-[1px] h-[1px] w-[200px] relative z-10 flex items-center transition-all duration-1000'
 
   const { toggleAccordion, setToggleAccordion } = useAppSettings()
