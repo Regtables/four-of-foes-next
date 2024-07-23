@@ -23,24 +23,4 @@ export const protect = async (req: Request)=> {
   } catch (error){
     console.log(error)
   }
-  // try {
-  //   const session:any = await getSession(req);
-    
-  //   if (!session) {
-  //     return new NextResponse(null, { status: 401 });
-  //   }
-  
-  //   const client = await fetchSanityClient(session.user.id)
-    
-  //   // Attach the client data to the request object
-  //   const clonedReq = req.clone();
-  //   clonedReq.headers.set("x-client", JSON.stringify(client));
-  
-  //   return NextResponse.next({
-  //     request: clonedReq,
-  //   });
-  // } catch (error) {
-  //   console.error("Error in authMiddleware:", error);
-  //   return new NextResponse(null, { status: 500 });
-  // }
 } 
