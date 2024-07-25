@@ -16,7 +16,7 @@ const PortalIndemnityForm: React.FC = () => {
         {description}
       </p>
 
-      <div className="flex flex-col gap-2 pt-4">
+      <div className="flex flex-col gap-2 pt-4 max-h-[400px] overflow-auto">
         <IndemnityList />
       </div>
 
