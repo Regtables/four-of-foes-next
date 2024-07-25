@@ -84,7 +84,7 @@ const MessageTile: React.FC<MessageTileProps> = ({
         );
       }
     } else {
-      return <p className="text-[14px] h-100 ">{content}</p>;
+      return <p className="lg:text-[12px] text-[14px] h-100 ">{content}</p>;
     }
   };
 
