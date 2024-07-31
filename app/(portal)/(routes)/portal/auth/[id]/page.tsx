@@ -5,8 +5,6 @@ import { fetchSanityClient } from '@/app/lib/actions/clients/fetchClient'
 import PortalAuth from '@/components/portal/sections/PortalAuth'
 import { getVerificationToken } from '@/app/lib/actions/clients/auth'
 
-export const cache = 'no-store'
-
 const PortalAuthPage: React.FC<any> = async ({ params }) => {
   const { id } = params
 
