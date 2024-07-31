@@ -1,31 +1,25 @@
-import { redirect } from 'next/navigation'
 import React from 'react'
 
 import { fetchSanityClient } from '@/app/lib/actions/clients/fetchClient'
 
 import PortalAuth from '@/components/portal/sections/PortalAuth'
-import { getSession } from '@/app/lib/actions/clients/auth'
+import { getVerificationToken } from '@/app/lib/actions/clients/auth'
+
+export const cache = 'no-store'
 
 const PortalAuthPage: React.FC<any> = async ({ params }) => {
   const { id } = params
-  const session:any = await getSession()
 
-  console.log(session)
-  console.log(id)
-
-  if(id === session?.user.id){
-    redirect('/portal/pre')
-  }
-
-  // if(session) redirect('/portal/pre')
-  
   const client = await fetchSanityClient(id)
 
-  if(!client) return redirect('/')
+  console.log(client)
+  const verification = await getVerificationToken()
+
+  const isVerified = client?.email === verification?.user.email
 
   return (
     <div className='h-full flex items-center justify-center'>
-      <PortalAuth client={client} />
+      <PortalAuth client={client} isVerified = {isVerified} />
     </div>
   )
 }

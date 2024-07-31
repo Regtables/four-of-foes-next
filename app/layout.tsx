@@ -8,11 +8,9 @@ import { AppSettingsProvider } from "@/context/AppSettingsContext";
 import ModalProvider from "@/components/providers/ModalProvider";
 import { ClerkProvider } from "@clerk/nextjs";
 
-const inter = Inter({ subsets: ["latin"] });
-
 export const metadata: Metadata = {
   title: "Four of Foes",
-  description: "The coolest tattoo website ever made",
+  // description: "The coolest tattoo website ever made",
 };
 
 export default function RootLayout({
