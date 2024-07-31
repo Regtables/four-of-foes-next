@@ -10,7 +10,6 @@ const PortalAuthPage: React.FC<any> = async ({ params }) => {
 
   const client = await fetchSanityClient(id)
 
-  console.log(client)
   const verification = await getVerificationToken()
 
   const isVerified = client?.email === verification?.user.email

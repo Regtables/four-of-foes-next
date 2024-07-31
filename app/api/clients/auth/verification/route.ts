@@ -8,6 +8,8 @@ export async function POST(request: Request){
 
     if(isVerified) {
       return NextResponse.json('User is already verified', { status: 400 })
+    } else {
+      
     }
 
     await createVerifcationToken(client)

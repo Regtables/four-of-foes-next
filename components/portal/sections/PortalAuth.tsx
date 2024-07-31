@@ -19,12 +19,18 @@ const PortalAuth = ({
   client: ClientType;
   isVerified: any;
 }) => {
-  const { signInClient, createAndSendVerificationCode, verifyCode } = useAuth();
+  const { signInClient, createAndSendVerificationCode, verifyCode, unverifyClient } = useAuth();
   const { handleModalOpen, handleModalClose } = useModal();
   const [isClientVerification, setIsClientVerification] = useState(false);
   const [verificationCode, setVerificationCode] = useState("");
 
   const router = useRouter();
+
+  useEffect(() => {
+    if(!isVerified){
+      unverifyClient(client._id)
+    }
+  }, [isVerified])
 
   useEffect(() => {
     if (!client) {
@@ -93,6 +99,7 @@ const PortalAuth = ({
           <PortalVerification
             code={verificationCode}
             handleChange={setVerificationCode}
+            client={client}
           />
         </ViewMotionWrapper>
       )}

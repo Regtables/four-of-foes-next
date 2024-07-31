@@ -142,11 +142,21 @@ export const useAuth = () => {
     }
   };
 
+  const unverifyClient = async (clientId: string) => {
+    try{
+      const res = await axios.delete(`/api/clients/auth/verification/${clientId}`)
+
+    } catch (error){
+      console.log(error)
+    }
+  }
+
   return {
     logoutClient,
     refreshClientSession,
     signInClient,
     createAndSendVerificationCode,
     verifyCode,
+    unverifyClient
   };
 };
