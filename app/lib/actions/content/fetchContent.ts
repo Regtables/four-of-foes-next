@@ -59,14 +59,5 @@ export const fetchBookingFormContent = async () => {
     dataObject[content[0].heading] = content[0];
   }
 
-<<<<<<< HEAD
   return dataObject;
 };
-=======
-  return dataObject
-}
-
-// export const fetchShopContent = async () => {
-//   const shopData = await portalClient.fetch()
-// }
->>>>>>> portal-messenger

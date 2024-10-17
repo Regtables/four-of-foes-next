@@ -55,14 +55,7 @@ const Popup = ({
           id="popup"
         >
           <div
-<<<<<<< HEAD
             className={cn("flex flex-col items-center h-full relative z-0", h_0 && 'h-0')}
-=======
-            className={cn(
-              "flex flex-col items-center h-full relative",
-              h_0 && "h-0"
-            )}
->>>>>>> portal-messenger
             ref={content}
           >
             {children}
