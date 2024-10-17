@@ -26,6 +26,12 @@ export const allClientChatsQuery = () =>  {
   return query
 } 
 
+export const fetchActiveClientsChatsQuery = () => {
+  const query = '*[_type == "client" && isActive]{clientName, chat[]->{sender->, content, image, isSent, hasError, readBy, isFromClient, createdAt, _id }, appointmentDetails, _id}'
+
+  return query
+}
+
 export const clientChatQuery = (clientId: string) => {
   const query = `*[_type == "client" && _id == "${clientId}"]{chat[]->{sender->, readBy, content, createdAt, _id, isFromClient, image, isSent }} | order(_createdAt desc) [0...100]`
 

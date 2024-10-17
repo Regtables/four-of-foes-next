@@ -1,13 +1,13 @@
 import React from 'react'
 
-import { fetchAllClientChats } from '@/app/lib/actions/clients/fetchClient'
+import { fetchActiveClientChats, fetchAllClientChats } from '@/app/lib/actions/clients/fetchClient'
 
 import MessengerChatSideNav from '@/components/portal/messenger/dashboard/MessengerChatSideNav'
 
 export const revalidate = 0
 
 const MessengerDashboardLayout = async ({ children } : { children: React.ReactNode }) => {
-  const clientChats = await fetchAllClientChats()
+  const clientChats = await fetchActiveClientChats()
 
   return (
     <div className='h-full max-h-screen min-h-full w-full flex border-t-[1px] border-white'>

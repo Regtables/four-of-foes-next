@@ -1,18 +1,23 @@
 'use client'
 
-import React, { Suspense, useEffect } from "react";
+import React from "react";
 import Link from "next/link";
 import { Calendar, ChevronLeft, MapPin } from "lucide-react";
 import { format } from "date-fns";
+import { useRouter } from "next/navigation";
 
 import { ClientType } from "@/types";
+import { archiveClient, deleteClient } from "@/app/lib/actions/messages/messagesApi";
+import { useModal } from "@/context/ModalContext";
 
 import ViewMotionWrapper from "@/components/layout/Motion/ViewMotionWrapper";
 import MessageInput from "../MessageInput";
 import Messages from "../Messages";
-import axios from "axios";
+import ButtonPill from "@/components/buttons/ButtonPill";
 
 const MessengerConversation = ({ client }: { client: ClientType }) => {
+  const { handleModalOpen, handleModalClose } = useModal()
+  const router = useRouter()
   // useEffect(() => {
   //   const deleteMessages = async () => {
   //     await axios.delete('/api/portal/messenger/delete-messages')
@@ -20,6 +25,28 @@ const MessengerConversation = ({ client }: { client: ClientType }) => {
 
   //   deleteMessages()
   // }, [])
+
+  const handleArchiveClick = async () => {
+    try{
+      handleModalOpen('loading')
+      const res = await archiveClient(client)
+      router.push('/portal/messenger-dashboard')
+      router.refresh()
+    } catch (error) {
+      console.log(error)
+    } finally {
+      handleModalClose('loading')
+    }
+  }
+
+  const handleDeleteConfirmClick = async () => {
+    try {
+      await deleteClient(client)
+    } catch (error) {
+      console.log(error)
+    }
+  }
+
   return (
     <ViewMotionWrapper y={0} duration={0.3} className="flex flex-col">
       <Link
@@ -32,23 +59,33 @@ const MessengerConversation = ({ client }: { client: ClientType }) => {
       </Link>
 
       {/* <Suspense> */}
-      <div className="border-b-[1px] border-white p-2 flex flex-col flex-[0.1]">
-        <div className="uppercase text-[16px] font-semibold tracking-wider mb-1">
-          {client?.clientName}
+      <div className="border-b-[1px] border-white p-2 flex flex-row items-center justify-between flex-[0.1]">
+        <div>
+          <div className="uppercase text-[16px] font-semibold tracking-wider mb-1">
+            {client?.clientName}
+          </div>
+
+          <div className="flex text-[9px] items-center gap-1 mb-[2px] font-light tracking-wide">
+            <MapPin size={12} />
+            {client?.appointmentDetails?.appointmentLocation},{" "}
+            {client?.appointmentDetails?.appointmentCity}
+          </div>
+
+          <div className="flex text-[9px] items-center gap-1 font-light tracking-wide">
+            <Calendar size={12} />
+            {format(
+              new Date(client?.appointmentDetails?.appointmentDate),
+              "dd MMMM yyyy"
+            )}
+          </div>
         </div>
 
-        <div className="flex text-[9px] items-center gap-1 mb-[2px] font-light tracking-wide">
-          <MapPin size={12} />
-          {client?.appointmentDetails?.appointmentLocation},{" "}
-          {client?.appointmentDetails?.appointmentCity}
-        </div>
+        <div>
+        <div className="h-[30px] w-[300px] flex gap-4">
+          <ButtonPill text="Archive client" fill handleClick={handleArchiveClick}  />  
 
-        <div className="flex text-[9px] items-center gap-1 font-light tracking-wide">
-          <Calendar size={12} />
-          {format(
-            new Date(client?.appointmentDetails?.appointmentDate),
-            "dd MMMM yyyy"
-          )}
+          <ButtonPill text = 'Delete Client' fill handleClick={handleDeleteConfirmClick}/>
+        </div>
         </div>
       </div>
       {/* </Suspense> */}
