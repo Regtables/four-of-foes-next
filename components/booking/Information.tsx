@@ -15,7 +15,7 @@ interface InformationProps {
 }
 
 const Information = ({ informationData, handleChange }: InformationProps) => {
-  const inputStyles = "bg-transparent italic py-3 px-3 text-[16px] border-[1px] outline-none border-white rounded-sm w-full tracking-[0.2em] font-[var(--font-family)] font-meduim";
+  const inputStyles = "bg-transparent italic py-3 px-3 md:text-[12px] text-[12px] border-[1px] outline-none border-white rounded-sm w-full tracking-[0.2em] font-[var(--font-family)] font-meduim";
 
   const animationProps = {
     whileInView: { y: [-10, 0], opacity: [0, 1] },

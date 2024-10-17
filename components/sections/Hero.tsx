@@ -13,6 +13,8 @@ const Hero = ({ bookingFormData }: { bookingFormData: any }) => {
   const { handleOpen, types } = useModal();
   const { toggleIntro } = useAppSettings();
 
+  // console.log(bookingFormData)
+
   const handleEnquiryClick = () => {
     handleOpen("booking", { bookingFormData });
   };

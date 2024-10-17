@@ -204,9 +204,9 @@ const BookingForm = ({ data }: { data: any }) => {
           />
         </BookingSectionLayout>
 
-        <BookingSectionLayout section="artist" heading={data["Artist"]}>
+        <BookingSectionLayout section="artist" heading={data["Artists"]}>
           <ArtistSelect
-            artists={ARTISTS}
+            artists={data['Artists'].options}
             selectedArtist={artist}
             handleArtistSelect={setArtist}
             selectedTourDate={tourDate}

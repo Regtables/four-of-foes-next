@@ -28,16 +28,31 @@ export const fetchBookingFormContent = async () => {
   const references = landingClient.fetch(sectionQuery("references"));
   const idea = landingClient.fetch(sectionQuery("idea"));
 
-  const bookingFormData = await Promise.all([artists, placements, experience, dimensions, date, references, idea])
+  const reshapeArtists = (artists: { name: string; tourOptions: string[] }[]) => {
+    return artists.map(artist => ({
+      title: artist.name,
+      tourOptions: artist.tourOptions.map(city => ({
+        choice: { title: city }
+      }))
+    }));
+  };
 
-  const parsedData = bookingFormData.map((content) => content[0])
+  const bookingFormData = await Promise.all([artists, placements, experience, dimensions, date, references, idea]);
+  const [artistData, ...restData] = bookingFormData;
 
-  let dataObject = {}
+  let dataObject: { [key: string]: any } = {};
 
-  for(let i = 0; i < parsedData.length; i++){
-    //@ts-ignore
-    dataObject[parsedData[i].heading] = parsedData[i]
+  // Process artists separately
+  const reshapedArtists = reshapeArtists(artistData[0].options);
+  dataObject['Artists'] = {
+    ...artistData[0],
+    options: reshapedArtists
+  };
+
+  // Process the rest of the data
+  for (let content of restData) {
+    dataObject[content[0].heading] = content[0];
   }
 
-  return dataObject
-}
+  return dataObject;
+};

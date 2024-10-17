@@ -33,7 +33,6 @@ const ArtistSelect = ({
     const artist = artists.find(options => options.title === choice)
 
     setActiveArtist(artist)
-    console.log(artist)
   }
 
   return (
