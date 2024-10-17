@@ -1,5 +1,6 @@
-import { indemnityDataQuery, tipsDataQuery, sectionQuery, aftercareDataQuery } from "../../queries"
+import { indemnityDataQuery, tipsDataQuery, sectionQuery, aftercareDataQuery, miniIndemnityDataQuery, clientQuery } from "../../queries"
 import { landingClient, portalClient } from "../../sanity"
+import { fetchSanityClient } from "../clients/fetchClient"
 
 export const fetchPrepContent = async () => {
   const content = await portalClient.fetch(tipsDataQuery())
@@ -7,10 +8,14 @@ export const fetchPrepContent = async () => {
   return content[0].tips
 }
 
-export const fetchIndemnityContent = async () => {
-  const content = await portalClient.fetch(indemnityDataQuery())
+export const fetchIndemnityContent = async (clientId: string) => {
+  const clauses = portalClient.fetch(indemnityDataQuery())
+  const miniClauses = portalClient.fetch(miniIndemnityDataQuery())
+  const client = fetchSanityClient(clientId)
 
-  return content
+  const [clausesData, miniClausesData, clientData] = await Promise.all([clauses, miniClauses, client])
+
+  return { clausesData, miniClausesData, clientIndemnity: clientData.clientIndemnity }
 }
 
 export const fetchAftercareContent = async () => {
@@ -54,5 +59,14 @@ export const fetchBookingFormContent = async () => {
     dataObject[content[0].heading] = content[0];
   }
 
+<<<<<<< HEAD
   return dataObject;
 };
+=======
+  return dataObject
+}
+
+// export const fetchShopContent = async () => {
+//   const shopData = await portalClient.fetch()
+// }
+>>>>>>> portal-messenger

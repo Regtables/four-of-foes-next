@@ -21,9 +21,12 @@ const daysOfWeek = ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"];
 const Cell = ({
   children,
   handleClick,
+
 }: {
   children?: React.ReactNode;
   handleClick?: any;
+  onAccordionToggle?: boolean
+  
 }) => {
   return (
     <div onClick={handleClick} className="flex items-center justify-center">
@@ -35,9 +38,13 @@ const Cell = ({
 const Calendar = ({
   confirmedDate,
   setConfirmedDate,
+  toggleChildAccordion,
+  setToggleChildAccordion
 }: {
   confirmedDate: string;
   setConfirmedDate: (date: string) => void;
+  toggleChildAccordion?: boolean
+  setToggleChildAccordion?: (toggle: boolean) => void
 }) => {
   const [toggleCalendar, setToggleCalendar] = useState(false);
   const [height, setHeight] = useState("0px");
@@ -61,7 +68,9 @@ const Calendar = ({
   const handleToggle = (e?: any) => {
     if(e.target.tagName !== 'svg'){
       if (toggleCalendar) {
-        
+        if(setToggleChildAccordion){
+          setToggleChildAccordion(false)
+        }
         setAnimateCalendar({ opacity: 0 });
         setAnimateTopBar({ opacity: [1, 0] });
         setHeight("0px");
@@ -72,7 +81,9 @@ const Calendar = ({
           setAnimateCalendar({ opacity: 0 });
         }, 500);
       } else {
-        
+        if(setToggleChildAccordion){
+          setToggleChildAccordion(true)
+        }
         setAnimateTopBar({ opacity: [1, 0], duration: 0.5 });
         setAnimateCalendar({ opacity: 0, duration: 0.3 });
 
@@ -94,7 +105,7 @@ const Calendar = ({
 
     setTimeout(() => {
       setHeight(`${content.current.scrollHeight}px`);
-    }, 1);
+    }, 0);
   };
 
   // const handleDateClick = (date: Date) => {
@@ -125,7 +136,7 @@ const Calendar = ({
       <motion.div
         animate={animateTopBar}
         transition={{ duration: 0.3 }}
-        className="h-[30px] flex items-center justify-center min-w-full"
+        className="h-[20px] flex items-center justify-center min-w-full"
         onClick={(e) => handleToggle(e)}
       >
         {!toggleCalendar ? (

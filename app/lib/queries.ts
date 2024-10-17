@@ -7,6 +7,37 @@ export const valueQuery = (value: string) => {
   return query
 }
 
+export const clientQuery = (id: string) => {
+  const query = `*[_type == "client" && _id == "${id}"]
+  `
+
+  return query
+}
+
+export const clientAppointmentQuery = (id: string) => {
+  const query = `*[_type == "client" && _id == "${id}"]{ appointmentDetails{ appointmentLocation, appointmentDate, appointmentCity, shop-> }}`
+
+  return query
+}
+
+export const allClientChatsQuery = () =>  {
+  const query = '*[_type == "client"]{clientName, chat[]->{sender->, content, image, isSent, hasError, readBy, isFromClient, createdAt, _id }, appointmentDetails, _id}'
+
+  return query
+} 
+
+export const fetchActiveClientsChatsQuery = () => {
+  const query = '*[_type == "client" && isActive]{clientName, chat[]->{sender->, content, image, isSent, hasError, readBy, isFromClient, createdAt, _id }, appointmentDetails, _id}'
+
+  return query
+}
+
+export const clientChatQuery = (clientId: string) => {
+  const query = `*[_type == "client" && _id == "${clientId}"]{chat[]->{sender->, readBy, content, createdAt, _id, isFromClient, image, isSent }} | order(_createdAt desc) [0...100]`
+
+  return query
+}
+
 export const sectionQuery = (section: string) => {
   const query = `*[_type == "${section}"]{heading, description, options[]->}`
 
