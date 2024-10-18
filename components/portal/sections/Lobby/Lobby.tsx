@@ -87,7 +87,9 @@ const Lobby = ({ messages, client }: LobbyProps) => {
 
             <Partition />
 
-            <div className="max-h-full" style={{ height: messagesHeight }}>
+            <div className="max-h-full flex-grow" 
+              // style={{ height: messagesHeight }}
+              >
               <MessengerProvider
                 messageHistory={messages}
                 client={client}
