@@ -13,10 +13,10 @@ export const metadata: Metadata = {
   openGraph: {
     images: [
       {
-        url: '/logo-big.jpeg',
+        url: "/logo-big.jpeg",
         width: 1200,
         height: 630,
-        alt: 'Four of Foes logo',
+        alt: "Four of Foes logo",
       },
     ],
   },
@@ -29,10 +29,16 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <meta
-        name="viewport"
-        content="width=device-width, initial-scale=1, maximum-scale=1"
-      />
+      <head>
+        <meta
+          name="google-site-verification"
+          content="P-0jPOiphQXiOCfy8zi2eoTT1A40WeyUcze2nCUxk14"
+        />
+      </head>
+        <meta
+          name="viewport"
+          content="width=device-width, initial-scale=1, maximum-scale=1"
+        />
 
       <body className={jost.className}>
         <ClerkProvider>
