@@ -1,21 +1,25 @@
-'use client'
+"use client";
 
-import { useModal } from '@/hooks/useModal'
-import React from 'react'
-import Popup from '../layout/Popup'
-import { Asterisk } from 'lucide-react'
-import ButtonPill from '../buttons/ButtonPill'
-import Image from 'next/image'
+import React from "react";
+import Image from "next/image";
+import { Asterisk } from "lucide-react";
+
+// import { useModal } from '@/hooks/useModal'
+import { useModal } from "@/context/ModalContext";
+
+import Popup from "../layout/Popup";
+import ButtonPill from "../buttons/ButtonPill";
 
 const AlertModal = () => {
-  const { isOpen, types, data } = useModal()
+  const { isOpen, types, data } = useModal();
 
-  if(!data?.alertData) return null
+  if (!data?.alert) return null;
 
-  const isModalOpen = isOpen && types?.includes('alert')
+  const isModalOpen = isOpen && types?.includes("alert");
 
-  const { alertData } = data
-  const { title, content, confirm, handleConfirm, signature } = alertData
+  const { alert } = data;
+  const { title, content, confirm, handleConfirm, option, handleOption } =
+    alert;
 
   return (
     <Popup isOpen = {isModalOpen!} fade>
@@ -25,11 +29,23 @@ const AlertModal = () => {
 
         <p className='text-center text-[10px] tracking-[0.15em]'>{content}</p>
 
-        <div className='min-w-[80px] min-h-[40px]' onClick={() => handleConfirm()}>
-          <ButtonPill text= {confirm} />
+        <div
+          className="min-w-[120px] max-w-[250px] w-full min-h-[40px]"
+          onClick={() => handleConfirm()}
+        >
+          <ButtonPill text={confirm} />
         </div>
 
-        {signature && (
+        {option && (
+          <div
+            className="min-w-[120px] max-w-[250px] w-full min-h-[40px]"
+            onClick={() => handleOption()}
+          >
+            <ButtonPill text={option} />
+          </div>
+        )}
+
+        {/* {signature && (
           <div className='relative h-[90px] w-[150px]'>
             <Image 
               src = '/signature.png'
@@ -39,10 +55,10 @@ const AlertModal = () => {
               priority
             />
           </div>
-        )}
+        )} */}
       </div>
     </Popup>
-  )
-}
+  );
+};
 
-export default AlertModal
+export default AlertModal;

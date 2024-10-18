@@ -3,7 +3,8 @@
 import React from "react";
 import { Triangle } from "react-loader-spinner";
 
-import { useModal } from "@/hooks/useModal";
+import { useModal } from "@/context/ModalContext";
+
 import Popup from "../layout/Popup";
 
 const LoadingModal = () => {
@@ -12,7 +13,7 @@ const LoadingModal = () => {
   const isModalOpen = isOpen && types?.includes("loading");
 
   return (
-    <Popup isOpen={isModalOpen!} isAlert fade>
+    <Popup isOpen={isModalOpen!} isAlert fade isLoading>
       <div className="h-full flex items-center">
         <Triangle
           visible={true}

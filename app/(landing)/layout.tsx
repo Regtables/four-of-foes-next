@@ -1,7 +1,6 @@
 "use client";
 
 import React, { useEffect, useRef, useState } from "react";
-import { X } from "lucide-react";
 import { motion } from "framer-motion";
 import { useRouter, usePathname } from "next/navigation";
 
@@ -10,7 +9,6 @@ import { useAppSettings } from "@/context/AppSettingsContext";
 
 import NavIcon from "@/components/navigation/NavIcon";
 import NavMenu from "@/components/navigation/NavMenu";
-import ViewMotionWrapper from "@/components/layout/Motion/ViewMotionWrapper";
 import BookingFormModal from "@/components/modals/BookingFormModal";
 import Intro from "@/components/sections/Intro";
 import PageHeading from "@/components/headings/PageHeading";

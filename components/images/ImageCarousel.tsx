@@ -4,6 +4,8 @@ import React, { useState } from "react";
 import Popup from "@/components/layout/Popup";
 import Image from "next/image";
 import Swipeable from "../layout/Swipeable";
+import { ArrowLeft, ArrowRight } from "lucide-react";
+import ImageTile from "./ImageTile";
 
 const ImageCarousel = ({
   i,
@@ -33,11 +35,9 @@ const ImageCarousel = ({
     }
   };
 
-  console.log(index);
-
   return (
-    <Swipeable onRight={handlePrev} onLeft={handleNext}>
-      <div className="h-full w-full lg:w-[60%] relative overflow-hidden">
+    // <Swipeable onRight={handlePrev} onLeft={handleNext}>
+      <div className="h-full w-full lg:w-[60%] mx-auto relative overflow-hidden">
         <div
           className={`flex h-full transition-translate duration-500 relative `}
           style={{ transform: `translateX(-${index * 100}%)` }}
@@ -45,12 +45,13 @@ const ImageCarousel = ({
           {images.map((image, i) => (
             <div className={`w-full h-full min-w-full relative`} key={i}>
               {/* <GalleryTile image={image} /> */}
-              <Image 
+              {/* <Image 
                 src = {image}
                 fill
-                className="object-cover"
+                className="object-cover lg:rounded-md"
                 alt = {`Tattoo shop photo`}
-              />
+              /> */}
+              <ImageTile image={image} />
 
             </div>
           ))}
@@ -60,22 +61,22 @@ const ImageCarousel = ({
           className="absolute top-0 h-full flex items-center left-[5px]"
           onClick={handlePrev}
         >
-          {/* <BsFillArrowLeftCircleFill
+          <ArrowLeft
             color="white"
-            size={28}
+            size={14}
             className="cursor-pointer"
-          /> */}
+          />
         </div>
 
         <div
           className="absolute top-0 h-full flex items-center right-[5px]"
           onClick={handleNext}
         >
-          {/* <BsFillArrowRightCircleFill
+          <ArrowRight
             color="white"
-            size={28}
+            size={14}
             className="cursor-pointer"
-          /> */}
+          />
         </div>
 
         <div className="absolute bottom-[20px] flex gap-2 justify-center w-full">
@@ -90,7 +91,7 @@ const ImageCarousel = ({
           ))}
         </div>
       </div>
-    </Swipeable>
+    // </Swipeable>
   );
 };
 

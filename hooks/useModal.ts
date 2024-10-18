@@ -14,12 +14,14 @@ export type ModalType =
   | "loading"
   | "alert"
   | "success"
+  | "imagePreview"
 
 interface ModalData {
   indemnity?: IndemnityType[];
   tips?: string[];
   bookingFormData?: BookingSection[];
   alertData?: AlertType;
+  activeImage?: any
 }
 
 interface ModalStore {
@@ -61,5 +63,3 @@ export const useModal = create<ModalStore>((set) => ({
       },
     })),
 }));
-
-console.log(useModal.getState())

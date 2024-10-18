@@ -2,22 +2,30 @@
 
 import React, { useRef, useState } from "react";
 import { motion } from "framer-motion";
+import { PayPalScriptProvider, PayPalButtons } from "@paypal/react-paypal-js";
 
 import Partition from "../PortalLinkList/Partition";
-import ButtonPill from "@/components/buttons/ButtonPill";
+import { useCheckout } from "@/hooks/useCheckout";
+import { useModal } from "@/context/ModalContext";
 
 interface PaymentAccordionProps {
   up?: boolean;
   option: string;
   text: string;
   amount: number;
+  isCompleted: boolean;
+  completedText: string;
+  handlePayment: (orderId: string) => Promise<void>;
 }
 
 const PaymentAccordion = ({
   up,
   text,
+  handlePayment,
   amount,
   option,
+  isCompleted,
+  completedText,
 }: PaymentAccordionProps) => {
   const [toggle, setToggle] = useState(false);
   const [height, setHeight] = useState("0px");
@@ -25,6 +33,9 @@ const PaymentAccordion = ({
   const [animateText, setAnimateText] = useState({});
   const [animateButton, setAnimateButton] = useState({});
   const content: any = useRef(null);
+
+  const { createPaypalOrder } = useCheckout();
+  const { handleModalOpen, handleModalClose } = useModal()
 
   const handleToggle = () => {
     if (!toggle) {
@@ -60,26 +71,53 @@ const PaymentAccordion = ({
 
       <div
         ref={content}
-        className="flex flex-col items-center gap-4 overflow-y-hidden transition-all duration-500"
+        className="flex flex-col items-center gap-3 overflow-y-hidden transition-all duration-500"
         style={{ maxHeight: height }}
       >
-        <motion.p
-          className="text-center text-[10px] tracking-[0.1em] text-clip"
-          initial={{ opacity: 0 }}
-          animate={animateText}
-          transition={{ duration: 1, delay: 0.3 }}
-        >
-          {text}
-        </motion.p>
-
-        <motion.div
-          className="w-[120px] h-[25px] mb-4"
-          initial={{ opacity: 0 }}
-          animate={animateButton}
-          transition={{ duration: 1, delay: 0.6 }}
-        >
-          <ButtonPill fill text="paypal" />
-        </motion.div>
+        {isCompleted ? (
+          <p className="text-center paragraph py-4">{completedText}</p>
+        ) : (
+          <>
+            <motion.p
+              className="text-center paragraph py-1"
+              initial={{ opacity: 0 }}
+              animate={animateText}
+              transition={{ duration: 1, delay: 0.3 }}
+            >
+              {text}
+            </motion.p>
+            <div className="h-[60px] pb-4">
+              <PayPalScriptProvider
+                options={{
+                  clientId:
+                    "Aaem8OpbrlxjaXeiVXf3h2jCfMOIZeR40K4Yvgo8-Jdpxw9AXl-NqZTE7a670MTPuX4yNaN3pAAcxPAG",
+                  disableFunding: "card",
+                  currency: 'EUR'
+                }}
+              >
+                <PayPalButtons
+                  style={{ color: "white", shape: "pill", height: 40 }}
+                  createOrder={function (data, action) {
+                    return createPaypalOrder(amount);
+                  }}
+                  onApprove={(data, actions) => {
+                    return handlePayment(data.orderID);
+                  }}
+                  onError={(err) => {
+                    console.log(err)
+                    handleModalOpen('alert', { alert: {
+                      title: "Payment Error",
+                      content: 'There was an issue when trying to process your payment, please try again',
+                      confirm: 'okay',
+                      handleConfirm: () => handleModalClose('alert')
+                    }})
+                  }
+                  }
+                />
+              </PayPalScriptProvider>
+            </div>
+          </>
+        )}
       </div>
     </motion.div>
   );

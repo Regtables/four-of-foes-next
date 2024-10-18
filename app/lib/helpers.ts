@@ -1,3 +1,5 @@
+import { Message } from "@/types";
+
 export function getBase64(file: File) {
   return new Promise((resolve, reject) => {
     const reader: FileReader = new FileReader();
@@ -11,3 +13,12 @@ export function getBase64(file: File) {
     reader.onerror = (error) => reject(error);
   });
 }
+
+export const filterUnreadMessages = (messageHistory: Message[], isAdmin: boolean) => {
+  return messageHistory?.filter(
+    (chat) =>
+      isAdmin 
+      ? chat?.readBy?.includes("client") && !chat?.readBy.includes("admin")
+      : chat?.readBy?.includes('admin') && !chat?.readBy.includes('client')
+  );
+} 

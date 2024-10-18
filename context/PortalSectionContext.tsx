@@ -1,23 +1,32 @@
-'use client'
+"use client";
 
-import React, { createContext, useContext, useState } from 'react'
+import React, { createContext, useContext, useState } from "react";
 
-const PortalSectionContext = createContext({ currentSection: 'lounge', handleSectionChange: (section: string, enter: boolean) => {}})
+const PortalSectionContext = createContext({
+  currentSection: "lounge",
+  handleSectionChange: (section: string, enter: boolean) => {},
+});
 
-export const PortalSectionProvider = ({ children } : { children: React.ReactNode }) => {
-  const [currentSection, setCurrentSection] = useState('lounge')
+export const PortalSectionProvider = ({
+  children,
+}: {
+  children: React.ReactNode;
+}) => {
+  const [currentSection, setCurrentSection] = useState("lounge");
 
   const handleSectionChange = (section: string, enter: boolean) => {
-    setCurrentSection(section)
-  }
-  
+    setCurrentSection(section);
+  };
+
   return (
-    <PortalSectionContext.Provider value={{currentSection, handleSectionChange}}>
+    <PortalSectionContext.Provider
+      value={{ currentSection, handleSectionChange }}
+    >
       {children}
-    </PortalSectionContext.Provider> 
-  )
-}
+    </PortalSectionContext.Provider>
+  );
+};
 
 export const useSection = () => {
-  return useContext(PortalSectionContext)
-}
+  return useContext(PortalSectionContext);
+};

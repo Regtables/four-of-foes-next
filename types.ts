@@ -31,18 +31,28 @@ export interface BookingSection {
 }
 
 export interface ClientType{
+  _type: string,
   clientName: string,
   email: string,
   tattooPrice: number,
   sanityId: string,
   clientUrl: string,
-  appointmentDetails: {
-    appointmentDate: string,
-    appointmentLocation: string,
-    appointmentCity: string
+  _id: string
+  appointmentDetails: AppointmentDetailsType
+  deposit: {
+    depositAmount: number
+  },
+  payment: {
+    paymentAmount: number
   }
-  chat: MessageType[]
-  progress: any
+  chat: Message[]
+  progress: PortalProgressType
+  review: {
+    review: string,
+    rating: number
+  }
+  tattooImages: any[],
+  clientIndemnity: ClientIndemnityType
 }
 
 export interface PortalNavLinkType{
@@ -55,10 +65,11 @@ export interface PortalPageHeadingType{
 }
 
 export interface AppointmentDetailsType {
-  clientName: string,
+  // clientName: string,
   appointmentDate: Date,
   appointmentLocation: string,
   appointmentCity: string
+  shop: ShopType
 }
 
 export interface DepositDataType {
@@ -96,6 +107,21 @@ export interface MessageType{
   live?: boolean
 }
 
+export interface Message {
+  _type?: string,
+  _id?: string;
+  content?: string;
+  image?: any
+  sender?: ClientType;
+  isFromClient: boolean;
+  createdAt: Date;
+  readBy?: string[]
+  isSent?: boolean,
+  isLive?: boolean,
+  hasError?: boolean
+  i?: number
+}
+
 export interface RatingType {
   rating: string,
   icon: any,
@@ -124,4 +150,32 @@ export interface ShopType {
     link: string
   },
   images: any[]
+}
+
+export interface SessionType {
+  user: {
+    name: string,
+    email: string,
+    id: string,
+    isAppointmentCompleted: boolean
+  },
+  expires: Date
+} 
+
+export interface PortalProgressType {
+  isDepositConfirmed: boolean,
+  isPaymentConfirmed: boolean,
+  isReviewSubmitted: boolean,
+  isIndemnitySigned: boolean,
+  isTattooCompleted: boolean,
+  isAppliedForResheudle: boolean,
+  resheduleDate: string,
+  isAppliedForCancelation: boolean
+}
+
+export interface ClientIndemnityType {
+  captureDate: Date | string | null,
+  clientName: string,
+  agreedMainClauses: IndemnityType[],
+  agreedIndividualClauses: MiniIndemnityClauseType[]
 }
