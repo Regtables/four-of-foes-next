@@ -3,6 +3,8 @@ import { fetchBookingFormContent } from "../lib/actions/content/fetchContent";
 import { BookingFormProvider } from "@/context/BookingFormContext";
 import { Suspense } from "react";
 
+export const revalidate = 60
+
 export default async function Home() {
   const bookingFormData = await fetchBookingFormContent();
 
