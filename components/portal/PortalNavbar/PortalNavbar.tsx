@@ -52,7 +52,7 @@ const PortalNavbar = ({ unreadMessages:messages } : { unreadMessages: Message[] 
   }, [currentSection]);
 
   return (
-    <div className="grid grid-cols-3 gap-8 w-full h-full relative justify-center lg:pb-0" ref={containerRef}>
+    <div className="grid grid-cols-3 gap-8 w-full h-[100px] pb-8 relative justify-center lg:pb-0" ref={containerRef}>
       {LINKS.map((link, i) => (
         <div
           className="link-wrapper flex justify-center"
@@ -68,7 +68,7 @@ const PortalNavbar = ({ unreadMessages:messages } : { unreadMessages: Message[] 
           </a>
 
           <motion.div
-            className="h-2 w-2 bg-[grey] rounded-full absolute lg:bottom-[-15px] bottom-[-18px] mr-[1px]"
+            className="h-2 w-2 bg-[grey] rounded-full absolute lg:bottom-[15px] bottom-[40px] mr-[1px]"
             whileInView={{ opacity: [0,1], transition: { duration: 2, delay: 1 } }}
             initial = {{ opacity: 0 }}
             animate={animateDot}

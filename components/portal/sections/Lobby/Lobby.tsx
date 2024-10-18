@@ -13,6 +13,7 @@ import SectionLayout from "../../layout/SectionLayout";
 import Partition from "../../PortalLinkList/Partition";
 import PortalMessenger from "../../messenger/PortalMessenger";
 import ButtonPill from "@/components/buttons/ButtonPill";
+import { useMediaQuery } from "react-responsive";
 
 interface LobbyProps {
   messages: Message[];
@@ -25,6 +26,10 @@ const Lobby = ({ messages, client }: LobbyProps) => {
   const { progress } = usePortalProgress();
   const { handleModalOpen } = useModal();
   const [isRestricted, setIsRestricted] = useState(false);
+
+  const isMobile = useMediaQuery({ maxWidth: "676px" });
+
+  const messagesHeight = 'calc(100vh - (20px + 100px))'
 
   useEffect(() => {
     const lounge = document.getElementById("lounge");
@@ -82,7 +87,7 @@ const Lobby = ({ messages, client }: LobbyProps) => {
 
             <Partition />
 
-            <div className="flex-[0.92] h-full max-h-full">
+            <div className="max-h-full" style={{ height: messagesHeight }}>
               <MessengerProvider
                 messageHistory={messages}
                 client={client}
