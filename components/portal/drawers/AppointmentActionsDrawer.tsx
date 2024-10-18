@@ -56,7 +56,7 @@ const AppointmentActionsDrawer = () => {
       alert: {
         title: "Appointment Cancelation",
         content:
-          "You are about to permanently cancel your appointment. No refunds on deposits will be given. Are you sure you wish to proceed?",
+          "You are about to permanently cancel your appointment. No refunds or deposits will be given. Are you sure you wish to proceed?",
         confirm: "proceed",
         handleConfirm: async () => {
           await handleCancelation();
