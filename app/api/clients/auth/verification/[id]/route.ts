@@ -53,7 +53,7 @@ export async function GET(
 
         await resend.emails.send({
           from: `Four of Foes <reg@regtables.com>`,
-          to: ["reghardt7@gmail.com", client.email],
+          to: [client.email],
           subject: "Four of Foes Patron Lounge Verification Code",
           reply_to: "",
           html: `<p>Hello, ${client.clientName}</p>,
