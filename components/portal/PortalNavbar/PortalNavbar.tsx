@@ -68,7 +68,7 @@ const PortalNavbar = ({ unreadMessages:messages } : { unreadMessages: Message[] 
           </a>
 
           <motion.div
-            className="h-2 w-2 bg-[grey] rounded-full absolute lg:bottom-[15px] bottom-[40px] mr-[1px]"
+            className="h-2 w-2 bg-[grey] rounded-full absolute lg:bottom-[20.px] bottom-[40px] mr-[1px]"
             whileInView={{ opacity: [0,1], transition: { duration: 2, delay: 1 } }}
             initial = {{ opacity: 0 }}
             animate={animateDot}
