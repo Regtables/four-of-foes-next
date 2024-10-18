@@ -7,7 +7,6 @@ import { AppSettingsProvider } from "@/context/AppSettingsContext";
 import ModalProvider from "@/components/providers/ModalProvider";
 import { ClerkProvider } from "@clerk/nextjs";
 
-
 export const metadata: Metadata = {
   title: "Four of Foes - Home",
   description: "Creative atelier & tattoo collective.",
