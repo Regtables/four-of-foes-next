@@ -11,7 +11,7 @@ const Messages = () => {
   return (
     <div className="flex flex-col gap-4 pb-4 px-2 py-2 h-full">
       {/*@ts-ignore */}
-      {!isAdmin && (
+      {/* {!isAdmin && (
         <MessageTile
           _id="1"
           i = {0}
@@ -19,7 +19,7 @@ const Messages = () => {
           isFromClient={false}
           content="This creative space is provided to discuss design alterations and consultation. Please use it respectfully and trust the artistic process of the artist."
         />
-      )}
+      )} */}
       {messageHistory
       // @ts-ignore
         .sort((a, b) => new Date(b.createdAt - new Date(a.createdAt)))

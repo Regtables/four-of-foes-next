@@ -85,7 +85,7 @@ const PortalAuth = ({
       {!isClientVerification ? (
         <Fragment>
           <div className="w-[60%] text-center text-[12px] mb-4 tracking-[0.05em]">
-            Hi, {client.clientName}. Welcome to the Four of Foes booking Lounge. Kindly
+            Hi, {client?.clientName}. Welcome to the Four of Foes booking Lounge. Kindly
             review our <span className="underline">terms and conditions</span>,
             and then proceed.
           </div>

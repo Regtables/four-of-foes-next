@@ -12,12 +12,12 @@ const PortalVerification = ({ code, handleChange, client } : { code: string, han
         </p>
       </div>
 
-      <form>
+      <form className="w-full max-w-[200px]">
         <input
           maxLength={6}
           onChange={(e) => handleChange(e.target.value)}
           value={code}
-          className="bg-transparent border-[1px] border-white outline-none p-2 uppercase tracking-[0.3em]"
+          className="w-full bg-transparent border-[1px] border-white outline-none p-2 uppercase tracking-[0.3em] text-center"
         />
       </form>
     </div>
