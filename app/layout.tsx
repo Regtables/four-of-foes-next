@@ -10,6 +10,16 @@ import { ClerkProvider } from "@clerk/nextjs";
 export const metadata: Metadata = {
   title: "Four of Foes - Home",
   description: "Creative atelier & tattoo collective.",
+  openGraph: {
+    images: [
+      {
+        url: '/logo-big.jpeg',
+        width: 1200,
+        height: 630,
+        alt: 'Four of Foes logo',
+      },
+    ],
+  },
 };
 
 export default function RootLayout({
