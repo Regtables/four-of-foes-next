@@ -32,9 +32,9 @@ const PortalLayout = async ({ children }: { children: React.ReactNode }) => {
       <div className="flex flex-col h-full flex-[0.95]">
         {children}
 
-        <footer className="flex items-center w-72 mx-auto">
+        {/* <footer className="flex items-center w-72 mx-auto">
           <PortalNavbar unreadMessages = {unreadMessages} />
-        </footer>
+        </footer> */}
       </div>
     </PortalSectionProvider>
   );

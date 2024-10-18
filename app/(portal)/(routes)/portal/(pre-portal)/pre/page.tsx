@@ -29,16 +29,9 @@ const PortalPage = async () => {
     appointmentDetailsData
   ]);
 
-  console.log(appointmentDetails, 'client')
   const messageHistory = clientChat.chat ? clientChat.chat : []
 
   const messages = [
-    // {
-    //   _id: "1",
-    //   isFromClient: false,
-    //   createdAt: new Date(),
-    //   content: "Please use this space to discuss changes and addisional ideas. Here you may also recieve designs. Please use it respectfully and trust the process.",
-    // },
     ...messageHistory,
   ];
 
