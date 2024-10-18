@@ -134,7 +134,7 @@ const Lounge = ({ indemnityData, prepData, appointmentData, clientName }: Lounge
               // }}
               transition={{ duration: 1 }}
             >
-              <div className="w-full absolute left-0 bottom-[5vh] lg:bottom-[6vh] my-auto">
+              <div className="w-full absolute left-0 bottom-[5vh] lg:bottom-[2vh] my-auto">
                 <PortalSectionAccordion
                   Section1={
                     <IndemnityAccordion
