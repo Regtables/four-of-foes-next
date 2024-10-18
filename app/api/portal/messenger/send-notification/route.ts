@@ -19,7 +19,7 @@ export async function POST(request: Request) {
           <p>Hello ${client.clientName},</p>
           <br />
           <p>You have received a message from your tattoo artist regarding your appointment.</p>
-          <a href="https://four-of-foes-next-git-portal-messenger-regtables-dev-team.vercel.app/portal/auth/${client._id}">
+          <a href="https://www.fouroffoes.com/portal/auth/${client._id}">
             <p>Click this link to go to your Patron lounge and view the message.</p>
           </a>
         `,
@@ -30,7 +30,7 @@ export async function POST(request: Request) {
         to: 'info@poetscxrner.com',
         subject: `You have received a new message from your client, ${client.clientName} on the Four of Foes Patron Lounge`,
         html: `
-          <a href="https://four-of-foes-next-git-portal-messenger-regtables-dev-team.vercel.app/portal/messenger-dashboard/${client._id}">
+          <a href="https://www.fouroffoes.com/portal/messenger-dashboard/${client._id}">
             <p>Click this link to go to the messenger chat.</p>
           </a>
         `,
