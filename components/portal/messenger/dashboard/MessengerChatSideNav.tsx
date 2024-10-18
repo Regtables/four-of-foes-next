@@ -18,8 +18,8 @@ const MessengerChatSideNav = ({ clients }: { clients: ClientType[] }) => {
 
   return (
     <div className="h-full flex flex-col px-4 py-2">
-      <div className="py-4 flex items-center gap-2 font-semibold uppercase text-[12px] tracking-[0.05em] justify-between">
-        <div className="flex items-center gap-2">
+      <div className="py-4 flex items-center gap-2 font-semibold uppercase text-[12px] min-h-20 tracking-[0.05em] justify-between">
+        <div className="flex items-center gap-2 min-h-[40px]">
           <UserButton afterSignOutUrl="/" />
 
           {/* {user?.firstName} */}
