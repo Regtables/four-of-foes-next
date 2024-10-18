@@ -59,7 +59,7 @@ const MessengerConversation = ({ client }: { client: ClientType }) => {
       </Link>
 
       {/* <Suspense> */}
-      <div className="border-b-[1px] border-white p-2 flex flex-row items-center justify-between flex-[0.1]">
+      <div className="border-b-[1px] border-white p-2 flex lg:flex-row flex-col lg:items-center justify-between flex-[0.1]">
         <div>
           <div className="uppercase text-[16px] font-semibold tracking-wider mb-1">
             {client?.clientName}
@@ -81,10 +81,10 @@ const MessengerConversation = ({ client }: { client: ClientType }) => {
         </div>
 
         <div>
-        <div className="h-[30px] w-[300px] flex gap-4">
+        <div className="h-[30px] w-[300px] flex gap-4 md:mt-0 mt-2">
           <ButtonPill text="Archive client" fill handleClick={handleArchiveClick}  />  
 
-          <ButtonPill text = 'Delete Client' fill handleClick={handleDeleteConfirmClick}/>
+          <ButtonPill text = 'Delete Client' fill handleClick={handleDeleteConfirmClick} className="bg-red-800 border-none"/>
         </div>
         </div>
       </div>
@@ -92,7 +92,7 @@ const MessengerConversation = ({ client }: { client: ClientType }) => {
 
       {/* Use fallback */}
       {/* <Suspense> */}
-        <div className="flex-[0.85] px-0 max-h-[76vh] min-h-[76vh] overflow-auto">
+        <div className="flex-[0.85] px-0 max-h-[76vh] lg:min-h-[78vh] min-h-[73vh] overflow-auto">
           <Messages />
         </div>
       {/* </Suspense> */}

@@ -45,7 +45,7 @@ export async function POST(req: NextRequest) {
     await deleteMessagesTransaction.commit();
 
     // Finally, delete the client document
-    await portalClient.delete(client._id);
+    // await portalClient.delete(client._id);
 
     return NextResponse.json({ 
       message: `Removed references from ${clientMessages.length} messages, deleted ${clientMessages.length + orphanedMessages.length} messages (including ${orphanedMessages.length} orphaned messages), and deleted the client.` 
