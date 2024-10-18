@@ -23,50 +23,10 @@ export async function POST(req: NextRequest) {
 
     await deleteMessagesTransaction.commit()
 
-    // // Fetch the messages that reference this client
-    // const clientMessages = await portalClient.fetch(
-    //   `*[_type == "message" && sender._ref == $clientId]._id`,
-    //   { clientId: client._id }
-    // );
-
-    // console.log(clientMessages, 'client messages')
-
-    // // Fetch messages without a sender reference
-    // const orphanedMessages = await portalClient.fetch(
-    //   `*[_type == "message" && !defined(sender)]._id`
-    // );
-
-    // console.log(orphanedMessages, 'orphaned messages')
-
-    // // Create a transaction to remove sender references
-    // const removeReferencesTransaction = portalClient.transaction();
-
-    // // Add each message update to the transaction
-    // clientMessages.forEach((messageId: string) => {
-    //   removeReferencesTransaction.patch(messageId, (patch) => patch.unset(['sender']));
-    // });
-
-    // // Commit the transaction to remove references
-    // await removeReferencesTransaction.commit();
-
-    // // Clear the chat array in the client document
-    // await portalClient.patch(client._id).set({ chat: [] }).commit();
-
-    // // Create a transaction to delete all messages
-    // const deleteMessagesTransaction = portalClient.transaction();
-
-    // [...clientMessages].forEach((messageId: string) => {
-    //   deleteMessagesTransaction.delete(messageId);
-    // });
-
-    // // Commit the transaction to delete messages
-    // await deleteMessagesTransaction.commit();
-
-    //Finally, delete the client document
     await portalClient.delete(client._id);
 
     return NextResponse.json({ 
-      // message: `Removed references from ${clientMessages.length} messages, deleted ${clientMessages.length + orphanedMessages.length} messages (including ${orphanedMessages.length} orphaned messages), and deleted the client.` 
+      message: `Removed message references and deleted the client` 
     }, { status: 200 });
 
   } catch (error) {
