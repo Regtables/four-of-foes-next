@@ -41,9 +41,15 @@ const MessengerConversation = ({ client }: { client: ClientType }) => {
 
   const handleDeleteConfirmClick = async () => {
     try {
+      handleModalOpen('loading')
       await deleteClient(client)
+
+      router.push('/portal/messenger-dashboard')
+      router.refresh()
     } catch (error) {
       console.log(error)
+    } finally {
+      handleModalClose('loading')
     }
   }
 
@@ -81,10 +87,10 @@ const MessengerConversation = ({ client }: { client: ClientType }) => {
         </div>
 
         <div>
-        <div className="h-[30px] w-[300px] flex gap-4 md:mt-0 mt-2">
+        <div className="h-[30px] w-[150px] flex gap-4 md:mt-0 mt-2">
           <ButtonPill text="Archive client" fill handleClick={handleArchiveClick}  />  
 
-          <ButtonPill text = 'Delete Client' fill handleClick={handleDeleteConfirmClick} className="bg-red-800 border-none"/>
+          {/* <ButtonPill text = 'Delete Client' fill handleClick={handleDeleteConfirmClick} className="bg-red-800 border-none"/> */}
         </div>
         </div>
       </div>
