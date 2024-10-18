@@ -9,46 +9,64 @@ export async function POST(req: NextRequest) {
       return NextResponse.json({ error: "Invalid client data" }, { status: 400 });
     }
 
-    // Fetch the messages that reference this client
-    const clientMessages = await portalClient.fetch(
-      `*[_type == "message" && sender._ref == $clientId]._id`,
-      { clientId: client._id }
-    );
+    const messageIds = client.chat
 
-    // Fetch messages without a sender reference
-    const orphanedMessages = await portalClient.fetch(
-      `*[_type == "message" && !defined(sender)]._id`
-    );
+    console.log(messageIds, 'messages to delete')
 
-    // Create a transaction to remove sender references
-    const removeReferencesTransaction = portalClient.transaction();
+    const deleteMessagesTransaction = portalClient.transaction()
 
-    // Add each message update to the transaction
-    clientMessages.forEach((messageId: string) => {
-      removeReferencesTransaction.patch(messageId, (patch) => patch.unset(['sender']));
-    });
+    await portalClient.patch(client._id).set({ chat: [] }).commit()
 
-    // Commit the transaction to remove references
-    await removeReferencesTransaction.commit();
+    messageIds.forEach((messageId: any) => {
+      deleteMessagesTransaction.delete(messageId._ref)
+    })
 
-    // Clear the chat array in the client document
-    await portalClient.patch(client._id).set({ chat: [] }).commit();
+    await deleteMessagesTransaction.commit()
 
-    // Create a transaction to delete all messages
-    const deleteMessagesTransaction = portalClient.transaction();
+    // // Fetch the messages that reference this client
+    // const clientMessages = await portalClient.fetch(
+    //   `*[_type == "message" && sender._ref == $clientId]._id`,
+    //   { clientId: client._id }
+    // );
 
-    [...clientMessages, ...orphanedMessages].forEach((messageId: string) => {
-      deleteMessagesTransaction.delete(messageId);
-    });
+    // console.log(clientMessages, 'client messages')
 
-    // Commit the transaction to delete messages
-    await deleteMessagesTransaction.commit();
+    // // Fetch messages without a sender reference
+    // const orphanedMessages = await portalClient.fetch(
+    //   `*[_type == "message" && !defined(sender)]._id`
+    // );
 
-    // Finally, delete the client document
-    // await portalClient.delete(client._id);
+    // console.log(orphanedMessages, 'orphaned messages')
+
+    // // Create a transaction to remove sender references
+    // const removeReferencesTransaction = portalClient.transaction();
+
+    // // Add each message update to the transaction
+    // clientMessages.forEach((messageId: string) => {
+    //   removeReferencesTransaction.patch(messageId, (patch) => patch.unset(['sender']));
+    // });
+
+    // // Commit the transaction to remove references
+    // await removeReferencesTransaction.commit();
+
+    // // Clear the chat array in the client document
+    // await portalClient.patch(client._id).set({ chat: [] }).commit();
+
+    // // Create a transaction to delete all messages
+    // const deleteMessagesTransaction = portalClient.transaction();
+
+    // [...clientMessages].forEach((messageId: string) => {
+    //   deleteMessagesTransaction.delete(messageId);
+    // });
+
+    // // Commit the transaction to delete messages
+    // await deleteMessagesTransaction.commit();
+
+    //Finally, delete the client document
+    await portalClient.delete(client._id);
 
     return NextResponse.json({ 
-      message: `Removed references from ${clientMessages.length} messages, deleted ${clientMessages.length + orphanedMessages.length} messages (including ${orphanedMessages.length} orphaned messages), and deleted the client.` 
+      // message: `Removed references from ${clientMessages.length} messages, deleted ${clientMessages.length + orphanedMessages.length} messages (including ${orphanedMessages.length} orphaned messages), and deleted the client.` 
     }, { status: 200 });
 
   } catch (error) {
