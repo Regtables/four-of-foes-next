@@ -10,7 +10,7 @@ export const smoothScroll = (target: string) => {
   if (element) {
     element.scrollIntoView({
       behavior: 'smooth',
-      block: 'start',
+      // block: 'start',
     });
   }
 }
