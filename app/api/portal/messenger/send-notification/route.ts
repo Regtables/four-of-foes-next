@@ -12,7 +12,7 @@ export async function POST(request: Request) {
 
     if (isAdmin) {
       await resend.emails.send({
-        from: 'Four of Foes <reg@regtables.com>',
+        from: 'Four of Foes <info@fouroffoes.com>',
         to: client.email,
         subject: 'You have received a new message from Ted Faulmann on the Four of Foes Patron Lounge',
         html: `
@@ -26,7 +26,7 @@ export async function POST(request: Request) {
       });
     } else if(!isAdmin) {
       await resend.emails.send({
-        from: 'Four of Foes <reg@regtables.com>',
+        from: 'Four of Foes <info@fouroffoes.com>',
         to: 'info@poetscxrner.com',
         subject: `You have received a new message from your client, ${client.clientName} on the Four of Foes Patron Lounge`,
         html: `

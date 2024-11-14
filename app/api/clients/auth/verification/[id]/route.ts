@@ -52,7 +52,7 @@ export async function GET(
         const resend = new Resend(process.env.RESEND_API_KEY);
 
         await resend.emails.send({
-          from: `Four of Foes <reg@regtables.com>`,
+          from: `Four of Foes <info@fouroffoes.com>`,
           to: [client.email],
           subject: "Four of Foes Patron Lounge Verification Code",
           reply_to: "",
