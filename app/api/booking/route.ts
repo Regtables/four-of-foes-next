@@ -41,7 +41,7 @@ export async function POST(req: Request, res: Response) {
 
     const emailData = await resend.emails.send({
       from: `${name} ${surname} <info@fouroffoes.com>`,
-      to: ["info@fouroffoes.com"],
+      to: ["info@fouroffoes.com, reghardt7@gmail.com"],
       subject: `Four of Foes Form Test New Online Booking Request from ${name} ${surname}`,
       reply_to: email,
       html: `<p>Hello Poets Corner,</p>
