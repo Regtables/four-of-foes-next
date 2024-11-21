@@ -132,7 +132,7 @@ const BookingForm = ({ data }: { data: any }) => {
 
       handleOpen("success");
 
-      document.getElementById('submit-btn')!.style.display = 'none'
+      // document.getElementById('submit-btn')!.style.display = 'none'
       
     } catch (error) {
       console.log(error);

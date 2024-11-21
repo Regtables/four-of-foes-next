@@ -40,11 +40,11 @@ export async function POST(req: Request, res: Response) {
     const resend = new Resend(process.env.RESEND_API_KEY);
 
     const emailData = await resend.emails.send({
-      from: `${name} ${surname} <info@fouroffoes.com>`,
+      from: `${name} ${surname} <reg@regtables.com>`,
       to: ["info@fouroffoes.com, reghardt7@gmail.com"],
-      subject: `Four of Foes Form Test New Online Booking Request from ${name} ${surname}`,
+      subject: `Four of Foes Online Booking Request from ${name} ${surname}`,
       reply_to: email,
-      html: `<p>Hello Poets Corner,</p>
+      html: `<p>Hello Four of Foes,</p>
       <p>${name} ${surname} would like to make a booking with you, their details are:&nbsp;</p>
       <p style="padding: 12px; border-left: 4px solid #d0d0d0; font-style: italic;"><strong>Name: </strong>${name} ${surname}</p>
       <p style="padding: 12px; border-left: 4px solid #d0d0d0; font-style: italic;"><strong>Email: </strong>${email}</p>
