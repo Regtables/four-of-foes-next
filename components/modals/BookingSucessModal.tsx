@@ -1,6 +1,6 @@
 'use client'
 
-import { useModal } from '@/hooks/useModal'
+import { useModal } from '@/context/ModalContext'
 import React from 'react'
 import Popup from '../layout/Popup'
 import { Asterisk } from 'lucide-react'
@@ -8,7 +8,7 @@ import ButtonPill from '../buttons/ButtonPill'
 import Image from 'next/image'
 
 const AlertModal = () => {
-  const { isOpen, types, data, handleClose } = useModal()
+  const { isOpen, types, data, handleModalClose } = useModal()
 
   // if(!data?.alertData) return null
 
@@ -23,7 +23,7 @@ const AlertModal = () => {
 
         <p className='text-center text-[10px] tracking-[0.15em] italic'>Thank you for submitting your booking form. Please allow us some time to process your request</p>
 
-        <div className='min-w-[80px] min-h-[40px]' onClick={() => handleClose('success')}>
+        <div className='min-w-[80px] min-h-[40px]' onClick={() => handleModalClose('success')}>
           <ButtonPill text= {'done'} />
         </div>
 

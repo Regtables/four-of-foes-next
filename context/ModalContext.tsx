@@ -2,7 +2,7 @@
 
 import React, { createContext, useState, useContext, ReactNode } from "react";
 
-type ModalType = "login" | "alert" | "loading" | "imagePreview" | null;
+type ModalType = "login" | "alert" | "loading" | "imagePreview" | "bookingError" | "success" | null;
 
 interface AlertProps {
   confirm: string;
@@ -68,6 +68,7 @@ export const ModalProvider: React.FC<ModalProviderProps> = ({ children }) => {
     console.log("opening modal");
     setIsOpen(true);
     setTypes((prevTypes) => [...prevTypes, type]);
+    console.log(types)
 
     if (modalData) {
       setData({ ...data, ...modalData });

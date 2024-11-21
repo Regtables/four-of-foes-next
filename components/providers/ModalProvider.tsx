@@ -6,6 +6,7 @@ import LoadingModal from "../modals/LoadingModal";
 import AlertModal from "../modals/AlertModal";
 
 import BookingSuccessModal from "../modals/BookingSucessModal";
+import BookingErrorModal from "../modals/BookingErrorModal"
 import ImagePreviewModal from "../modals/ImagePreviewModal";
 
 const ModalProvider = () => {
@@ -23,6 +24,7 @@ const ModalProvider = () => {
       <AlertModal />
       <BookingSuccessModal />
       <ImagePreviewModal />
+      <BookingErrorModal />
     </>
   );
 };

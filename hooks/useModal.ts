@@ -15,6 +15,7 @@ export type ModalType =
   | "alert"
   | "success"
   | "imagePreview"
+  | "bookingError"
 
 interface ModalData {
   indemnity?: IndemnityType[];

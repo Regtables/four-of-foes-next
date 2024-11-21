@@ -13,6 +13,8 @@ import ButtonPill from "../buttons/ButtonPill";
 const AlertModal = () => {
   const { isOpen, types, data } = useModal();
 
+  console.log(types)
+
   if (!data?.alert) return null;
 
   const isModalOpen = isOpen && types?.includes("alert");

@@ -4,7 +4,7 @@ import axios from "axios";
 
 import { useBookingForm } from "@/context/BookingFormContext";
 import { getBase64 } from "@/app/lib/helpers";
-import { useModal } from "@/hooks/useModal";
+import { useModal } from "@/context/ModalContext";
 
 import BookingSectionLayout from "../layout/BookingSectionLayout";
 import Information from "../booking/Information";
@@ -18,41 +18,9 @@ import Contact from "../booking/Contact";
 import ViewMotionWrapper from "../layout/Motion/ViewMotionWrapper";
 import BookingCollectionWrapper from "../layout/BookingCollectionWrapper";
 
-const ARTISTS = [
-  {
-    title: "Ted Faulmann",
-    tourOptions: [
-      {
-        choice: { title: "Firenze" },
-      },
-      {
-        choice: { title: "Dresden" },
-      },
-      {
-        choice: { title: "Hamburg" },
-      },
-      {
-        choice: { title: "Munich" },
-      },
-      {
-        choice: { title: "London" },
-      },
-      {
-        choice: { title: "New York" },
-      },
-      {
-        choice: { title: "LA" },
-      },
-      {
-        choice: { title: "Cape Town" },
-      },
-    ],
-  },
-];
-
 const BookingForm = ({ data }: { data: any }) => {
   const bookingFormData = useBookingForm();
-  const { handleOpen, handleClose } = useModal();
+  const { handleModalOpen, handleModalClose } = useModal();
 
   const {
     information,
@@ -126,36 +94,25 @@ const BookingForm = ({ data }: { data: any }) => {
     };
 
     try {
-      handleOpen("loading");
+      handleModalOpen("loading");
 
-      await axios.post("/api/booking", { data });
+      const res = await axios.post("/api/booking", { data });
+      console.log(res, "status");
+      handleModalClose("loading");
 
-      handleOpen("success");
+      setTimeout(() => {
+        handleModalOpen("success");
+      }, 100);
 
-      // document.getElementById('submit-btn')!.style.display = 'none'
-      
+      document.getElementById('submit-btn')!.style.display = 'none'
     } catch (error) {
       console.log(error);
-
-      handleOpen("alert", {
-        alertData: {
-          title: "Request Error",
-          content:
-            "There was an error with your submitting your request. Please confirm that you have completed all the fields and make sure that your references are in the format of either .jpeg or .webp",
-          confirm: "okay",
-          handleConfirm: () =>
-            handleClose("alert", {
-              alertData: {
-                title: "",
-                content: "",
-                confirm: "",
-                handleConfirm: () => {},
-              },
-            }),
-        },
-      });
+      handleModalOpen("loading");
+      setTimeout(() => {
+        handleModalOpen("bookingError");
+      }, 100);
     } finally {
-      handleClose("loading");
+      handleModalClose("loading");
     }
   };
 
@@ -206,7 +163,7 @@ const BookingForm = ({ data }: { data: any }) => {
 
         <BookingSectionLayout section="artist" heading={data["Artists"]}>
           <ArtistSelect
-            artists={data['Artists'].options}
+            artists={data["Artists"].options}
             selectedArtist={artist}
             handleArtistSelect={setArtist}
             selectedTourDate={tourDate}
