@@ -52,7 +52,7 @@ const Calendar = ({
   const now = new Date();
   const [month, setMonth] = useState(now);
   const monthStart = startOfMonth(month);
-  const prefixDays = monthStart.getDay() - 1;
+  const prefixDays = monthStart.getDay() === 0 ? 6 : monthStart.getDay() - 1;
   const monthEnd = endOfMonth(month);
   const numMonthDays = differenceInDays(monthEnd, monthStart) + 1;
   const daysOfMonth = eachDayOfInterval({ start: monthStart, end: monthEnd });
@@ -61,12 +61,19 @@ const Calendar = ({
   const [animateTopBar, setAnimateTopBar] = useState({});
   const [animateCalendar, setAnimateCalendar] = useState({});
 
-
-  const prevMonth = () => setMonth(sub(month, { months: 1 }));
-  const nextMonth = () => setMonth(add(month, { months: 1 }));
+  const prevMonth = (e: any) => {
+    if(e.target.tagName === 'svg' || e.target.tagName === 'path'){
+      setMonth(sub(month, { months: 1 }));
+    }
+  }
+  const nextMonth = (e: any) => {
+    if(e.target.tagName === 'svg' || e.target.tagName === 'path'){
+      setMonth(add(month, { months: 1 }));
+    }
+  }
 
   const handleToggle = (e?: any) => {
-    if(e.target.tagName !== 'svg'){
+    if(e.target.tagName !== 'svg' && e.target.tagName !== 'path'){
       if (toggleCalendar) {
         if(setToggleChildAccordion){
           setToggleChildAccordion(false)
@@ -107,20 +114,7 @@ const Calendar = ({
       setHeight(`${content.current.scrollHeight}px`);
     }, 0);
   };
-
-  // const handleDateClick = (date: Date) => {
-  //   setSelectedDate(format(date, "EEEE dd LLLL yyyy"));
-  //   setHeight("auto"); // Set height to "auto" to allow it to adjust based on content
   
-  //   // Trigger a layout update to ensure the height is applied before starting the animation
-  //   if (content.current) {
-  //     void content.current.offsetHeight;
-  //   }
-  
-  //   setHeight(`${content.current.scrollHeight}px`);
-  // };
-  
-
   const handleConfrim = (e: any) => {
     console.log('confirming')
     setConfirmedDate(selectedDate!);
