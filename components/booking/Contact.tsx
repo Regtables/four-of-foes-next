@@ -38,7 +38,8 @@ const Contact = ({ page }: { page?: boolean }) => {
 
         <div className="flex items-center gap-2 tracking-[0.3em] font-light text-[10px]">
           <Mail size={15} />
-          info@fourofoes.com
+          {/* info@fourofoes.com */}
+          info@poetscxrner.com
         </div>
 
         <Link
