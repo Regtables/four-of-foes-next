@@ -50,7 +50,7 @@ const Contact = ({ page }: { page?: boolean }) => {
         </Link>
 
         <p className="tracking-[0.3em] font-light text-[10px] mt-4">
-          © 2024 by Four of Foes
+          © 2025 by Four of Foes
         </p>
       </div>
     </div>
