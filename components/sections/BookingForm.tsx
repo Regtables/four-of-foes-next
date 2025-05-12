@@ -129,7 +129,7 @@ const BookingForm = ({ data }: { data: any }) => {
           />
         </BookingSectionLayout>
 
-        <BookingSectionLayout section="idea" heading={{ heading: "Tattoo Concept"}}>
+        <BookingSectionLayout section="idea" heading={data["Tattoo Concept"]}>
           <Idea idea={idea} setIdea={setIdea} />
         </BookingSectionLayout>
       </BookingCollectionWrapper>
