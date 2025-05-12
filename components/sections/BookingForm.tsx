@@ -152,7 +152,7 @@ const BookingForm = ({ data }: { data: any }) => {
         </BookingSectionLayout>
       </BookingCollectionWrapper>
 
-      <BookingCollectionWrapper collection="experience">
+      {/* <BookingCollectionWrapper collection="experience">
         <BookingSectionLayout section="experience" heading={data["Experience"]}>
           <CheckboxList
             options={data["Experience"].options}
@@ -170,7 +170,7 @@ const BookingForm = ({ data }: { data: any }) => {
             handleTourDateSelect={setTourDate}
           />
         </BookingSectionLayout>
-      </BookingCollectionWrapper>
+      </BookingCollectionWrapper> */}
 
       <BookingCollectionWrapper collection="date">
         <BookingSectionLayout
