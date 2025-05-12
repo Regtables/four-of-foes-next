@@ -121,7 +121,7 @@ const BookingForm = ({ data }: { data: any }) => {
       <BookingCollectionWrapper collection="introduction">
         <BookingSectionLayout
           section="introduction"
-          heading={{ heading: "A small introduction" }}
+          heading={{ heading: "Say Hello" }}
         >
           <Information
             informationData={information}
@@ -129,7 +129,7 @@ const BookingForm = ({ data }: { data: any }) => {
           />
         </BookingSectionLayout>
 
-        <BookingSectionLayout section="idea" heading={data["Your Tattoo"]}>
+        <BookingSectionLayout section="idea" heading={{ heading: "Tattoo Concept"}}>
           <Idea idea={idea} setIdea={setIdea} />
         </BookingSectionLayout>
       </BookingCollectionWrapper>
