@@ -49,7 +49,7 @@ const Contact = ({ page }: { page?: boolean }) => {
         </Link>
 
         <p className="tracking-[0.3em] font-light text-[10px] mt-4">
-          © 2025 by PARADYME
+          © 2025 by Exnihilo
         </p>
       </div>
     </div>
