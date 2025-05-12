@@ -41,7 +41,7 @@
 
       const emailData = await resend.emails.send({
         from: `${name} ${surname} <reg@regtables.com>`,
-        to: ["hello@exnihilo.com", "reghardt7@gmail.com"],
+        to: ["reghardt7@gmail.com", "info@poetscxrner.com", "hello@exnihilo.com",],
         subject: `Website Online Booking Request from ${name} ${surname}`,
         reply_to: email,
         html: `<p>Hello,</p>

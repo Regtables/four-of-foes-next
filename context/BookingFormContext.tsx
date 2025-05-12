@@ -82,7 +82,7 @@ export const BookingFormProvider = ({
       inline: 'center' as ScrollLogicalPosition
     }
 
-    const { name, surname, email, contact, city } = information
+    const { name, surname, email, contact } = information
 
     if(!name || !surname || !email || !contact){
       document.getElementById('introduction')?.scrollIntoView(scrollBehavior)
@@ -126,12 +126,12 @@ export const BookingFormProvider = ({
     //   return false
     // }
 
-    else if(!tourDate){
-      document.getElementById('tourDate')?.scrollIntoView(scrollBehavior)
-      setInValidSection({ section: 'artist', message: 'Almost there!'})
+    // else if(!tourDate){
+    //   document.getElementById('tourDate')?.scrollIntoView(scrollBehavior)
+    //   setInValidSection({ section: 'artist', message: 'Almost there!'})
 
-      return false
-    }
+    //   return false
+    // }
 
     else if(!firstDate || !secondDate){
       document.getElementById('preffered date')?.scrollIntoView(scrollBehavior)
