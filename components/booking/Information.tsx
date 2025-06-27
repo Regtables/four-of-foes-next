@@ -88,7 +88,7 @@ const Information = ({ informationData, handleChange }: InformationProps) => {
         />
       </motion.div>
 
-      <motion.div
+      {/* <motion.div
         {...animationProps}
         transition={{ delay: 0.5, duration: 0.5 }}
       >
@@ -120,7 +120,7 @@ const Information = ({ informationData, handleChange }: InformationProps) => {
      
           id="ig"
         />
-      </motion.div>
+      </motion.div> */}
     </div>
   );
 };

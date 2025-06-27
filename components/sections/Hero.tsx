@@ -70,7 +70,7 @@ const Hero = ({ bookingFormData }: { bookingFormData: any }) => {
             exit="hidden"
             transition={{ duration: 1, delay: 0 }}
           >
-            <ButtonLrg text="tattoo enquiry" handleClick={handleEnquiryClick} />
+            <ButtonLrg text="send request" handleClick={handleEnquiryClick} />
           </motion.div>
         )}
       </AnimatePresence>

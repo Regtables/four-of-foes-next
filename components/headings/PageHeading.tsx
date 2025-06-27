@@ -12,7 +12,7 @@ const PageHeading = ({ caption } : { caption?: string}) => {
       // transition={{ duration: 0.5 }}
     >
       <h1 className="uppercase font-[500] text-[32px] leading-0 text-[var(--font-heading)] heading-font">
-        Four of Foes
+        PARADYME
       </h1>
       {caption && (
         <p className="text-[8px] tracking-[0.2em] font-light mt-4 mb-6">

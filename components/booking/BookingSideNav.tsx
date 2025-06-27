@@ -7,7 +7,7 @@ import { cn } from "@/app/lib/utils";
 const COLLECTIONS = [
   "introduction",
   "placement",
-  "experience",
+  // "experience",
   "date",
   "references",
   "submit",

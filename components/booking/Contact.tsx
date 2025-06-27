@@ -33,13 +33,12 @@ const Contact = ({ page }: { page?: boolean }) => {
       <div className={cn("flex flex-col items-center gap-2 mt-4", page && 'mt-[85px] lg:mt-0')}>
         <div className="flex items-center gap-2 tracking-[0.3em] font-light text-[10px]">
           <Instagram size={15} />
-          @fourofoes
+          @paradyme.ttt
         </div>
 
         <div className="flex items-center gap-2 tracking-[0.3em] font-light text-[10px]">
           <Mail size={15} />
-          {/* info@fourofoes.com */}
-          info@poetscxrner.com
+          hello@exnihilo.com
         </div>
 
         <Link
@@ -50,7 +49,7 @@ const Contact = ({ page }: { page?: boolean }) => {
         </Link>
 
         <p className="tracking-[0.3em] font-light text-[10px] mt-4">
-          © 2025 by Four of Foes
+          © 2025 by Exnihilo
         </p>
       </div>
     </div>

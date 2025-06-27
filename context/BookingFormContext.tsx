@@ -82,9 +82,9 @@ export const BookingFormProvider = ({
       inline: 'center' as ScrollLogicalPosition
     }
 
-    const { name, surname, email, contact, city } = information
+    const { name, surname, email, contact } = information
 
-    if(!name || !surname || !email || !contact || !city ){
+    if(!name || !surname || !email || !contact){
       document.getElementById('introduction')?.scrollIntoView(scrollBehavior)
       setInValidSection({ section: 'introduction', message: 'Almost there!'})
 
@@ -119,19 +119,19 @@ export const BookingFormProvider = ({
       return false
     }
 
-    else if(!experience){
-      document.getElementById('experience')?.scrollIntoView(scrollBehavior)
-      setInValidSection({ section: 'experience', message: 'Almost there!'})
+    // else if(!experience){
+    //   document.getElementById('experience')?.scrollIntoView(scrollBehavior)
+    //   setInValidSection({ section: 'experience', message: 'Almost there!'})
 
-      return false
-    }
+    //   return false
+    // }
 
-    else if(!tourDate){
-      document.getElementById('tourDate')?.scrollIntoView(scrollBehavior)
-      setInValidSection({ section: 'artist', message: 'Almost there!'})
+    // else if(!tourDate){
+    //   document.getElementById('tourDate')?.scrollIntoView(scrollBehavior)
+    //   setInValidSection({ section: 'artist', message: 'Almost there!'})
 
-      return false
-    }
+    //   return false
+    // }
 
     else if(!firstDate || !secondDate){
       document.getElementById('preffered date')?.scrollIntoView(scrollBehavior)
