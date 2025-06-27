@@ -2,7 +2,7 @@ import React from "react";
 import { Metadata } from "next/types";
 
 export const metadata: Metadata = {
-  title: "Four of Foes - Contact",
+  title: "Exnihilo - Contact",
   description: "Get in touch with us",
 };
 
