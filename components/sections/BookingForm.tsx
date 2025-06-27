@@ -117,7 +117,7 @@ const BookingForm = ({ data }: { data: any }) => {
   };
 
   return (
-    <form className="w-[90%] md:w-[60%] mx-6 mt-8 md:mt-11 transition-all duration-300">
+    <form className="w-[90%] md:w-[60%] mx-6 mt-12 md:mt-11 transition-all duration-300">
       <BookingCollectionWrapper collection="introduction">
         <BookingSectionLayout
           section="introduction"
