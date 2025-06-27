@@ -104,7 +104,7 @@ const BookingForm = ({ data }: { data: any }) => {
         handleModalOpen("success");
       }, 100);
 
-      document.getElementById('submit-btn')!.style.display = 'none'
+      document.getElementById("submit-btn")!.style.display = "none";
     } catch (error) {
       console.log(error);
       handleModalOpen("loading");
@@ -118,7 +118,7 @@ const BookingForm = ({ data }: { data: any }) => {
 
   return (
     <form className="w-[90%] md:w-[60%] mx-6 mt-8 md:mt-11 transition-all duration-300">
-      {/* <BookingCollectionWrapper collection="introduction">
+      <BookingCollectionWrapper collection="introduction">
         <BookingSectionLayout
           section="introduction"
           heading={{ heading: "Say Hello" }}
@@ -200,7 +200,7 @@ const BookingForm = ({ data }: { data: any }) => {
         <ViewMotionWrapper duration={1}>
           <Contact />
         </ViewMotionWrapper>
-      </BookingCollectionWrapper> 
+      </BookingCollectionWrapper>
     </form>
   );
 };
