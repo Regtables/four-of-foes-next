@@ -8,7 +8,7 @@ import ModalProvider from "@/components/providers/ModalProvider";
 import { ClerkProvider } from "@clerk/nextjs";
 
 export const metadata: Metadata = {
-  title: "Four of Foes - Home",
+  title: "Exnihilo - Home",
   description: "Creative atelier & tattoo collective.",
   openGraph: {
     images: [
