@@ -200,7 +200,7 @@ const BookingForm = ({ data }: { data: any }) => {
         <ViewMotionWrapper duration={1}>
           <Contact />
         </ViewMotionWrapper>
-      </BookingCollectionWrapper> */}
+      </BookingCollectionWrapper> 
     </form>
   );
 };
