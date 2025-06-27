@@ -13,6 +13,8 @@ import BookingSideNav from "../booking/BookingSideNav";
 const BookingFormModal = () => {
   const { isOpen, types, data, handleClose } = useModal();
 
+  console.log("Booking Form Modal Data:", data);
+
   const isModalOpen = isOpen && types?.includes("booking");
 
   return (
